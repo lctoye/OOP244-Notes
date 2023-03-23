@@ -4,7 +4,7 @@
 /* include style.043.css */
 
 body {
-    background: #9B9999;
+    background: #1c1e25;
 }
 
 a {
@@ -25,7 +25,6 @@ td,
 ul,
 li {
     font-family: "Roboto", sans-serif;
-    font-size: small;
 }
 
 .text0,
@@ -35,14 +34,13 @@ li {
 .text4,
 .text9 {
     font-family: "Roboto", sans-serif;
-    font-size: small;
 }
 
 
 /* Chapter Headings font */
 
 .texthead {
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto Slab", sans-serif;
     font-size: x-large;
     font-weight: bold;
     color: #f55;
@@ -55,8 +53,4 @@ li {
 .ssection,
 .sssection {
     font-family: "Roboto", sans-serif;
-}
-
-.sssection {
-    font-size: small;
 }

@@ -14,19 +14,21 @@ body {
     color: #f8f8f2;
     margin-top: 0;
     margin-left: 0;
-    font-family: "Roboto Slab Regular", serif;
+    font-family: "Roboto Slab", serif;
 }
 
 img {
     vertical-align: bottom;
     border: 0;
+    height: auto;
+    width: auto;
     margin-left: auto;
     margin-right: auto;
+    background-color: #f8f8f2dd;
 }
 
 p {
-    font-family: "Roboto Slab Regular", serif;
-    font-size: small;
+    font-family: "Roboto Slab", serif;
 }
 
 code {
@@ -41,11 +43,13 @@ p.center {
 
 table {
     border: 0;
+    width: 50vmax;
+    margin: 0 auto;
 }
 
 table.center {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0 auto;
+    margin-right: 0 auto;
 }
 
 tr.banner {
@@ -61,17 +65,16 @@ tr.content {
 }
 
 td {
-    font-family: "Roboto Slab Regular", serif;
-    font-size: small;
+    font-family: "Roboto Slab", serif;
 }
 
 td.tbody {
-    font-family: "Roboto Slab Regular", serif;
+    font-family: "Roboto Slab", serif;
     background: #282a36
 }
 
 td.content {
-    font-family: "Roboto Slab Regular", serif;
+    font-family: "Roboto Slab", serif;
     background: #282a36
 }
 
@@ -104,7 +107,8 @@ td.w20 {
 }
 
 td.lateral {
-    width: 700px
+    width: 700px;
+    display: none;
 }
 
 td.w33 {
@@ -121,8 +125,7 @@ div.center {
 
 ul,
 li {
-    font-family: "Roboto Slab Regular", serif;
-    font-size: small;
+    font-family: "Roboto Slab", serif;
 }
 
 ul.center {
@@ -131,7 +134,6 @@ ul.center {
 
 pre {
     font-family: "JetBrains Mono", serif;
-    font-size: small;
     margin-left: 15px;
     font-weight: bold;
     color: #f8f8f2;
@@ -147,8 +149,7 @@ pre {
 }
 
 .text3 {
-    font-family: "Roboto Slab Regular", serif;
-    font-size: small;
+    font-family: "Roboto Slab", serif;
 }
 
 .panel1 {
@@ -159,33 +160,31 @@ pre {
 /* Chapter Headings */
 
 .texthead {
-    font-family: "Roboto Slab Regular", serif;
+    font-family: "Roboto Slab", serif;
     font-size: x-large;
     font-weight: bold;
     color: #f55;
 }
 
 .texth {
-    font-family: "Roboto Slab Regular", serif;
+    font-family: "Roboto Slab", serif;
     font-size: medium;
     font-weight: bold;
-    color: #4599B1;
+    color: #ffb86c;
 }
 
 .quote {
-    font-family: "Roboto Slab Regular", serif;
-    font-size: small;
+    font-family: "Roboto Slab", serif;
     font-style: italic;
 }
 
 .textagend {
-    font-family: "Roboto Slab Regular", serif;
-    font-size: small;
+    font-family: "Roboto Slab", serif;
     color: #f55;
 }
 
 .section {
-    font-family: "Roboto Slab Regular", serif;
+    font-family: "Roboto Slab", serif;
     font-size: medium;
     font-weight: bold;
     text-transform: uppercase;
@@ -193,15 +192,14 @@ pre {
 }
 
 .ssection {
-    font-family: "Roboto Slab Regular", serif;
+    font-family: "Roboto Slab", serif;
     font-size: medium;
     font-weight: bold;
     color: #ff79c6;
 }
 
 .sssection {
-    font-family: "Roboto Slab Regular", serif;
-    font-size: small;
+    font-family: "Roboto Slab", serif;
     font-weight: bold;
     color: #ff79c6;
 }
@@ -217,7 +215,6 @@ pre {
 
 .defin {
     font-family: "JetBrains Mono", serif;
-    font-size: small;
     color: #bd93f9;
     font-weight: bold;
     background: #44475a;
@@ -256,7 +253,6 @@ pre {
 
 .code {
     font-family: "JetBrains Mono", serif;
-    font-size: small;
     color: #ffb86c;
     font-weight: bold;
     vertical-align: baseline;
