@@ -10,11 +10,11 @@ body {
 a {
     text-decoration: none;
     vertical-align: top;
+    color: #50fa7b;
 }
 
 a:hover {
-    background: #EDEDFE;
-    color: #0000ff;
+    color: #76ff98;
 }
 
 
