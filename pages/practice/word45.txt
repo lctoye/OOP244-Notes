@@ -1,0 +1,101 @@
+	45. A. The Grendel Supercomputer Project has developed  software
+	    that  allows  computers  to  be   connected   together   (or
+	    "clustered")  to  make  what  looks  like  a  single,   more
+	    powerful, computer. Such computers are useful for  extremely
+	    compute-intensive applications, where different parts of the
+	    logic can be executed on different processors  at  the  same
+	    time.
+
+	    The two crucial statistics for determining the  capabilities
+	    of a "Grendel cluster" are MB (megabytes) of memory and MIPS
+	    (millions  of  instructions  per  second).  Every  time  two
+	    computers (each of which could be  a  Grendel  cluster)  are
+	    joined, the MB of the resulting cluster is the sum of the MB
+	    of the two pieces, less 1MB (which gets used as buffer space
+	    for managing the connections). Similarly, the  MIPS  of  the
+	    resulting cluster is the sum of the MIPS of the two  pieces,
+	    less 5 MIPS overhead.
+
+	    Make a class, called grendel,  which  represents  a  Grendel
+	    cluster. When instantiated, a grendel is given  three  ints:
+	    the number of computers in the cluster (1 or more),  the  MB
+	    (16 or more), and the MIPS (10 or more), in that  order.  If
+	    the values supplied are less than the minimum values  shown,
+	    then the minimum values are used. Alternatively,  a  grendel
+	    may be constructed with no data, in which case  the  minimum
+	    values are used  for  all  three  values  (1,  16,  and  10,
+	    respectively).
+
+	    A grendel has the following public member functions:
+
+		int CPUs() - returns the  number  of  computers  in  the
+		    cluster.
+		int MB() - returns the MB of memory in the cluster.
+		int MIPS() - returns the MIPS of the cluster.
+
+	    Also, two  grendels  may  be  added  with  the  +  operator,
+	    resulting in a grendel representing the cluster you get when
+	    you combine the  two  operands.  (See  above  for  what  the
+	    statistics for the combined cluster should be).
+
+	    For example,
+
+		grendel x,   // 1 CPU, 16 MB, 10 MIPS
+			y(2, 128, 30),
+			z(1, 32, 50);
+		x = x + y;  // 3 CPUs, 144-1=143 MB, 40-5=35 MIPS
+		x = x + z;  // 4 CPUs, 175-1=174 MB, 85-5=80 MIPS
+		cout << x.CPUs() << " CPUs: " << x.MB() << " MBs and " 
+		     << x.MIPS() << " MIPS\n";
+
+	    would output
+
+		4 CPUs: 174 MBs and 80 MIPS
+
+	    B. A  crucial  concern  with  running  a  multiple-processor
+	    capable program on a Grendel cluster is the amount of memory
+	    available on the smallest  computer  in  the  cluster.  This
+	    would limit the size of the program that  could  distributed
+	    among the various processors.
+
+	    Derive a class from grendel,  named  xgrendel,  which  works
+	    like a grendel but  also  keeps  track  of  the  MB  of  the
+	    smallest  machine  in  the  cluster.  When  instantiated,  a
+	    xgrendel is supplied either
+		 (1) nothing, in  which  case  the  minimum  values  (as
+		     described in the grendel specs) are used, with  the
+		     MB for the smallest machine being the same  as  the
+		     MB (since there is only one machine), or
+		 (2) four ints  (number  of  CPUs,  total  MB,  smallest
+		     machine's MB, and MIPS, in that  order,  where  the
+		     smallest machine's MB must be between  15  and  the
+		     total MB or else 15 will be used; the other  fields
+		     follow the same rules as with a grendel), or
+		 (3) a grendel, in which case the smallest machine's  MB
+		     will have to be estimated: divide the total  MB  by
+		     the number of machines.
+
+	    A xgrendel has the additional public member function:
+
+		int minMB() - returns the MB on the smallest machine  in
+		     the cluster.
+
+	    As well, when two xgrendels are added, using +,  the  result
+	    is a xgrendel which is like the sum of two grendels with the
+	    additional stipulation that  its  minMB  is  the  lesser  of
+	    minMBs  of  the  two  operands,  except  in  the   following
+	    circumstance: when an operand has the lesser minMB and  also
+	    has just one CPU, then  the  result's  minMB  will  be  that
+	    operand's minMB minus 1 MB (to account for the buffer  space
+	    that gets used when computers are added to a  cluster).  For
+	    example,
+
+	      xgrendel x(1, 32, 32, 30), y(2, 128, 47, 50);
+	      xgrendel z = x + y; // 3 CPUs, 159 MB, 32-1=31 minMB, 75 MIPS
+	      xgrendel w = z + y; // 5 CPUs, 286 MB, 31 minMB, 120 MIPS
+	      cout << w.CPUs() << " CPUs: " << w.MB() << '('
+		   << w.minMB() << ") MB and " << w.MIPS() << " MIPS\n";
+
+	    displays
+
+	      5 CPUs: 286(31) MB and 120 MIPS

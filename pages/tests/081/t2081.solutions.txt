@@ -1,0 +1,217 @@
+Test 2 - 081 - Solution
+=======================
+
+Planet
+------
+// PMain.cpp
+#include <iostream>
+using namespace std;
+#include "Planet.h"
+
+int main ( ) {
+    Planet earth(5.97, 24); 
+
+    cout << earth << endl;
+    cout << "The force of gravity at the perihelion is " <<
+     earth.gravity(1.5e8) << "N" << endl;
+
+    return 0;
+} 
+
+// Planet.h
+#include <iostream>
+using namespace std;
+const double G = 6.674e-38;
+const double MASS_SUN = 1.989e30;
+
+class Planet {
+    double mantissa;
+    int exponent;
+    double pMass;
+  public:
+    Planet();
+    Planet(double m, int e);
+    Planet& operator=(const Planet& p);
+    double mass() const;
+    double gravity(double r) const;
+    double man() const;
+    int exp() const;
+};
+
+ostream& operator<<(ostream& os, const Planet& p);
+
+// Planet.cpp
+#include "Planet.h"
+
+Planet::Planet() {
+    mantissa = 0;
+    exponent = 0;
+    pMass    = 0;
+}
+Planet::Planet(double m, int e) {
+    if (m >= 1.0 && m < 10.0) {
+        mantissa = m;
+        exponent = e;
+        pMass    = m * pow(10, e);
+    }
+    else {
+        mantissa = 0;
+        exponent = 0;
+        pMass    = 0;
+    }
+}
+double Planet::mass() const {
+    return pMass;
+}
+double Planet::man() const {
+    return mantissa;
+}
+int Planet::exp() const {
+    return exponent;
+}
+double Planet::gravity(double r) const {
+    return r > 1.0e-10 ? G * pMass * MASS_SUN / (r * r) : 0;
+}
+Planet& Planet::operator=(const Planet& n) {
+    mantissa = n.mantissa;
+    exponent = n.exponent;
+    pMass    = n.pMass;
+    return *this;
+}
+ostream& operator<<(ostream& os, const Planet& p) {
+    if (p.mass() != 0) {
+        os.setf(ios::fixed);
+        os.precision(2);
+        os << "The mass of the planet is ";
+        os << p.man() <<" x 10^" << p.exp();
+        os << " kg";
+        os.unsetf(ios::fixed);
+        os.precision(6);
+    }
+    else
+        os << "No data";
+    return os;
+}
+
+NamedPlanet
+-----------
+// NPMain.cpp
+#include <iostream>
+using namespace std;
+#include "NamedPlanet.h"
+
+int main ( ) {
+    NamedPlanet earth(5.97, 24, "Earth"); 
+
+    cout << earth << endl;
+    cout << "The force of gravity at the perihelion is " <<
+     earth.gravity(1.5e8) << " N" << endl;
+    return 0;
+} 
+
+// NamedPlanet.h
+#include "Planet.h"
+
+class NamedPlanet : public Planet {
+    char* pName;
+  public:
+    NamedPlanet();
+    NamedPlanet(double m, int e, const char* n);
+    NamedPlanet(const NamedPlanet& n);
+    ~NamedPlanet();
+    NamedPlanet& operator=(const NamedPlanet& n);
+    const char* name() const;
+};
+
+ostream& operator<<(ostream& os, const NamedPlanet& n);
+
+// NamedPlanet.cpp
+#include <new>
+#include <cstring>
+using namespace std;
+#include "NamedPlanet.h"
+
+NamedPlanet::NamedPlanet() {
+    pName = NULL;
+}
+NamedPlanet::NamedPlanet(double m, int e, const char* n) : Planet(m, e) {
+    if (m >= 1.0 && m < 10.0 && n != NULL) {
+        pName = new (nothrow) char[strlen(n) + 1];
+        if (pName != NULL)
+            strcpy(pName, n);
+    }
+}
+NamedPlanet::NamedPlanet(const NamedPlanet& n) {
+    pName = NULL;
+    *this = n;
+}
+NamedPlanet::~NamedPlanet() {
+    if (pName != NULL)
+        delete [] pName;
+}
+NamedPlanet& NamedPlanet::operator=(const NamedPlanet& n) {
+    if (this != &n) {
+        Planet::operator=(n);
+        if (pName != NULL)
+            delete [] pName;
+        pName = new (nothrow) char[strlen(n.pName) + 1];
+        if (pName != NULL)
+            strcpy(pName, n.pName);
+    }
+    return *this;
+}
+const char* NamedPlanet::name() const {
+    return pName;
+}
+ostream& operator<<(ostream& os, const NamedPlanet& p) {
+    if (p.name() != NULL) {
+        os.setf(ios::fixed);
+        os.precision(2);
+        os << "The mass of " << p.name() << " is ";
+        os << p.man() <<" x 10^" << p.exp();
+        os.unsetf(ios::fixed);
+        os.precision(6);
+    }
+    else
+        os << "No data";
+    return os;
+}
+
+Walkthrough
+-----------
+T*T*T$C*
+T:11:59
+T$A*
+T:11:59
+A:12:0
+T*T*T$C*
+T:6:59
+T$A*
+T:6:59
+A:7:0
+T%6:59
+T%7:0
+T%11:59
+T%12:0
+---------
+T#T%7:0
+brring...
+T#T%12:1
+zzzzzz...
+T#T%7:1
+zzzzzz...
+---------
+A%
+T:7:1
+A:7:0
+T%7:0
+C%
+T:7:1
+T%7:1
+A%
+T:12:1
+A:12:0
+T%12:0
+C%
+T:12:1
+T%12:1

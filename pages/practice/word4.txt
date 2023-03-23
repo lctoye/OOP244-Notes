@@ -1,0 +1,51 @@
+	4.  Develop and code a class, named Bottle, with  the  following
+	    publicly accessible characteristics:
+
+	     - when an  instance  of  a  Bottle  is  created,  a  double
+	       (indicating the capacity of the Bottle) and  a  character
+	       string  (indicating  the  unit  of  capacity,   max.   30
+	       characters) must be supplied. A  new  Bottle  starts  out
+	       empty.
+
+	     - there is a member function
+		 double fill(double)
+	       which is passed an amount to be poured into  the  Bottle.
+	       This is added to the amount already in the Bottle, unless
+	       the total would exceed the capacity  of  the  Bottle,  in
+	       which case only enough to fill the Bottle is  added.  The
+	       amount left over, if any, is returned.
+
+	     - there is a member function
+		 double fullness()
+	       which returns, as a percent, how full the Bottle is.
+
+	     - there is a member function
+		 void display()
+	       which displays the current state of the  Bottle,  in  the
+	       following format:
+		 This 5.00 Litre bottle has 4.50 Litres in it.
+	       (where this particular Bottle has a capacity  of  5.0,  a
+	       unit of "Litre" and has had 4.5 poured into it).
+
+	    For example, the following program:
+		int main()
+		{
+		    Bottle x(3.5, "Gallon");
+		    double spill = 0;
+
+		    while (spill == 0) {
+			spill = x.fill(0.75);
+			x.display();
+		    }
+		    printf("Oops! We spilled %.2lf!\n", spill);
+		    printf("Bottle is %.2lf%% full.\n", x.fullness());
+		    return 0;
+		}
+	    would display:
+		This 3.50 Gallon bottle has 0.75 Gallons in it.
+		This 3.50 Gallon bottle has 1.50 Gallons in it.
+		This 3.50 Gallon bottle has 2.25 Gallons in it.
+		This 3.50 Gallon bottle has 3.00 Gallons in it.
+		This 3.50 Gallon bottle has 3.50 Gallons in it.
+		Oops! We spilled 0.25!
+		Bottle is 100.00% full.

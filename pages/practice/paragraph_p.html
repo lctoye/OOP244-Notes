@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Practice | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the Computer Programming and Analysis Diploma Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign="top">
+                        <br />
+                        <center>
+                        <span class=texth>Practice</span>
+                        <br />
+                        <br />
+                        <span class=texthead>
+                        Paragraph</span>
+                        </center>
+                        <br />
+                        <br />
+                        <br />
+
+                        <p>
+                        What is the exact output of the following program?&nbsp;
+                        Show your intermediate work.
+                        <table width="45%">
+                        <tr>
+                        <td>
+                        <br />
+                        <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #define WIDTH 8
+
+ class Word {
+     char* text;
+     int nletters;
+   public:
+     Word() {
+         text = NULL;
+         nletters = 0;
+         cout &lt;&lt; 'W';
+     }
+     Word(const char* s) {
+         nletters = 0;
+         while(s[nletters] != '\0')
+             nletters++;
+         text = new char[nletters];
+         for (int i = 0; i &lt; nletters; i++)
+             text[i] = s[i];
+         cout &lt;&lt; 'X';
+     }
+     Word(const Word& p) {
+         text = NULL;
+         *this = p;  // calls assignment operator below
+         cout &lt;&lt; 'Y';
+     }
+     ~Word() {
+         if (text != NULL) delete [] text;
+         cout &lt;&lt; "~W" &lt;&lt; nletters;
+     }
+     Word& operator=(const Word& p) {
+         if (this != &p) {
+             if (text != NULL) delete [] text;
+             nletters = 0;
+             if (p.text != NULL) {
+                 text = new char[p.nletters];
+                 while(nletters &lt; p.nletters) {
+                     text[nletters] = p.text[nletters];
+                     nletters++;
+                 }
+             }
+             else
+                 text = NULL;
+         }
+         cout &lt;&lt; 'V';
+         return *this;
+     }
+     int nLetters() const { return nletters; }
+     friend ostream& operator&lt;&lt;(ostream& os, const Word& w) {
+         if (w.text != NULL)
+             for (int i = 0; i &lt; w.nletters; i++)
+                 os &lt;&lt; w.text[i];
+         else
+             os &lt;&lt; "***";
+         os &lt;&lt; ' ';
+         return os;
+     }
+ };
+
+ class Paragraph {
+     Word* word;
+     int mwords;
+     int nwords;
+     int width;
+   public:
+     Paragraph() {
+         word  = NULL;
+         width = WIDTH;
+         nwords = 0;
+         mwords = 0;
+         cout &lt;&lt; 'P' &lt;&lt; endl;
+     }
+     Paragraph(const Paragraph& c) {
+         word  = NULL;
+         *this = c;  // calls assignment operator below
+         cout &lt;&lt; "cP";
+     }
+     Paragraph& operator=(const Paragraph& c) {
+         if (this != &c) {
+             if (word != NULL) delete [] word;
+             if (c.word != NULL) {
+                 word = new Word[c.mwords];
+                 cout &lt;&lt; endl;
+                 for (int i = 0; i &lt; c.nwords; i++)
+                     word[i] = c.word[i];  // calls Word assignment operator
+             }
+             else
+                 word = NULL;
+             width  = c.width;
+             nwords = c.nwords;
+             mwords = c.mwords;
+         }
+         cout &lt;&lt; "=P";
+         return *this;
+     }
+     ~Paragraph() {
+         if (word != NULL) delete [] word;
+         cout &lt;&lt; '\n' &lt;&lt; nwords &lt;&lt; "~P" &lt;&lt; endl;
+     }
+     void make(int m) {
+         if (word == NULL) {
+             word = new Word[m];
+             mwords = m;
+             nwords = 0;
+             width  = WIDTH;
+         }
+     }
+     void setWidth(int w) { width = w; }
+     friend ostream& operator&lt;&lt;(ostream& os, const Paragraph& p) {
+         int nextWord = 0;
+         for (int i = 0; i &lt; p.nwords; i++) {
+             if (nextWord + p.word[i].nLetters() &gt; p.width) {
+                 os &lt;&lt; '\n';
+                 nextWord = 0;
+             }
+             cout &lt;&lt; p.word[i];
+             nextWord += p.word[i].nLetters() + 1;
+         }
+         return os;
+     }
+     Paragraph& operator+=(const char* w) {
+         if (nwords &lt; mwords) {
+             cout &lt;&lt; "\n+=";
+             word[nwords] = w;  // calls Word constructor, then Word = operator&nbsp;
+             nwords++;
+         }
+         return *this;
+     }
+ };
+
+ int main() {
+
+     Paragraph p;
+     cout &lt;&lt; "--------\n";
+     p.make(5);
+     p += "This";
+     p += "is";
+     p += "hard";
+     cout &lt;&lt; "\n--------\n";
+     cout &lt;&lt; p &lt;&lt; endl;
+     cout &lt;&lt; "--------\n";
+     Paragraph q = p;
+     q.setWidth(6);
+     q += "too";
+     cout &lt;&lt; "\n--------\n";
+     cout &lt;&lt; q &lt;&lt; endl;
+     cout &lt;&lt; "---------------\n";
+     return 0;
+ }</pre><br /></td></tr></table>
+                        </p>
+                        <p>
+                        Show your output here:
+                        <br />
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        </p>
+                        <p>
+                        Show your rough work on a separate page.
+                        </p>
+                        </br>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        <script language="javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        <script language="javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

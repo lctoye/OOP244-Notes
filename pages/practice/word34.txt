@@ -1,0 +1,48 @@
+	34. Create a class  called  "converter"  which  is  used  to  do
+	    conversions between systems where  a  simple  multiplication
+	    can be used to perform the conversion. A converter  has  the
+	    following publicly accessible characteristics:
+
+	     -When constructed, a converter must be passed  two  strings
+	      (each  up  to  30  characters  in  length)  and  a  double
+	      containing the conversion factor. The first string is  the
+	      name of the units in the system we  are  converting  from,
+	      and the second string is the name  of  the  units  in  the
+	      system we are converting to.
+
+	     -If the = operator is used with a  converter  on  the  left
+	      side and a double on the right side,  then  the  converter
+	      stores the number for a future conversion. If a number had
+	      previously been stored using =, it is replaced.
+
+	     -If the << operator is used with an  ostream  on  the  left
+	      side and a converter on the right side,  then  the  number
+	      previously stored in the converter using = is displayed on
+	      the ostream, followed by the name  of  the  "from"  units,
+	      followed by the word  "is",  followed  by  the  result  of
+	      converting the number to the "to" system  (by  multiplying
+	      it by the conversion factor), followed by the name of  the
+	      "to" units. If the = has not been used to store  a  value,
+	      zero is used.
+
+	    For example,
+
+		converter km_to_miles("km", "miles", 0.62);
+		km_to_miles = 100.0;
+		cout << km_to_miles << '\n';
+
+	    would output:
+
+		100 km is 62 miles
+
+	    and
+
+		converter us2cdn("$ US", "$ CDN", 0.74);
+		us2cdn = 100;
+		cout << us2cdn << " and ";
+		us2cdn = 200;
+		cout << us2cdn << '\n';
+
+	    would output:
+
+		100 $ US is 74 $ CDN and 200 $ US is 148 $ CDN

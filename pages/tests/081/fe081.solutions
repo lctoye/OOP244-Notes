@@ -1,0 +1,269 @@
+Final Exam - 081 - Solutions
+============================
+
+Word Problem - Meter
+--------------------
+// Meter.h
+#ifndef _METER_H_
+#define _METER_H_
+#include <iostream>
+using namespace std;
+
+class Meter {
+    int acct;
+    int kwh;
+    int thres;
+    double brate;
+    double erate;
+public:
+    Meter(int, double, double, int);
+    Meter& operator=(const Meter& source);
+    double calc() const;
+    void record(double);
+    double charge();
+    double excess() const;
+    double excessRate() const;
+    double basicRate() const;
+    friend ostream& operator<<(ostream&, const Meter&);
+};
+#endif //_METER_H_
+
+// Meter.cpp
+#include <iostream>
+#include <iomanip>
+using namespace std;
+#include "Meter.h"
+
+Meter::Meter(int a, double b, double e, int t) {
+    if(a > 0 && b > 0.0 && e >= b && t > 0) {
+        acct = a;
+        brate = b;
+        erate = e;
+        thres = t;
+    } else {
+        acct = 0;
+        brate = 0;
+        erate = 0;
+        thres = 0;
+    }
+    kwh = 0;
+}
+void Meter::record(double r) {
+    if(r > 0)
+        kwh += r;
+}
+double Meter::charge() {
+    double c;
+    c = calc();
+    kwh = 0;
+    return c;
+}
+double Meter::excess() const {
+    return kwh > thres ? kwh - thres : 0;
+}
+double Meter::excessRate() const {
+    return erate;
+}
+double Meter::basicRate() const {
+    return brate;
+}
+double Meter::calc() const {
+    double c;
+    if(kwh > thres)
+        c = thres * brate + (kwh - thres) * erate;
+    else
+        c = kwh * brate;
+    return c;
+}
+Meter& Meter::operator=(const Meter& source) {
+    acct  = source.acct;
+    kwh   = source.kwh;
+    thres = source.thres;
+    brate = source.brate;
+    erate = source.erate;
+    return *this;
+}
+ostream& operator<<(ostream& os, const Meter& m) {
+    os.setf(ios::fixed);
+    os.precision(2);
+    os << setw(4) << m.acct << setw(5) << m.kwh << " kwh $" << setw(6) << m.calc();
+    os.unsetf(ios::fixed);
+    os.precision(6);
+    return os;
+}
+
+Word Problem - BiMeter
+----------------------
+// BiMeter.h
+#ifndef _BIMETER_H_
+#define _BIMETER_H_
+#include <iostream>
+#include <iomanip>
+using namespace std;
+#include "Meter.h"
+
+class BiMeter : public Meter {
+    double disc;
+    int supp;
+    char* name;
+    double calc() const;
+public:
+    BiMeter(int, double, double, int, double, const char*);
+    BiMeter(const BiMeter&);
+    BiMeter& operator=(const BiMeter&);
+    ~BiMeter();
+    void record(double);
+    double charge();
+    friend ostream& operator<<(ostream&, const BiMeter&);
+};
+#endif //_BIMETER_H_
+
+// BiMeter.cpp
+#include <iostream>
+#include <iomanip>
+using namespace std;
+#include "BiMeter.h"
+
+BiMeter::BiMeter(int a, double b, double e, int t, double d, const char* c):
+Meter(a, b, e, t) {
+    disc = d;
+    supp = 0;
+    name = new char[strlen(c) + 1];
+    strcpy(name, c);
+}
+BiMeter::~BiMeter() {
+    delete [] name;
+}
+BiMeter::BiMeter(const BiMeter& m) : Meter(m) {
+    name = new char[strlen(m.name) + 1];
+    strcpy(name, m.name);
+    disc = m.disc;
+    supp = m.supp;
+}
+BiMeter& BiMeter::operator=(const BiMeter& m) {
+    if (this != &m) {
+        Meter::operator=(m);
+        delete [] name;
+        name = new char[strlen(m.name) + 1];
+        strcpy(name, m.name);
+        disc = m.disc;
+        supp = m.supp;
+    }
+    return *this;
+}
+void BiMeter::record(double r) {
+    if(r < 0)
+        supp += -r;
+    else
+        Meter::record(r);
+}
+double BiMeter::charge() {
+    double c;
+    c = - calc();
+    c += Meter::charge();
+    supp = 0;
+    return c;
+}
+double BiMeter::calc() const {
+    double c;
+    if (supp > excess())
+        c = disc * (excess() * excessRate() + (supp - excess()) * basicRate());
+    else
+        c = disc * supp * excessRate();
+    return c;
+}
+ostream& operator<<(ostream& os, const BiMeter& m) {
+    Meter mm = m;
+    os << mm << endl;
+    os.setf(ios::fixed);
+    os.precision(2);
+    os << "  less" << setw(3) << m.supp << " kwh $" << setw(6) << 
+    mm.calc() - m.calc() << ' ' << m.name;
+    os.unsetf(ios::fixed);
+    os.precision(6);
+    return os;
+}
+
+Walkthrough - Solution B
+------------------------
+CCCP*
+C%QC ~CQC
+C%JD ~CJD
+C%AC ~CAC
++++++++++
+C#
+CCCPSP:AC
+---------
+C:AC
+----
+~CAC
++++++++++
+C#
+CCCPSP:JD
+---------
+C:AC
+D:JD
+----
+~CJD
++++++++++
+C#QC
+C:AC QC
+D:JD
+----
+~CQC
++++++++++
+~SC~P2
+~C
+~CQC
+~CAC
+~SD~P1
+~C
+~C
+~CJD
+++++
+~P0
+~CAC
+~CJD
+~CQC
+
+Walkthrough - Solution A
+------------------------
+CCCP*
+C%KC ~CKC
+C%JD ~CJD
+C%AC ~CAC
++++++++++
+C#
+CCCPSP:AC
+---------
+C:AC
+----
+~CAC
++++++++++
+C#
+CCCPSP:JD
+---------
+C:AC
+D:JD
+----
+~CJD
++++++++++
+C#KC
+C:AC KC
+D:JD
+----
+~CKC
++++++++++
+~SC~P2
+~C
+~CKC
+~CAC
+~SD~P1
+~C
+~C
+~CJD
+++++
+~P0
+~CAC
+~CJD
+~CKC

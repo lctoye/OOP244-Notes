@@ -1,0 +1,50 @@
+	6.  Design  and  code  a  class  named  "animal",  which  stores
+	    critical information about an  animal.  An  animal  has  the
+	    following publicly accessible members:
+
+	      void name(char s[]) - sets the animal's name to the string
+		passed in s (e.g. "dog").
+
+	      void name() - displays the animal's name on  the  standard
+		output device.
+
+	      void noise(char s[]) - sets the noise the animal makes  to
+		the string passed in s (e.g. "woof").
+
+	      void noise() - displays the animal's noise on the standard
+		output device.
+
+	    When  instantiated,  an  animal  should  be  initialized  to
+	    "human" (for the name) and "ouch" (for the noise), unless  a
+	    name and a noise (in that order) are supplied as parameters,
+	    in which case the supplied name and noise are used.
+
+	    Also, write a function
+
+	      void OldMac(animal)
+
+	    which displays a version of the song "Old MacDonald's  Farm"
+	    on the standard output device.
+
+	    For example the code:
+
+		animal x("duck", "quack");
+		OldMac(x);
+
+	    would output:
+
+		Old MacDonald had a farm, EIEIO
+		And on that farm he had a duck, EIEIO
+		With a quack, quack here
+		And a quack, quack there
+		Here a quack, there a quack
+		Everywhere a quack, quack
+		Old MacDonald had a farm, EIEIO
+
+	    Of course, everywhere that "duck" appears should be replaced
+	    with the animal's name, and everywhere that "quack"  appears
+	    should be replaced with the animal's noise.
+
+	    You will receive a paltry bonus if  your  function  displays
+	    the correct article (either a or an)  depending  on  whether
+	    the name or noise begins with a consonant or a vowel.

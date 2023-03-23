@@ -1,0 +1,89 @@
+	49. A. Given the following code:
+
+	    #include <iostream>
+	    using namespace std;
+
+	    class tig {
+		char* data;
+		int sz;
+		int pos;
+	      public:
+		tig(int n) {
+			if (n > 80) n = 80;
+			cout << "getting " << n << " bytes\n"; 
+			data = new char[sz=n]; pos = 0;}
+		tig() {
+			cout << "making default tig\n";
+			data = new char[sz=7]; pos = 0;}
+		~tig() {
+			delete data;
+			cout << "returning " << sz << " bytes\n"; }
+		void store(char c) { if (pos < sz) data[pos++] = c; }
+		void store(char *s, int p) {
+		    if (p != -1) 
+			pos = p;
+		    for (int i = 0; s[i]; i++)
+			if (i%2 == 0) store(s[i]); }
+		void store(char *s) { store(s, -1); }
+		void read(char *s) {
+		    int i;
+		    for (i = 0; i < pos; i++)
+			s[i] = data[i];
+		    s[i] = '\0';   }
+	    };
+	    main()
+	    {
+		tig x(8);
+		x.store("Two roofs to fix");
+		tig y;
+		y.store("Obnoxious leaks...");
+		y.store("the rain", 2);
+		y.store("ah", 3);
+		y.store("oh no!", 6);
+		x.store("not on my head! Now I'm soaked!", 4);
+		char buffer1[9], buffer2[9];
+		x.read(buffer1);
+		y.read(buffer2);
+		cout << buffer1 << buffer2 << '\n';
+		return 0;
+	    }
+
+	    B. Write the code  to  create  an  object  called  a  tigio,
+	    derived from a tig (see question 49A). A  tigio  is  exactly
+	    like a tig, except that it offers the  following  additional
+	    capabilities:
+
+	     - a tigio can be  the  recipient  of  <<  style  output  of
+	       characters  and  character  strings.  For  example,   the
+	       following code works according to the comments provided:
+		  tigio x(15);
+		  x << "Hi there";  // same effect as x.store("Hi there");
+		  x << 's' << "ummer"; //  same effect as x.store('s');
+				       //  and then x.store("ummer");
+
+	    - a tigio can deliver  >>  style  input  to  characters  and
+	      character strings, so that the following  code  (continued
+	      from  the  example  above)  works  in  keeping  with   its
+	      comments:
+		  char s[16], c;
+		  x >> s; // same effect as x.read(s);
+		  x >> c; // sets c to value in the first position of
+			  // x.data unless x is empty in which case c 
+			  // is not touched.
+
+	    - a tigio can be sent to  an  <iostream>  ostream  (such  as
+	      cout) using the << operator, in which case all  characters
+	      in "data" up to, but not  including,  position  "pos"  are
+	      sent to the ostream. For example,
+
+		  cout << "x contains " << x << '\n';
+
+	      would work as expected.
+
+	    Hint: to do the extraction (>>) from a tigio to a character,
+	    and to do the insertion (<<) of a tigio into an ostream, you
+	    will have to get the data  from  the  tigio.  Unfortunately,
+	    "data" and "pos" are private to a tig, so you will  have  to
+	    use  "read"  to  get  the   data.   Fortunately,   the   tig
+	    constructors ensure that no tig data array  will  be  bigger
+	    than 80 bytes.

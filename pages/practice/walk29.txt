@@ -1,0 +1,46 @@
+/* Problem 29 */
+	    #include <iostream>
+	    using namespace std;
+	    #include <string.h>
+
+	    class q1 {
+		char s[31];
+	      public:
+		q1(const char str[]) { strcpy(s, str); }
+		int size() const { return strlen(s); }
+		char position(int i) const { return s[i]; }
+		friend ostream &operator<<(ostream &, const q1 &);
+	    };
+
+	    ostream &operator<<(ostream &os, const q1 &x)
+	    {
+		return os << '<' << x.s << '>';
+	    }
+
+	    class q1a: public q1 {
+	      public:
+		q1a(const char str[]):q1(str) { /*empty!*/ }
+		int size() const;
+	    };
+
+	    int q1a::size() const
+	    { 
+		int i = 0, count = 1;
+
+		while (position(i) != '\0') {
+		    if (position(i) == ' ')
+			count++;
+		    i++;
+		}
+		return count;
+	    }
+
+	    int main()
+	    {
+		q1 x("This is a test");
+		q1a y("This is also a test");
+
+		cout << x.size() << ':' << x << '\n';
+		cout << y.size() << ':' << y << '\n';
+		return 0;
+	    }

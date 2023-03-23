@@ -1,0 +1,44 @@
+	22. Write a class called a reader, which reads an entire  (text)
+	    file into memory, and allows the program to access the  data
+	    by position.
+
+	    When instantiated, a reader is  passed  a  character  string
+	    which contains the name of the file to  read.  The  file  is
+	    then read into the reader and closed (i.e. the file  is  NOT
+	    left open throughout the reader's existence).
+
+	    Also, there are member functions:
+
+		long size() - returns the size of the data read from the
+		    file (in bytes).
+
+		char position(long i) - returns character number i  from
+		    the data read from the file, where character  number
+		    0 is the  first  character  from  the  file.  If  an
+		    invalid index is given (e.g. less than 0  or  bigger
+		    than the size of the data read), then the null  byte
+		    is returned.
+
+	    If there is not enough memory to read the entire file in, or
+	    the file can't be read, then size()  should  return  0  (and
+	    then position() will consequently  always  return  the  null
+	    byte).
+
+	    For example, the following program displays  the  first  100
+	    bytes from the file "abc.txt":
+
+		int main()
+		{
+		    reader f("abc.txt");
+
+		    for(long i = 0; i < f.size() && i < 100; i++)
+			cout << f.position(i);
+		    cout << '\n';
+		    return 0;
+		}
+
+	    Hint: read through the file once to see how big it is.  Then
+	    dynamically allocate an array big enough to hold  the  data,
+	    and re-read the file,  copying  it  into  the  array.  Don't
+	    forget  to  provide  a  destructor,  as  well  as   a   copy
+	    constructor and = operator to duplicate the array.

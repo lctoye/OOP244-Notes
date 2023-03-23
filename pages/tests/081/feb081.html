@@ -1,0 +1,381 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<span lang="en-us" xmlns='http://www.w3.org/1999/xhtml'><p>
+<head>
+	<title>Seneca | Computer Studies | The OO Paradigm Using C++</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+	<meta name="Copyright" content="(c) Copyright Seneca College 2005" />
+	<meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+	<meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+	<meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+	<meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+	<link rel="stylesheet" type="text/css" href="../../style.043.css">
+	<link rel="stylesheet" type="text/css" href="../../styleSPrint.043.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="../../stylePPrint.043.css" media="print">
+</head>
+
+<span><p>
+
+<table cellspacing="0" cellpadding="0">
+
+	<!-- Body Cell -->
+	<tr height="600">
+		<!-- Content Area -->
+		<td class="tbody" bgcolor="ffffff">
+			<table cellpadding="10" width="100%">
+				<tr>
+					<td bgcolor="ffffff" valign=top>
+					<center><span class=texthead>
+					<!--Final Exam - April 15 2008</span><br />
+					<br />-->
+					</center>
+					<!--Name ________________________________________________________________ Student Number _______________________
+					<br />
+
+					<p class="section">Notes:</p>
+					<p>
+					<ul>
+					<li>This test has 2 pages and lasts two full periods</li>
+					<li>This test is out of 20 marks and is worth 15% of your final grade</li>
+					<li>There are 2 questions in this paper - attempt both of them</li>
+					<li>Each question is of equal weight in marks (10 each)</li>
+					<li>Answer all questions in the exam booklet provided</li>
+					<li>Hand in this test paper with your answer booklet</li>
+					<li>You may use your copy of the lecture notes, the subject notes, one textbook and one study sheet both sides</li>
+					<li>You may use a non-programmable, non-messaging calculator</li>
+					<li>You may use a paper foreign-language dictionary</li>
+					</ul>
+					</p>
+					<br />-->
+
+					<p class="section">Question 1 - Word Problem - (10 marks):</p>
+					<p>
+					Design and code a class named <span class=code>Meter</span>
+					that holds information about the hydro-electric energy used
+					by a household.&nbsp; The energy is charged at a basic rate up to
+					a threshold value and at an excess rate beyond that value.&nbsp;
+					Upon instantiation, a <span class=code>Meter</span>
+					object receives
+					<ul>
+					<li>an integer holding an account number,</li>
+					<li>a floating-point number holding the basic charge rate
+					per kilowatt-hour, </li>
+					<li>a floating-point number holding the excess charge rate
+					per kilowatt-hour, and </li>
+					<li>an integer holding the threshold number of kilowatt-hours up to which
+					the basic charge rate applies and from which the excess
+					charge rate applies.&nbsp;</li>
+					</ul>
+					The object initializes itself to zero used energy.&nbsp;
+					If the object receives an invalid value for any parameter,
+					the object assumes a safe empty state.&nbsp;
+					</p>
+					<p>
+					Your design includes the following member functions and helper function:
+					<ul>
+					<li><span class=code>void record(double)</span> - a modifier
+					that receives the kilowatt-hours used since
+					the last recording and updates the object for the amount of energy used.&nbsp;
+					If the value received is negative, this function does not change
+					the object.&nbsp;</li>
+					<li><span class=code>double charge()</span> - a modifier
+					that returns the accumulated charge recorded
+					since the last call to this function and
+					re-initializes the energy used to zero.&nbsp;</li>
+					<li><span class=code>double excess() const</span> - a query
+					that returns the number of accumulated kilowatt-hours in excess
+					of the threshold.&nbsp;</li>
+					<li><span class=code>double excessRate() const</span> - a query
+					that returns the charge rate that applies to energy used in excess
+					of the threshold.&nbsp;</li>
+					<li><span class=code>double basicRate() const</span> - a query
+					that returns the charge rate that applies to energy used
+					within the threshold.&nbsp;</li>
+					<li>an insertion operator that inserts the account number,
+					the kilowatt hours used, and the accumulated charge
+					into an output stream in the format shown below.</li>
+					</ul>
+					Consider the following program that uses
+					your class.&nbsp; The program produces the output on the right side
+					<table width="95%">
+					<tr>
+					<td width="50%">
+					<br />
+					<pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Meter.h"
+
+ int main ( ) {
+     Meter m(4538, 0.047, 0.055, 750);&nbsp;
+
+     m.record(600);
+     cout &lt;&lt; m &lt;&lt; endl;
+     m.record(250);
+     cout &lt;&lt; m &lt;&lt; endl;
+     m.charge();
+     cout &lt;&lt; m &lt;&lt; endl;
+
+     return 0;
+ } </pre><br /></td><td width="50%">
+					<br />
+					<pre class=result>
+
+
+
+
+
+
+
+
+ 4538  600 kwh $ 28.20
+
+ 4538  850 kwh $ 40.75
+
+ 4538    0 kwh $  0.00&nbsp;
+
+
+ </pre><br /></td></tr></table>
+					</p>
+
+					<p class="section">Question 2 - Word Problem - (10 marks):</p>
+					<p>
+					Derive from <span class=code>Meter</span> a class named
+					<span class=code>BiMeter</span>
+					that holds information about the hydro-electric
+					energy used <u>and supplied</u> by a household.&nbsp; Sources of
+					supply to the hydro-electric grid may include
+					solar panels, windmills, and other alternative energy devices.&nbsp;
+					Upon instantiation, a <span class=code>BiMeter</span>
+					object receives
+					<ul>
+					<li>an integer holding an account number,</li>
+					<li>a floating-point number holding the basic charge rate
+					per kilowatt-hour, </li>
+					<li>a floating-point number holding the excess charge rate
+					per kilowatt-hour, </li>
+					<li>an integer holding the maximum number of kilowatt-hours
+					up to which the basic charge rate applies and from which the excess
+					charge rate applies, </li>
+					<li>a floating-point number holding the discount factor to be
+					applied to energy supplied to the grid, and </li>
+					<li>a null-terminated C-style string holding the name of the
+					supplier.&nbsp;</li>
+					</ul>
+					The discount factor only applies to the energy supplied by the
+					household to the hydro-electric grid.&nbsp;
+					The object initializes itself to no energy used
+					and no energy supplied.&nbsp;
+					If the object receives an invalid value for any parameter,
+					the object assumes a safe empty state.&nbsp;
+					<i>Your class does not impose any limitation upon the size of the
+					string holding the name of the supplier.</i>&nbsp;
+					</p>
+					<p>
+					</p>
+					<p>
+					Your design includes the following member functions and helper function:
+					<ul>
+					<li><span class=code>void record(double)</span> - a modifier
+					that receives the kilowatt-hours exchanged between the household
+					and the grid and updates the energy used/supplied by the object.&nbsp;
+					If the value is positive, this modifier interprets the exchange as
+					energy supplied <u>by</u> the grid <u>to</u> the household.&nbsp;
+					If the value is negative, this modifier interprets the exchange
+					as energy supplied <u>by</u> the household <u>to</u> the grid.&nbsp;
+					</li>
+					<li><span class=code>double charge()</span> - a modifier
+					that returns the net accumulated charge since the last call to this
+					function and after the discounted deduction of any energy supplied
+					to the grid by the household.&nbsp; This function re-initializes both
+					the accumulated usage and any accumulated supply to zero.&nbsp;
+					In calculating the net charge, this function deducts the energy
+					supplied from the energy used before applying the basic and excess
+					charge rates.&nbsp;</li>
+					<li>an insertion operator that inserts into an output stream the account number,
+					the kilowatt-hours used, the charge for the energy used before deducting any
+					energy supplied to the grid,
+					the kilowatt-hours supplied to the grid, the net charge for the energy used after
+					deducting any energy supplied to the grid and the name of the supplier
+					in the format shown below.</li>
+					</ul>
+					Consider the following program that uses
+					your class.&nbsp; The program produces the output on the right side
+					<table width="95%">
+					<tr>
+					<td width="50%">
+					<br />
+					<pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "BiMeter.h"
+ int main ( ) {
+     BiMeter m(4538, 0.047, 0.055, 750,&nbsp;
+                  0.5, "Fred Fox");
+     m.record(850);
+     cout &lt;&lt; m &lt;&lt; endl;
+     m.record(-50);
+     cout &lt;&lt; m &lt;&lt; endl;
+     m.charge();
+     cout &lt;&lt; m &lt;&lt; endl;
+     return 0;
+ } </pre><br /></td><td width="50%">
+					<br />
+					<pre class=result>
+
+
+
+
+
+
+ 4538  850 kwh $ 40.75
+   less  0 kwh $ 40.75 Fred Fox
+ 4538  850 kwh $ 40.75
+   less 50 kwh $ 39.38 Fred Fox
+ 4538    0 kwh $  0.00
+   less  0 kwh $  0.00 Fred Fox&nbsp;
+
+ </pre><br /></td></tr></table>
+					</p>
+					<p>
+					Your class design includes all of the member functions necessary to enable
+					the assignment of one <span class=code>BiMeter</span> object to another and
+					the passing by value of a <span class=code>BiMeter</span> object to a function.
+					</p>
+					<br />
+
+					<p class="section">Question 3 - Walkthrough - (20 marks):</p>
+					<p>
+					What is the exact output of the following program?&nbsp; Show your
+					rough work to avoid deductions.
+					<table width="45%">
+					<tr>
+					<td>
+					<pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #define MC 3
+ #define MP 2
+ #define STRING "CQDJCA"
+
+ class Card {
+     char s, r;
+ public:
+     Card() {r = '\0'; s = '\0'; cout &lt;&lt; 'C';}
+     Card(char ss, char rr) {s = ss; r = rr;; cout &lt;&lt; "C%";}
+     Card(const Card& c) {s = c.s; r = c.r; cout &lt;&lt; "C#";}
+     ~Card() {cout &lt;&lt; "~C" &lt;&lt; *this &lt;&lt; endl;}
+     void operator=(const Card& c) {s = c.s; r = c.r; cout &lt;&lt; *this;}
+     char suit() const {return s;}
+     friend ostream& operator&lt;&lt;(ostream& os, const Card& b) {
+         os &lt;&lt; b.r &lt;&lt; b.s &lt;&lt; ' ';
+         return os;
+     }
+ };
+
+ class Play {
+     Card c[MC];
+     int n;
+ public:
+     Play() { n = 0; cout &lt;&lt; 'P'; }
+     Play(const char* s) {
+         n = 0;
+         cout &lt;&lt; "P*\n";
+         for (int i = 0; s[i] != '\0'; i+=2)
+             c[n++] = Card(s[i], s[i+1]);  // be careful here
+     }
+     bool notEmpty() { return n != 0; }
+     Card pop() {
+     	if (n &gt; 0) n--;
+     	return c[n];
+     }
+     void operator+=(const Card& b) {
+     	if (n &lt; MC) c[n++] = b;
+     }
+     virtual void display() const {
+         for(int i = 0; i &lt; n; i++)
+             cout &lt;&lt; c[i];
+         cout &lt;&lt; endl;
+     }
+     virtual bool sameSuit(const Card& a) { return false; }
+     virtual ~Play() { cout &lt;&lt; "~P" &lt;&lt; n &lt;&lt; endl; }
+ };
+
+ class UniformSuitPlay : public Play {
+     char suit;
+ public:
+     UniformSuitPlay(const Card& firstCard) {
+         cout &lt;&lt; "SP:";
+         suit = firstCard.suit();
+         *this += firstCard;      // calls += operator above
+         cout &lt;&lt; endl;
+     }
+     ~UniformSuitPlay() { cout &lt;&lt; "~S" &lt;&lt; suit; }
+     bool sameSuit(const Card& a) { return a.suit() == suit; }
+     void display() const {
+         cout &lt;&lt; suit &lt;&lt; ':';
+         Play::display();
+     }
+ };
+
+ int main() {
+     Play deck(STRING);
+     Play* play[MP];    // array of pointers only, not an array of objects
+
+     int m = 0;
+     while (deck.notEmpty() == true) {
+         cout &lt;&lt; "+++++++++\n";      // 9 +'s
+         Card a = deck.pop();
+         bool found = false;
+         for (int i = 0; i &lt; m && !found == true; i++)
+             if (play[i]-&gt;sameSuit(a) == true) {
+                 *play[i] += a;  // calls += operator above
+                 found = true;
+             }
+         cout &lt;&lt; endl;
+         if (!found == true && m &lt; MP) {
+             play[m++] = new UniformSuitPlay(a);
+             cout &lt;&lt; "---------\n";  // 9 -'s
+         }
+         for (int i = 0; i &lt; m; i++)
+             play[i]-&gt;display();
+         cout &lt;&lt; "----\n";           // 4 -'s
+     }
+     cout &lt;&lt; "+++++++++\n";          // 9 -'s
+     for (int i = 0; i &lt; m; i++)
+         delete play[i];
+     cout &lt;&lt; "++++\n";               // 4 +'s
+     return 0;
+ }</pre></td></tr></table>
+					</p>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+	<!-- Footer -->
+	<!--tr>
+		<td class="tbody">
+			<table cellpadding="1" width="90%" align="center">
+				<tr>
+					<td width="50%" class="text3">
+						&nbsp;&nbsp;
+					</td>
+					<td width="50%" align="right" class="text3">
+						&nbsp;&nbsp;
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr-->
+</table>
+
+</span>
+</span>

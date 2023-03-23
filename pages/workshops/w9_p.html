@@ -1,0 +1,659 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Workshops | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Part E - Polymorphism</span>
+        <br />
+        <br />
+        <span class="texthead">Virtual Functions</span>
+        <br />
+        <br />
+        <span class="textagend">Workshop 9</span>
+       </div>
+       <br />
+       <br />
+
+       <p>In this workshop, you design a class hierarchy that implements
+       an abstract base class.</p>
+       <br />
+
+       <p class="section">Learning Outcomes</p>
+
+       <p>Upon successful completion of this workshop, you will have
+       demonstrated the abilities to
+       </p>
+       <ul>
+       <li>define an abstract base class</li>
+       <li>derive a concrete class that implements an abstract base class</li>
+       <li>derive a class that upgrades a concrete class</li>
+       </ul>
+       <br />
+
+       <p class="section">Interface - All Groups</p>
+
+       <p>
+       Define an interface (an abstract base class without data members)
+       named <span class=code>iFood</span> that exposes the following
+       member functions in the <span class=code>iFood</span> class hierarchy:
+       </p>
+       <ul>
+       <li><span class=code>int portions() const</span> - a query that returns the number of portions</li>
+       <li><span class=code>void consume()</span> - a modifier that consumes a single portion</li>
+       <li><span class=code>int remaining() const</span> - a query that returns the number of slices remaining</li>
+       <li><span class=code>void display() const</span> - a query that displays current information about the
+       food item</li>
+       </ul>
+       <p>
+       Place your interface definition in a header file named
+       <span class="code">iFood.h</span>
+       </p>
+
+       <br />
+
+       <p class="section">Pizzas - Group X</p>
+
+       <p>
+       Implement your <span class=code>iFood</span> interface through two
+       separate classes:
+       </p>
+       <ul>
+       <li>Pizza</li>
+       <li>DeluxePizza</li>
+       </ul>
+
+       <p class="ssection">Pizza Class</p>
+
+       <p>
+       Design a class named <span class=code>Pizza</span> that holds information
+       about a pizza and tracks its consumption.&#160; Upon instantiation, a
+       <span class="code">Pizza</span> object receives a <span class="code">double</span>
+       specifying the pizza's diameter and an <span class=code>int</span> specifying
+       the total number of slices.&#160; Initially, a <span class=code>Pizza</span>
+       object is unconsumed.</p>
+
+       <p>
+       Implement the pure virtual functions listed in the interface's definition.&nbsp;
+       Your <span class=code>display()</span> function should insert information in the
+       following format - diameter, total number of slices, "slices", number of slices remaining,
+       "remaining"</li>
+       </p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre class="result">
+ 14" 8 slices 5 remaining
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>Place your class definition in a header file
+       named <span class="code">Pizza.h</span> and your function
+       definitions in an implementation file named <span class=
+       "code">Pizza.cpp</span></p>
+
+       <p class="sssection">Client Module</p>
+
+       <p>
+       The main program that uses your implementation is listed
+       on the left, while the results are shown on the right:
+       </p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td class="half">
+          <pre>
+ // Workshop 9 - Pizza
+ // w9.cpp
+
+ #include &lt;iostream&gt;
+ #include "Pizza.h"
+
+ int main() {
+     iFood* food;
+
+     food = new Pizza(14.0, 8);
+
+     for (int i = 0; i &lt; 3; i++)
+         food-&gt;consume();
+     food-&gt;display();
+     std::cout &lt;&lt; std::endl;
+
+     delete p;
+ }
+</pre>
+         </td>
+
+         <td class="half">
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 14" 8 slices 5 remaining
+
+
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">DeluxePizza Class</p>
+
+       <p>
+       Derive a class named <span class=code>DeluxePizza</span> from your
+       <span class=code>Pizza</span> class.&nbsp; Your derived class holds
+       information about the pizza's toppings.&#160; Upon instantiation, a
+       <span class="code">DeluxePizza</span> object receives a <span class=code>double</span>
+       specifying the pizza's diameter, an <span class=code>int</span> specifying
+       the total number of slices and the address of a C-style null-terminated string
+       describing the toppings.&nbsp; Your class can hold up to 40 characters
+       in this toppings' string.&nbsp; Initially, a <span class=code>DeluxePizza</span>
+       object is unconsumed.</p>
+
+       <p>
+       Your <span class=code>display()</span> function should insert information in the
+       following format - diameter, total number of slices, "slices", number of slices remaining,
+       "remaining", newline, "- ", toppings</li>
+       </p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre class="result">
+ 12" 6 slices 4 remaining
+ - mushrooms, peppers
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>Add your class definition to the header file
+       named <span class="code">Pizza.h</span> and your function
+       definition to the implementation file named <span class=
+       "code">Pizza.cpp</span></p>
+
+       <p class="sssection">Client Module</p>
+
+       <p>
+       The main program that uses your implementation is listed
+       on the left, while the results are shown on the right:
+       </p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td class="half">
+          <pre>
+ // Workshop 9 - Pizza
+ // w9.cpp
+
+ #include &lt;iostream&gt;
+ #include "Pizza.h"
+
+ int main() {
+     iFood* food;
+
+     food = new Pizza(14.0, 8);
+
+     for (int i = 0; i &lt; 3; i++)
+         food-&gt;consume();
+     food-&gt;display();
+     std::cout &lt;&lt; std::endl;
+
+     delete food;
+
+     <span class=high>food = new DeluxePizza(12.0, 6,
+      "mushrooms, peppers");
+
+     for (int i = 0; i &lt; 2; i++)
+         food-&gt;consume();
+     food-&gt;display();
+     std::cout &lt;&lt; std::endl;
+
+     delete food;</span>
+ }
+</pre>
+         </td>
+
+         <td class="half">
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 14" 8 slices 5 remaining
+
+
+
+
+
+
+
+
+
+ <span class=high>12" 6 slices 4 remaining
+ - mushrooms, peppers</span>
+
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Typescript</p>
+
+       <p>Create a typescript of your complete solution
+       using the following commands:&#160;</p>
+       <table width="45%" summary="">
+        <tr>
+         <td>
+       <pre>
+ + At the prompt, type: script w9.txt
+ + At the prompt, type: whoami
+ + At the prompt, type: cat iFood.h Pizza.h Pizza.cpp&nbsp;
+ + At the prompt, type: g++ -o w9 w9.cpp Pizza.cpp
+ + At the prompt, type: w9
+ + At the prompt type: exit
+</pre>
+          </td>
+        </tr>
+       </table>
+
+       <p>These commands will produce a file named <span class=
+       "code">w9.txt</span>.&nbsp; Download this file to your local
+       computer.&#160;</p>
+
+       <br />
+
+       <p class="section">Chocolates - Group Y</p>
+
+       <p class="ssection">Unit Tests</p>
+
+       <p>
+       Design a global function named <span class=code>unitTests()</span>
+       that conducts a set of unit tests on implementations of the
+       <span class=code>iFood</span> interface.&nbsp; Your function
+       reports the success or failure of the tests on standard output.&nbsp;
+       Your function's prototype is
+       </p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre class="result">
+ void unitTest(iFood*);
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>
+       Place the prototype in a header file named <span class="code">iFoodTests.h</span>
+       and your function definition in an implementation file named <span class=
+       "code">iFoodTests.cpp</span></p>
+
+       <p class="ssection">Implementations</p>
+
+       <p>
+       Implement your <span class=code>iFood</span> interface through two
+       separate classes:
+       </p>
+       <ul>
+       <li>Chocolate</li>
+       <li>DeluxeChocolate</li>
+       </ul>
+
+       <p class="sssection">Chocolate Class</p>
+
+       <p>
+       Design a class named <span class=code>Chocolate</span> that holds information
+       about a chocolate bar and tracks its consumption.&#160; Your class implements
+       the <span class=code>iFood</span> interface.&nbsp; Upon instantiation, a
+       <span class="code">Chocolate</span> object receives an <span class=code>int</span>
+       specifying the number of squares.&nbsp; Initially, a <span class=code>Chocolate</span>
+       object is unconsumed.</p>
+
+       <p>
+       Your <span class=code>display()</span> function should insert information
+       in the following format - number of squares, "squares", number of squares
+       remaining, "remaining"</li>
+       </p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre class="result">
+ 8 squares 4 remaining
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>
+       Place your class definition in a header file
+       named <span class="code">Chocolate.h</span> and your function
+       definitions to the implementation file named <span class=
+       "code">Chocolate.cpp</span></p>
+
+       <p class="sssection">DeluxeChocolate Class</p>
+
+       <p>
+       Derive a class named <span class=code>DeluxeChocolate</span> from your
+       <span class=code>Chocolate</span> class.&nbsp; Upon instantiation, a
+       <span class="code">DeluxeChocolate</span> object receives an <span class=code>int</span>
+       specifying the number of squares and the address of a C-style null-terminated string
+       describing the filling.&nbsp; Your class does not limit the number of characters in
+       this string.&nbsp; Initially, a <span class=code>DeluxeChocolate</span>
+       object is unconsumed.</p>
+
+       <p>
+       Your <span class=code>display()</span> function should insert information
+       in the following format - number of squares, "squares", number of squares
+       remaining, "remaining", newline, dash, filling</li>
+       </p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre class="result">
+ 8 squares 4 remaining
+ - marzipan
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>
+       In order for your class to copy objects properly, you need to include
+       a copy constructor, an assignment operator and a destructor.&#160;
+       </p>
+
+       <p>
+       Add your class definition to the header file
+       named <span class="code">Chocolate.h</span> and your function
+       definitions to the implementation file named <span class=
+       "code">Chocolate.cpp</span></p>
+
+       <p class="ssection">Test Main</p>
+
+       <p>
+       The main program that tests your implementation is listed
+       on the left, while the results are shown on the right:
+       </p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td class="half">
+          <pre>
+ // Workshop 9 - Chocolate Tests
+ // w9.tests.cpp
+
+ #include "Chocolate.h"
+ #include "iFoodTests.h"
+
+ int main() {
+     iFood* food;
+
+     food = new Chocolate(10);
+     <span class=high>iFoodTests(food);</span>
+     delete food;
+
+     food = new DeluxeChocolate(
+      "marzipan", 12);
+     <span class=high>iFoodTests(food);</span>
+     iFood*
+     delete food;
+ }
+</pre>
+         </td>
+
+         <td class="half">
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+ <span class=high>passed all tests</span>
+
+
+
+
+ <span class=high>passed all tests</span>
+
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Client Module</p>
+
+       <p>
+       The main program that uses your implementation is listed
+       on the left, while the results are shown on the right:
+       </p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td class="half">
+          <pre>
+ // Workshop 9 - Chocolate
+ // w9.cpp
+
+ #include &lt;iostream&gt;
+ #include "Chocolate.h"
+
+ int main() {
+     iFood* food;
+
+     food = new Chocolate(10);
+
+     for (int i = 0; i &lt; 4; i++)
+         food-&gt;consume();
+     food-&gt;display();
+     std::cout &lt;&lt; std::endl;
+
+     delete food;
+
+     food = new DeluxeChocolate(
+      "marzipan", 12);
+
+     for (int i = 0; i &lt; 3; i++)
+         food-&gt;consume();
+     food-&gt;display();
+     std::cout &lt;&lt; std::endl;
+
+     delete food;
+ }
+</pre>
+         </td>
+
+         <td class="half">
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 10 squares 6 remaining&nbsp;
+
+
+
+
+
+
+
+
+
+ 12 squares 9 remaining
+ - marzipan
+
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Typescript</p>
+
+       <p>Create a typescript of your complete solution
+       using the following commands:&#160;</p>
+       <table width="45%" summary="">
+        <tr>
+         <td>
+       <pre>
+ + At the prompt, type: script w9.txt
+ + At the prompt, type: whoami
+ + At the prompt, type: cat iFoodTests.h iFoodTests.cpp
+ + At the prompt, type: cat iFood.h Chocolate.h Chocolate.cpp&nbsp;
+ + At the prompt, type: g++ -o w9tests w9.cpp Chocolate.cpp iFoodTests.cpp&nbsp;
+ + At the prompt, type: w9tests
+ + At the prompt, type: g++ -o w9 w9.cpp Chocolate.cpp&nbsp;
+ + At the prompt, type: w9
+ + At the prompt type: exit
+</pre>
+          </td>
+        </tr>
+       </table>
+
+       <p>These commands will produce a file named <span class=
+       "code">w9.txt</span>.&nbsp; Download this file to your local
+       computer.&#160;</p>
+
+       <br />
+
+       <p class="section">SUBMISSION</p>
+
+       <p class="ssection">Moodle</p>
+
+       <p>
+       Upload your typescript file to Moodle:&#160;</p>
+
+       <ul>
+        <li>Login to Moodle <script type="text/javascript" src="../classroom_a.js"></script></li>
+
+        <li>Select your course code</li>
+
+        <li>Select W9 under Assignments and Tasks</li>
+
+        <li>Upload <span class=code>w9.txt</span></li>
+
+        <li>Write a short note to your instructor
+        <ul>
+        <li>press "Edit"</li>
+        <li>enter your conclusions about this workshop in the notes textbox</li>
+        <li>press "Save Changes"</li>
+        </ul>
+
+        <li>When ready to submit, press "Send for Marking"</li>
+       </ul>
+
+       <p class="ssection">Other Submissions</p>
+
+       <p>
+       Submit your typescript file as your instructor has specified.</p>
+
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

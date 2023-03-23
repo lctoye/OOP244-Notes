@@ -1,0 +1,50 @@
+	30. Write a  class  called  a  pile,  which  stores  a  pile  of
+	    integers. A  pile  has  the  following  publicly  accessible
+	    characteristics:
+
+		- when instantiated, a pile is passed the maximum number
+		  of integers that  it  can  store.  (This  is  used  to
+		  dynamically allocate an array to store the numbers).
+
+		- when destroyed, any memory  dynamically  allocated  to
+		  the pile is deallocated.
+
+		- the << operator can be used with a pile  on  the  left
+		  side and an integer on the right. The integer is added
+		  to the end of the pile, unless  the  pile  is  already
+		  full, in which case the number is ignored. (When first
+		  created, a pile starts out empty).
+
+		- the << operator can be used with  an  ostream  on  the
+		  left side and a pile on the right. The numbers  stored
+		  in the pile are displayed on the ostream, with a comma
+		  separating each number from the next.
+
+		- there is a member function
+
+		    int length()
+
+		  which returns the number of numbers currently  in  the
+		  pile. (A new pile starts out  with  length  zero.  The
+		  maximum for the length will be  the  number  specified
+		  when the pile was created).
+
+	    For example,
+
+		int main()
+		{
+		    pile x(5);
+
+		    x << 1;
+		    x << 3;
+		    x << -1;
+		    x << 99;
+		    x << x.length(); // This should put 4 on the pile
+		    x << 10;         // ignored, since the pile is full
+		    cout << "The pile is " << x << '\n';
+		    return 0;
+		}
+
+	    outputs
+
+		The pile is 1,3,-1,99,4

@@ -1,0 +1,65 @@
+	10. Write a class, named property, which is used by the Megacity
+	    to store the property tax information for a house.
+
+	    When instantiated, a property must be  supplied  an  address
+	    (char string no longer  than  60  characters),  and  may  be
+	    supplied  an  assessed  value  (double)  and  a  mill   rate
+	    (double). (Either both numeric values will be supplied after
+	    the address, or no numeric values will be supplied).  If  no
+	    numeric values are  supplied,  then  an  assessed  value  of
+	    $100,000.00 and a mill rate of 1.0 are to be  used.  If,  on
+	    the other hand, values are supplied but they are  less  than
+	    zero, then 0.0 is to be  used  in  place  of  the  offending
+	    value(s).
+
+	    There are member functions:
+
+	       int mill(double) - if the double value passed is  greater
+		   than or equal to zero, then the  mill  rate  for  the
+		   property is reset to be that value, and a true  value
+		   is returned. Otherwise, nothing is  done  other  than
+		   returning a false value.
+
+	       double mill() - returns the current  mill  rate  for  the
+		   property.
+
+	       int assessed(double) - if  the  double  value  passed  is
+		   greater than or equal  to  zero,  then  the  assessed
+		   value for the property is reset to be that value, and
+		   a true value is returned. Otherwise, nothing is  done
+		   other than returning a false value.
+
+	       double assessed() - returns the current assessed value of
+		   the property.
+
+		void address(char s[]) - fills  the  array  s  with  the
+		   address of the property.
+
+		double taxes() - returns  the  annual  taxes   for   the
+		   property, which is  the  result  of  multiplying  the
+		   assessed value by the mill rate,  and  then  dividing
+		   that by 100.
+
+	    As well, a double may be added to (using +),  or  subtracted
+	    from (using -), a property,  which  results  in  a  property
+	    identical to the supplied property, except that its assessed
+	    value is the sum (using +) or difference (using  -)  of  the
+	    assessed value (of the supplied property) and  the  supplied
+	    double. However, if  this  calculation  would  result  in  a
+	    negative assessed value, then the  resulting  property  will
+	    have an assessed value of 0.0.
+
+	    For example,
+
+		property x("1 Main St."), y("2 Main St.", 130000.00, 1.1);
+		x.mill(1.24);
+		printf("%.2lf %.2lf\n", x.taxes(), y.taxes());
+		x = x + 10000.00;
+		char addr[61];
+		x.address(addr);
+		printf("Tax for %s is now %.2lf\n", addr, x.taxes());
+
+	    would display:
+
+		1240.00 1430.00
+		Tax for 1 Main St. is now 1364.00

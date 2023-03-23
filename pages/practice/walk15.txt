@@ -1,0 +1,78 @@
+/* Problem 15 */
+	    #include <stdio.h>
+	    #include <string.h>
+	    class field {
+		char *data;
+		int size;
+		int justify;
+	      public:
+		field(const char s[], int sz);
+		field(const char s[], int sz, int just);
+		field(const field &);
+		~field();
+		void operator=(const field &);
+		void out() const;
+	    };
+	    void showem(field &a, field b);
+
+	    int main() {
+		field w("12345", 10), x("678", 6, 2);
+		showem(w, x);
+		field y = x, z("", 8, 1);
+		z = w;
+		showem(y, z);
+		return 0;
+	    }
+	    field::field(const char s[], int sz) {
+		data = new char[sz];
+		strcpy(data, s);
+		size = sz;
+		justify = 0;
+		printf("(done with A)");
+	    }
+	    field::field(const char s[], int sz, int just) {
+		data = new char[sz];
+		strcpy(data, s);
+		size = sz;
+		justify = just;
+		printf("(done with B)");
+	    }
+	    field::field(const field &f) {
+		data = new char[f.size];
+		strcpy(data, f.data);
+		size = f.size;
+		justify = f.justify;
+		printf("(done with C)");
+	    }
+	    field::~field() {
+		delete [] data;
+	    }
+	    void field::operator=(const field &f) {
+		delete [] data;
+		data = new char[f.size];
+		strcpy(data, f.data);
+		size = f.size;
+		printf("(done with D)");
+	    }
+	    void field::out() const {
+		int i, extra = size - strlen(data);
+		if (justify == 2)
+		    for (i = 0; i < extra; i++)
+			printf("*");
+		else if (justify == 1) 
+		    for (i = 0; i < extra/2; i++)
+			printf("*");
+		printf("%s", data);
+		if (justify == 0)
+		    for (i = 0; i < extra; i++)
+			printf("*");
+		else if (justify == 1)
+		    for (i = extra/2; i < extra; i++)
+			printf("*");
+	    }
+	    void showem(field &a, field b) {
+		a.out();
+		printf("\n");
+		b.out();
+		printf("\n");
+	    }

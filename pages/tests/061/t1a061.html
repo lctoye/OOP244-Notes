@@ -1,0 +1,301 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<span lang="en-us" xmlns='http://www.w3.org/1999/xhtml'><p>
+<head>
+	<title>Seneca | Computer Studies | The Object-Oriented Paradigm Using C++</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+	<meta name="Copyright" content="(c) Copyright Seneca College 2005" />
+	<meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+	<meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+	<meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+	<meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/style.043.css">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleSPrint.043.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/stylePPrint.043.css" media="print">
+</head>
+
+<span><p>
+
+<table cellspacing="0" cellpadding="0">
+
+	<!-- Body Cell -->
+	<tr height="600">
+		<!-- Content Area -->
+		<td class="tbody" bgcolor="ffffff">
+			<table cellpadding="10" width="100%">
+				<tr>
+					<td bgcolor="ffffff" valign=top>
+					<center><span class=texthead>
+					Test 1 - Feb 20 2006</span><br />
+					<br />
+					</center>
+					<br />
+					Name ________________________________________________________________ Student Number _______________________
+					<br />
+
+					<p class="section">Notes:</p>
+					<p>
+					<ul>
+					<li>This test has 3 pages and lasts two full periods</li>
+					<li>This test is out of 20 marks and is worth 15% of your final grade</li>
+					<li>There are 2 questions of equal weight - attempt both of them</li>
+					<li>Answer all questions in the exam booklet provided</li>
+					<li>Hand in this test paper with your answer booklet</li>
+					<li>You may use your copy of the lecture notes, the subject notes, one textbook,</li>
+					<li>a non-programmable, non-messaging calculator and a paper foreign-language dictionary</li>
+					</ul>
+					</p>
+
+					<p class="section">Question 1 - Walkthrough - (10 marks):</p>
+					<p>
+					What is the exact output of the following program?&nbsp; Show your
+					rough work to avoid deductions.
+					<table width="45%">
+					<tr>
+					<td>
+					<pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #define MAX 10
+
+ class A {
+     char x[MAX];
+     int n;
+     void init(char k) {
+         for(int i = 0; i &lt; n; i++) x[i] = k++;
+         x[n] = '\0';
+         out('c');
+     }
+  public:
+     A() {n = 3; init('0');}
+     A(const char* s) {n = 3; init('1');
+        for (int i = 0; i &lt; n; i++) x[i] = s[i] - (x[i] - '0');
+     }
+     ~A() {out('~');}
+     A(const A& a) {n = 0;
+         for (int i = a.n - 1; i >= 0; i--) x[n++] = a.x[i];
+         x[1] = '0';
+         x[n] = '\0';
+         out('_');
+     }
+     A& operator--() {n--; return *this;}
+     A& operator--(int) {x[--n] = '\0'; out('-'); return *this;}
+     A& operator+=(const A& a) {
+         for(int i = 0; i &lt; a.n; i++) x[n++] = a.x[i];
+         x[n] = '\0';
+         return *this;
+     }
+     void out(char c) const {cout &lt;&lt; c &lt;&lt; n &lt;&lt; ':' &lt;&lt; x &lt;&lt; endl;}&nbsp;
+ };
+
+ int main() {
+     A a[2], b("CVSD");
+     for (int i = 0; i &lt; 2; i++) {
+         A c = a[i];
+         b += c;
+         a[i].out('+');
+     }
+     ((b--)--)--;
+     cout &lt;&lt; "---------" &lt;&lt; endl;
+     return 0;
+ }</pre></td></tr></table>
+					</p>
+
+					<p class="section">Question 2 - Word Problem - (10 marks):</p>
+					<p>
+					Design and code a class named <span class=code>RRSP</span>
+					that holds information for a Registered Retirement Savings Plan
+					account and tracks the current balance in the account.&nbsp;
+					</p>
+					<p>
+					Upon instantiation, an <span class=code>RRSP</span>
+					object may receive a null-terminated C-style string holding
+					a description of the plan, a floating-point value holding the
+					amount of the initial deposit and a floating-point value
+					holding the annual interest rate.&nbsp; If no information
+					is provided, the object assumes a safe empty state.&nbsp;
+					Do not assume that the description is limited to any number
+					of characters.&nbsp;
+					</p>
+					<p>
+					Your design includes the following member functions:
+					<ul>
+					<li>
+					<span class="code">const char* description() const</span> - a
+					query that returns the description of the plan;</li>
+					<li>
+					<span class="code">double balance() const</span> - a
+					query that returns the current balance in the account;</li>
+					<li>
+					<span class="code">double accrued() const</span> - a
+					query that returns the interest accrued to the account;</li>
+					<li>
+					<span class="code">void accrueInterest(int days)</span> - a
+					modifier that calculates the interest on the current principal
+					at the current annual rate and adds that interest to the accrued
+					amount for the account; and</li>
+					<li>
+					<span class="code">void compound()</span> - a
+					modifier that compounds the accrued interest with the
+					current principal.</li>
+					</ul>
+					Your design also includes an insertion operator that inserts
+					into an <span class="code">ostream</span> the following information
+					on a single line:
+					<ul>
+					<li>
+					the current balance in a field of 10 with 2 decimal points;</li>
+					<li>
+					the current rate in a field of 5 with 2 decimal points;</li>
+					<li>
+					the accrued interest in a field of 8 with 2 decimal points; and</li>
+					<li>
+					the description of the plan preceded by a single blank character.</li>
+					</ul>
+					Design your operator so that it handles cascading.&nbsp;
+					See the example shown below.
+					</p>
+					<p>
+					Include all of the functions necessary to ensure the proper copying
+					and assignment of the data from one object to another and to avoid
+					memory leaks.
+					</p>
+					<p>
+					For example, the following program uses your class
+					and produces the output shown on the right
+					<table width="95%">
+					<tr>
+					<td width="50%">
+					<br />
+					<pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "RRSP.h"
+
+ int main ( ) {
+     RRSP a = b("3 Year Term", 1000.00, 0.03);&nbsp;
+
+     cout &lt;&lt; a.name(); &lt;&lt; a.balance(); &lt;&lt; a.accrued();&nbsp;
+     a.accrueInterest(365);
+     a.compound();
+     b = a;
+     a.accrueInterest(100);
+     cout &lt;&lt; a &lt;&lt; endl;
+     cout &lt;&lt; b &lt;&lt; endl;
+     return 0;
+ } </pre><br /></td><td width="50%">
+ 					<br />
+ 					<pre class="result">
+
+
+
+
+
+
+
+ 3 Year Term   1000.00    0.00
+
+
+
+
+    1030.00 0.03    8.47 3 Year Term
+    1030.00 0.03    0.00 3 Year Term&nbsp;
+
+ 					</pre><br /></td></tr></table>
+					</p>
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+
+					<p class="section">ASCII Table (Reference)</p>
+					<p>
+					<table align=center>
+					<tr><td>
+					<pre>
+  0  NUL       43  +        86  V
+  1  SOH       44  ,        87  W
+  2  STX       45  -        88  X
+  3  ETX       46  .        89  Y
+  4  EOT       47  /        90  Z
+  5  ENQ       48  0        91  [
+  6  ACK       49  1        92  \
+  7  BEL       50  2        93  ]
+  8  BS        51  3        94  ^
+  9  HT        52  4        95  _
+ 10  LF        53  5        96  `
+ 11  VT        54  6        97  a
+ 12  FF        55  7        98  b
+ 13  CR        56  8        99  c
+ 14  SO        57  9       100  d
+ 15  SI        58  :       101  e
+ 16  DLE       59  ;       102  f
+ 17  DC1       60  &lt;       103  g
+ 18  DC2       61  =       104  h
+ 19  DC3       62  &gt;       105  i
+ 20  DC4       63  ?       106  j
+ 21  NAK       64  @       107  k
+ 22  SYN       65  A       108  l
+ 23  ETB       66  B       109  m
+ 24  CAN       67  C       110  n
+ 25  EM        68  D       111  o
+ 26  SUB       69  E       112  p
+ 27  ESC       70  F       113  q
+ 28  FS        71  G       114  r
+ 29  GS        72  H       115  s
+ 30  RS        73  I       116  t
+ 31  US        74  J       117  u
+ 32  SP        75  K       118  v
+ 33  !         76  L       119  w
+ 34  "         77  M       120  x
+ 35  #         78  N       121  y
+ 36  $         79  O       122  z
+ 37  %         80  P       123  {
+ 38  &amp;         81  Q       124  |
+ 39  '         82  R       125  }
+ 40  (         83  S       126  ~
+ 41  )         84  T       127  DEL&nbsp;
+ 42  *         85  U</pre></td></tr></table>
+					</p>
+
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+	<!-- Footer -->
+	<!--tr>
+		<td class="tbody">
+			<table cellpadding="1" width="90%" align="center">
+				<tr>
+					<td width="50%" class="text3">
+						&nbsp;&nbsp;
+					</td>
+					<td width="50%" align="right" class="text3">
+						&nbsp;&nbsp;
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr-->
+</table>
+
+</span>
+</span>

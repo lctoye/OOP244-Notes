@@ -1,0 +1,407 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Workshops | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Part C - Encapsulation</span>
+        <br />
+        <br />
+        <span class="texthead">Input and Output</span>
+        <br />
+        <br />
+        <span class="textagend">Workshop 7</span>
+       </div>
+       <br />
+       <br />
+
+       <p>In this workshop, you code a class that provides input and output
+       functionality through customized extraction and insertion operators.&nbsp;
+       </p>
+       <br />
+
+       <p class="section">Learning Outcomes</p>
+
+       <p>Upon successful completion of this workshop, you will have
+       demonstrated the abilities to</p>
+
+       <ul>
+        <li>overload the extraction and insertion operators for objects of your own class</li>
+
+        <li>implement cascading in your customization</li>
+       </ul>
+       <br />
+
+       <p class="section">Price List - All Groups</p>
+
+       <p class="ssection">Item Class</p>
+
+       <p>
+       Design and code a class named <span class=
+       "code">Item</span> that holds the price of a stock item.&#160;
+       Place your class definition in a header file named
+       <span class="code">Item.h</span> and your function
+       definitions in an implementation file named <span class=
+       "code">Item.cpp</span></p>
+
+       <p>Upon instantiation, an <span class="code">Item</span>
+       object may receive no information or two pieces of
+       information</p>
+
+       <ul>
+        <li>the item number</li>
+
+        <li>the item's price</li>
+       </ul>
+
+       <p>
+       A valid number is positive-valued.&#160; If upon instantiation
+       the object receives an invalid number or a negative
+       price, the object takes on a safe empty state.</p>
+
+       <p>
+       Your class definition includes the following public member functions
+       and helper operators:
+       </p>
+
+       <ul>
+       <li><span class=code>void operator=(double p)</span> -
+       resets the item's price to <span class="code">p</span></li>
+       <li><span class=code>bool empty() const</span> -
+       returns <span class=code>false</span> if the current object
+       contains valid data; <span class=code>true</span> if it is in
+       a safe empty state</li>
+       <li><span class=code>void display(std::ostream& os) const</span>
+       - inserts into <span class=code>os</span> the item number left-justified in a field
+       width of 8 followed by the item's price right-justified in a
+       field of 10 to 2 decimal places</li>
+       <li><span class=code>std::istream& operator&gt;&gt;(std::istream& is, Item& i)</span>
+       - extracts data from <span class=code>is</span> and stores it in <span class=code>i</span>
+       if the data is valid</li>
+       <li><span class=code>std::ostream& operator&lt;&lt;(std::ostream& os, const Item& i)</span>
+       - inserts into <span class=code>os</span> the data in <span class=code>i</span> in the
+       format described above</li>
+       </ul>
+
+       <p>
+       Place your class definition in a header file named
+       <span class="code">Item.h</span> and your function
+       definitions in an implementation file named <span class=
+       "code">Item.cpp</span>.</p>
+
+       <p class="ssection">Client Module</p>
+
+       <p>
+       The client program that uses your <span class="code">Item</span>
+       class accepts input for up to ten (10) items and displays the
+       information in tabular form as shown on the right.&#160;</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Workshop 7 - Price List
+ // w7.cpp
+
+ #include &lt;iostream&gt;
+ #include "Item.h"
+
+ const int MAX_NO = 10;
+
+ int main() {
+     int n = 0;
+     bool quit = false;
+     Item item[MAX_NO];
+
+     std::cout &lt;&lt; "Price List\n";
+     std::cout &lt;&lt; "==========\n";
+
+     do {
+         std::cin &gt;&gt; item[n];
+         if (item[n].empty())
+             quit = true;
+         else
+             n++;
+     } while (!quit && n &lt; MAX_NO);
+     std::cout &lt;&lt; std::endl;
+     if (!item[0].empty()) item[0] = 45.33;
+
+     std::cout &lt;&lt; "  Number     Price\n";
+     std::cout &lt;&lt; "------------------\n";
+
+     for (int i = 0; i &lt; n; i++)
+         std::cout &lt;&lt; item[i] &lt;&lt; std::endl;
+ }</pre>
+         </td>
+         <td>
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Price List
+ ==========
+ Item Number : 234
+ Price       : 45.32
+ Item Number : 235
+ Price       : 67.42
+ Item Number : 236
+ Price       : 89.76
+ Item Number : 0
+ Price       : 0
+
+
+
+  Number       Price
+ -------------------
+ 234          45.33
+ 235          67.42
+ 236          89.76
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <br />
+
+       <p class="section">Upgrade - Group Y</p>
+
+       <p>
+       Design and code the <span class=code>Item</span> class described
+       above.&nbsp; Upgrade your class to include the address of a C-style
+       null-terminated string that holds an item's description.&nbsp;
+       Your design does not place any limitiation on the number of characters
+       in the string.
+       </p>
+
+       <p>
+       Since your <span class=code>Item</span> class can process
+       a description without limitation on length, your design should
+       use dynamic memory allocation and include
+       </p>
+
+       <ul>
+       <li>a copy constructor</li>
+       <li>an assignment operator</li>
+       <li>a destructor</li>
+       </ul>
+
+       <p class="ssection">Client Module</p>
+
+       <p>
+       The implementation file for the main module that uses your
+       <span class="code">Item</span> class is listed on the left, while
+       the results are shown on the right:
+       </p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Workshop 7 - Price List
+ // w7.cpp
+
+ #include &lt;iostream&gt;
+ #include "Item.h"
+
+ const int MAX_NO = 10;
+
+ int main() {
+     int n = 0;
+     bool quit = false;
+     Item item[MAX_NO];
+
+     std::cout &lt;&lt; "Price List\n";
+     std::cout &lt;&lt; "==========\n";
+
+     do {
+         std::cin &gt;&gt; item[n];
+         if (item[n].empty())
+             quit = true;
+         else
+             n++;
+     } while (!quit && n &lt; MAX_NO);
+     std::cout &lt;&lt; std::endl;
+     if (!item[0].empty()) item[0] = 45.33;
+
+     std::cout
+      &lt;&lt; "  Number     Price Description\n";&nbsp;
+     std::cout
+      &lt;&lt; "------------------------------\n";
+
+     for (int i = 0; i &lt; n; i++)
+         std::cout &lt;&lt; item[i] &lt;&lt; std::endl;
+ }</pre>
+         </td>
+         <td>
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+
+ Price List
+ ==========
+ Item Number : 234
+ Price       : 45.32
+ Description : Shirt
+ Item Number : 235
+ Price       : 67.42
+ Description : Drill
+ Item Number : 236
+ Price       : 89.76
+ Description : Frying Pan
+ Item Number : 0
+ Price       : 0
+ Description :
+
+
+   Number     Price Description&nbsp;
+ ------------------------------
+ 234          45.33 Shirt
+ 235          67.42 Drill
+ 236          89.76 Frying Pan
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <br />
+
+       <p id="sub" class="section">SUBMISSION</p>
+
+       <p class="ssection">Typescript</p>
+
+       <p>Create a typescript of your complete solution
+       using the following commands:&#160;</p>
+       <table width="45%" summary="">
+        <tr>
+         <td>
+       <pre>
+ + At the prompt, type: script w7.txt
+ + At the prompt, type: whoami
+ + At the prompt, type: cat Item.h Item.cpp
+ + At the prompt, type: g++ -o w7 w7.cpp Item.cpp&nbsp;
+ + At the prompt, type: w7
+ + At the input prompt, enter test data
+ + At the prompt type: exit
+</pre>
+          </td>
+        </tr>
+       </table>
+
+       <p>These commands will produce a file named <span class=
+       "code">w7.txt</span>.&nbsp; Download this file to your local
+       computer.&#160;</p>
+
+       <p class="ssection">Moodle</p>
+
+       <p>
+       Upload your typescript file to Moodle:&#160;</p>
+
+       <ul>
+        <li>Login to Moodle <script type="text/javascript" src="../classroom_a.js"></script></li>
+
+        <li>Select your course code</li>
+
+        <li>Select W7 under Assignments and Tasks</li>
+
+        <li>Upload <span class=code>w7.txt</span></li>
+
+        <li>Write a short note to your instructor
+        <ul>
+        <li>press "Edit"</li>
+        <li>enter your conclusions about this workshop in the notes textbox</li>
+        <li>press "Save Changes"</li>
+        </ul>
+
+        <li>When ready to submit, press "Send for Marking"</li>
+       </ul>
+
+       <p class="ssection">Other Submissions</p>
+
+       <p>
+       Submit your typescript file as your instructor has specified.</p>
+
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

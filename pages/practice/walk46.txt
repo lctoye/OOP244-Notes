@@ -1,0 +1,23 @@
+/* Problem 46 */
+	    #include <iostream>
+	    using namespace std;
+	    class foo {
+		int n;
+	      public:
+		foo() {cout << "A one\n"; n = 1;}
+		foo(int num) {cout << "A " << (n = num) << '\n';}
+		~foo() { cout << "(Lawrence Welk imitation?)\n";}
+		int tick() {cout << "ana " << ++n << '\n'; return n;}
+		friend void tock(foo &a) { cout << a.n - 1 << ' ' 
+		   << a.n << '\n'; }
+	    };
+	    int main()
+	    {
+		foo x, *p;
+		x.tick();
+		p = new foo(x.tick() + 1);
+		p->tick();
+		tock(*p);
+		delete p;
+		return 0;
+	    }

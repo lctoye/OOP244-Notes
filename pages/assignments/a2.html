@@ -1,0 +1,840 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml' xml:lang=
+"en-us">
+<head>
+ <meta name="generator" content=
+ "HTML Tidy for Windows (vers 25 March 2009), see www.w3.org" />
+
+ <title>Assignments | Introduction to OO
+ Programming</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta http-equiv="PICS-Label" content=
+ '(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+ <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+ <meta name="Description" content=
+ "Welcome to the ICT Programming Stream C++ Web Site. On this site you can find the introductory course to object-oriented programming. Designed by Chris Szalwinski." />
+ <meta name="Abstract" content=
+ "This subject introduces the principles of object-oriented programming. Students study the solution of problems using objects with the C++ programming language. The emphasis throughout is on the solution of small problems." />
+ <meta name="Author" content="chris.szalwinski@senecacollege.ca" />
+ <meta name="Keywords" content=
+ "software development, object-oriented programming, lecture notes" />
+ <link rel="stylesheet" type="text/css" href="../style.043.css" />
+ <link rel="stylesheet" type="text/css" href="../styleScreen.043.css"
+ media="screen" />
+ <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css"
+ media="print" />
+ <link rel="stylesheet" type="text/css" href="../styleNav.043.css" />
+ <style type="text/css">
+/*<![CDATA[*/
+ a.c4 {text-decoration: underline}
+ p.c3 {color: blue}
+ span.c2 {color: red}
+ div.c1 {text-align: center}
+ /*]]>*/
+ </style>
+</head>
+
+<body>
+ <table id="top" width="850" cellspacing="0" cellpadding="0" summary=
+ "body">
+  <!-- Banner -->
+
+  <tr class="banner">
+   <td colspan="2" class="banner">
+    <table cellspacing="0" cellpadding="0" summary="banner">
+     <tr>
+      <td class="w250 banner">
+       <div class="center">
+        <span class="text0">&#160;&#160;Software&#160;&#160;
+        <br />
+        &#160;&#160;Development&#160;&#160;</span>
+       </div>
+      </td>
+
+      <td class="tbanner"><img src="../images/Banner4.gif" height="120"
+      width="500" alt="Software Development" /></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Navigation Bar -->
+
+  <tr class="navigate">
+   <td class="panel1" align="left" valign="bottom">
+    <ul id="tabnav">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline</a></li>
+
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><a class="active" href=
+     "index.html">Assignments</a></li>
+
+     <li><script type="text/javascript" src="../instructors.js"></script></li>
+
+     <li><a href="a2_p.html"><img src="../images/Printer.gif" height=
+     "15" width="10" alt=
+     "Printer Friendly Version of this Page" /></a></li>
+    </ul>
+   </td><!-- Web Site Title -->
+
+   <td class="panel2 w150" align="center"><span class="text1"><script type=
+   "text/javascript" src="../subject.js">
+</script></span></td>
+  </tr><!-- Body Cells -->
+
+  <tr class="content">
+   <!-- Content Area -->
+
+   <td class="tbody" valign="top">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Assignment 2
+        <br />
+        Version 1.0</span>
+        <br />
+        <br />
+        <span class="texthead">EAN Processor - Object Version</span>
+        <br />
+        <br /></span>
+       </div>
+       <br />
+       <br />
+
+       <p>In your second assignment you convert the global functions that
+       you developed for assignment 1 into member functions.&#160;</p>
+       <br />
+
+       <p class="section">Learning Outcomes</p>
+
+       <p>Upon successful completion of this assignment, you will have
+       demonstrated the abilities to</p>
+
+       <ol>
+        <li>convert a global function into a member function</li>
+
+        <li>encapsulate data and logic within a class</li>
+
+        <li>code a safe empty state</li>
+
+        <li>pass a reference to an object</li>
+       </ol>
+       <br />
+
+       <p class="section">Styles</p>
+
+       <p>
+       The three popular styles for printing registered
+       EANs are:
+       </p>
+       <ul>
+       <li>blank style</li>
+       <li>dash style</li>
+       <li>concatenated style</li>
+       </ul>
+       <p>
+       In blank style, a single blank space separates the prefix, area,
+       publisher and title elements</p>
+       <pre>
+ 978 0 00 319487 6
+</pre>
+
+       <p>
+       In dash style, a single dash character separates the
+       four elements</p>
+       <pre>
+ 978-0-00-319487-6
+</pre>
+
+       <p>
+       Concatenated style has no separator</p>
+       <pre>
+ 9780003194876
+</pre>
+
+       <p>
+       We use concatenated style for input and unregistered EANs.&nbsp;
+       We use dash style as the default for registered EANs.</p>
+       <br />
+
+       <p class="section">Specifications</p>
+
+       <p>The two classes developed in this assignment are named
+       </p>
+       <ul>
+       <li><span class="code">Prefix</span></li>
+       <li><span class="code">EAN</span></li>
+       </ul>
+
+       <p>The global functions that you coded for assignment 1 contain
+       the logic that you need for defining member functions of these two
+       classes.&#160; In converting the global functions into member functions,
+       you will reduce the parameter lists and changing some identifiers,
+       but should not need to change the algorithms themselves.&#160;</p>
+
+       <p class="ssection">Prefix Class</p>
+
+       <p class="sssection">Class Definition</p>
+
+       <p>Your <span class="code">Prefix</span> class manages
+       access to the GS1 prefix table.&#160; The data members
+       remain unchanged.&nbsp; Convert the <span class=code>struct</span>
+       definition to a <span class=code>class</span> definition
+       that includes the prototypes for your member functions.&nbsp;
+       </p>
+
+       <p class="sssection">Member Functions</p>
+
+       <p>
+       Your <span class="code">Prefix</span> class includes the
+       following member functions:</p>
+
+       <ul>
+        <li>
+        A one-argument constructor that receives the address of a C-style,
+        null-terminated string containing the name of the file that holds
+        the prefix table
+        <pre>
+ Prefix(const char* filename);
+</pre>
+
+         <p>This constructor loads the file data into the data members.&nbsp; You
+         may use the code from the <span class=code>load()</span> function for
+         this constructor.&nbsp;
+         </p>
+        </li>
+
+        <li>
+        A query that receives an area identifier and determines if
+        the area is listed in the prefix table
+        <pre>
+ bool isRegistered(int area) const;
+</pre>
+
+         <p>
+         This function returns <span class="code">true</span> if the area is
+         an area element listed in the prefix table; <span class="code">false</span>
+         otherwise.&#160;</p>
+        </li>
+
+        <li>
+        A query that receives an area element and determines the
+        minimum number of digits in any publisher identifier registered
+        under that area in the prefix table
+        <pre>
+ int minNoDigits(int area) const;
+</pre>
+
+         <p>
+         This function returns the minimum number of digits if the
+         area element is in the prefix table; zero (0) otherwise.&#160;</p>
+        </li>
+
+        <li>
+        A query that receives an area element and a
+        publisher element and determines if the publisher element
+        is within one of the publisher ranges listed under that area element
+        in the prefix table
+        <pre>
+ bool isRegistered(int area, const char* publisher) const;
+</pre>
+
+         <p>
+         This function returns <span class="code">true</span> if the publisher identifier is
+         within a range listed under the area; <span class="code">false</span> otherwise.&#160;
+         Note that the area parameter is of <span class="code">int</span>
+         data type and the publisher parameter receives the address of a C-style
+         string.</p>
+        </li>
+</pre>
+        </li>
+       </ul>
+
+       <p>Design each member function to yield a
+       reasonable result even if it receives invalid values for any
+       of its parameters.&#160;</p>
+
+       <p>Replace the prototypes for your global functions in your
+       <span class="code">GS1Prefix.h</span> header file with your
+       class definition.&nbsp; Replace the global function definitions
+       in your <span class="code">GS1Prefix.cpp</span> implementation
+       file with your member function definitions.</p>
+
+       <p class="ssection">EAN Class</p>
+
+       <p>Your <span class="code">EAN</span> class manages a single
+       EAN.</p>
+
+       <p class="sssection">Class Definition</p>
+
+       <p>Your <span class="code">EAN</span> class holds the information
+       in its data members that is common to the member functions.&nbsp;
+       Survey the member function specifications and identify these common
+       data members.&nbsp; They include the parameters that were in the first
+       assignment but have been removed in this second assignment.</p>
+
+       <p class="sssection">Member Functions</p>
+
+       <p>Your <span class="code">EAN</span> class includes the following
+       member functions:</p>
+
+       <ul>
+        <li>
+        A no-argument constructor that creates an <span class=
+        "code">EAN</span> object in a safe empty state
+         <pre>
+ EAN();
+</pre>
+        </li>
+
+        <li>
+        A two-argument constructor that receives the address of a C-style
+        null-terminated string and a reference to a <span class=code>Prefix</span>
+        object.&nbsp; This constructor creates an <span class=
+        "code">EAN</span> object from the string and checks for registration
+        using the <span class="code">Prefix</span> object
+         <pre>
+ EAN(const char* str, const Prefix&amp; list);
+</pre>
+
+         <p>
+         If the string is a valid EAN, this member function accepts
+         the string and checks if the EAN is registered.&nbsp; If
+         registered, this member function also stores its area,
+         publisher and title elements and initializes the style to
+         the dash style.&nbsp; If the string is not a valid EAN string,
+         this constructor leaves the object in a safe empty state.&nbsp;
+         </p>
+        </li>
+
+        <li>
+        A <span class="code">private</span> modifier that receives
+        a reference to an <span class="code">Prefix</span> object
+        and decomposes an EAN into its area, publisher and title elements
+         <pre>
+ bool isRegistered(const Prefix&amp; list);
+</pre>
+
+         <p>
+         If the EAN is registered, this function extracts the area,
+         publisher, and title components and returns <span class=code>true</span>.&#160;
+         If the EAN is not registered, this function returns <span class=code>false</span>.&#160;</p>
+        </li>
+
+        <li>
+        A query that returns <span class=code>true</span> if the object is in a safe empty
+        state, <span class=code>false</span> otherwise
+         <pre>
+ bool empty() const;
+</pre>
+        </li>
+
+        <li>
+        A query that returns <span class=code>true</span> if the object is registered,
+        <span class=code>false</span> otherwise
+         <pre>
+ bool isRegistered() const;
+</pre>
+        </li>
+
+        <li>
+        A modifier that receives a <span class=code>char</span> and sets
+        the style to the character received if its value is one of the three
+        legitimate values listed above
+         <pre>
+ void style(char);
+</pre>
+         <p>
+         This function does nothing if the style character received is not legitimate.</p>
+        </li>
+
+        <li>
+        A query that receives the address of a C-style, null-terminated
+        string and fills that address with the object's EAN
+         <pre>
+ void toStr(char* str) const;
+</pre>
+         <p>
+         This function assumes that the caller has allocated enough
+         space to hold a thirteen (13) character string.&nbsp;</p>
+        </li>
+
+        <li>
+        A query that receives the address of a C-style, null-terminated
+        string and fills that address with a formatted version of the
+        object's EAN applying the current style
+         <pre>
+ void toStrWithStyle(char* str) const;
+</pre>
+
+         <p>
+         The formatted string consists of the prefix, area, publisher
+         and title elements separated by the style delimiter for a
+         registered object (as shown above).&#160; The string is in the
+         concatenated style if the object is unregistered.&#160;</p>
+
+         <p>
+         This function assumes that the caller has allocated enough
+         space to hold up to a seventeen (17) character string.</p>
+        </li>
+
+        <li>
+        A query that receives a reference to an <span class="code">
+        ostream</span> object and inserts the EAN string in the
+        current style into output stream <span class=code>os</span>&#160;
+         <pre>
+ void display(std::ostream&amp; os) const;
+</pre>
+
+         <p>
+         If the EAN is not registered, this
+         function displays it in concatenated style.&#160; In
+         either case, your function displays the EAN right-justified
+         in a field of seventeen (17) characters.</p>
+
+         <p>For example,</p>
+         <pre>
+ 978-0-00-319487-6
+     9789995500009
+</pre>
+        </li>
+
+        <li>
+        A modifier that receives a reference to an <span class=
+        "code">istream</span> object and a reference to a
+        <span class="code">Prefix</span> object.&nbsp; This function
+        reads a thirteen character string from the input stream and,
+        if a valid EAN, accepts the string
+         <pre>
+ bool read(std::istream&amp; is, const Prefix&amp; list);
+</pre>
+
+         <p>
+         This function prompts for and accepts a string of up to thirteen
+         characters.&#160; If the string contains exactly thirteen
+         characters and those characters form a valid EAN, this
+         function accepts the EAN and stores it in the current object.&#160;
+         If the input is unacceptable for any reason, this
+         function requests another string or "0" to quit.&#160;
+         If the user enters "0", this function does not change
+         the current object and returns <span class=code>false</span>;
+         <span class=code>true</span> otherwise.&#160;</p>
+        </li>
+       </ul>
+
+       <p>
+       Design each member function so that it yields a
+       reasonable result even if the function receives
+       invalid values in any of its parameters.&#160;</p>
+
+       <p>Insert your class definition into your <span class=
+       "code">EAN.h</span> header file before the prototype
+       for your global <span class= "code">isValid()</span> function.&nbsp;
+       Replace the prototype for your global
+       <span class="code">isRegistered()</span> function with a member
+       function prototype inside the class definition.&#160;
+       Preface your class definition with the following forward
+       declaration</p>
+       <pre>
+ <span class="high">class Prefix;</span>
+
+ class EAN {
+
+    // your declarations go here
+
+ };
+
+ bool isValid(const char* str);
+</pre>
+
+       <p>
+       This forward declaration informs the compiler that
+       <span class="code">Prefix</span> is  a valid class,
+       which is fully defined elsewhere.&#160; </p>
+
+       <p>In your <span class="code">EAN.cpp</span>
+       implementation file include the header files for your
+       <span class="code">EAN</span> and <span class=
+       "code">GS1Prefix</span> modules.&#160; Replace the function
+       definition for your global <span class="code">isRegistered()</span>
+       function with the new definition for your member function (as
+       described above).&nbsp; Replace the function calls within
+       <span class=code>isRegistered()</span>
+       with calls to the equivalent member functions on the
+       <span class=code>Prefix</span> object.&nbsp; Retain your
+       original definition of the global <span class="code">isValid()</span>
+       function.</p>
+
+       <p class="ssection">Main Module</p>
+
+       <p>The client program posted <a href="a2main.cpp">here</a>
+       accepts up to 100 EANs in a single run.&#160; It displays a menu,
+       accepts a user selection, and completes the requested task.&#160;</p>
+
+       <p>The options include:</p>
+
+       <ul>
+        <li>Add an EAN</li>
+
+        <li>Change Style</li>
+
+        <li>View all EANs</li>
+
+        <li>Quit</li>
+       </ul>
+
+       <p>If the user makes an invalid choice, this program's menu function asks for
+       another choice.&#160;</p>
+
+       <p>To change the output style, the user selects the option and
+       then enters the character that identifies the style.</p>
+
+       <p class="ssection">Sample Run</p>
+
+       <p>To compile this client program with your modules on Linux, use
+       the command:</p>
+       <pre>
+ g++ a2main.cpp GS1Prefix.cpp EAN.cpp
+</pre>
+
+       <p>
+       If you are using Linux, make sure that your prefix file is in the
+       same directory as your executable.&nbsp;
+       If you are using the Visual Studio IDE, make sure that
+       your prefix file is in the same directory as your project file.&nbsp;
+       </p>
+
+       <p>The output from a sample run might look something like:</p>
+       <pre>
+ EAN Processor
+ =============
+
+ Please select from the following options :
+  A - Add an EAN
+  F - Change output style
+  V - View all EANs
+  Q - Quit
+  Your selection : a
+
+ EAN (0 to quit) : 9789070002046
+
+ Please select from the following options :
+  A - Add an EAN
+  F - Change output style
+  V - View all EANs
+  Q - Quit
+  Your selection : a
+
+ EAN (0 to quit) : 9780003194875
+ Invalid check digit. Try again.
+ EAN (0 to quit) : 978000319487
+ Too few characters. Try again.
+ EAN (0 to quit) : 9780003194876
+
+ Please select from the following options :
+  A - Add an EAN
+  F - Change output style
+  V - View all EANs
+  Q - Quit
+  Your selection : a
+
+ EAN (0 to quit) : 97899955000
+ Too few characters. Try again.
+ EAN (0 to quit) : 0
+ ** No EAN added!
+
+ Please select from the following options :
+  A - Add an EAN
+  F - Change output style
+  V - View all EANs
+  Q - Quit
+  Your selection : a
+
+ EAN (0 to quit) : 9789995500009
+
+ Please select from the following options :
+  A - Add an EAN
+  F - Change output style
+  V - View all EANs
+  Q - Quit
+  Your selection : v
+
+               EAN
+ -----------------
+ 978-90-70002-04-6
+ 978-0-00-319487-6
+     9789995500009
+
+ Please select from the following options :
+  A - Add an EAN
+  F - Change output style
+  V - View all EANs
+  Q - Quit
+  Your selection : f
+
+ EAN Style ('-', ' ', '\n' or '0' to quit) :    <span class=high>// enter a space here</span>
+
+ Please select from the following options :
+  A - Add an EAN
+  F - Change output style
+  V - View all EANs
+  Q - Quit
+  Your selection : v
+
+               EAN
+ -----------------
+ 978 90 70002 04 6
+ 978 0 00 319487 6
+     9789995500009
+
+ Please select from the following options :
+  A - Add an EAN
+  V - View all EANs
+  C - Configure the EAN display
+  Q - Quit
+  Your selection : q
+
+ Signing off ...
+ Press any key to continue . . .
+</pre>
+
+       <p>Once your program yields the results shown above, it is ready
+       for final testing.&#160;</p>
+       <br />
+
+       <p class="section">Submission</p>
+
+       <p>
+       A file containing functions to test your classes is
+       posted <a href="a2test.cpp">here</a>.&#160;
+       Copy this file into your assignment directory, re-compile
+       your class modules with this file and run the executable.</p>
+
+       <p>Once the executable indicates that you may submit your
+       program, create a typescript using the following commands:</p>
+       <pre>
+ + At the prompt, type: script a2.txt
+ + At the prompt, type: whoami
+ + At the prompt, type: cat GS1Prefix.h
+ + At the prompt, type: cat GS1Prefix.cpp
+ + At the prompt, type: cat EAN.h
+ + At the prompt, type: cat EAN.cpp
+ + At the prompt, type: g++ a2test.cpp GS1Prefix.cpp EAN.cpp
+ + At the prompt, type: a.out
+ + At the prompt, type: cat a2main.cpp GS1Prefix.cpp EAN.cpp
+ + At the prompt, type: a.out
+ + At each input prompt, enter the data for the sample run shown above.
+ + At the prompt type: exit
+</pre>
+
+       <p>
+       These commands will produce a file named <span class=
+       "code">a2.txt</span>.&nbsp; Submit this file according to your
+       professor's instructions along with any other information your
+       professor has requested.</p>
+
+       <p>
+       Assignments that are submitted after the due date will attract
+       a 10% late penalty per school day to a maximum deduction of 50%.</p>
+
+       <!--<table cellpadding=2 cellspacing=2 border=1>-->
+       <!--<tr>
+       <td width="40%">Received On or After</td>
+       <td width="40%">Received On or Before</td>
+       <td width="20%">Penalty</td>
+       </tr>
+       <tr>
+       <td>June 24 24:00:00</td>
+       <td>June 27 23:59:59</td>
+       <td>10%</td>
+       </tr>
+       <tr>
+       <td>June 27 24:00:00</td>
+       <td>June 28 23:59:59</td>
+       <td>20%</td>
+       </tr>
+       <tr>
+       <td>June 28 24:00:00</td>
+       <td>June 29 23:59:59</td>
+       <td>30%</td>
+       </tr>
+       <tr>
+       <td>June 29 24:00:00</td>
+       <td>June 30 23:59:59</td>
+       <td>40%</td>
+       </tr>
+       <tr>
+       <td>June 30 24:00:00</td>
+       <td>...</td>
+       <td>50%</td>
+       </tr>
+       </table>-->
+
+       <p>
+       If you submit an assignment that does not pass all of the tests,
+       you will be asked to fix your code and to resubmit, in which case
+       you will receive an assignment mark no higher than 50% of the mark
+       allocated for this assignment.</p>
+
+       <p>
+       Regardless of how long it takes you to complete this assignment,
+       you will need to submit a completed version in order to pass this
+       course.</p>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+   </td><!-- Detail Menu -->
+
+   <td class="panel1 w150" valign="top" rowspan="2">
+    <ul id="mennav">
+     <li><a href="../welco.html">Welcome</a></li>
+
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+     <li><script type="text/javascript" src="../assignments.a.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_1.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_2.a.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_3.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_4.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_5.js"></script></li>
+
+     <li><a href="../handouts/index.html">Handouts</a></li>
+
+     <li><a href="../practice/index.html">Practice</a></li>
+
+     <li><a href="../resources/index.html">Resources</a></li>
+
+     <!--<li><a href="../content/glossary.html">Glossary</a></li>-->
+    </ul>
+   </td>
+  </tr><!-- Content Area Footer -->
+
+  <tr class="navigate">
+   <td class="panel3" align="center">
+    <table class="panel2" width="95%" summary="footer">
+     <tr>
+      <td align="left">&#160;&#160; <a href="a2_p.html" class=
+      "text3"><img src="../images/Printer.gif" height="15" width="10"
+      alt="Printer Friendly Version of this Page" />&#160;print this
+      page</a>&#160;&#160;</td>
+
+      <td align="right">&#160;&#160;<a href="a2.html#top" class=
+      "text3">Top&#160; <img src="../images/ArrowToT.gif" height="15"
+      width="15" alt="Go Back to the Top of this Page" /></a></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Footer -->
+
+  <tr>
+   <!-- Left Panel -->
+
+   <td class="panel1 lateral center">
+    <!-- Lateral Motion Control -->
+    <!--<table width="90%" class="center" summary="previous next">
+                <tr>
+                    <td class="half" align="left">
+                        <a href="datat.html" class="text3">
+                        <img src="../images/ArrowToL.gif" height="15" width="15" class="panel1" alt="Previous Reading" />&nbsp;&nbsp;Previous: Primitive Data Types</a>
+                    </td>
+                    <td class="half" align="left">
+                        <a href="modul.html" class="text3">Next: Modular Programs&nbsp;&nbsp;
+                        <img src="../images/ArrowToR.gif" height="15" width="15" class="panel1" alt="Next Reading" /></a>
+                    </td>
+                </tr>
+            </table>-->
+
+    <br />
+    <br />
+    <!-- Alternate Navigation Links -->
+
+    <ul id="altnav" class="center">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+     <!--<li><a href="https://cs.senecac.on.ca/~bsd">BSD Home</a></li>-->
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline&#160;</a></li>
+    </ul>
+
+    <ul id="altnav2" class="center">
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><a class="active" href=
+     "index.html">Assignments</a></li>
+
+     <li><script type="text/javascript" src="../instructors.js"></script></li>
+    </ul>
+    <br />
+    <!-- Bottom Line -->
+
+    <table cellpadding="1" width="90%" summary="bottom line">
+     <tr>
+      <td class="w33 text3">&#160;&#160;Designed by Chris
+      Szalwinski&#160;&#160;</td>
+
+      <td class="w33 center"><a href="../copyright.html" class=
+      "text3">Copying From This Site</a></td>
+
+      <td class="w33 text3" align="right">
+       <script type="text/javascript">
+//<![CDATA[
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+       //]]>
+       </script>&#160;&#160;
+      </td>
+     </tr>
+    </table>
+   </td><!-- Logo - Right Bottom Corner -->
+
+   <td class="panel2 w150" align="center"><img src="../images/Logo.gif"
+   alt="Logo" height="73" width="85" /><br /><a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/2.5/ca/88x31.png" /></a></td>
+  </tr>
+ </table>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Practice | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the Computer Programming and Analysis Diploma Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign="top">
+                        <br />
+                        <center>
+                        <span class=texth>Practice</span>
+                        <br />
+                        <br />
+                        <span class=texthead>
+                        OO Concepts</span>
+                        </center>
+                        <br />
+                        <br />
+                        <br />
+
+                        <p>
+                        What is the exact output of the following program?&nbsp;
+                        Show your intermediate work.
+                        <table width="45%">
+                        <tr>
+                        <td>
+                        <br />
+                        <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include &lt;string&gt;
+
+ class T {
+     char* t;
+     int n;
+     void myo(char* s) {
+         t = new char[strlen(s) + 1];
+         strcpy(t, s);
+     }
+ public:
+     T(char* s) {myo(s); n = 0;}
+     T(const T& t) {myo(t.t); n = t.n; cout &lt;&lt; "...\n";}
+     ~T() {delete[]t; cout &lt;&lt; "^^^\n";}
+     void operator=(const T& s) {
+         delete[]t;
+         n = s.n;
+         myo(s.t);
+         cout &lt;&lt; "***\n";
+     }
+     void boo() {n = 0;}
+     bool end() {return n == strlen(t);}
+     int see(int m) {
+         int j;
+         for (j = 0; j &lt; m && t[n]; j++)
+             cout &lt;&lt; t[n++];
+         return (t[n]) ? j : 0;
+     }
+ };
+
+ class P : public T {
+     char* moo;
+     int g;
+     int w;
+     int n;
+     void myo(char* s) {
+         n = strlen(s);
+         moo = new char[n + 1];
+         strcpy(moo,s);
+     }
+     void lin() {
+         for(int i = 0; i &lt; w; i++)
+             cout &lt;&lt; '-';
+         cout &lt;&lt; '\n';
+     }
+ public:
+     P(int nl, int up, char* s, char* t) : T(s) {
+         myo(t);
+         g = nl;
+         w = up;
+     }
+     void dow(int u) {w = u;}
+     void acr(int p) {g = p;}
+     P(const P& p) : T(p) {
+         myo(p.moo);
+         g = p.g;
+         w = p.w;
+     }
+     ~P() {delete[]moo; lin();}
+     void operator=(const P& p) {
+         T::operator=(p);
+         delete[]moo;
+         g = p.g;
+         w = p.w;
+         myo(p.moo);
+         cout &lt;&lt; "===\n";
+     }
+     void see(int e) {
+         bool ok = false;
+         int k, p = 0;
+         if (!end()) {
+             do {
+                 k = 0;
+                 for (int i = 0; i &lt; (n-1)/w + 1; i++) {
+                     for (int j = 0; j &lt; w && moo[k]; j++)
+                         cout &lt;&lt; moo[k++];
+                     cout &lt;&lt; '\n';
+                 }
+                 lin();
+                 for (int i = 0; i &lt; g && !ok; i++) {
+                     ok = (T::see(w) == 0);
+                     cout &lt;&lt; '\n';
+                 }
+                 cout &lt;&lt; '\n';
+                 p++;
+             } while(p &lt; e && !ok);
+         }
+     }
+ };
+
+ int main() {
+     P a(2, 6, "Encapsulation, Inheritance and Polymorphism","BTP200");&nbsp;
+
+     a.see(1);
+     P b = a;
+     b.see(1);
+     a = b;
+     a.see(2);
+     a.dow(8);
+     a.acr(2);
+     a.boo();
+     a.see(1);
+     a.dow(3);
+     a.see(1);
+
+     return 0;
+ }</pre><br /></td></tr></table>
+                        </p>
+                        <p>
+                        Show your output here:
+                        <br />
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        </p>
+                        <br />
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        <script language="javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        <script language="javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

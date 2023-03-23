@@ -1,0 +1,144 @@
+Test 2 - OOP244 112 - Solutions
+===============================
+
+1 - Word Problem
+----------------
+// ESign.h
+
+class ESign {
+    int width;
+    char* text;
+  public:
+    ESign();
+    ESign(int, const char*);
+    ESign(const ESign&);
+    ESign& operator=(const ESign&);
+    ~ESign();
+    void set(int);
+    void set(const char*);
+    void display() const;
+};
+
+// ESign.cpp
+
+#include <iostream>
+#include <cstring>
+#include "ESign.h"
+using namespace std;
+
+ESign::ESign() {
+    width = 0;
+    text  = NULL;
+}
+
+ESign::ESign(int w, const char* t) {
+    if (w > 0 && t != NULL) {
+        width = w;
+        text  = new char[strlen(t) + 1];
+        strcpy(text, t);
+    }
+    else {
+        text  = NULL;
+        *this = ESign();
+    }
+}
+
+ESign::ESign(const ESign& e) {
+    text = NULL;
+    *this = e;
+}
+
+ESign& ESign::operator=(const ESign& e) {
+    if (this != &e) {
+        delete [] text;
+        if (e.text != NULL) {
+            text = new char[strlen(e.text) + 1];
+            strcpy(text, e.text);
+        }
+        else
+            text = NULL;
+        width = e.width;
+    }
+    return *this;
+}
+
+ESign::~ESign() {
+    delete [] text;
+}
+
+void ESign::set(int w) {
+    if (text == NULL && w > 0) {
+        width = w;
+        text  = new char[1];
+        text[0] = '\0';
+    }
+    else if (w > 0)
+        width = w;
+}
+
+void ESign::set(const char* t) {
+    if (t != NULL) {
+        delete [] text;
+        text = new char[strlen(t) + 1];
+        strcpy(text, t);
+    }
+}
+
+void ESign::display() const {
+    if (text != NULL) {
+        int j = width;
+        for (int i = 0; text[i] != '\0'; i++) {
+            if (j == 0) {
+                cout << '\n';
+                j = width;
+            }
+            cout << text[i];
+            j--;
+        }
+    }
+    else {
+        const char text[] = "Please Wait";
+        int j = width;
+        for (int i = 0; text[i] != '\0'; i++) {
+            if (j == 0) {
+                cout << '\n';
+                j = width;
+            }
+            cout << text[i];
+            j--;
+        }
+    }
+    cout << endl;
+}
+
+2 - Walkthrough
+---------------
+Version a
+---------
+BT
+B20TGreen
+B10TBlack
+CU50 Green Tea
+~TGreen~B50
+--------
+CU60 Black Tea
+~TBlack~B60
+--------
+~TBlack~B60
+~TGreen~B50
+~T~B0
+
+Version b
+---------
+BT
+B20TRoseHip
+B10TBlack
+CU50 RoseHip Tea
+~TRoseHip~B50
+-----------
+CU60 Black Tea
+~TBlack~B60
+-----------
+~TBlack~B60
+~TRoseHip~B50
+~T~B0

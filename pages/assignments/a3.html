@@ -1,0 +1,792 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml' xml:lang=
+"en-us">
+<head>
+ <meta name="generator" content=
+ "HTML Tidy for Windows (vers 25 March 2009), see www.w3.org" />
+
+ <title>Assignments | Introduction to OO
+ Programming</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta http-equiv="PICS-Label" content=
+ '(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+ <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+ <meta name="Description" content=
+ "Welcome to the ICT Programming Stream C++ Web Site. On this site you can find the introductory course to object-oriented programming. Designed by Chris Szalwinski." />
+ <meta name="Abstract" content=
+ "This subject introduces the principles of object-oriented programming. Students study the solution of problems using objects with the C++ programming language. The emphasis throughout is on the solution of small problems." />
+ <meta name="Author" content="chris.szalwinski@senecacollege.ca" />
+ <meta name="Keywords" content=
+ "software development, object-oriented programming, lecture notes" />
+ <link rel="stylesheet" type="text/css" href="../style.043.css" />
+ <link rel="stylesheet" type="text/css" href="../styleScreen.043.css"
+ media="screen" />
+ <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css"
+ media="print" />
+ <link rel="stylesheet" type="text/css" href="../styleNav.043.css" />
+ <style type="text/css">
+/*<![CDATA[*/
+ a.c2 {text-decoration: underline}
+ div.c1 {text-align: center}
+ /*]]>*/
+ </style>
+</head>
+
+<body>
+ <table id="top" width="850" cellspacing="0" cellpadding="0" summary=
+ "body">
+  <!-- Banner -->
+
+  <tr class="banner">
+   <td colspan="2" class="banner">
+    <table cellspacing="0" cellpadding="0" summary="banner">
+     <tr>
+      <td class="w250 banner">
+       <div class="center">
+        <span class="text0">&#160;&#160;Software&#160;&#160;
+        <br />
+        &#160;&#160;Development&#160;&#160;</span>
+       </div>
+      </td>
+
+      <td class="tbanner"><img src="../images/Banner4.gif" height="120"
+      width="500" alt="Software Development" /></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Navigation Bar -->
+
+  <tr class="navigate">
+   <td class="panel1" align="left" valign="bottom">
+    <ul id="tabnav">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline</a></li>
+
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><a class="active" href=
+     "index.html">Assignments</a></li>
+
+     <li><script type="text/javascript" src="../instructors.js"></script></li>
+
+     <li><a href="a3_p.html"><img src="../images/Printer.gif" height=
+     "15" width="10" alt=
+     "Printer Friendly Version of this Page" /></a></li>
+    </ul>
+   </td><!-- Web Site Title -->
+
+   <td class="panel2 w150" align="center"><span class="text1"><script type=
+   "text/javascript" src="../subject.js">
+</script></span></td>
+  </tr><!-- Body Cells -->
+
+  <tr class="content">
+   <!-- Content Area -->
+
+   <td class="tbody" valign="top">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Assignment 3
+        <br />
+        Version 1.0</span>
+        <br />
+        <br />
+        <span class="texthead">Bookstore Order Processor</span>
+        <br />
+        <br />
+       </div>
+       <br />
+       <br />
+
+       <p>In your third assignment, you create a new class that includes
+       an object of another class as one of its data members.&#160;</p>
+       <br />
+
+       <p class="section">Learning Outcomes</p>
+
+       <p>Upon successful completion of this assignment, you will have
+       demonstrated the abilities to</p>
+
+       <ul>
+        <li>code a composition relationship between two classes</li>
+
+        <li>overload an operator as a helper function of a class</li>
+       </ul>
+       <br />
+
+       <p class="section">Specifications</p>
+
+       <p>In this assignment you update the <span class="code">EAN</span>
+       module and create the <span class="code">Order</span> module.&#160;</p>
+
+       <p class="ssection">EAN Class</p>
+
+       <p>
+       Add the following helper functions to your definition of the
+       <span class=code>EAN</span> class:</p>
+
+       <ul>
+        <li>
+        An overloaded operator that receives references to two
+        unmodifiable <span class="code">EAN</span> objects and
+        compares the objects for equality
+         <pre>
+ bool operator==(const EAN&amp; left, const EAN&amp; right);
+</pre>
+
+         <p>
+         This operator returns <span class="code">true</span> if both
+         objects hold the same EAN string; <span class="code">false</span>
+         otherwise.&#160; The objects need not hold the same style for
+         this comparison to succeed.&#160;</p>
+        </li>
+
+        <li>
+        An overloaded operator that receives a reference to an
+        <span class="code">ostream</span> object and a reference
+        to an unmodifiable <span class="code">EAN</span> object.&nbsp;
+        This operator inserts the object into output
+        stream <span class=code>os</span>&#160;
+         <pre>
+ std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const EAN&amp; ean);
+</pre>
+
+         <p>This operator displays the EAN in the form created by the
+         <span class="code">display()</span> member function.</p>
+        </li>
+       </ul>
+
+       <p>Add your prototypes to the header file named
+       <span class="code">EAN.h</span> and your function definitions
+       to the implementation file named <span class=
+       "code">EAN.cpp</span>.</p>
+
+       <p class="ssection">Order Class</p>
+
+       <p>Store your class definition in a header file named
+       <span class="code">Order.h</span> and your function definitions
+       in an implementation file named <span class=
+       "code">Order.cpp</span>.</p>
+
+       <p class="sssection">Class Definition</p>
+
+       <p>Your <span class="code">Order</span> class defines the structure
+       of an order for a single book.&nbsp; The order refers to one specific
+       edition; that is, to one EAN.&#160; Survey the member functions listed
+       below to determine the data members in your design.
+       </p>
+
+       <p class="sssection">Member Functions</p>
+
+       <p>Your design includes the following member functions:</p>
+
+       <ul>
+        <li>
+        A no-argument constructor that creates an <span class=
+        "code">Order</span> object in a safe empty state
+        <pre>
+ Order();
+</pre>
+        </li>
+
+        <li>
+        A one-argument constructor that receives a reference to an
+        <span class="code">EAN</span> object and
+        creates an <span class="code">Order</span> object for that
+        <span class="code">EAN</span>
+        <pre>
+ Order(const EAN&amp; ean);
+</pre>
+
+         <p>This function initializes the object to no copies ordered
+         and none delivered.&#160;</p>
+        </li>
+
+        <li>
+        A modifier that returns a reference to the current object's
+        <span class="code">EAN</span>
+         <pre>
+ EAN& getEAN();
+</pre>
+        </li>
+
+        <li>
+        A query that returns the number of copies remaining on order
+         <pre>
+ int outstanding() const;
+</pre>
+        </li>
+
+        <li>
+        A modifier that receives a reference to an <span class=
+        "code">istream</span> object and increases the number of
+        copies ordered by the quantity received from input
+        stream <span class="code">is</span>
+         <pre>
+ bool add(std::istream&amp; is);
+</pre>
+
+         <p>
+         This function accepts from the input stream the number of copies
+         to be added and adds that number to the number of copies already
+         on order.&#160; This number to be added must be positive-valued.&#160;
+         If the input is valid, this function updates the current object
+         and returns <span class="code">true</span>.&#160; If the user
+         quits for any reason, this function does not change the current
+         object in any way and returns <span class="code">false</span>.&#160;</p>
+        </li>
+
+        <li>
+        A modifier that receives the number of copies to be added to
+        the current order
+         <pre>
+ bool add(int n);
+</pre>
+
+         <p>This function updates the order if <span class=code>n</span>
+         is positive-valued and the object is not empty.&nbsp;
+         This function returns <span class="code">true</span> on success
+         (<span class=code>n</span> is positive-valued and the object is
+         not empty); <span class="code">false</span> otherwise.&#160;</p>
+        </li>
+
+        <li>
+        A modifier that receives a reference to an <span class=
+        "code">istream</span> object and records the receipt of copies
+        from the publisher as entered in the input stream <span class="code">is</span>
+         <pre>
+ bool receive(std::istream&amp; is);
+</pre>
+
+         <p>
+         The number of copies received must be positive-valued, but
+         not greater than the number still on order, in which case,
+         this function updates the current object and returns
+         <span class="code">true</span>.&#160; If the user quits for
+         any reason, this function leaves the current object unchanged,
+         as if there had been no delivery and returns <span class="code">false</span>.&#160;</p>
+        </li>
+
+        <li>
+        A query that receives a reference to an <span class="code">
+        ostream</span> object and displays the current object on
+        output stream <span class="code">os</span>
+         <pre>
+ void display(std::ostream&amp; os) const;
+</pre>
+
+         <p>
+         This function displays the following information on a single line
+         in the following format:</p>
+
+         <ul>
+          <li>the EAN right-justified in a field of 17</li>
+
+          <li>the number of copies ordered in a field of 9</li>
+
+          <li>the number of copies delivered in a field of 11</li>
+         </ul>
+
+         <p>For example,</p>
+         <pre>
+ 978-0-00-319487-6       25         15
+</pre>
+        </li>
+       </ul>
+
+       <p>
+       Design each function so that it yields a reasonable
+       result even if the function receives an invalid
+       value for any of its parameters.&#160;</p>
+
+       <p class="sssection">Helper Function</p>
+
+       <p>Your design includes the following helper function:</p>
+
+       <ul>
+        <li>
+        An overloaded operator that receives a reference to an
+        <span class="code">ostream</span> object and a reference
+        to an unmodifiable <span class="code">Order</span> object.&nbsp;
+        This function and inserts the object's information into
+        output stream <span class="code">os</span>&#160;
+         <pre>
+ std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Order&amp; order);
+</pre>
+
+         <p>
+         This operator displays the object's information in the form
+         created by its <span class="code">display()</span> function.</p>
+        </li>
+       </ul>
+
+       <p class="ssection">Main Module</p>
+
+       <p>The client program posted <a class="c2" href=
+       "a3main.cpp">here</a> accepts up to 100
+       orders.&#160; It displays a menu, accepts the
+       user's selection, and completes the selected task.&#160; </p>
+
+       <p>The options include:</p>
+
+       <ul>
+        <li>Place an order with a publisher</li>
+
+        <li>Add one copy to an existing order</li>
+
+        <li>Record a delivery from a publisher</li>
+
+        <li>Change the output style</li>
+
+        <li>View status of books on order</li>
+
+        <li>Quit</li>
+       </ul>
+
+       <p class="ssection">Sample Run</p>
+
+       <p>
+       To compile the client program with your three modules on Linux,
+       use the following command:</p>
+       <pre>
+ g++ a3main.cpp Prefix.cpp EAN.cpp Order.cpp
+</pre>
+
+       <p>The output from a sample run might look something like:</p>
+       <pre>
+ Bookstore Order Processor
+ =========================
+
+ Please select from the following options :
+  P - Place an order with a publisher
+  A - Add one copy to an existing order
+  D - Record a delivery from a publisher
+  F - Change output style
+  V - View status of books on order
+  Q - Quit
+  Your selection : P
+
+ EAN (0 to quit) : 9789070002046
+ Quantity (0 to quit) : 25
+
+ Please select from the following options :
+  P - Place an order with a publisher
+  A - Add one copy to an existing order
+  D - Record a delivery from a publisher
+  F - Change output style
+  V - View status of books on order
+  Q - Quit
+  Your selection : p
+
+ EAN (0 to quit) : 9780003194876
+ Quantity (0 to quit) : 30
+
+ Please select from the following options :
+  P - Place an order with a publisher
+  A - Add one copy to an existing order
+  D - Record a delivery from a publisher
+  F - Change output style
+  V - View status of books on order
+  Q - Quit
+  Your selection : r
+  Invalid input.  Try again.
+  Your selection : d
+
+ EAN (0 to quit) : 9789070002046
+ Quantity (0 to quit) : 10
+
+ Please select from the following options :
+  P - Place an order with a publisher
+  A - Add one copy to an existing order
+  D - Record a delivery from a publisher
+  F - Change output style
+  V - View status of books on order
+  Q - Quit
+  Your selection : d
+
+ EAN (0 to quit) : 9780003194875
+ Invalid check digit. Try again.
+ EAN (0 to quit) : 9780003194876
+ Quantity (0 to quit) : -20
+ Enter a positive number.  Try again.
+ Quantity (0 to quit) : 0
+ **No delivery recorded!
+
+ Please select from the following options :
+  P - Place an order with a publisher
+  A - Add one copy to an existing order
+  D - Record a delivery from a publisher
+  F - Change output style
+  V - View status of books on order
+  Q - Quit
+  Your selection : v
+
+               EAN  Ordered  Delivered
+ -------------------------------------
+ 978-90-70002-04-6       25         10
+ 978-0-00-319487-6       30          0
+
+ Please select from the following options :
+  P - Place an order with a publisher
+  A - Add one copy to an existing order
+  D - Record a delivery from a publisher
+  F - Change output style
+  V - View status of books on order
+  Q - Quit
+  Your selection : d
+
+ EAN (0 to quit) : 9780003194876
+ Quantity (0 to quit) : 20
+
+ Please select from the following options :
+  P - Place an order with a publisher
+  A - Add one copy to an existing order
+  D - Record a delivery from a publisher
+  F - Change output style
+  V - View status of books on order
+  Q - Quit
+  Your selection : p
+
+ EAN (0 to quit) : 9789995500009
+ Quantity (0 to quit) : 20
+
+ Please select from the following options :
+  P - Place an order with a publisher
+  A - Add one copy to an existing order
+  D - Record a delivery from a publisher
+  F - Change output style
+  V - View status of books on order
+  Q - Quit
+  Your selection : v
+
+               EAN  Ordered  Delivered
+ -------------------------------------
+ 978-90-70002-04-6       25         10
+ 978-0-00-319487-6       30         20
+     9789995500009       20          0
+
+ Please select from the following options :
+  P - Place an order with a publisher
+  A - Add one copy to an existing order
+  D - Record a delivery from a publisher
+  F - Change output style
+  V - View status of books on order
+  Q - Quit
+  Your selection : a
+
+ EAN (0 to quit) : 9780003194876
+
+ Please select from the following options :
+  P - Place an order with a publisher
+  A - Add one copy to an existing order
+  D - Record a delivery from a publisher
+  F - Change output style
+  V - View status of books on order
+  Q - Quit
+  Your selection : d
+
+ EAN (0 to quit) : 9789995500009
+ Quantity (0 to quit) : 25
+ 25 not on order.  Only 20 are on order.  Try again.
+ Quantity (0 to quit) : 20
+
+ Please select from the following options :
+  P - Place an order with a publisher
+  A - Add one copy to an existing order
+  D - Record a delivery from a publisher
+  F - Change output style
+  V - View status of books on order
+  Q - Quit
+  Your selection : v
+
+               EAN  Ordered  Delivered
+ -------------------------------------
+ 978-90-70002-04-6       25         10
+ 978-0-00-319487-6       31         20
+     9789995500009       20         20
+
+ Please select from the following options :
+  P - Place an order with a publisher
+  A - Add one copy to an existing order
+  D - Record a delivery from a publisher
+  F - Change output style
+  V - View status of books on order
+  Q - Quit
+  Your selection : f
+
+ EAN Style ('-', ' ', '\n' or '0' to quit) :    <span class=high>// enter single blank space</span>
+
+ Please select from the following options :
+  P - Place an order with a publisher
+  A - Add one copy to an existing order
+  D - Record a delivery from a publisher
+  F - Change output style
+  V - View status of books on order
+  Q - Quit
+  Your selection : v
+
+               EAN  Ordered  Delivered
+ -------------------------------------
+ 978 90 70002 04 6       25         10
+ 978 0 00 319487 6       31         20
+     9789995500009       20         20
+
+ Please select from the following options :
+  P - Place an order with a publisher
+  A - Add one copy to an existing order
+  D - Record a delivery from a publisher
+  F - Change output style
+  V - View status of books on order
+  Q - Quit
+  Your selection : q
+
+
+ Signing off ...
+</pre>
+
+       <p>
+       Once your program yields the results shown above, it is ready
+       for final testing.&#160;</p>
+
+       <br />
+
+       <p class="section">Submission</p>
+
+       <p>
+       A file containing functions to test your classes is
+       posted <a href="a3test.cpp">here</a>.&#160;
+       Copy this file to your assignment directory, re-compile
+       your modules with this file and run the executable.</p>
+
+       <p>Once the executable indicates that you may submit your
+       program, create a typescript using the following commands:</p>
+       <pre>
+ + At the prompt, type: script a3.txt
+ + At the prompt, type: whoami
+ + At the prompt, type: cat GS1Prefix.h
+ + At the prompt, type: cat GS1Prefix.cpp
+ + At the prompt, type: cat EAN.h
+ + At the prompt, type: cat EAN.cpp
+ + At the prompt, type: cat Order.h
+ + At the prompt, type: cat Order.cpp
+ + At the prompt, type: g++ a3test.cpp GS1Prefix.cpp EAN.cpp Order.cpp
+ + At the prompt, type: a.out
+ + At the prompt, type: cat a3main.cpp
+ + At the prompt, type: g++ a3main.cpp GS1Prefix.cpp EAN.cpp Order.cpp
+ + At the prompt, type: a.out
+ + At each input prompt, enter the data for the sample run shown above.
+ + At the prompt type: exit
+</pre>
+
+       <p>
+       These commands will produce a file named <span class=
+       "code">a3.txt</span>.&nbsp; Submit this file according to your
+       professor's instructions along with any other information your
+       professor has requested.</p>
+
+       <p>
+       Assignments that are submitted after the due date will attract
+       a 10% late penalty per school day to a maximum deduction of 50%.</p>
+
+       <!--<table cellpadding=2 cellspacing=2 border=1>-->
+       <!--<tr>
+       <td width="40%">Received On or After</td>
+       <td width="40%">Received On or Before</td>
+       <td width="20%">Penalty</td>
+       </tr>
+       <tr>
+       <td>June 24 24:00:00</td>
+       <td>June 27 23:59:59</td>
+       <td>10%</td>
+       </tr>
+       <tr>
+       <td>June 27 24:00:00</td>
+       <td>June 28 23:59:59</td>
+       <td>20%</td>
+       </tr>
+       <tr>
+       <td>June 28 24:00:00</td>
+       <td>June 29 23:59:59</td>
+       <td>30%</td>
+       </tr>
+       <tr>
+       <td>June 29 24:00:00</td>
+       <td>June 30 23:59:59</td>
+       <td>40%</td>
+       </tr>
+       <tr>
+       <td>June 30 24:00:00</td>
+       <td>...</td>
+       <td>50%</td>
+       </tr>
+       </table>-->
+
+       <p>
+       If you submit an assignment that does not pass all of the tests,
+       you will be asked to fix your code and to resubmit, in which case
+       you will receive an assignment mark no higher than 50% of the mark
+       allocated for this assignment.</p>
+
+       <p>
+       Regardless of how long it takes you to complete this assignment,
+       you will need to submit a completed version in order to pass this
+       course.</p>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+   </td><!-- Detail Menu -->
+
+   <td class="panel1 w150" valign="top" rowspan="2">
+    <ul id="mennav">
+     <li><a href="../welco.html">Welcome</a></li>
+
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+     <li><script type="text/javascript" src="../assignments.a.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_1.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_2.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_3.a.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_4.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_5.js"></script></li>
+
+     <li><a href="../handouts/index.html">Handouts</a></li>
+
+     <li><a href="../practice/index.html">Practice</a></li>
+
+     <li><a href="../resources/index.html">Resources</a></li>
+
+     <!--<li><a href="../content/glossary.html">Glossary</a></li>-->
+    </ul>
+   </td>
+  </tr><!-- Content Area Footer -->
+
+  <tr class="navigate">
+   <td class="panel3" align="center">
+    <table class="panel2" width="95%" summary="footer">
+     <tr>
+      <td align="left">&#160;&#160; <a href="a3_p.html" class=
+      "text3"><img src="../images/Printer.gif" height="15" width="10"
+      alt="Printer Friendly Version of this Page" />&#160;print this
+      page</a>&#160;&#160;</td>
+
+      <td align="right">&#160;&#160;<a href="a3.html#top" class=
+      "text3">Top&#160; <img src="../images/ArrowToT.gif" height="15"
+      width="15" alt="Go Back to the Top of this Page" /></a></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Footer -->
+
+  <tr>
+   <!-- Left Panel -->
+
+   <td class="panel1 lateral center">
+    <!-- Lateral Motion Control -->
+    <!--<table width="90%" class="center" summary="previous next">
+                <tr>
+                    <td class="half" align="left">
+                        <a href="datat.html" class="text3">
+                        <img src="../images/ArrowToL.gif" height="15" width="15" class="panel1" alt="Previous Reading" />&nbsp;&nbsp;Previous: Primitive Data Types</a>
+                    </td>
+                    <td class="half" align="left">
+                        <a href="modul.html" class="text3">Next: Modular Programs&nbsp;&nbsp;
+                        <img src="../images/ArrowToR.gif" height="15" width="15" class="panel1" alt="Next Reading" /></a>
+                    </td>
+                </tr>
+            </table>-->
+
+    <br />
+    <br />
+    <!-- Alternate Navigation Links -->
+
+    <ul id="altnav" class="center">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+     <!--<li><a href="https://cs.senecac.on.ca/~bsd">BSD Home</a></li>-->
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline&#160;</a></li>
+    </ul>
+
+    <ul id="altnav2" class="center">
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><a class="active" href=
+     "index.html">Assignments</a></li>
+
+     <li><script type="text/javascript" src="../instructors.js"></script></li>
+    </ul>
+    <br />
+    <!-- Bottom Line -->
+
+    <table cellpadding="1" width="90%" summary="bottom line">
+     <tr>
+      <td class="w33 text3">&#160;&#160;Designed by Chris
+      Szalwinski&#160;&#160;</td>
+
+      <td class="w33 center"><a href="../copyright.html" class=
+      "text3">Copying From This Site</a></td>
+
+      <td class="w33 text3" align="right">
+       <script type="text/javascript">
+//<![CDATA[
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+       //]]>
+       </script>&#160;&#160;
+      </td>
+     </tr>
+    </table>
+   </td><!-- Logo - Right Bottom Corner -->
+
+   <td class="panel2 w150" align="center"><img src="../images/Logo.gif"
+   alt="Logo" height="73" width="85" /><br /><a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/2.5/ca/88x31.png" /></a></td>
+  </tr>
+ </table>
+</body>
+</html>

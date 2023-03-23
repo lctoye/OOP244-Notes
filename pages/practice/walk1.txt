@@ -1,0 +1,31 @@
+/* Problem 1 */
+	    #include <stdio.h>
+
+	    class q1 {
+		int id;
+	      public:
+		q1() { id = 1; printf("mkdef: %d\n", id); }
+		q1(int start) { id = start + 1;
+				printf("mknew: %d\n", id); }
+		~q1() { printf("rm: %d\n", id); }
+		int something(int n) { printf("La-de-da:%d\n", id);
+				       return n*(id + 3); }
+	    };
+
+	    void foo(void)
+	    {
+		q1 one(1);
+
+		one.something(4);
+	    }
+
+	    int main()
+	    {
+		q1 a;
+
+		printf("%d\n", a.something(3));
+		foo();
+		q1 b(6);
+		printf("Bye bye...");
+		return 0;
+	    }

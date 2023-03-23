@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<span lang="en-us" xmlns='http://www.w3.org/1999/xhtml'><p>
+<head>
+    <title>Seneca | Computer Studies | The Object-Oriented Paradigm Using C++</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Seneca College 2005" />
+    <meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<span><p>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign=top>
+                    <center><span class=texthead>
+                    Test 1 - February 27 2009</span><br />
+                    <br />
+                    </center>
+                    <br />
+                    Name _________________________________________________ Student Number ______________
+                    <br />
+
+                    <p class="section">Notes:</p>
+                    <p>
+                    <ul>
+                    <li>This test has 2 pages and lasts two full periods</li>
+                    <li>This test is out of 20 marks and is worth 15% of your final grade</li>
+                    <li>There are 2 questions in this paper - attempt both of them</li>
+                    <li>Each question is of equal weight in marks (10 each)</li>
+                    <li>Answer all questions in the exam booklet provided</li>
+                    <li>Hand in this test paper with your answer booklet</li>
+                    <li>You may use your copy of the lecture notes, the subject notes, one textbook and one study sheet both sides</li>
+                    <li>You may use a non-programmable, non-messaging calculator</li>
+                    <li>You may use a paper foreign-language dictionary</li>
+                    </ul>
+                    </p>
+                    <br />
+
+                    <p class="section">Question 1 - Word Problem - (10 marks):</p>
+                    <p>
+                    Design and code a class named <span class=code>Course</span>
+                    that holds information about a college subject.&nbsp; The information
+                    includes the name of the course and the number of assignments that have
+                    been completed in the course.&nbsp; The name may have up to 20 characters.&nbsp;
+                    Upon instantiation, a <span class=code>Course</span> object may receive
+                    no information or the name of the course.&nbsp;
+                    If no information is provided, the object assumes a safe empty state.&nbsp;
+                    A newly created object
+                    sets the number of assignments that have been completed to zero (0).&nbsp;
+                    </p>
+                    <p>
+                    Your design includes the necessary constructors and the following
+                    member functions:&nbsp;
+                    <ul>
+                    <li><span class=code>void display() const</span> - a query that
+                    displays the name of the course, left justified in a field of 21
+                    followed by the number of assignments that have been completed,
+                    right justified in a field of 5, as shown in the example below&nbsp;</li>
+                    <li><span class=code>Course operator++()</span> - the pre-fix
+                    operator overloaded for a <span class=code>Course</span> object.&nbsp;
+                    This operator increments the number of assignments that have
+                    been completed in the course and returns a copy of the object
+                    as modified.&nbsp;</li>
+                    </ul>
+                    </p>
+                    <p>
+                    Place your class declaration in a header file named
+                    <span class=code>Course.h</span> and your function definitions in an
+                    implementation file named <span class=code>Course.cpp</span>.&nbsp;
+                    <em>Include all coding necessary to compile and run successfully
+                    the example shown below with the help of a standard C++ compiler.</em>
+                    </p>
+                    <p>
+                    The following program that uses your class produces the output shown
+                    on the right
+                    <table>
+                    <tr>
+                    <td width="50%">
+                    <pre>
+ #include "Course.h"
+
+ int main() {
+     Course oop244("C++"), int222("HTML");&nbsp;
+
+     ++oop244;
+     ++oop244;
+     oop244.display();
+     (++int222).display();
+
+     return 0;
+ }</pre></td><td width="50%">
+                    <pre class=result>
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ C++                     2
+ HTML                    1&nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;</pre></td></tr></table>
+                    </p>
+
+                    <p class="section">Question 2 - Walkthrough - (10 marks):</p>
+                    <p>
+                    What is the exact output of the following program?&nbsp; Show your
+                    rough work to avoid deductions.
+                    <table>
+                    <tr>
+                    <td>
+                    <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ const int N = 2;
+
+ class Fraction {
+     int num;
+     int den;
+   public:
+     Fraction();
+     void set(int n, int d);
+     void display() const;
+     friend Fraction operator*(const Fraction& a, const Fraction& b);&nbsp;
+     ~Fraction();
+ };
+ Fraction::Fraction() {
+    cout &lt;&lt; '^'; num = 1; den = 1;
+ }
+ void Fraction::set(int n, int d) {
+    den = (d != 0) ? d : 1; num = n;
+ }
+ void Fraction::display() const {
+    cout &lt;&lt; num &lt;&lt; '/' &lt;&lt; den &lt;&lt; endl;
+ }
+ Fraction::~Fraction() {
+    cout &lt;&lt; '~'; display();
+ }
+ Fraction operator*(const Fraction& a, const Fraction& b) {
+     Fraction f;
+     f.set(a.num * b.num, a.den * b.den);
+     return f;
+ }
+
+ int main() {
+     Fraction f1, f2, f3;
+
+     cout &lt;&lt; "\n-----" &lt;&lt; endl;
+     f2.set(1, 2);
+     f1.set(2, 3);
+     cout &lt;&lt; "-----" &lt;&lt; endl;
+     f1.display();
+     f2.display();
+     cout &lt;&lt; "-----" &lt;&lt; endl;
+     f3 = f1 * f2;
+     cout &lt;&lt; "-----" &lt;&lt; endl;
+     cout &lt;&lt; "=";
+     f3.display();
+     cout &lt;&lt; "-----" &lt;&lt; endl;
+
+     return 0;
+ }</pre></td></tr></table>
+                    </p>
+
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <!--tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr-->
+</table>
+
+</span>
+</span>

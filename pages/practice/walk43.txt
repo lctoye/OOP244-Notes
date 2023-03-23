@@ -1,0 +1,45 @@
+/* Problem 43 */
+	    #include <iostream>
+	    using namespace std;
+	    #include <string.h>
+	    class scary {
+		char is[31];
+		char sez[31];
+	      public:
+		scary() { strcpy(is, "Creep"); strcpy(sez, "boooo"); }
+		scary(const char i[], const char s[]) 
+		    { strcpy(is, i); strcpy(sez, s); }
+		virtual void sayis(ostream &os) const { os << is; }
+		void saysez(ostream &os) const // this is NOT virtual!!
+		    { os << sez; }
+	    };
+	    ostream &operator<<(ostream &os, const scary &x) {
+		x.saysez(os);
+		os << ", said the ";
+		x.sayis(os);
+		return os;
+	    }
+	    class ghost: public scary {
+	      public:
+		ghost():scary("Ghost", "Boo!") {cout<<"made a ghost\n";}
+	    };
+	    class witch: public scary {
+		char extra[31];
+	      public:
+		witch(): scary("Witch", "Toil and Trouble") {
+		    cout << "which wicked witch?\n"; 
+		    strcpy(extra, "Double, Double");
+		}
+		void saysez(ostream &os) const { os << extra << " ";
+						 scary::saysez(os);  
+		}
+	    };
+	    void trythis(scary g) { cout << g << '\n'; }
+	    int main() { scary s;  ghost g;  witch w;
+			 cout << s << '\n' << g << '\n' << w << '\n';
+			 trythis(s);  trythis(g);  trythis(w);
+			 s.saysez(cout);  cout << '\n';
+			 g.saysez(cout);  cout << '\n';
+			 w.saysez(cout);  cout << '\n';
+			 return 0;
+	    }

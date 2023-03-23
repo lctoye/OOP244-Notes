@@ -1,0 +1,473 @@
+
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Appendices | Relation between C++ and C</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2016" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Appendices</span>
+        <br />
+        <br />
+        <span class="texthead">Relation Between C++ and C</span>
+        <br />
+        <br />
+        <span class="textagend"></span>
+
+        <p class="quote"></p>
+        <span class="textagend">
+        <a href="c_cpp_p.html#ver">Differences</a>
+        | <a href="c_cpp_p.html#leg">Legacy Code</a>
+        </span>
+       </div>
+       <br />
+       <br />
+
+       <p>
+       The evolution of C++ is documented in the ISO/IEC
+       14882 set of standards, informally known as C++98, C++11 and C++14,
+       while the evolution of C is documented in the ISO/IEC
+       9899 set of standards, informally known as C89, C99 and C11.&nbsp;
+       Standard C++ and Standard C are now considered siblings.&#160;
+       </p>
+
+       <p class="center"><img src="../images/evolution.png" width="470"
+       height="97" alt="Evolution of C++" /></p>
+
+       <p>
+       The standards committees of C++ and C have cooperated to keep both
+       as closely related as possible without jeopardizing their distinct
+       objectives: proximity to the application domain (C++) and proximity
+       to the metal (C).&nbsp; In general, C++ is more expressive than C.
+       </p>
+
+       <p>
+       This appendix describes the differences in terminology between C++ and C along
+       with the legacy features that C++ inherited from C but have been removed
+       or deprecated with the latest standards.
+       </p>
+       <br />
+
+       <p id="ver" class="section">Differences between C++ and C</p>
+
+       <p class="ssection">Terminology</p>
+
+       <p class="sssection">Definition</p>
+
+       <p>
+       In C++, a definition identifies a declaration that attaches meaning to
+       an identifier.&nbsp; A definition is <i>eventually</i> used to allocate
+       memory, but does not necessarily allocate it at declaration time.&#160;
+       </p>
+       <p>
+       In C, a definition allocates memory for an identifer, whether a variable,
+       an object or program code.&#160; The term is used more conservatively.&nbsp;
+       </p>
+
+       <p class="sssection">Derived Type</p>
+
+       <p>
+       In C++, a derived type is a compound type that is derived from another
+       compound type through inheritance.&nbsp; A compound type is a
+       structure or class that is composed of other types, which may be fundamental
+       or compound or a combination of the two.&nbsp;
+       </p>
+
+       <p>
+       In C, a derived type is a structure.&nbsp; C does not support inheritance.&nbsp;
+       A structure, like a class in C++, is composed of other types, which may
+       be derived types or fundamental types or a combination of both.&nbsp;
+       </p>
+
+       <p class="ssection">Class Identification</p>
+
+       <p>
+       In C++, we only include the keyword that identifies a class
+       (<span class=code>struct</span> or <span class=code>class</span>)
+       in the definition of the class itself and in a forward declaration.&#160;
+       We may omit it in any subsequent object definition or parameter declaration.&#160;</p>
+
+       <p>
+       C requires the keyword that identifies a derived type
+       (<span class=code>struct</span>) in each declaration of
+       a derived type.&nbsp; These declarations include object definitions
+       and parameter declarations.</p>
+
+       <p>For example,</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // sufficient in C++
+
+ Student s;
+ void display(const Student* s);&nbsp;
+</pre>
+         </td>
+         <td>
+          <pre>
+ // required in C
+
+ <span class="high">struct</span> Student s;&nbsp;
+ void display(const <span class="high">struct</span> Student* s);&nbsp;
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Prototyping</p>
+
+       <p>
+       In C++, a function prototype must list all of its parameter types in their
+       proper order.&nbsp; This constraint enables the language to support
+       both overloading and references.&nbsp;
+       </p>
+       <p>
+       In C, listing the parameter types in a function prototype is optional.&#160;
+       The code on the right compiles successfully under a C compiler.&nbsp;
+       A C++ compiler requires the code on the left:</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td class=half>
+          <pre>
+ // required in C++
+
+ #include &lt;iostream&gt;
+
+ void foo(<span class=high>int</span>);
+ int main () {
+     int a = 5;
+     foo(a);
+ }
+ void foo(int a) {
+     std::cout &lt;&lt; "a is " &lt;&lt; a &lt;&lt; std::endl;&nbsp;
+ }
+</pre>
+         </td>
+         <td class=half>
+          <pre class=error>
+ // sufficient in C
+
+ #include &lt;stdio.h&gt;
+
+ void foo();
+ int main () {
+     int a = 5;
+     foo(a);
+ }
+ void foo(int a) {
+     printf("a is %d\n", a);&nbsp;
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">An Empty Parameter List</p>
+
+       <p>
+       In C++, an empty parameter list identicates to the compiler that the function has no parameters.&nbsp;
+       </p>
+       <p>
+       In C, an empty parameter list has either of two interpretations:</p>
+
+       <ol>
+        <li>the function has no parameters</li>
+
+        <li>the function has some parameters but the compiler should omit
+        checking argument types against parameter types</li>
+       </ol>
+
+       <p>
+       The recommended way to specify that a function has no parameters
+       in C is to include the keyword <span class="code">void</span>
+       between the parentheses in the function header.</p>
+       <br />
+
+       <p id="leg" class="section">Legacy Code</p>
+
+       <p>
+       Applications written for pre-standard C++ compilers may include code that requires
+       upgrading to meet the stricter requirements of Standard C++.&nbsp;
+       Common issues include:
+       </p>
+       <ul>
+       <li>for int scope</li>
+       <li>original libraries</li>
+       <li>insufficient memory</li>
+       </ul>
+
+       <p>
+       Some compilers can still create executable files from pre-standard C++ source code.&#160;
+       A copy of the Borland Win 32 5.5 compiler can be downloaded <a href="https://scs.senecac.on.ca/~chris.szalwinski/resources/borland.html">here</a>.&nbsp;
+       Many compilers have removed the deprecated pre-standard facilities and only conform to those
+       features (or a majority of them) specified in C++11.</p>
+
+       <p class="ssection">for int scope</p>
+
+       <p>
+       In pre-standard C++, the scope of a variable defined in the
+       <span class="code">for</span> clause extends beyond the closing
+       brace of the block that encloses the iteration.&#160;
+       In C++11, the scope of such a variable extends only to the end
+       of the iteration block.&#160;
+       </p>
+
+       <p>
+       For example,
+       </p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td class=half>
+          <pre>
+ // valid in pre-standard C++
+
+ for (int i = 0; i &lt; 10; i++) {
+     x[i] = i * i;
+     y[i] = i;
+ }
+ <span class="high">i = 0; // i is still in scope</span>&nbsp;
+</pre>
+         </td>
+         <td class=half>
+          <pre class="error">
+ // invalid in standard C++
+
+ for (int i = 0; i &lt; 10; i++) {
+     x[i] = i * i;
+     y[i] = i;
+ }
+ <span class="high">i = 0; // ERROR i is out of scope</span>&nbsp;
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>
+       A C++11 compliant compiler reports this error.</p>
+
+       <p class="ssection">Libraries</p>
+
+       <p>
+       The pre-standard C++ libraries are available with the Borland Win 32 5.5 compiler.&nbsp;
+       They are currently deprecated in the <span class="code">g++</span> GNU compiler.&nbsp;
+       They are not available in the Visual Studio 2012 compiler.</p>
+
+       <p class="sssection">iostream</p>
+
+       <p>
+       The pre-standard version of the <span class=code>iostream</span>
+       library is a simple wrapper on the C functions prototyped in
+       the <span class=code>stdio.h</span> header file.&nbsp;
+       This pre-standard version defined the <span class=code>cin</span>,
+       <span class=code>cout</span>, <span class=code>cerr</span> and
+       <span class=code>clog</span> objects as global objects rather than
+       objects in the <span class=code>std</span> namespace.&nbsp;
+       The header file for this pre-standard version is <span class=code>iostream.h</span>.&nbsp;
+       </p>
+
+       <p>
+       The standard version of the <span class="code">iostream</span>
+       library was fully redesigned with C++98 and notably larger than its
+       C-like predecessor.&#160;
+       All of the functions in the newer library are declared and defined
+       in the <span class=code>std</span> namespace.
+       </p>
+
+       <p>
+       Compare the coding for the two versions listed below:
+       </p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td class="half">
+          <pre>
+ // Pre-Standard C++
+ // pre_std_io.cpp
+
+ <span class=high>#include &lt;iostream.h&gt;</span>
+
+ int main() {
+     cout &lt;&lt; "Hello World!\n";
+ }
+
+</pre>
+         </td>
+
+         <td class="half">
+          <pre>
+ // Standard C++
+ // std_io.cpp
+
+ #include &lt;iostream&gt;
+
+ int main() {
+     <span class=high>std::</span>cout &lt;&lt; "Hello World!\n";
+ }
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">C-Style Libraries</p>
+
+       <p>In pre-standard C++, the header files for the C libraries have
+       <span class=code>.h</span> extensions as in the C language.&nbsp;
+       Pre-standard library classes, objects and prototypes are all defined
+       in the global namespace.&#160;
+       </p>
+
+       <p>
+       C++98 introduced unique header file names to distinguish the standard
+       libraries from their pre-standard predecessors.&#160; The standard
+       header file names begin with the character <span class=
+       "code">c</span> are followed by the C-style name and do not include
+       the <span class="code">.h</span> extension.&#160; The standard files
+       declare the prototypes and objects in the <span class=code>std</span>
+       namespace.&nbsp; This renaming convention applied wherever the standard
+       introduced minor changes.&#160;
+       </p>
+       <p>
+       C++98 renamed <span class="code">stdio.h</span>
+       as <span class="code">cstdio</span>.&#160; The code for <span class=
+       "code">cstdio</span> is about the same size as the code for
+       <span class="code">stdio.h</span>.&#160;  Similarly,
+       <span class="code">&lt;cstring&gt;</span> is the C++
+       version of the C header file <span class="code">&lt;string.h&gt;</span>,
+       <span class="code">&lt;cmath&gt;</span> is the C++ version of
+       <span class="code">&lt;math.h&gt;</span>,
+       <span class="code">&lt;cstdlib&gt;</span> is the C++
+       version of <span class="code">&lt;stdlib.h&gt;</span>
+       and <span class="code">&lt;cctype&gt;</span> is
+       the C++ version of <span class="code">&lt;ctype.h&gt;</span>.&#160;
+       With the standard C++ libraries, we identify the namespace:
+       </p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td class=half>
+          <pre>
+ // sufficient in pre-standard C++
+
+ #include &lt;string.h&gt;
+
+ char name[] = "Harry";
+ int len = strlen(name);
+</pre>
+         </td>
+         <td class=half>
+          <pre>
+ // necessary in Standard C++
+
+ #include &lt;cstring&gt;
+
+ char name[] = "Harry";
+ int len = <span class=high>std::</span>strlen(name);
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       <br />
+       </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        <script language="javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        <script language="javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>-->
+</table>
+
+</body>
+</html>

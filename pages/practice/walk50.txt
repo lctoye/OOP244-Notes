@@ -1,0 +1,45 @@
+/* Problem 50 */
+	    #include <iostream>
+	    using namespace std;
+
+	    class a {
+		char ach;
+	      public:
+		a(char c) { ach = c - 1; }
+		~a(); // defined below
+		virtual void out(ostream &os) {
+		    if ('m' < ach)
+			os << ach << char(ach+7) << char(ach+6) << ' ';
+		    else
+			os << ach << ach << ach;
+		}
+	    };
+
+	    class b: public a {
+		char bach;
+	      public:
+		b(char c1, char c2) : a(c1) { bach = c2-1; }
+		void out(ostream &os) {
+		    a::out(os);
+		    os << ' ' << bach << char(bach + 11);
+		}
+	    };
+
+	    ostream &operator<<(ostream &os, a &x)
+	    {
+		x.out(os);
+		return os;
+	    }
+
+	    a::~a()
+	    {
+		cout << *this; // calls above operator
+	    }
+
+	    int main()
+	    {
+		b var1('n', 'e');
+		a var2('o');
+		cout << "Homer says: " << var1 << '\n';
+		return 0;
+	    }

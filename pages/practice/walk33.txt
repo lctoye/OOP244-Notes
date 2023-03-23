@@ -1,0 +1,35 @@
+/* Problem 33 */
+	    #include <iostream>
+	    using namespace std;
+
+	    class q5 {
+	      protected:
+		  int n;
+
+	      public:
+		  q5() { cout << "Here I am\n"; n = 0; }
+		  void show() {n++; cout << n << " 1\n";}
+		  virtual void display() {n+=2; cout << n << " 2\n"; }
+	    };
+
+	    class q5a: public q5 {
+	      public:
+		  void display() {n-=3; cout << n << " 3\n"; }
+	    };
+
+	    void doboth(q5 &x)
+	    {
+		  x.show();
+		  x.display();
+	    }
+
+	    int main()
+	    {
+		  q5 a;
+		  q5a b;
+
+		  doboth(a);
+		  doboth(b);
+		  b.q5::display();
+		  return 0;
+	    }

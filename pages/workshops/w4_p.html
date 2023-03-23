@@ -1,0 +1,311 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Workshops | Introduction to OO Programming </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+    <!-- Content Area -->
+    <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Part C - Encapsulation</span>
+        <br />
+        <br />
+        <span class="texthead">Constructors</span>
+        <br />
+        <br />
+        <span class="textagend">Workshop 4</span>
+       </div>
+       <br />
+       <br />
+
+       <p>In this workshop, you are to code a class that represents a credit card
+       and processes transactions and payments on the card.</p>
+       <br />
+
+       <p class="section">Learning Outcomes</p>
+
+       <p>Upon successful completion of this workshop, you will have
+       demonstrated the abilities to</p>
+
+       <ul>
+        <li>code a class for simple objects</li>
+
+        <li>define a constructor that sets an object to a safe empty state</li>
+
+        <li>overload a constructor to receive information from a client</li>
+       </ul>
+       <br />
+
+       <p class="section">Credit Card - All Groups</p>
+
+       <p class="ssection">CreditCard Class</p>
+
+       <p>Define a class named <span class=
+       "code">CreditCard</span> that holds and updates information about a single
+       credit card.&#160; The information consists of
+       </p>
+       <ul>
+       <li>a <span class=code>long long</span> integer holding the credit card number</li>
+       <li>a C-style null-terminated string holding the name of the credit card holder (max 20 characters)</li>
+       <li>a <span class=code>double</span> holding the current balance on the credit card</li>
+       </ul>
+       <p>
+       Include two constructors in your definition: a no-argument constructors that sets
+       the object to a safe empty state and a two-argument constructor that receives the
+       credit card number and the address of a C-style string that contians the holder's
+       name.&nbsp;
+       </p>
+       <p>
+       Include the following public member functions also:
+       </p>
+       <ul>
+       <li><span class=code>void charge(double c)</span> - charges the amount <span class=code>c</span> to the credit card</li>
+       <li><span class=code>void pay(double p)</span> - pays down the credit card by the amount <span class=code>p</span></li>
+       <li><span class=code>long long number() const</span> - returns the the credit card number</li>
+       <li><span class=code>double balance() const</span> - returns the balance owing on the credit card</li>
+       <li><span class=code>const char* name() const</span> - returns the name of the credit card holder</li>
+       </ul>
+       <p>
+       Select your own safe empty state.&nbsp; Ensure that your member functions
+       behave well if the object on which they are called is in a safe empty
+       state.
+       </p>
+       <p>
+       Place your class definition in a header file named
+       <span class="code">CreditCard.h</span> and your member function
+       definitions in an implementation file named
+       <span class="code">CreditCard.cpp</span></p>
+
+       <p class="ssection">Client Module</p>
+
+       <p>
+       The implementation file for the main module, which uses your class, is
+       listed on the left.&nbsp; The results using your class look something
+       like those shown on the right.</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Workshop 4 - Constructors
+ // w4.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "CreditCard.h"
+
+ int main() {
+     CreditCard card(1234, "John Doe"), empty;
+     double x;
+     char option;
+
+     do {
+         cout &lt;&lt; "Select (C, P or Q) : ";
+         cin &gt;&gt; option;
+         switch (option) {
+         case 'C':
+         case 'c':
+             cout &lt;&lt; "Charge : ";
+             cin &gt;&gt; x;
+             card.charge(x);
+             break;
+         case 'P':
+         case 'p':
+             cout &lt;&lt; "Payment : ";
+             cin &gt;&gt; x;
+             card.pay(x);
+             break;
+         }
+     } while (option != 'Q' && option != 'q');
+
+     cout &lt;&lt; "Number  " &lt;&lt; card.number()  &lt;&lt; endl;
+     cout &lt;&lt; "Name    " &lt;&lt; card.name()    &lt;&lt; endl;
+     cout &lt;&lt; "Balance " &lt;&lt; card.balance() &lt;&lt; endl;
+
+     cout &lt;&lt; "Number  " &lt;&lt; empty.number()  &lt;&lt; endl;
+     cout &lt;&lt; "Name    " &lt;&lt; empty.name()    &lt;&lt; endl;
+     cout &lt;&lt; "Balance " &lt;&lt; empty.balance() &lt;&lt; endl;
+ }</pre>
+         </td>
+         <td>
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Select (C, P or Q) : c
+ Charge : 45.32
+
+ Select (C, P or Q) : c
+ Charge : 7.45
+
+ Select (C, P or Q) : c
+ Charge : 105.46
+
+ Select (C, P or Q) : p
+ Payment : 100
+
+ Select (C, P or Q) : c
+ Charge : 87.50
+
+ Select (C, P or Q) : q
+
+
+ Number  1234
+ Name    John Doe
+ Balance 145.73
+
+ Number  0
+ Name
+ Balance 0.0
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>
+       Note the sections of your code that required special
+       attention.&nbsp; Post advice to the forum letting
+       other students know where they should take care.</p>
+       <br />
+
+       <p class="section">Validation - Group Y</p>
+
+       <p>
+       Design and code the <span class=code>CreditCard</span> class described
+       above.&nbsp; Complete the <span class=code>w4.cpp</span> implementation
+       file.&nbsp; Upgrade this file to include validate the data received from
+       the client.&nbsp; If the charge is negative, the payment is negative or
+       the object is in a safe empty state do nothing.&nbsp; If the two argument
+       constructor receives an invalid credit card number or the string with the
+       holder's name is too long set the object to a safe empty state.&nbsp;
+       Find and use the Mastercard algorithm to validate the number.</p>
+
+       <br />
+
+       <p class="section">SUBMISSION</p>
+
+       <p class="ssection">Typescript</p>
+
+       <p>Create a typescript of your complete solution
+       using the following commands:&#160;</p>
+       <table width="45%" summary="">
+        <tr>
+         <td>
+       <pre>
+ + At the prompt, type: script w4.txt
+ + At the prompt, type: whoami
+ + At the prompt, type: cat CreditCard.h CreditCard.cpp
+ + At the prompt, type: g++ -o w4 w4.cpp CreditCard.cpp&nbsp;
+ + At the prompt, type: w4
+ + At the input prompt, enter test data
+ + At the prompt type: exit
+</pre>
+          </td>
+        </tr>
+       </table>
+
+       <p>These commands will produce a file named <span class=
+       "code">w4.txt</span>.&nbsp; Download this file to your local
+       computer.&#160;</p>
+
+       <p class="ssection">Moodle</p>
+
+       <p>
+       Upload your typescript file to Moodle:&#160;</p>
+
+       <ul>
+        <li>Login to Moodle <script type="text/javascript" src="../classroom_a.js"></script></li>
+
+        <li>Select your course code</li>
+
+        <li>Select W4 under Assignments and Tasks</li>
+
+        <li>Upload <span class=code>w4.txt</span></li>
+
+        <li>Write a short note to your instructor
+        <ul>
+        <li>press "Edit"</li>
+        <li>enter your conclusions about this workshop in the notes textbox</li>
+        <li>press "Save Changes"</li>
+        </ul>
+
+        <li>When ready to submit, press "Send for Marking"</li>
+       </ul>
+
+       <p class="ssection">Other Submissions</p>
+
+       <p>
+       Submit your typescript file as your instructor has specified.</p>
+
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+    </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+    <td class="tbody">
+        <table cellpadding="1" width="90%" align="center">
+        <tr>
+            <td class="half text3">
+            <script type="text/javascript">
+            var lh = document.location.href;
+            document.write(lh)
+            </script>&nbsp;&nbsp;
+            </td>
+            <td class="half" align="left" class="text3">
+            <script type="text/javascript">
+            var lm = document.lastModified.slice(0,-3);
+            document.write("Last Modified: " +lm)
+            </script>&nbsp;&nbsp;
+            </td>
+        </tr>
+        </table>
+    </td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+	52. A. Create a class called a "formatter", which is designed to
+	    display, on the standard output device,  any  text  that  is
+	    given to it. The text is  displayed  with  no  more  than  a
+	    specified  number  of  characters  per  line  (default  50),
+	    wrapping around to the next line at the start  of  any  word
+	    that would otherwise cause the output line to be too long. A
+	    "word", for the purpose of this question, is defined  to  be
+	    any string that is given to the formatter at one time.
+
+	    A formatter has the following publicly available members:
+
+		void width(int n) - sets the width for subsequent output
+		  lines to n. If more than  n  characters  have  already
+		  been output on the current line, a newline is output.
+
+		void display(char s[]) - outputs the  string  s,  if  it
+		  will fit on the current line. If it will  not  fit,  a
+		  newline is output, thus  starting  another  line,  and
+		  then the string is output (unless the string is longer
+		  than the maximum width of a line, in which  case  only
+		  as many characters as will fit are displayed  and  the
+		  rest are ignored). After outputting the string, if the
+		  current line is not already full, a space is output.
+
+		  Note that this function  does  not  output  a  newline
+		  after outputting the string. Also note  that  you  may
+		  assume that only normal printable characters  will  be
+		  part of the string, and not oddball characters such as
+		  tabs or newlines.
+
+		  Hint: keep track of  how  many  characters  have  been
+		  output on the current line, so that  future  calls  to
+		  display() can accurately determine how  much  room  is
+		  left on the current line.
+
+		void newline() - outputs  a  newline,   thus   beginning
+		  another line of output.
+
+	    Also, when a formatter is destroyed, a  newline  is  output,
+	    unless no characters have been output on the  current  line,
+	    in which case nothing happens.
+
+	    For example, the following program:
+
+	      int main()
+	      {   formatter x;
+		  x.display("12345678901234567890");
+		  x.width(15);
+		  x.display("Now");
+		  x.display("we");
+		  x.display("finally");
+		  x.display("understand");
+		  x.display("what");
+		  x.display("the");
+		  x.display("heck");
+		  x.display("is");
+		  x.display("happening.");
+		  x.newline();
+		  x.display("It");
+		  x.display("has");
+		  x.display("only");
+		  x.display("taken");
+		  x.display("the");
+		  x.display("whole");
+		  x.display("semester!");
+		  return 0;
+	      }
+
+	    outputs (beginning at the left edge of the screen):
+
+	      12345678901234567890
+	      Now we finally
+	      understand what
+	      the heck is
+	      happening.
+	      It has only 
+	      taken the whole
+	      semester!
+
+
+	    B. Derive a class from a formatter, called a  wrapper,  that
+	    can be sent character string data using the << operator.  (A
+	    wrapper appears as the left argument to <<, and a  character
+	    string appears on the right side).
+
+	    The << operator takes  each  "word"  from  the  string,  and
+	    displays it using the display() function  described  in  the
+	    previous question. For  the  purpose  of  this  question,  a
+	    "word"  is  defined  to  be  any  series  of  non-whitespace
+	    characters.  Any  tab  or  space  characters  (which  simply
+	    separate one word from the next) in the string are  skipped.
+	    Whenever a newline character is encountered,  the  newline()
+	    function is called to start a new line.
+
+	    The << operator  returns  its  left  argument,  so  that  <<
+	    operations can be chained. For example, the program:
+
+	      int main()
+	      {   wrapper x;
+		  x << "12345678901234567890";
+		  x.width(15);
+		  x << "Now   we   finally understand";
+		  x << "what the heck is happening.\nIt";
+		  x << "has" << "only taken" << "the";
+		  x << "whole semester!";
+		  return 0;
+	      }
+
+	    produces the same output as the program in the part A.
+
+	    For simplicity, you may assume that no  word  will  ever  be
+	    longer than 255 characters (so you can make a  buffer  array
+	    256 bytes big to hold the next word to be displayed). A  few
+	    paltry bonus marks will be given if instead you  dynamically
+	    allocate an array big enough to hold the  largest  word,  as
+	    long as you do it right (and remember to properly deallocate
+	    the memory).

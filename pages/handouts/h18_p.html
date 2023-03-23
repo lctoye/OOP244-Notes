@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Exercises | Intro to C++  </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">In-Class Exercise</span>
+        <br />
+        <br />
+        <span class="texthead">Function Template</span>
+       </div>
+       <br />
+       <br />
+
+       <p>This exercise defines a template for generating functions
+       that calculate the sum of the elements of an array.
+       </p>
+       <br />
+
+       <p class="section">Your Task</p>
+
+       <p class="ssection">Template</p>
+
+       <p>
+       Define a template for generating functions named <span class=code>sum()</span>
+       that receive the address of an array and the number of elements in
+       the array and that return the sum of the elements in the array.&nbsp;
+       </p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Function Template
+ // sum.h
+
+
+      sum(         , int n) {
+
+
+
+
+      return    ;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Client Module</p>
+
+       <p>
+       The compiler generate from your template the functions that the
+       following client program requires.&nbsp; The results of execution
+       are shown on the right:
+       </p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Function Template
+ // h18.cpp
+
+ #include &lt;iostream>
+ #include &lt;iomanip>
+ #include "sum.h"
+
+ int main() {
+     int a[] = {1, 2, 3, 4, 5, 6};
+     float b[] = {1.5, 2.5f, 3.5f, 4.5f, 5.5f, 6.5f};
+     double c[] = {1.5, 2.5, 3.5, 4.5, 5.5, 6.5};
+
+     std::cout &lt;&lt; std::fixed &lt;&lt; std::setprecision(2);
+     std::cout &lt;&lt; "Sum of a[] = " &lt;&lt; sum(a, 6)
+               &lt;&lt; std::endl;&nbsp;
+     std::cout &lt;&lt; "Sum of b[] = " &lt;&lt; sum(b, 6)
+               &lt;&lt; std::endl;
+     std::cout &lt;&lt; "Sum of c[] = " &lt;&lt; sum(c, 6)
+               &lt;&lt; std::endl;
+ }</pre>
+         </td>
+         <td class="w30">
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Sum of a[] = 21
+
+ Sum of b[] = 24.00&nbsp;
+
+ Sum of c[] = 24.00
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>-->
+</table>
+
+</body>
+</html>

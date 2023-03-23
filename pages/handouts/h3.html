@@ -1,0 +1,537 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml' xml:lang=
+"en-us">
+<head>
+ <meta name="generator" content=
+ "HTML Tidy for Windows (vers 25 March 2009), see www.w3.org" />
+
+ <title>Exercises | Intro to C++
+ </title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta http-equiv="PICS-Label" content=
+ '(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+ <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+ <meta name="Description" content=
+ "Welcome to the ICT Programming Stream C++ Web Site. On this site you can find the introductory course to object-oriented programming. Designed by Chris Szalwinski." />
+ <meta name="Abstract" content=
+ "This subject introduces the principles of object-oriented programming. Students study the solution of problems using objects with the C++ programming language. The emphasis throughout is on the solution of small problems." />
+ <meta name="Author" content="chris.szalwinski@senecacollege.ca" />
+ <meta name="Keywords" content=
+ "software development, object-oriented programming, lecture notes" />
+ <link rel="stylesheet" type="text/css" href="../style.043.css" />
+ <link rel="stylesheet" type="text/css" href="../styleScreen.043.css"
+ media="screen" />
+ <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css"
+ media="print" />
+ <link rel="stylesheet" type="text/css" href="../styleNav.043.css" />
+ <style type="text/css">
+/*<![CDATA[*/
+ div.c1 {text-align: center}
+ /*]]>*/
+ </style>
+</head>
+
+<body>
+ <table id="top" width="850" cellspacing="0" cellpadding="0" summary=
+ "body">
+  <!-- Banner -->
+
+  <tr class="banner">
+   <td colspan="2" class="banner">
+    <table cellspacing="0" cellpadding="0" summary="banner">
+     <tr>
+      <td class="w250 banner">
+       <div class="center">
+        <span class="text0">&#160;&#160;Software&#160;&#160;
+        <br />
+        &#160;&#160;Development&#160;&#160;</span>
+       </div>
+      </td>
+
+      <td class="tbanner"><img src="../images/Banner4.gif" height="120"
+      width="500" alt="Software Development" /></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Navigation Bar -->
+
+  <tr class="navigate">
+   <td class="panel1" align="left" valign="bottom">
+    <ul id="tabnav">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+     <!--<li><a href="https://scs.senecac.on.ca/~bsd">BSD</a></li>-->
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline</a></li>
+
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><script type="text/javascript" src="../assignments.js"></script></li>
+
+     <li><script type="text/javascript" src="../instructors.js"></script></li>
+
+     <li><a href="h3_p.html"><img src="../images/Printer.gif" height=
+     "15" width="10" alt=
+     "Printer Friendly Version of this Page" /></a></li>
+    </ul>
+   </td><!-- Web Site Title -->
+
+   <td class="panel2 w150" align="center"><span class="text1"><script type=
+   "text/javascript" src="../subject.js">
+</script></span></td>
+  </tr><!-- Body Cells -->
+
+  <tr class="content">
+   <!-- Content Area -->
+
+   <td class="tbody" valign="top">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">In-Class Exercise</span>
+        <br />
+        <br />
+        <span class="texthead">Input and Output</span>
+       </div>
+       <br />
+       <br />
+
+       <p>This exercise works on an array of objects, accepting input
+       for each element and displaying the data stored in each element
+       in formatted fields.&#160; The input includes a description in
+       the form of a C-style null-terminated string.</p>
+       <br />
+
+       <p class="section">Given Information</p>
+
+       <p>The following code is a solution to the Handout on
+       <a href="h2.html">Member Functions and Privacy</a>.</p>
+
+       <p class="ssection">Client Module</p>
+
+       <p class="sssection">h2.h</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Member Functions and Privacy
+ // h2.h
+
+ #define NO_TRANSACTIONS 3
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">h2.cpp</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Member Functions and Privacy
+ // h2.cpp
+
+ #include "h2.h"
+ #include "Transaction.h"
+
+ int main() {
+     Transaction tr;
+
+     for (int i = 0; i &lt; NO_TRANSACTIONS; i++) {&nbsp;
+         tr.enter();
+         tr.display();
+     }
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Transaction Module</p>
+
+       <p class="sssection">Transaction.h</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Member Functions and Privacy
+ // Transaction.h
+
+ struct Transaction {
+   private:
+     int acct;
+     char type;
+     double amount;
+   public:
+     void enter();
+     void display() const;&nbsp;
+ };</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Transaction.cpp</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Member Functions and Privacy
+ // Transaction.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Transaction.h"
+
+ void Transaction::enter() {
+
+     cout &lt;&lt; "Enter the account number : ";
+     cin  &gt;&gt; acct;
+     cout &lt;&lt; "Enter the account type (d for debit, c for credit) : ";&nbsp;
+     cin  &gt;&gt; type;
+     cout &lt;&lt; "Enter the account amount : ";
+     cin  &gt;&gt; amount;
+ }
+
+ void Transaction::display() const {
+
+     cout &lt;&lt; "Account " &lt;&lt; acct;
+     cout &lt;&lt; ((type == 'd') ? " Debit $" : " Credit $") &lt;&lt; amount;&nbsp;
+     cout &lt;&lt; endl;
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">Your Task</p>
+
+       <p>Incorporate into the above code the following enhancements:</p>
+
+       <ol>
+        <li>allocate memory for an array of objects</li>
+
+        <li>input a textual description</li>
+
+        <li>output the data in formatted fields</li>
+       </ol>
+
+       <p class="ssection">Client Module</p>
+
+       <p>In your updated implementation file for the client module fill in the
+       missing code:</p>
+
+       <ol>
+        <li>allocate memory for an array of <span class=code>Transaction</span>s</li>
+
+        <li>identify the element in each call to a member function</li>
+       </ol>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Input and Output
+ // h3.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "h3.h"
+ #include "Transaction.h"
+
+ int main() {
+     Transaction tr                  ;
+
+     cout &lt;&lt; "Enter " &lt;&lt; NO_TRANSACTIONS &lt;&lt; " Transactions" &lt;&lt; endl;&nbsp;
+     for (int i = 0; i &lt; NO_TRANSACTIONS; i++)
+         tr   .enter();
+     cout &lt;&lt; endl;
+
+     cout &lt;&lt; "   Account Description             Credit     Debit" &lt;&lt; endl;&nbsp;
+     for (int i = 0; i &lt; NO_TRANSACTIONS; i++) {
+         tr   .display();
+         cout &lt;&lt; endl;
+     }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Transaction Module</p>
+
+       <p class="sssection">Transaction.h</p>
+
+       <p>
+       Add a data member that holds a description of the <span class=code>Transaction</span>
+       in a C-style null-terminated string of no more than 20 characters:</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Input and Output
+ // Transaction.h
+
+ struct Transaction {
+   private:
+     int acct;
+     char type;
+
+
+     double amount;
+   public:
+     void enter();
+     void display() const;
+ };</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Transaction.cpp</p>
+
+       <p>
+       Fill in the missing code:</p>
+
+       <ol>
+        <li>include the header file for manipulators that take arguments</li>
+
+        <li>discard the newline left in the buffer before reading the textual description</li>
+
+        <li>accept the description in a C-style string of up to 20 characters</li>
+
+        <li>format the output to display:
+        <ul>
+        <li>account - right justified in a field of 10</li>
+        <li>a single space</li>
+        <li>description - left justified in a field of 20</li>
+        <li>credit amount - right justified in a field of 10 with 2 decimal places</li>
+        <li>debit amount - right justified in a field of 20 with 2 decimal places</li>
+        </ul></li>
+       </ol>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Input and Output
+ // Transaction.cpp
+
+ #include &lt;iostream&gt;
+
+ using namespace std;
+ #include "Transaction.h"
+
+ void Transaction::enter() {
+
+     cout &lt;&lt; "Enter the account number : ";
+     cin  &gt;&gt; acct;
+
+
+
+     cout &lt;&lt; "Enter the account type (d for debit, c for credit) : ";&nbsp;
+     cin  &gt;&gt; type;
+     cout &lt;&lt; "Enter the account amount : ";
+     cin  &gt;&gt; amount;
+ }
+
+ void Transaction::display() const {
+
+
+
+
+     if (type == 'd')
+         cout &lt;&lt;         &lt;&lt; amount;
+     else
+         cout &lt;&lt;         &lt;&lt; amount;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+      </td>
+     </tr>
+    </table>
+   </td><!-- Detail Menu -->
+
+   <td class="panel1 w150" valign="top" rowspan="2">
+    <ul id="mennav">
+     <li><a href="../welco.html">Welcome</a></li>
+
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><script type="text/javascript" src="../assignments.js"></script></li>
+
+     <li><a class="active" href=
+     "index.html">Handouts</a></li>
+
+     <li><a href="h1.html">&nbsp;Basic&nbsp;Concepts</a></li>
+
+     <li><a href="h2.html">&#160;Member&nbsp;Functions</a></li>
+
+     <li><a class="active" href="h3.html">&#160;Input&nbsp;Output</a></li>
+
+     <li><a href="h4.html">&#160;Dynamic&nbsp;Memory</a></li>
+
+     <li><a href="h5.html">&#160;Constructors</a></li>
+
+     <li><a href="h6.html">&#160;Overloading</a></li>
+
+     <li><a href="h7.html">&#160;Class&nbsp;+&#160;Resources</a></li>
+
+     <li><a href="h8.html">&#160;Member&nbsp;Operators</a></li>
+
+     <li><a href="h9.html">&#160;Helper&nbsp;Operators</a></li>
+
+     <li><a href="h10.html">&#160;Custom&#160;I/O</a></li>
+
+     <li><a href="h11.html">&#160;File&nbsp;Operators</a></li>
+
+     <li><a href="h12.html">&#160;Derived</a></li>
+
+     <li><a href="h13.html">&#160;Functions&#160;Hierarchy</a></li>
+
+     <li><a href="h14.html">&#160;Derived&nbsp;+&nbsp;Resource</a></li>
+
+     <li><a href="h15.html">&#160;Ad-Hoc&nbsp;Poly</a></li>
+
+     <li><a href="h16.html">&#160;Virtual&#160;+&#160;Functions</a></li>
+
+     <li><a href="h17.html">&#160;Abstract&nbsp;Base</a></li>
+
+     <li><a href="h18.html">&#160;Function&#160;Templates</a></li>
+
+     <li><a href="../practice/index.html">Practice</a></li>
+
+     <li><a href="../resources/index.html">Resources</a></li>
+
+     <!--<li><a href="../content/glossary.html">Glossary</a></li>-->
+    </ul>
+   </td>
+  </tr><!-- Content Area Footer -->
+
+  <tr class="navigate">
+   <td class="panel3" align="center">
+    <table class="panel2" width="95%" summary="footer">
+     <tr>
+      <td align="left">&#160;&#160; <a href="h3_p.html" class=
+      "text3"><img src="../images/Printer.gif" height="15" width="10"
+      alt="Printer Friendly Version of this Page" />&#160;print this
+      page</a>&#160;&#160;</td>
+
+      <td align="right">&#160;&#160;<a href="h3.html#top" class=
+      "text3">Top&#160; <img src="../images/ArrowToT.gif" height="15"
+      width="15" alt="Go Back to the Top of this Page" /></a></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Footer -->
+
+  <tr>
+   <!-- Left Panel -->
+
+   <td class="panel1 lateral center">
+    <!-- Lateral Motion Control -->
+    <!--<table width="90%" class="center" summary="previous next">
+                <tr>
+                    <td class="half" align="left">
+                        <a href="datat.html" class="text3">
+                        <img src="../images/ArrowToL.gif" height="15" width="15" class="panel1" alt="Previous Reading" />&nbsp;&nbsp;Previous: Primitive Data Types</a>
+                    </td>
+                    <td class="half" align="left">
+                        <a href="modul.html" class="text3">Next: Modular Programs&nbsp;&nbsp;
+                        <img src="../images/ArrowToR.gif" height="15" width="15" class="panel1" alt="Next Reading" /></a>
+                    </td>
+                </tr>
+            </table>-->
+
+    <br />
+    <br />
+    <!-- Alternate Navigation Links -->
+
+    <ul id="altnav" class="center">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+     <!--<li><a href="https://scs.senecac.on.ca/~bsd">BSD Home</a></li>-->
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline&#160;</a></li>
+    </ul>
+
+    <ul id="altnav2" class="center">
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><script type="text/javascript" src="../assignments.js"></script></li>
+
+     <li><script type="text/javascript" src="../instructors.js"></script></li>
+    </ul>
+    <br />
+    <!-- Bottom Line -->
+
+    <table cellpadding="1" width="90%" summary="bottom line">
+     <tr>
+      <td class="w33 text3">&#160;&#160;Designed by Chris
+      Szalwinski&#160;&#160;</td>
+
+      <td class="w33 center"><a href="../copyright.html" class=
+      "text3">Copying From This Site</a></td>
+
+      <td class="w33 text3" align="right">
+       <script type="text/javascript">
+//<![CDATA[
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+       //]]>
+       </script>&#160;&#160;
+      </td>
+     </tr>
+    </table>
+   </td><!-- Logo - Right Bottom Corner -->
+
+   <td class="panel2 w150" align="center"><img src="../images/Logo.gif"
+   alt="Logo" height="73" width="85" /><br /><a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/2.5/ca/88x31.png" /></a></td>
+  </tr>
+ </table>
+</body>
+</html>

@@ -1,0 +1,48 @@
+/* Problem 49 */
+	    #include <iostream>
+	    using namespace std;
+
+	    class tig {
+		char* data;
+		int sz;
+		int pos;
+	      public:
+		tig(int n) {
+			if (n > 80) n = 80;
+			cout << "getting " << n << " bytes\n"; 
+			data = new char[sz=n]; pos = 0;}
+		tig() {
+			cout << "making default tig\n";
+			data = new char[sz=7]; pos = 0;}
+		~tig() {
+			delete [] data;
+			cout << "returning " << sz << " bytes\n"; }
+		void store(char c) { if (pos < sz) data[pos++] = c; }
+		void store(char *s, int p) {
+		    if (p != -1) 
+			pos = p;
+		    for (int i = 0; s[i]; i++)
+			if (i%2 == 0) store(s[i]); }
+		void store(char *s) { store(s, -1); }
+		void read(char *s) {
+		    int i;
+		    for (i = 0; i < pos; i++)
+			s[i] = data[i];
+		    s[i] = '\0';   }
+	    };
+	    main()
+	    {
+		tig x(8);
+		x.store("Two roofs to fix");
+		tig y;
+		y.store("Obnoxious leaks...");
+		y.store("the rain", 2);
+		y.store("ah", 3);
+		y.store("oh no!", 6);
+		x.store("not on my head! Now I'm soaked!", 4);
+		char buffer1[9], buffer2[9];
+		x.read(buffer1);
+		y.read(buffer2);
+		cout << buffer1 << buffer2 << '\n';
+		return 0;
+	    }

@@ -1,0 +1,404 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Exercises | Intro to C++  </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">In-Class Exercise</span>
+        <br />
+        <br />
+        <span class="texthead">Class with a Resource</span>
+       </div>
+       <br />
+       <br />
+
+       <p>This exercise defines a copy constructor, assignment operator
+       and destructor for copying objects that access their own resources.
+       </p>
+       <br />
+
+       <p class="section">Given Information</p>
+
+       <p>The following code is a solution to the
+       Handout on <a href="h6.html">Overloading Constructors</a>.</p>
+
+       <p class="ssection">Client Module</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Overloading Constructors
+ // h6.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Transaction.h"
+
+ const int N = 3;
+
+ int main() {
+     Transaction tr[N];
+
+     cout &lt;&lt; "Enter " &lt;&lt; n &lt;&lt; " Transactions" &lt;&lt; endl;
+     for (int i = 0; i &lt; N; i++)
+         tr[i].enter();
+     cout &lt;&lt; endl;
+
+     cout &lt;&lt; "   Account Description             Credit     Debit" &lt;&lt; endl;&nbsp;
+     for (int i = 0; i &lt; N; i++) {
+         tr[i].display();
+         cout &lt;&lt; endl;
+     }
+ }</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Transaction Module</p>
+
+       <p class="sssection">Transaction.h</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Overloading Constructor
+ // Transaction.h
+
+ class Transaction {
+     int acct;
+     char type;
+     char desc[21];
+     double amount;
+   public:
+     Transaction();
+     Transaction(int, char, double, const char*);&nbsp;
+     ~Transaction();
+     void enter();
+     void display() const;
+ };</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Transaction.cpp</p>
+
+       <p>The implementation file for the Transaction module
+       contains</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Overloading Constructor
+ // Transaction.cpp
+
+ #include &lt;iostream&gt;
+ #include &lt;iomanip&gt;
+ #include &lt;cstring&gt;
+ using namespace std;
+ #include "Transaction.h"
+
+ Transaction::Transaction() {
+     acct = 0;
+     desc[0] = '\0';
+     type = 'd';
+     amount = 0.0;
+ }
+
+ Transaction::Transaction(int ac, char ty, double am, const char* de) {&nbsp;
+     if (ac &gt; 0 && (ty == 'd' || ty == 'c') && am &gt; 0.0) {
+        // copy validated input into the instance variables
+        acct = ac;
+        type = ty;
+        strcpy(desc, de);
+        amount = am;
+    }
+    else {
+        // input was invalid - adopt a safe empty state
+        *this = Transaction();
+    }
+}
+
+ Transaction::~Transaction() { }
+
+ void Transaction::enter() {
+
+     // local variables accept input temporarily
+     int      acct_;
+     char     type_;
+     char desc_[21];
+     double amount_;
+
+     // store input from the user in the local variables
+     cout &lt;&lt; "Enter the account number : ";
+     cin  &gt;&gt; acct_;                             ;
+     cin.ignore();
+     cout &lt;&lt; "Enter the desription : ";
+     cin.getline(desc_, 21);
+     cout &lt;&lt; "Enter the account type (d for debit, c for credit) : ";
+     cin  &gt;&gt; type_;                             ;
+     cout &lt;&lt; "Enter the account amount : ";
+     cin  &gt;&gt; amount_;
+
+     *this = Transaction(acct_, type_, amount_, desc_);
+ }
+
+ void Transaction::display() const {
+
+     if (acct != 0) {
+         cout &lt;&lt; setw(10) &lt;&lt; acct;
+         cout &lt;&lt; ' ' &lt;&lt; setw(20) &lt;&lt; left &lt;&lt; desc &lt;&lt; right;
+         cout &lt;&lt; setprecision(2) &lt;&lt; fixed;
+         if (type == 'd')
+             cout &lt;&lt; setw(20) &lt;&lt; amount;
+         else
+             cout &lt;&lt; setw(10) &lt;&lt; amount;
+     }
+     else
+         cout &lt;&lt; "no data available" &lt;&lt; endl;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">Your Task</p>
+
+       <p class="ssection">Transaction Module</p>
+
+       <p>
+       Upgrade the definition of the <span class="code">Transaction</span>
+       class to accept descriptions of any length.&#160;</p>
+
+       <p class="sssection">Transaction.h</p>
+
+       <p>
+       Upgrade the header file for the <span class="code">Transaction</span> class:
+       </p>
+       <ol>
+       <li>change the data member that holds the description to one that points to the resource</li>
+       <li>add a prototype for the copy constructor</li>
+       <li>add a prototype for the assignment operator</li>
+       </ol>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Class with a Resource
+ // Transaction.h
+
+ class Transaction {
+     int acct;
+     char type;
+     char         ;
+     double amount;
+   public:
+     Transaction();
+     Transaction(int, char, double, const char*);&nbsp;
+
+
+
+     ~Transaction();
+     void enter();
+     void display() const;
+ };</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Transaction.cpp</p>
+
+       <p>
+       Upgrade the implementation file for the <span class=
+       "code">Transaction</span> class:
+       </p>
+       <ol>
+       <li>upgrade the definition of the no-argument constructor to initialize the resource's address</li>
+       <li>upgrade the definition of the four-argument constructor to allocate memory</li>
+       <li>add the definition for the copy-constructor</li>
+       <li>add the definition for the assignment operator</li>
+       <li>add logic to the destructor that de-allocates dynamic memory</li>
+       <li>increase the size of the <span class=code>char</span> array in the
+       <span class=code>enter()</span> function to accommodate string input
+       up to 60 characters</li>
+       </ol>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Class with a Resource
+ // Transaction.cpp
+
+ #include &lt;iostream&gt;
+ #include &lt;iomanip&gt;
+ #include &lt;cstring&gt;
+ using namespace std;
+ #include "Transaction.h"
+
+ Transaction::Transaction() {
+     acct = 0;
+
+
+     type = 'd';
+     amount = 0.0;
+ }
+
+ Transaction::Transaction(int ac, char ty, double am, const char* de) {&nbsp;
+     if (ac &gt; 0 && (ty == 'd' || ty == 'c') && am &gt; 0.0) {
+        // copy validated input into the instance variables
+        acct = ac;
+        type = ty;
+
+
+        amount = am;
+    }
+    else {
+        // input was invalid - adopt a safe empty state
+
+        *this = Transaction();
+    }
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Transaction::~Transaction() {
+
+
+ }
+
+ void Transaction::enter() {
+
+     // local variables accept input temporarily
+     int      acct_;
+     char     type_;
+     char desc_[   ];
+     double amount_;
+
+     // store input from the user in the local variables
+     cout &lt;&lt; "Enter the account number : ";
+     cin  &gt;&gt; acct_;                             ;
+     cin.ignore();
+     cout &lt;&lt; "Enter the desription : ";
+     cin.getline(desc_,      );
+     cout &lt;&lt; "Enter the account type (d for debit, c for credit) : ";
+     cin  &gt;&gt; type_;                             ;
+     cout &lt;&lt; "Enter the account amount : ";
+     cin  &gt;&gt; amount_;
+
+     *this = Transaction(acct_, type_, amount_, desc_);
+ }
+
+ void Transaction::display() const {
+
+     if (acct != 0) {
+         cout &lt;&lt; setw(10) &lt;&lt; acct;
+         cout &lt;&lt; ' ' &lt;&lt; setw(20) &lt;&lt; left &lt;&lt; desc &lt;&lt; right;
+         cout &lt;&lt; setprecision(2) &lt;&lt; fixed;
+         if (type == 'd')
+             cout &lt;&lt; setw(20) &lt;&lt; amount;
+         else
+             cout &lt;&lt; setw(10) &lt;&lt; amount;
+     }
+     else
+         cout &lt;&lt; "no data available" &lt;&lt; endl;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>-->
+</table>
+
+</body>
+</html>

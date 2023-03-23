@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+	<title>Seneca | Computer Studies | The Object-Oriented Paradigm Using C++</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+	<meta name="Copyright" content="(c) Copyright Seneca College 2006" />
+	<meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+	<meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+	<meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+	<meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/style.043.css">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleScreen.043.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleSPrint.043.css" media="print">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleNav.043.css">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+
+	<!-- Body Cell -->
+	<tr height="600">
+		<!-- Content Area -->
+		<td class="tbody" bgcolor="ffffff">
+			<table cellpadding="10" width="100%">
+				<tr>
+					<td bgcolor="ffffff" valign="top">
+
+					<span class=texthead>
+					<center>Quiz 1 - Jan 30 2006</center>
+					</span>
+					<br />
+					<br />
+
+					<p>
+					What is the exact output of the following program?
+					<pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+
+ struct Vector {
+     int x;
+     int y;
+     void display() const;
+ };
+
+ struct Set {
+     Vector* v;
+     int n;
+ public:
+     void ctor(int n, int* x, int* y);
+     void display() const;
+     Vector sum() const;
+     void dtor();
+ };
+
+ void add(Vector& a, Vector* b) {
+     a.x += b-&gt;x;
+     a.y += b-&gt;y;
+ }
+
+ void Vector::display() const {
+     cout &lt;&lt; '[' &lt;&lt; x &lt;&lt; ',' &lt;&lt; y &lt;&lt; ']' &lt;&lt; endl;
+ }
+
+ void Set::ctor(int k, int* x, int* y) {
+     n = k;
+     v = new Vector[n];
+     for (int i = 0; i &lt; n; i++) {
+         v[i].x = x[i] + 1;
+         v[i].y = y[i] - 1;
+     }
+ }
+
+ void Set::display() const {
+    for (int i = 0; i &lt; n; i++)
+        cout &lt;&lt; '(' &lt;&lt; v[i].x &lt;&lt; ',' &lt;&lt; v[i].y &lt;&lt; ") ";
+     cout &lt;&lt; endl;
+ }
+
+ Vector Set::sum() const {
+     Vector c = {0, 0};
+     for (int i = 0; i &lt; n; i++)
+         add(c, &v[i]);
+     return c;
+ }
+
+ void Set::dtor() {
+     delete [] v;
+     cout &lt;&lt; n &lt;&lt; endl;
+ }
+
+ int main() {
+     int x[] = {1, 1, 0, 6};
+     int y[] = {0, 1, 2, 2};
+     Set s;
+     s.ctor(3, y, x);
+     s.display();
+     s.sum().display();
+     s.dtor();
+ }</pre>
+					    Show your output here:
+					    <br />
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    Show your rough work on a separate page.
+					    </p>
+						</br>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+	<!-- Footer -->
+	<tr>
+		<td class="tbody">
+			<table cellpadding="1" width="90%" align="center">
+				<tr>
+					<td width="50%" class="text3">
+						<script language="javascript">
+						var lh = document.location.href;
+						document.write(lh)
+						</script>&nbsp;&nbsp;
+					</td>
+					<td width="50%" align="right" class="text3">
+						<script language="javascript">
+						var lm = document.lastModified.slice(0,-3);
+						document.write("Last Modified: " +lm)
+						</script>&nbsp;&nbsp;
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

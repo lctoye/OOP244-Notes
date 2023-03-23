@@ -1,0 +1,431 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Exercises | Intro to C++  </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">In-Class Exercise</span>
+        <br />
+        <br />
+        <span class="texthead">Custom iostream Operators</span>
+       </div>
+       <br />
+       <br />
+
+       <p>This exercise overloads the extraction and insertion
+       operators, enabling client programs to extract an object
+       directly from an input stream and insert an object directly
+       into an output stream.
+       </p>
+       <br />
+
+       <p class="section">Given Information</p>
+
+       <p>The following code is a solution to the Handout on
+       <a href="h9.html">Helper Operators</a>.</p>
+
+       <p class="ssection">Client Module</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Helper Operator
+ // h9.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Employee.h"
+
+ int main() {
+     Employee null,
+              mark(3456, "Mark"),
+              rose(3457, "Rose", 10.70);&nbsp;
+     null.display();
+     cout &lt;&lt; endl;
+     null = null + 0.50;       // raise of 50 cents&nbsp;
+     null.display();
+     cout &lt;&lt; endl;
+     mark.display();
+     cout &lt;&lt; endl;
+     mark = mark + 0.50;       // raise of 50 cents&nbsp;
+     mark.display();
+     cout &lt;&lt; endl;
+     rose.display();
+     cout &lt;&lt; endl;
+     rose = 0.50 + rose;       // raise of 50 cents&nbsp;
+     rose.display();
+     cout &lt;&lt; endl;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Employee Module</p>
+
+       <p class="sssection">Employee.h</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Helper Operators
+ // Employee.h
+
+ const double MIN_WAGE = 10.25;
+ const int    MAX_NAME = 20;
+
+ class Employee {
+     int no;
+     char name[MAX_NAME + 1];
+     double rate;
+ public:
+     Employee();
+     Employee(int, const char*);
+     Employee(int, const char*, double);
+     void display() const;
+     Employee& operator+=(double);
+ };
+
+ Employee operator+(const Employee&, double);&nbsp;
+ Employee operator+(double, const Employee&);</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Employee.cpp</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Helper Operators
+ // Employee.cpp
+
+ #include &lt;iostream&gt;
+ #include &lt;iomanip&gt;
+ #include &lt;cstring&gt;
+ #include "Employee.h"
+ using namespace std;
+
+ Employee::Employee() {
+     // safe empty state
+     no = 0;
+     name[0] = '\0';
+     rate = MIN_WAGE;
+ }
+
+ Employee::Employee(int n, const char* nm) {
+     Employee temp(n, nm, MIN_WAGE);
+     *this = temp;
+ }
+
+ Employee::Employee(int n, const char* nm, double r) {
+     if (n &gt; 0 && nm[0] != '\0' && r &gt;= MIN_WAGE) {
+         no = n;
+         strncpy(name, nm, MAX_NAME); // copy first MAX_NAME characters&nbsp;
+         name[MAX_NAME] = '\0';       // ensure that last byte is null
+         rate = r;
+     } else {
+         Employee temp;
+         *this = temp;
+     }
+ }
+
+ void Employee::display() const {
+    if (no &gt; 0) {
+        cout &lt;&lt; fixed &lt;&lt; setprecision(2);
+        cout &lt;&lt; name &lt;&lt; " (" &lt;&lt; no &lt;&lt; ") $" &lt;&lt; rate;
+    }
+    else
+        cout &lt;&lt; "no data available";
+ }
+
+ Employee& Employee::operator+=(double r) {
+     if (no &gt; 0 && r &gt; 0.0)
+         rate += r;
+     return *this;
+ }
+
+ Employee operator+(const Employee& e, double r) {
+     Employee ee = e;
+     ee += r;
+     return ee;
+ }
+
+ Employee operator+(double r, const Employee& e) {
+     return e + r;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">Your Task</p>
+
+       <p>Overload the insertion and extraction operators for the
+       <span class="code">Employee</span> class.&#160; You may assume that the user will
+       always enter the data correctly and that the name entered will
+       contain no more than <span class="code">MAX_NAME</span> characters.&#160;</p>
+
+       <p class="ssection">Client Module</p>
+
+       <p>The following client program uses the upgraded <span class=
+       "code">Employee</span> class is</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td class="half">
+          <pre>
+ // Custom I/O Operators
+ // h10.cpp
+
+ #include &lt;iostream&gt;
+ #include "Employee.h"
+
+ int main() {
+     Employee mark, rose;
+
+     std::cin &gt;&gt; mark;
+     std::cin &gt;&gt; rose;
+
+     std::cout &lt;&lt; mark &lt;&lt; std::endl;
+     mark = mark + 0.50;       // raise of 50 cents&nbsp;
+     std::cout &lt;&lt; mark &lt;&lt; std::endl;
+
+     std::cout &lt;&lt; rose &lt;&lt; std::endl;
+     rose = 0.50 + rose;       // raise of 50 cents&nbsp;
+     std::cout &lt;&lt; rose &lt;&lt; std::endl;
+ }</pre>
+         </td>
+
+         <td class="half">
+          <pre class="result">
+
+
+
+
+ Employee number : 3456
+ Employee name   : Mark J.&nbsp;
+ Hourly Pay Rate : 10.25
+
+ Employee number : 3457
+ Employee name   : Rose
+ Hourly Pay Rate : 10.70
+
+ Mark J. (3456) $10.25
+
+ Mark J. (3456) $10.75
+
+ Rose (3457) $10.70
+
+ Rose (3457) $11.20
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>Note that the name of an employee may contain whitespace.&#160;
+       </p>
+
+       <p class="ssection">Employee Module</p>
+
+       <p class="sssection">Employee.h</p>
+
+       <p>Add the following to the header file for your upgraded class:
+       </p>
+
+       <ul>
+        <li>include the <span class=code>iostream</span> header file</li>
+
+        <li>add <span class=code>std::ostream&</span> to the parameter list of the <span class=code>display()</span> function</li>
+
+        <li>add the prototype for an overloaded extraction operator</li>
+
+        <li>add the prototype for an overloaded insertion operator</li>
+       </ul>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Custom I/O Operators
+ // Employee.h
+
+
+ const double MIN_WAGE = 10.25;
+ const int    MAX_NAME = 20;
+
+ class Employee {
+     int no;
+     char name[MAX_NAME + 1];
+     double rate;
+ public:
+     Employee();
+     Employee(int, const char*);
+     Employee(int, const char*, double);
+     void display(                 ) const;
+     Employee& operator+=(double);
+ };
+
+ Employee operator+(const Employee&, double);&nbsp;
+ Employee operator+(double, const Employee&);
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Employee.cpp</p>
+
+       <p>Add your overloaded operator definitions to the implementation file.&nbsp;
+       To accept input with embedded whiltespace inside your definition of the
+       extraction operator, use the <span class=code>get()</span>
+       or <span class=code>getline()</span> member functions on the input stream object.</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Custom I/O Operators
+ // Employee.cpp
+
+ #include &lt;iostream&gt;
+ #include &lt;iomanip&gt;
+ #include &lt;cstring&gt;
+ #include "Employee.h"
+
+ Employee::Employee() {
+     // safe empty state
+     no = 0;
+     name[0] = '\0';
+     rate = MIN_WAGE;
+ }
+
+ Employee::Employee(int n, const char* nm) {
+     Employee temp(n, nm, MIN_WAGE);
+     *this = temp;
+ }
+
+ Employee::Employee(int n, const char* nm, double r) {
+     if (n &gt; 0 && nm[0] != '\0' && r &gt;= MIN_WAGE) {
+         no = n;
+         std::strncpy(name, nm, MAX_NAME); // copy first MAX_NAME characters
+         name[MAX_NAME] = '\0';       // ensure that last byte is null
+         rate = r;
+     } else {
+         Employee temp;
+         *this = temp;
+     }
+ }
+
+ void Employee::display(std::ostream& os) const {
+    if (no &gt; 0) {
+        os &lt;&lt; std::fixed &lt;&lt; std::setprecision(2);
+        os &lt;&lt; name &lt;&lt; " (" &lt;&lt; no &lt;&lt; ") $" &lt;&lt; rate;
+    }
+    else
+        os &lt;&lt; "no data available";
+ }
+
+ Employee& Employee::operator+=(double r) {
+     if (no &gt; 0 && r &gt; 0.0)
+         rate += r;
+     return *this;
+ }
+
+ Employee operator+(const Employee& e, double r) {
+     Employee ee = e;
+     ee += r;
+     return ee;
+ }
+
+ Employee operator+(double r, const Employee& e) {
+     return e + r;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>-->
+</table>
+
+</body>
+</html>

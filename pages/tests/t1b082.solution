@@ -1,0 +1,93 @@
+OOP244 - Test 1 - 082 - Section B - Version B - Solutions
+=========================================================
+
+Word Problem
+------------
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+const int NDIGITS = 6;
+const int NAMOUNT = 6;
+
+class CashCard {
+    int pin;
+    double cash;
+    char id[NDIGITS + 1];
+  public:
+    CashCard();
+    CashCard(const char* s, int p);
+    int deposit(double amount);
+    int withdraw(double amount, int p);
+    void display() const;
+};
+
+CashCard::CashCard() {
+    pin = 0;
+    id[0] = '\0';
+    cash = 0.0;
+}
+
+CashCard::CashCard(const char* s, int p) {
+    *this = CashCard();
+    if (strlen(s) <= NDIGITS && p > 0) {
+        strcpy(id, s);
+        pin = p;
+    }
+}
+
+int CashCard::deposit(double amount) {
+    int rc = 0;
+    if (amount > 0) {
+        cash += amount;
+        rc = 1;
+    }
+    return rc;
+}
+
+int CashCard::withdraw(double amount, int p) {
+    int rc = 0;
+    if (amount <= cash && pin == p) {
+        cash -= amount;
+        rc = 1;
+    }
+    return rc;
+}
+
+void CashCard::display() const {
+    if (id[0] == '\0') 
+        cout << "empty card" << endl;
+    else {
+        cout << setw(NDIGITS) << setfill('0') << id << setfill(' ');
+        cout << setw(NAMOUNT) << fixed << setprecision(2) << cash << endl;
+    }
+}
+
+int main() {
+    CashCard card("12341", 1234);
+
+    card.deposit(45.00);
+    card.display();
+    card.withdraw(120.00, 1234);
+    card.display();
+    card.withdraw(20.00, 1234);
+    card.display();
+
+    return 0;
+}
+
+
+Walkthrough
+-----------
+
+****
+----------------
+0,1|1,2|2,3|3,3|
+4,1|5,2|6,2|
+7,1|8,2|9,3|10,3|
+0 244
+1 is
+2 tuf
+----------------
+?,tuf,is,244,

@@ -1,0 +1,46 @@
+/* Problem 44 */
+	    #include <iostream>
+	    using namespace std;
+	    #include <string.h>
+
+	    class spinner {
+		char *s;
+		int n;
+		void init(const char str[]) {
+		    s = new char[strlen(str) + 1]; // Assume this succeeds
+		    if (s) strcpy(s, str);
+		    n = 0;
+		}
+	      public:
+		spinner() { init("xyz"); }
+		spinner(const char s[]) { init(s); }
+		~spinner() { if (s) delete [] s; }
+		void operator++() { 
+		    if (s) {
+			char t = s[n];
+			s[n] = s[strlen(s) - (n + 1)]; 
+			s[strlen(s) - (n + 1)] = t;
+			n++;
+			if (((2 * n) + 1) == strlen(s))
+			    n++;
+			if (n >= strlen(s))
+			    n = 0;
+		    }
+		}
+		friend ostream &operator<<(ostream &, spinner &);
+	    };
+
+	    ostream &operator<<(ostream &os, spinner &f) {
+		for (int i = 0; i < strlen(f.s); i++) {
+		    os << f.s << '\n';
+		    ++f;
+		}
+		return os;
+	    }
+
+	    int main() {
+		spinner f1, f2("YzZuF");
+		cout << f1 << "-----\n" << f2;
+		return 0;
+	    }
+

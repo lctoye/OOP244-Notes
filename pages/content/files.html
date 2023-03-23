@@ -1,0 +1,1134 @@
+
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml' xml:lang=
+"en-us">
+<head>
+ <meta name="generator" content=
+ "HTML Tidy for Windows (vers 25 March 2009), see www.w3.org" />
+
+ <title>Encapsulation | File Objects</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta http-equiv="PICS-Label" content=
+ '(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+ <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2016" />
+ <meta name="Description" content=
+ "Welcome to the ICT Programming Stream C++ Web Site. On this site you can find the introductory course to object-oriented programming. Designed by Chris Szalwinski." />
+ <meta name="Abstract" content=
+ "This subject introduces the principles of object-oriented programming. Students study the solution of problems using objects with the C++ programming language. The emphasis throughout is on the solution of small problems." />
+ <meta name="Author" content="chris.szalwinski@senecacollege.ca" />
+ <meta name="Keywords" content=
+ "software development, object-oriented programming, lecture notes" />
+ <link rel="stylesheet" type="text/css" href="../style.043.css" />
+ <link rel="stylesheet" type="text/css" href="../styleScreen.043.css"
+ media="screen" />
+ <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css"
+ media="print" />
+ <link rel="stylesheet" type="text/css" href="../styleNav.043.css" />
+</head>
+
+<body>
+ <table id="top" width="850" cellspacing="0" cellpadding="0" summary=
+ "body">
+  <!-- Banner -->
+
+  <tr class="banner">
+   <td colspan="2" class="banner">
+    <table cellspacing="0" cellpadding="0" summary="banner">
+     <tr>
+      <td class="w250 banner">
+       <div class="center">
+        <span class="text0">&#160;&#160;Software&#160;&#160;
+        <br />
+        &#160;&#160;Development&#160;&#160;</span>
+       </div>
+      </td>
+
+      <td class="tbanner"><img src="../images/Banner4.gif" height="120"
+      width="500" alt="Software Development" /></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Navigation Bar -->
+
+  <tr class="navigate">
+   <td class="panel1" align="left" valign="bottom">
+    <ul id="tabnav">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline</a></li>
+
+     <li><a class="active" href=
+     "index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><a href="../assignments/index.html">Assignments</a></li>
+
+     <li><a href="../instructors/index.html">Instructor</a></li>
+
+     <li><a href="files_p.html"><img src="../images/Printer.gif"
+     height="15" width="10" alt=
+     "Printer Friendly Version of this Page" /></a></li>
+    </ul>
+   </td><!-- Web Site Title -->
+
+   <td class="panel2 w150" align="center"><span class="text1"><script type=
+   "text/javascript" src="../subject.js">
+</script></span></td>
+  </tr><!-- Body Cells -->
+
+  <tr class="content">
+   <!-- Content Area -->
+
+   <td class="tbody" valign="top">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Part C - Encapsulation</span>
+        <br />
+        <br />
+        <span class="texthead">Custom File Operators</span>
+        <br />
+        <br />
+        <span class="textagend">Describe the file stream classes of the standard library<br />
+        Create and use file objects with fundamental types<br />
+        Overload the extraction and insertion operators for file objects and custom types
+        </span>
+
+        <p class="quote">"Files are examples of containers that you can
+        both read from and write to.&#160; Consequently, you can have a
+        stream that supports both &lt;&lt; and &gt;&gt;." (Stroustrup, 1997).</p>
+
+        <span class="textagend">
+        <a href="files.html#cla">File Classes</a>
+        | <a href="files.html#obj">File Objects</a>
+        | <a href="files.html#fun">Fundamental Types</a>
+        | <a href="files.html#cus">Custom Types</a>
+        | <a href="files.html#nic">Nice To Know</a>
+        | <a href="files.html#exe">Exercise</a>
+        </span>
+       </div>
+       <br />
+       <br />
+
+       <p>
+       File stream classes share much of their structure with the standard input and
+       output classes described in the chapter entitled <a href="basic.html">Input and Output Examples</a>.&nbsp;
+       The <span class=code>iostream</span> library associates its file objects with
+       the fundamental types by overloading the extraction and insertion operators for
+       those types.&nbsp; We can overload these operators for objects of our own class
+       type as right operands in the way that we did in the preceding chapter for the
+       standard input and output objects as left operands.&nbsp;
+       </p>
+
+       <p>
+       This chapter introduces the stream classes that manage communication with file
+       objects.&nbsp; The chapter describes how to create file objects from these
+       classes, how to read and write data of fundamental type and how to overload
+       the operators for file objects as left operands and objects of our own class
+       type as right operands.&nbsp;
+       </p>
+       <br />
+
+       <p id="cla" class="section">File Stream Classes</p>
+
+       <p>
+       The <span class=code>iostream</span> library defines three classes for managing
+       communication between file streams containing 8-bit characters and system memory:
+       </p>
+       <ul>
+       <li><span class="code">ifstream</span> - processes input from a file stream</li>
+       <li><span class="code">ofstream</span> - processes output to a file stream</li>
+       <li><span class="code">fstream</span> - processes input from and output to a file stream</li>
+       </ul>
+       <p>
+       These classes provide access to a file stream through separate input and output buffers.&nbsp;
+       </p>
+
+       <p>
+       The <span class="code">fstream</span> system header file defines these classes
+       in the <span class=code>std</span> namespace:&nbsp;
+       </p>
+
+       <table width="95%" summary="fstream">
+        <tr>
+         <td>
+         <pre class="defin">#include &lt;fstream&gt;</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">State Methods</p>
+
+       <p>
+       The queries for interrogating a file object include:</p>
+
+       <ul>
+        <li><span class="code">bool is_open() const</span> - the file stream is open</li>
+
+        <li><span class="code">bool good() const</span> - the file stream is ready to process</li>
+
+        <li><span class="code">bool fail() const</span> - the file object has failed</li>
+
+        <li><span class="code">bool eof() const</span> - the file object has encountered an end of file mark</li>
+
+        <li><span class="code">bool bad() const</span> - the file object has encountered a serious error</li>
+       </ul>
+
+       <p>
+       If a file object is not in a <span class=code>good()</span> state, we
+       must reset its state.&nbsp; To reset
+       state we call the modifier:</p>
+
+       <ul>
+        <li><span class="code">void clear()</span> - resets the file object to a good state</li>
+       </ul>
+
+       <p>
+       These member functions operate in the same way as described in the chapter entitled
+       <a href="basic.html#sta">Input and Output Examples</a> for the standard input and output
+       objects.
+       </p>
+
+       <br />
+
+       <p id="obj" class="section">File Objects</p>
+
+       <p>
+       A file object is an instance of one of the file stream classes.&nbsp;
+       When used with the insertion or extraction operators, a file object processes data
+       in formatted form.&nbsp; The object uses the host platform's encoding sequence
+       (ASCII, EBCDIC, Unicode) in converting from stream bytes to data stored in system
+       memory and vice versa.&nbsp;
+       </p>
+
+
+       <p class="ssection">File Connection</p>
+
+       <p>
+       We can connect a file object to a file for reading, writing or both.&nbsp;
+       The object's destructor closes the file connection.&nbsp;
+       </p>
+
+       <p class="sssection">Input Objects</p>
+
+       <p>
+       We create a file object for reading by defining an instance of the
+       <span class="code">ifstream</span> class.&#160; This class defines a
+       no-argument constructor and one that receives the address of a C-style
+       null-terminated string holding the name of the file.&nbsp;
+       </p>
+
+       <p>For example,</p>
+
+       <table width="45%" summary="file open function">
+        <tr>
+         <td>
+          <pre>
+ #include &lt;fstream&gt;
+
+ std::ifstream fin("input.txt"); // connects fin to input.txt for reading&nbsp;
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>
+       To connect a file to an existing file object, we
+       call the <span class="code">open()</span> member function
+       on the object.&#160;
+       </p>
+
+       <p>For example,</p>
+
+       <table width="45%" summary="file open function">
+        <tr>
+         <td>
+          <pre>
+ #include &lt;fstream&gt;
+
+ std::ifstream fin;     // defines a file object named fin&nbsp;
+ <span class=high>fin.open("input.txt"); // connects input.txt to fin</span>
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Output Objects</p>
+
+       <p>
+       We create a file object for writing by defining an instance of the
+       <span class="code">ofstream</span> class.&#160; This class defines a
+       no-argument constructor and one that receives the address of a C-style
+       null-terminated string holding the name of the file.&nbsp;
+       </p>
+
+       <p>For example,</p>
+
+       <table width="45%" summary="file open function">
+        <tr>
+         <td>
+          <pre>
+ #include &lt;fstream&gt;
+
+ std::ofstream fout("output.txt"); // connects fout to output.txt for writing&nbsp;
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>
+       To connect a file to an existing file object, we
+       call the <span class="code">open()</span> member function
+       on the object.&#160;
+       </p>
+
+       <p>For example,</p>
+
+       <table width="45%" summary="file open function">
+        <tr>
+         <td>
+          <pre>
+ #include &lt;fstream&gt;
+
+ std::ofstream fout;      // create a file object named fout&nbsp;
+ <span class=high>fout.open("output.txt"); // connects output.txt to fout</span>
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Confirming the Connection</p>
+
+       <p>
+       The <span class="code">is_open()</span> member function on a file
+       object returns the current state of the connection:</p>
+
+       <table width="45%" summary="negation on file object">
+        <tr>
+         <td>
+          <pre>
+ #include &lt;iostream&gt;
+ #include &lt;fstream&gt;
+
+ std::ofstream fout("output.txt");  // connects output.txt to fout for output&nbsp;
+
+ if (<span class="high">!fout.is_open()</span>) {
+     std::cerr &lt;&lt; "File is not open" &lt;&lt; std::endl;
+ } else {
+     // file is open
+
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <br />
+
+       <p id="fun" class="section">Fundamental Types</p>
+
+       <p>
+       We use the same syntax to read from a file and write to a file as we use to
+       read from the standard input object and write to a standard output object
+       (see the chapter entitled <a href="basic.html">Input and Output
+       Examples</a> for a review).
+       </p>
+
+       <p>
+       The standard library contains overloads of the extraction and insertion
+       operators for each fundamental type with objects of the file stream classes
+       as left operands.&nbsp;
+       </p>
+
+       <p class="ssection">Reading From a File</p>
+
+       <p>
+       A file object reads from a file under format control using the extraction
+       operator in the same way as the standard input object (<span class=code>cin</span>)
+       does using the operator.&nbsp;
+       </p>
+       <p>
+       For example, consider a file with a single record: <span class=code>12 34 45 abc</span>&nbsp;
+       The output from the following program is shown on the right:</p>
+
+       <table width="95%" summary="f stream dot c p p">
+        <tr>
+         <td class="w80">
+          <pre>
+ // Reading a File
+ // readFile.cpp
+
+ #include &lt;iostream&gt;
+ <span class=high>#include &lt;fstream&gt;</span>
+
+ int main() {
+     int i;
+
+     <span class=high>std::ifstream f("input.txt");</span>
+     if (f.is_open()) {
+         while (f.good()) {
+             <span class=high>f &gt;&gt; i;</span>
+             if (f.good())
+                 std::cout &lt;&lt; i &lt;&lt; ' ';
+             else if (!f.eof())
+                 std::cout &lt;&lt; "\n**Bad input**\n";
+         }
+     }
+ }
+</pre>
+         </td>
+
+         <td class="w20">
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 12 34 45
+
+ **Bad input**&nbsp;
+
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Writing to a File</p>
+
+       <p>
+       A file object writes to its connection under format control using the
+       insertion operator in the same way as the standard output objects
+       (<span class=code>cout</span>, <span class=code>cerr</span> and
+       <span class=code>clog</span>) do using the operator.&nbsp;
+       </p>
+
+       <p>
+       For example, the contents of the file created by the following program
+       are shown on the right</p>
+
+       <table width="95%" summary="f stream dot c p p">
+        <tr>
+         <td class="w80">
+          <pre>
+ // Writing to a File
+ // writeFile.cpp
+
+ #include &lt;iostream&gt;
+ <span class=high>#include &lt;fstream&gt;</span>
+
+ int main() {
+     int i;
+
+     <span class=high>std::ofstream f("output.txt");</span>
+     if (f.is_open()) {
+         <span class=high>f &lt;&lt; "Line 1" &lt;&lt; std::endl;</span>   // record 1
+         <span class=high>f &lt;&lt; "Line 2" &lt;&lt; std::endl;</span>   // record 2
+         <span class=high>f &lt;&lt; "Line 3" &lt;&lt; std::endl;</span>   // record 3
+     }
+ }
+</pre>
+         </td>
+
+         <td class="w20">
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+ Line 1
+ Line 2
+ Line 3&nbsp;
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <br />
+
+       <p id="cus" class="section">Custom Types <script type="text/javascript" src="../optional.js"></script></p>
+
+       <p>
+       Insertion and extraction operators that have been overloaded for
+       standard output and input objects respectively as left operands and
+       a custom type as the right operand work without modification
+       with file objects as left operands.&nbsp; This flexibility has to do with inheritance, which is described
+       later in the chapter entitled <a href="dfunc.html">Functions in a Hierarchy</a>.&nbsp;
+       Neither the header file nor the implementation file require any modification.&nbsp;
+       </p>
+       <p>
+       Since accepting input from a file does not involve the interaction that we
+       expect across a standard input device, we typically overload the extraction
+       operator to work differently with file objects.&nbsp; We overload the operator
+       for an <span class=code>ifstream</span> object as the left operand.&nbsp;
+       Our overload of the <span class=code>ostream</span> operator holds for output
+       to a file stream as well as to the standard output stream.
+       </p>
+
+       <p>
+       For example, we add the prototype for the file extraction helper
+       to the definition of our <span class="code">Student</span> class:</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Student.h
+
+ #include &lt;iostream&gt; // for std::ostream, std::istream
+ <span class=high>#include &lt;fstream&gt;  // for std::ifstream</span>
+ const int M = 13;
+
+ class Student {
+     int no;
+     char grade[M+1];
+ public:
+     Student();
+     Student(int);
+     Student(int, const char*);
+     Student& operator+=(char);
+     void display(std::ostream&amp; os) const;
+     operator bool() const { return no == 0; }
+ };
+
+ std::istream&amp; operator&gt;&gt;(std::istream&amp; is, Student&amp; s);
+ <span class=high>std::ifstream&amp; operator&gt;&gt;(std::ifstream&amp; is, Student&amp; s);
+ std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Student&amp; s);&nbsp;</span>
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>
+       The implementation file contains the definition of the file extraction
+       operation for our <span class="code">Student</span> class:</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td class="half">
+          <pre>
+ // Student.cpp
+
+ #include &lt;cstring&gt;
+ #include "Student.h"
+
+ Student::Student() {
+     no = 0;
+     grade[0] = '\0';
+ }
+
+ Student::Student(int n) {
+     *this = Student(n, "");
+ }
+
+ Student::Student(int n, const char* g) {
+     // see Current Object chapter for validation logic
+     no = n;
+     std::strcpy(grade, g);
+ }
+
+ void Student::display(std::ostream&amp; os) const {
+     os &lt;&lt; no &lt;&lt; ' ' &lt;&lt; grade;
+ }
+
+ Student& Student::operator+=(char g) {
+     int i = strlen(grade);
+     if (i &lt; M) {
+         // add validation logic here
+         grade[i++] = g;
+         grade[i] = '\0';
+     }
+     return *this;
+ }
+
+ std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Student&amp; st) {&nbsp;
+     st.display(os);
+     return os;
+ }
+
+ std::istream& operator&gt;&gt;(std::istream& is, Student& s) {
+     int no;
+     char grade[M+1];
+
+     // student number
+     std::cout &lt;&lt; "Number : ";
+     is &gt;&gt; no;
+
+     // student grades
+     std::cout &lt;&lt; "Grades : ";
+     is.ignore();             // swallow newline in the buffer
+     is.getline(grade, M+1);  // read string with whitespace
+
+     Student temp(no, grade);
+     if (!temp)
+         s = temp;  // replace s only if not empty
+     return is;
+ }
+
+ <span class=high>std::ifstream&amp; operator&gt;&gt;(std::ifstream&amp; is, Student&amp; s) {
+     int no;
+     char grade[M+1];
+
+     // student number
+     is &gt;&gt; no;
+     is.ignore(); // skip whitespace
+
+     // student grades
+     is.getline(grade, M+1);  // read string with whitespace
+
+     Student temp(no, grade);
+     if (!temp)
+         s = temp;  // replace s only if not empty
+     return is;
+ }</span>
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>
+       Compare the overloaded definitions for the extraction operator.&nbsp;
+       The <span class=code>ifstream</span> definition omits user prompts.
+       </p>
+
+       <p>The client file that uses this upgraded <span class="code">Student</span>
+       class creates the file objects, writes to them and reads from them:</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td class="half">
+          <pre>
+ // Custom File Operators
+ // customFile.cpp
+
+ #include "Student.h"
+
+ int main ( ) {
+     Student harry(975, "AABD"), josee(976, "BAAA");&nbsp;
+
+     std::ofstream oufile("Student.txt");
+     oufile &lt;&lt; harry &lt;&lt; std::endl;
+     oufile &lt;&lt; josee &lt;&lt; std::endl;
+     oufile.close();
+     std::cout &lt;&lt; harry &lt;&lt; std::endl;
+     std::cout &lt;&lt; josee &lt;&lt; std::endl;
+
+     std::ifstream infile("Student.txt");
+     infile &gt;&gt; harry;
+     infile &gt;&gt; josee;
+     harry += 'B';
+     josee += 'C';
+     std::cout &lt;&lt; harry &lt;&lt; std::endl;
+     std::cout &lt;&lt; josee &lt;&lt; std::endl;
+ }</pre>
+         </td>
+
+         <td class="half">
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+
+ 975 AABD
+ 976 BAAA
+
+
+
+
+
+
+ 975 AABDB
+ 976 BAAAC&nbsp;
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>The records written to the <span class="code">Student.txt</span> file
+       by this program are:</p>
+
+       <table width="45%" summary="contents of Student.txt">
+        <tr>
+         <td>
+          <pre class=result>
+ 975 AABD
+ 976 BAAA</pre>
+         </td>
+        </tr>
+       </table>
+
+       <br />
+
+       <p id="nic" class="section">Nice To Know <script type="text/javascript" src="../optional.js"></script></p>
+
+       <p class="ssection">Open-Mode Flags</p>
+
+       <p>
+       We customize a file object's connection mode through combinations of flags
+       passed as an optional second argument to the object's constructor or its
+       <span class=code>open()</span> member function.&nbsp;</p>
+
+       <p>The flags defining the connection mode are:</p>
+
+       <ul>
+        <li><span class="code">std::ios::in</span> open for reading</li>
+
+        <li><span class="code">std::ios::out</span> open for writing</li>
+
+        <li><span class="code">std::ios::app</span> open for appending</li>
+
+        <li><span class="code">std::ios::trunc</span> open for writing, but
+        truncate if file exists</li>
+
+        <li><span class="code">std::ios::ate</span> move to the end of the
+        file once the file is opened</li>
+       </ul>
+
+       <p>Practical combinations of these flags include</p>
+
+       <ul>
+        <li><span class="code">std::ios::in|std::ios::out</span> open for reading
+        and writing (default)</li>
+
+        <li><span class="code">std::ios::in|std::ios::out|std::ios::trunc</span> open
+        for reading and overwriting</li>
+
+        <li><span class="code">std::ios::in|std::ios::out|std::ios::app</span> open
+        for reading and appending</li>
+
+        <li><span class="code">std::ios::out|std::ios::trunc</span> open for
+        overwriting</li>
+       </ul>
+
+       <p>
+       The vertical bar (<span class=code>|</span>) is the <i>bit-wise or</i>
+       operator.
+       </p>
+
+       <p class="sssection">The Defaults</p>
+
+       <p>
+       The default combinations of the no-argument and one-argument constructors are:
+       </p>
+
+       <ul>
+        <li><span class="code">ifstream</span> - <span class="code">std::ios::in</span> - open for reading</li>
+
+        <li><span class="code">ofstream</span> - <span class="code">std::ios::out</span> - open for writing</li>
+
+        <li><span class="code">fstream</span> - <span class="code">std::ios::in|std::ios::out</span> - open
+        for reading and writing</li>
+       </ul>
+
+       <p class="ssection">The Logical Negation Operator</p>
+
+       <p>
+       The standard library overloads the logical negation operator (<span class="code">!</span>)
+       as an alternative to the <span class="code">fail()</span> query.&#160;
+       This operator reports <span class="code">true</span> if the latest operation
+       has failed or if the stream has encountered a serious error.&nbsp;
+       </p>
+       <p>
+       We can invoke this operator on any stream object to check the
+       success of the most recent activity:</p>
+
+       <table width="95%" summary=
+       "negation as alternative to fail function">
+        <tr>
+         <td class=half>
+          <pre>
+ if (fin.fail()) {
+     std::cerr &lt;&lt; "Read error";
+     fin.clear();
+ }
+</pre>
+         </td>
+         <td class=half>
+          <pre>
+ if (<span class="high">!fin</span>) {
+     std::cerr &lt;&lt; "Read error";
+     fin.clear();
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>
+       The operator applied directly to a file object returns the state of the connection:</p>
+
+       <table width="45%" summary="negation on file object">
+        <tr>
+         <td>
+          <pre>
+ #include &lt;iostream&gt;
+ #include &lt;fstream&gt;
+
+ std::ofstream fout("output.txt");  // connects fout to output.txt for writing&nbsp;
+
+ if (<span class="high">!fout</span>) {
+     std::cerr &lt;&lt; "File is not open" &lt;&lt; std::endl;
+ } else {
+     // file is open
+
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Rewinding a Connection</p>
+
+       <p class="sssection">istream, fstream</p>
+
+       <p>To rewind an input stream we call:</p>
+
+       <ul>
+        <li><span class="code">istream&amp; seekg(0)</span>
+        - sets the current position in the input stream to <span class=
+        "code">0</span></li>
+       </ul>
+
+       <p class="sssection">ostream, fstream</p>
+
+       <p>To rewind an output stream we call:</p>
+
+       <ul>
+        <li><span class="code">ostream&amp; seekp(0)</span>
+        - sets the current position in the output stream to
+        <span class="code">0</span></li>
+       </ul>
+
+       <p class="ssection">Premature Closing</p>
+
+       <p>
+       To close a file connection before the file object
+       has gone out of scope, we call the <span class="code">close()</span>
+       member function on the object:&#160;</p>
+
+       <table width="45%" summary="file copy 2 dot c p p">
+        <tr>
+         <td>
+          <pre>
+ // Concatenate Two Files
+ // concatenate.cpp
+
+ #include &lt;fstream&gt;
+
+ int main() {
+     std::ifstream in("src1.txt");    // open 1st source file
+     std::ofstream out("output.txt"); // open destination file&nbsp;
+
+     while (!in.eof())
+         out &lt;&lt; in.get();        // byte by byte copy
+     in.clear();
+     <span class=high>in.close();</span>                 // close 1st source file
+     in.open("src2.txt");        // open 2nd source file
+
+     while (!in.eof())
+         out &lt;&lt; in.get();        // byte by byte copy
+     in.clear();
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Writing to and Reading from the Same File</p>
+
+       <p>
+       An instance of the <span class="code">fstream</span> class
+       can write to a file and read from that same file.&#160;
+       </p>
+
+       <p>
+       For example, the following program produces the output
+       shown on the right</p>
+
+       <table width="95%" summary="f stream dot c p p">
+        <tr>
+         <td class="w80">
+          <pre>
+ // File Objects - writing and reading
+ // fstream.cpp
+
+ #include &lt;iostream&gt;
+ #include &lt;fstream&gt;
+
+ int main() {
+
+     std::fstream f("file.txt",
+      std::ios::in|std::ios::out|std::ios::trunc);
+     f &lt;&lt; "Line 1" &lt;&lt; std::endl;   // record 1
+     f &lt;&lt; "Line 2" &lt;&lt; std::endl;   // record 2
+     f &lt;&lt; "Line 3" &lt;&lt; std::endl;   // record 3
+     f.seekp(0);                   // rewind output
+     f &lt;&lt; "****";                  // overwrite
+
+     char c;
+     f.seekg(0);                   // rewind input
+     f &lt;&lt; std::noskipws;           // don't skip whitespace
+     while (f.good()) {
+         f &gt;&gt; c;                   // read 1 char at a time
+         if (f.good())
+             std::cout &lt;&lt; c;       // display the character
+     }
+     f.clear();                    // clear failed (eof) state&nbsp;
+ }
+</pre>
+         </td>
+
+         <td class="w20">
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ **** 1
+ Line 2
+ Line 3&nbsp;
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <br />
+
+       <p id="sum" class="section">Summary</p>
+
+       <ul>
+        <li>the standard library overloads the extraction and insertion operators for file objects as left operands and fundamental types as right operands</li>
+
+        <li>an input file object is an instance of an <span class=code>ifstream</span> class</li>
+
+        <li>an output file object is an instance of an <span class=code>ofstream</span> class</li>
+
+        <li>we may overload the extraction and insertion operators for file objects as left operands and our class types as right operands</li>
+       </ul>
+
+       <br />
+
+       <p id="exe" class="section">Exercise</p>
+
+       <ul>
+        <li>Complete the Handout on <a href="../handouts/h11.html">Custom File Operators</a></li>
+
+        <li>Complete the Workshop on <a href="../workshops/w7.html">Input and Output Objects</a></li>
+       </ul>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+   </td><!-- Detail Menu -->
+
+   <td class="panel1 w150" valign="top" rowspan="2">
+    <ul id="mennav">
+     <li><a href="../welco.html">Welcome</a></li>
+     <li><a class="active" href="index.html">Notes</a></li>
+     <li><a href="langu.html">&#160;Welcome&nbsp;to&nbsp;OO</a></li>
+     <li><a href="objec.html">&#160;Object&nbsp;Terminology</a></li>
+     <li><a href="compi.html">&#160;Modular&nbsp;Programming</a></li>
+     <li><a href="rudim.html">&#160;Types&nbsp;Overloading</a></li>
+     <li><a href="dynam.html">&#160;Dynamic&#160;Memory</a></li>
+     <li><a href="cppst.html">&#160;Member&#160;Functions</a></li>
+     <li><a href="ctors.html">&#160;Construction</a></li>
+     <li><a href="membe.html">&#160;Current&#160;Object</a></li>
+     <li><a href="overl.html">&#160;Member&nbsp;Operators</a></li>
+     <li><a href="deepc.html">&#160;Class&#160;+&#160;Resources</a></li>
+     <li><a href="nonme.html">&#160;Helper&nbsp;Functions</a></li>
+     <li><a href="custo.html">&#160;Input&#160;Output</a></li>
+     <li><a href="inher.html">&#160;Derived&#160;Classes</a></li>
+     <li><a href="dfunc.html">&#160;Derived&#160;Functions</a></li>
+     <li><a href="inclu.html">&#160;Virtual&nbsp;Functions</a></li>
+     <li><a href="abstr.html">&#160;Abstract&nbsp;Classes</a></li>
+     <li><a href="param.html">&#160;Templates</a></li>
+     <li><a href="adhoc.html">&#160;Polymorphism</a></li>
+     <li><a href="basic.html">&#160;I/O&nbsp;Refinements</a></li>
+     <li><a href="dclas.html">&#160;D&#160;C&nbsp;+&nbsp;Resources</a></li>
+     <li><a href="ansis.html">&#160;Standards</a></li>
+     <li><a href="bibli.html">&#160;Bibliography</a></li>
+     <li><a href="libraries.html">&#160;Library&nbsp;Functions</a></li>
+     <li><a href="ascii.html">&#160;ASCII&nbsp;Sequence</a></li>
+     <li><a href="prece.html">&#160;Operator&nbsp;Precedence</a></li>
+     <li><a href="c_cpp.html">&#160;C++&nbsp;and&nbsp;C</a></li>
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+     <li><a href="../assignments/index.html">Assignments</a></li>
+     <li><a href="../handouts/index.html">Handouts</a></li>
+     <li><a href="../practice/index.html">Practice</a></li>
+     <li><a href="../resources/index.html">Resources</a></li>
+    </ul>
+   </td>
+  </tr><!-- Content Area Footer -->
+
+  <tr class="navigate">
+   <td class="panel3" align="center">
+    <table class="panel2" width="95%" summary="footer">
+     <tr>
+      <td align="left">&#160;&#160; <a href="files_p.html" class=
+      "text3"><img src="../images/Printer.gif" height="15" width="10"
+      alt="Printer Friendly Version of this Page" />&#160;print this
+      page</a>&#160;&#160;</td>
+
+      <td align="right">&#160;&#160;<a href="files.html#top" class=
+      "text3">Top&#160; <img src="../images/ArrowToT.gif" height="15"
+      width="15" alt="Go Back to the Top of this Page" /></a></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Footer -->
+
+  <tr>
+   <!-- Left Panel -->
+
+   <td class="panel1 lateral center">
+    <!-- Lateral Motion Control -->
+
+    <table width="90%" class="center" summary="previous next">
+     <tr>
+      <td class="half" align="left"><a href="custo.html" class=
+      "text3"><img src="../images/ArrowToL.gif" height="15" width="15"
+      class="panel1" alt="Previous Reading" />&#160;&#160;Previous:
+      Custom I/O Operators</a></td>
+
+      <td class="half" align="right"><a href="inher.html" class=
+      "text3">Next: Derived Classes&#160;&#160; <img src=
+      "../images/ArrowToR.gif" height="15" width="15" class="panel1"
+      alt="Next Reading" /></a></td>
+     </tr>
+    </table>
+    <br />
+    <!-- Alternate Navigation Links -->
+
+    <ul id="altnav" class="center">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+     <!--<li><a href="https://cs.senecac.on.ca/~bsd">BSD Home</a></li>-->
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline&#160;</a></li>
+    </ul>
+
+    <ul id="altnav2" class="center">
+     <li><a class="active" href=
+     "index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><a href="../assignments/index.html">Assignments</a></li>
+
+     <li><a href="../instructors/index.html">Instructor</a></li>
+    </ul>
+    <br />
+    <!-- Bottom Line -->
+
+    <table cellpadding="1" width="90%" summary="bottom line">
+     <tr>
+      <td class="w33 text3">&#160;&#160;Designed by Chris
+      Szalwinski&#160;&#160;</td>
+
+      <td class="w33 center"><a href="../copyright.html" class=
+      "text3">Copying From This Site</a></td>
+
+      <td class="w33 text3" align="right">
+       <script type="text/javascript">
+//<![CDATA[
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+       //]]>
+       </script>&#160;&#160;
+      </td>
+     </tr>
+    </table>
+   </td><!-- Logo - Right Bottom Corner -->
+
+   <td class="panel2 w150" align="center"><img src="../images/Logo.gif"
+   alt="Logo" height="73" width="85" /><br /><a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/2.5/ca/88x31.png" /></a></td>
+  </tr>
+ </table>
+</body>
+</html>

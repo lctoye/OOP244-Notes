@@ -1,0 +1,308 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Practice | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the Computer Programming and Analysis Diploma Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleScreen.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="print">
+    <link rel="stylesheet" type="text/css" href="../styleNav.043.css">
+</head>
+
+<body>
+
+<table id="top" width="850" cellspacing="0" cellpadding="0">
+
+    <!-- Banner -->
+    <tr height="120">
+        <td colspan="2" class="banner">
+        <table cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="250" class="banner">
+                    <center><span class="text0">&nbsp;&nbsp;Software&nbsp;&nbsp;<br />
+                    &nbsp;&nbsp;Development&nbsp;&nbsp;</span></center>
+                </td>
+                <td class="tbanner">
+                    <img src="../images/Banner4.gif" height="120" width="500" alt="Software Development" />
+                </td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+
+    <!-- Navigation Bar -->
+    <tr height="20">
+        <td class="panel1" align="left" valign="bottom">
+            <ul id="tabnav">
+            <li><script type="text/javascript" src="../ict.js"></script></li>
+            <li><a href="../../index.html">Home</a></li>
+            <li><script type="text/javascript" src="../outline.js"></script></li>
+            <li><a href="../timeline.html">Timeline</a></li>
+            <li><a href="../content/index.html">Notes</a></li>
+            <li><script type="text/javascript" src="../classroom_a.js"></script></li>
+            <li><script type="text/javascript" src="../classroom_b.js"></script></li>
+            <li><script type="text/javascript" src="../workshops.js"></script></li>
+            <li><script type="text/javascript" src="../assignments.js"></script></li>
+            <li><script type="text/javascript" src="../instructors.js"></script></li>
+            <li><a href="keypad_p.html"><img align="center" src="../images/Printer.gif" height=15 width=10 alt="Printer Friendly Version of this Page" /></a></li>
+            </ul>
+        </td>
+        <!-- Web Site Title -->
+        <td class="panel2" width="150" align="center">
+            <span class="text1"><script type="text/javascript" src="../subject.js"></script></span>
+        </td>
+    </tr>
+
+    <!-- Body Cells -->
+    <tr height="600">
+
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff" valign="top">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign="top">
+                        <br />
+                        <center>
+                        <span class=texth>Practice</span>
+                        <br />
+                        <br />
+                        <span class=texthead>
+                        KeyPad</span>
+                        </center>
+                        <br />
+                        <br />
+                        <br />
+
+                        <p>
+                        What is the exact output of the following program?&nbsp;
+                        Show your intermediate work.
+                        <table width="45%">
+                        <tr>
+                        <td>
+                        <br />
+                        <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #define BUFFER_SIZE 2
+
+ struct Key {
+   private:
+     char letter;
+     int  sCode;
+   public:
+     void setup(int d, char c) {
+         letter = c;
+         sCode  = d;
+         cout &lt;&lt; sCode &lt;&lt; '=' &lt;&lt; letter &lt;&lt; ' ';
+     }
+     int  scanCode() const { return sCode; }
+     char symbol() const { return letter; }
+ };
+
+ struct Keypad {
+   private:
+     Key* key;
+     int  nKeys;
+     char buffer[BUFFER_SIZE];
+     int  iBuffer;
+     int  shift;
+   public:
+     void setup(const char* c, const int code[]) {
+         nKeys = strlen(c);
+         key = new Key[nKeys];
+         for (int i = 0; i &lt; nKeys; i++) {
+             if (c[i] &gt;= 'A' && c[i] &lt;= 'Z')
+                 key[i].setup(code[i], c[i] + ' ');
+             else
+                 key[i].setup(code[i], c[i]);
+             if (i % 3 == 2)
+                 cout &lt;&lt; endl;
+         }
+         cout &lt;&lt; endl;
+         iBuffer = 0;
+         shift   = 0;
+     }
+     void flush() {
+         for (int i = 0; i &lt; iBuffer; i++)
+             cout &lt;&lt; buffer[i];
+         cout &lt;&lt; endl;
+         iBuffer = 0;
+     }
+     void press(int code) {
+         int found = 0;
+         for (int i = 0; i &lt; nKeys && found == 0; i++) {
+             if (code == key[i].scanCode()) {
+                 found = 1;
+                 if (iBuffer == BUFFER_SIZE)
+                     flush();
+                 if (shift == 1)
+                     buffer[iBuffer++] = key[i].symbol() - ' ';
+                 else
+                     buffer[iBuffer++] = key[i].symbol();
+             }
+         }
+         if (found == 0)
+             cout &lt;&lt; "..." &lt;&lt; endl;
+     }
+     void shiftOn()  { shift = 1; }
+     void shiftOff() { shift = 0; }
+     void closeUp() {
+         flush();
+         delete [] key;
+         cout &lt;&lt; "All Done!" &lt;&lt; endl;
+     }
+ };
+
+ int main() {
+     Keypad keypad;
+     int code[] = {12, 31, 10, 93, 39};
+
+     keypad.setup("AbcdE", code);
+
+     keypad.shiftOn();
+     keypad.press(31);
+     keypad.press(12);
+     keypad.flush();
+
+     keypad.shiftOff();
+     keypad.press(10);
+     keypad.press(93);
+     keypad.press(39);
+     keypad.closeUp();
+
+     return 0;
+ }</pre><br /></td></tr></table>
+                        </p>
+                        <p>
+                        Show your output here:
+                        <br />
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        Show your rough work on a separate page.
+                        </p>
+                        </br>
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+        <!-- Detail Menu -->
+        <td class="panel1" width="150" valign="top" rowspan="2">
+            <ul id="mennav">
+            <li><a href="../welco.html">Welcome</a></li>
+            <li><a href="../content/index.html">Notes</a></li>
+            <li><script type="text/javascript" src="../workshops.js"></script></li>
+            <li><script type="text/javascript" src="../assignments.js"></script></li>
+            <li><a href="../handouts/index.html">Handouts</a></li>
+            <li><a class="active" href="index.html">Practice</a></li>
+            <li><a href="../resources/index.html">Resources</a></li>
+            <!--<li><a href="../content/glossary.html">Glossary</a></li>-->
+            </ul>
+        </td>
+    </tr>
+
+    <!-- Content Area Footer -->
+    <tr height="20">
+        <td class="panel3" align="center">
+            <table class="panel2" width="95%">
+                <tr>
+                    <td align="left">
+                        &nbsp;&nbsp;<a href="keypad_p.html" class="text3">
+                        <img src="../images/Printer.gif" height="15" width="10" alt="Printer Friendly Version of this Page" />&nbsp;print this page</a>&nbsp;&nbsp;
+                    </td>
+                    <td align="right">
+                        &nbsp;&nbsp;<a href="keypad.html#top" class="text3">Top&nbsp;
+                        <img src="../images/ArrowToT.gif" height="15" width="15" alt="Go Back to the Top of this Page" /></a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <!-- Left Panel -->
+        <td class="panel1" width="700" align="center">
+            <!-- Lateral Motion Control -->
+            <!--<table width="90%" align="center">
+                <tr>
+                    <td width="50%" align="left">
+                        <a href="datat.html" class="text3">
+                        <img src="../images/ArrowToL.gif" height="15" width="15" class="panel1" alt="Previous Reading" />&nbsp;&nbsp;Previous: Primitive Data Types</a>
+                    </td>
+                    <td width="50%" align="right">
+                        <a href="modul.html" class="text3">Next: Modular Programs&nbsp;&nbsp;
+                        <img src="../images/ArrowToR.gif" height="15" width="15" class="panel1" alt="Next Reading" /></a>
+                    </td>
+                </tr>
+            </table>-->
+            <br />
+            <br />
+            <!-- Alternate Navigation Links -->
+            <ul id="altnav" align="center">
+            <li><script type="text/javascript" src="../ict.js"></script></li>
+            <!--<li><a href="http://cs.senecac.on.ca/~bsd">BSD Home</a></li>-->
+            <li><a href="../../index.html">Home</a></li>
+            <li><script type="text/javascript" src="../outline.js"></script></li>
+            <li><a href="../timeline.html">Timeline&nbsp;</a></li>
+            </ul>
+            <ul id="altnav" align="center">
+            <li><a href="../content/index.html">Notes</a></li>
+            <li><script type="text/javascript" src="../classroom_a.js"></script></li>
+            <li><script type="text/javascript" src="../classroom_b.js"></script></li>
+            <li><script type="text/javascript" src="../workshops.js"></script></li>
+            <li><script type="text/javascript" src="../assignments.js"></script></li>
+            <li><script type="text/javascript" src="../instructors.js"></script></li>
+            </ul>
+            <br />
+            <!-- Bottom Line -->
+            <table cellpadding=1 width="90%">
+                <tr>
+                    <td width="33%" class="text3">
+                        &nbsp;&nbsp;Designed by Chris Szalwinski&nbsp;&nbsp;
+                    </td>
+                    <td width="34%" align="center">
+                        <a href="../copyright.html" class="text3">Copying From This Site</a>
+                    </td>
+                    <td width="33%" align="right" class="text3">
+                        <script language="javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+        <!-- Logo - Right Bottom Corner -->
+        <td class=panel2 width="150" align="center">
+            <img src="../images/Logo.gif" height="73" width="85" />
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

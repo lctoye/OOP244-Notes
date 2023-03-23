@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+	<title>Seneca | Computer Studies | The Object-Oriented Paradigm Using C++</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+	<meta name="Copyright" content="(c) Copyright Seneca College 2006" />
+	<meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+	<meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+	<meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+	<meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/style.043.css">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleScreen.043.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleSPrint.043.css" media="print">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleNav.043.css">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+
+	<!-- Body Cell -->
+	<tr height="600">
+		<!-- Content Area -->
+		<td class="tbody" bgcolor="ffffff">
+			<table cellpadding="10" width="100%">
+				<tr>
+					<td bgcolor="ffffff" valign="top">
+
+					<span class=texthead>
+					<center>Quiz 1 - May 31 2006</center>
+					</span>
+					<br />
+					<br />
+
+					<p>
+					What is the exact output of the following program?
+					<pre>
+ #include &lt;iostream&gt;
+ #include &lt;iomanip&gt;
+ #include &lt;cstring&gt;
+ using namespace std;
+
+ struct Card {
+     int rank;
+     int suit;
+     void display() const;
+ };
+
+ struct Hand {
+     Card* card;
+     int  noCards;
+     int  val;
+     void ctor(const char*);
+     void display() const;
+     void value();
+     void dtor();
+ };
+
+ void Card::display() const {
+     char s[] = "CDHS";
+     char r[][3] = {"2","3","4","5","6","7","8","9","10","J","Q","K","A"};&nbsp;
+     cout &lt;&lt; '[' &lt;&lt; r[rank-2] &lt;&lt; " of " &lt;&lt; s[suit] &lt;&lt; "] ";
+ }
+
+ void Hand::ctor(const char* s) {
+     int good, rank, suit, i = 0, len = strlen(s);
+     noCards = 0;
+     card = new Card[len/2];
+     while (i &lt; len - 1) {
+         rank = 9;
+         good = 1;
+         switch (s[i]) {
+         case 'A':
+             rank++;
+         case 'K':
+             rank++;
+         case 'Q':
+             rank++;
+         case 'J':
+             rank++;
+         case '1':
+             rank++;
+             break;
+         default:
+             if (s[i] &gt; '1' && s[i] &lt;= '9')
+                 rank = s[i] - '0';
+             else {
+                 rank = -1;
+                 good = 0;
+             }
+         }
+         cout &lt;&lt; setw(2); // sets field width for i to 2 (like %2d)
+         cout &lt;&lt; i &lt;&lt; ':' &lt;&lt; rank &lt;&lt; endl;
+         if (s[i] == '1' && i &lt; len - 2)
+             if (s[i + 1] == '0')
+                 i++;
+         i++;
+         suit = -1;
+         if (good == 1) {
+             good = 1;
+             switch (s[i]) {
+             case 'S':
+                 suit++;
+             case 'H':
+                 suit++;
+             case 'D':
+                 suit++;
+             case 'C':
+                 suit++;
+                 i++;
+                 break;
+             default: good = 0;
+             }
+         }
+         if (good == 1) {
+             card[noCards].rank = rank;
+             card[noCards].suit = suit;
+             noCards++;
+         }
+         cout &lt;&lt; setw(2); // sets field width for i to 2 (like %2d)
+         cout &lt;&lt; i &lt;&lt; ':' &lt;&lt; suit &lt;&lt; endl;
+     }
+ }
+
+ void Hand::display() const {
+     cout &lt;&lt; "Hand is  ";
+     for (int i = 0; i &lt; noCards; i++)
+         card[i].display();
+     cout &lt;&lt; endl;
+ }
+
+ void Hand::value() {
+     val = 0;
+     for (int i = 0; i &lt; noCards; i++)
+         val += (card[i].suit - 1) * noCards + card[i].rank;
+ }
+
+ void Hand::dtor() {
+     delete [] card;
+     cout &lt;&lt; "Hand has " &lt;&lt; noCards &lt;&lt; " cards of value " &lt;&lt; val &lt;&lt; endl;&nbsp;
+ }
+
+ int main() {
+     Hand s;
+     s.ctor("2SxQD10Cc1v9H");
+     s.display();
+     s.value();
+     s.dtor();
+ }</pre>
+					    Show your output here:
+					    <br />
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    Show your rough work on a separate page.
+					    </p>
+						</br>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+	<!-- Footer -->
+	<tr>
+		<td class="tbody">
+			<table cellpadding="1" width="90%" align="center">
+				<tr>
+					<td width="50%" class="text3">
+						<script language="javascript">
+						var lh = document.location.href;
+						document.write(lh)
+						</script>&nbsp;&nbsp;
+					</td>
+					<td width="50%" align="right" class="text3">
+						<script language="javascript">
+						var lm = document.lastModified.slice(0,-3);
+						document.write("Last Modified: " +lm)
+						</script>&nbsp;&nbsp;
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

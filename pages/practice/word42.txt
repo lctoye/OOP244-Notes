@@ -1,0 +1,146 @@
+	42. A. Teaching at Seneca is a union  job,  with  union  imposed
+	    limits on the amount of work  a  teacher  may  perform.  The
+	    hours a teacher supposedly puts in are tallied to make  sure
+	    that the limits are not exceeded.
+
+	    Code a class named task, which stores the information needed
+	    to compute the number of hours per week that it should  take
+	    a teacher to perform a particular task. Specifically, a task
+	    instance will store:
+
+		- a character string description of the  task.  (Maximum
+		  length  40  characters,  Default  value:   the   empty
+		  string).
+		- a double value storing a base quantity, which could be
+		  something like the number of students in a class,  the
+		  number of hours per week that a class meets, or simply
+		  the number of hours per week that a task should  take.
+		  (Default value: 0).
+		- a double value  storing  a  "workload  factor",  which
+		  depends on the sort of  task  this  is.  The  workload
+		  factor is multiplied  against  the  base  quantity  to
+		  arrive at the number of hours per week the task should
+		  take. (Default value: 1).
+
+	    When instantiated, the constructor may be passed a character
+	    string and two doubles, specifying initial  values  for  the
+	    description,    quantity    and    factor,     respectively.
+	    Alternatively, there is a default  constructor,  which  sets
+	    the various data members to  the  default  values  specified
+	    above.
+
+	    There are publicly accessible member functions:
+
+	      void quantity(double d) - resets the base quantity  to  be
+		  the value passed in d.
+	      double quantity() const - returns the base quantity.
+	      void factor(double d) - resets the workload factor  to  be
+		  the value passed in d.
+	      double factor() const - returns the workload factor.
+	      double hours() const - returns the  number  of  hours  the
+		  task should take per week (which is  simply  the  base
+		  quantity multiplied by the workload factor).
+
+	    As well, the following operators may be used with a task:
+
+		  << with a char array on the left and  a  task  on  the
+		      right copies the task's description into the  char
+		      array.
+		  +  with  a  task  on  both  sides  returns  a   double
+		      containing the total weekly  hours  that  the  two
+		      tasks together should take.
+		  + with a double on one side and a task  on  the  other
+		      side returns the sum of the double and the  number
+		      of hours the task should take  per  week.  (Either
+		      side could have the double, so code two versions).
+
+	    For example, if we declared the following tasks:
+
+		task classes("Classroom hours", 16, 1),
+		     prep("Lecture preparation", 16, 0.5),
+		     students("Student contact", 120, 0.05),
+		     marking("Prepare and mark evaluations", 16, 0.25),
+		     meetings("Meetings", 1.5, 1);
+
+	    then
+
+		char desc[41];
+		desc << students;
+		cout << desc << ": " << students.hours() << '\n';
+		cout << "Total hours: ";
+		cout << classes+prep+students+marking+meetings << '\n';
+
+	    would display
+
+		Student contact: 6
+		Total hours: 35.5
+
+	    B. Code a class named swf (Seneca's name for  its  "Standard
+	    Workload Form"), used to store  a  list  of  the  tasks  (as
+	    described in question 3) a teacher is to perform, along with
+	    the teacher's name (maximum length: 40 characters).
+
+	    When instantiated, the swf  constructor  may  be  passed  an
+	    integer specifying the maximum number of tasks  will  appear
+	    in the swf and a character string containing  the  teacher's
+	    name. If no data is supplied to the constructor, then assume
+	    that up to 20 tasks will appear on the  swf,  and  make  the
+	    teacher's name empty.
+
+	      [Since there is no preset limit for the number of tasks  a
+	      teacher may be asked to perform, you  should  use  dynamic
+	      memory allocation to make an array of tasks  large  enough
+	      to suit the particular swf being created. Don't forget  to
+	      code a destructor.
+
+	      You are NOT required to code a copy constructor nor  an  =
+	      operator to properly copy swf objects.  However,  you  can
+	      earn some bonus marks if you correctly do so.]
+
+	    The += operator, with a swf on the left and a  task  on  the
+	    right, should append the specified task to the  end  of  the
+	    list of tasks currently stored on the swf, if there is  room
+	    for it. If the  number  of  tasks  that  have  already  been
+	    appended to the swf exceeds the originally specified  limit,
+	    however, then nothing is done.
+
+	    There are publicly accessible member functions:
+
+	      task item(int i) const - returns a copy of task  number  i
+		   (where task number 0 is the first task) from the swf.
+		   If i is not the number of a task on the swf,  then  a
+		   default task (with base quantity 0) is returned.
+	      void item(int i, task t) - if i is the number  of  a  task
+		   currently on the swf (where  task  number  0  is  the
+		   first  task),  then  that  task  is  replaced  by  t.
+		   Otherwise t is appended to the swf, just as if it had
+		   been passed to the += operator.
+	      int count() const - returns the number of tasks  currently
+		   on the swf.
+	      double total() const - return the total  weekly  hours  of
+		   all tasks on the swf.
+	      void getteacher(char s[]) const  -  copies  the  teacher's
+		   name into the array s.
+
+	    For example,
+
+	      swf evan(5, "Evan Weaver");
+	      evan += task("Classes", 16, 2);
+	      evan += task("Marking", 20, 1);
+
+	      char temp[41];
+	      evan.getteacher(temp);
+	      cout << temp << "\n----\n";
+	      for (int i = 0; i < evan.count(); i++) {
+		  temp << evan.item(i);
+		  cout << temp << ": " << evan.item(i).hours() << '\n';
+	      }
+	      cout << "Total hours: " << evan.total() << '\n';
+
+	    would output:
+
+	      Evan Weaver
+	      ----
+	      Classes: 32
+	      Marking: 20
+	      Total hours: 52

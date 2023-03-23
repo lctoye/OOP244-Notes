@@ -1,0 +1,378 @@
+
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Appendices | Standard Library Functions</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2016" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+ <link rel="stylesheet" type="text/css" href="../style.043.css" />
+ <link rel="stylesheet" type="text/css" href="../styleScreen.043.css"
+ media="screen" />
+ <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css"
+ media="print" />
+ <link rel="stylesheet" type="text/css" href="../styleNav.043.css" />
+</head>
+
+<body>
+
+<table id="top" width="850" cellspacing="0" cellpadding="0">
+
+    <!-- Banner -->
+  <tr class="banner">
+   <td colspan="2" class="banner">
+    <table cellspacing="0" cellpadding="0" summary="banner">
+     <tr>
+      <td class="w250 banner">
+       <div class="center">
+        <span class="text0">&#160;&#160;Software&#160;&#160;
+        <br />
+        &#160;&#160;Development&#160;&#160;</span>
+       </div>
+      </td>
+
+      <td class="tbanner"><img src="../images/Banner4.gif" height="120"
+      width="500" alt="Software Development" /></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Navigation Bar -->
+
+  <tr class="navigate">
+   <td class="panel1" align="left" valign="bottom">
+    <ul id="tabnav">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline</a></li>
+
+     <li><a class="active" href=
+     "index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><a href="../assignments/index.html">Assignments</a></li>
+
+     <li><a href="../instructors/index.html">Instructor</a></li>
+
+     <li><a href="libraries_p.html"><img src="../images/Printer.gif"
+     height="15" width="10" alt=
+     "Printer Friendly Version of this Page" /></a></li>
+    </ul>
+   </td><!-- Web Site Title -->
+
+   <td class="panel2 w150" align="center"><span class="text1"><script type=
+   "text/javascript" src="../subject.js">
+</script></span></td>
+  </tr><!-- Body Cells -->
+   <tr height="600">
+
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff" valign="top">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign=top>
+                    <br />
+
+                    <div class=center>
+                    <span class="texth">Appendices</span>
+                    <br />
+                    <br />
+                    <span class=texthead>
+                    Standard Library Functions</span><br />
+                    <br />
+                    <span class=textagend>
+                    </span>
+                    <br />
+                    <p class=quote></p>
+                    <span class=textagend>
+                    <a href="libraries.html#clb">C Library</a>
+                    | <a href="libraries.html#iol">Input Output Library</a>
+                    </span>
+                    </div>
+                    <br />
+                    <br />
+
+                    <p>
+                    The prototypes for the some common functions in the C++ standard
+                    library are listed below.&nbsp; These prototypes and the functions
+                    definitions are declared within the <span class=code>std</span> namespace.&nbsp;
+                    To access one of these functions, we <span class=code>#include</span> its parent
+                    header file and either expose the entire namespace
+                    (<span class=code>using namespace std;</span>) or
+                    add the <span class=code>std::</span> prefix to the function identifier.
+                    </p>
+                    <br />
+
+
+                    <p id="clb" class="section">C Library</p>
+
+                    <p class="ssection">&lt;cstdio&gt; - Standard and File Input Output</p>
+                    <ul>
+
+                    <li><span class=code>int scanf(const char* format, ...)</span> - read data from standard input<br /></li>
+
+                    <li><span class=code>int printf(const char* format, ...)</span> - send data to standard output<br /></li>
+
+                    <li><span class=code>int fscanf(FILE* stream, const char* format, ...)</span> - read data from a file <span class=code>stream</span><br /></li>
+
+                    <li><span class=code>int fprintf(FILE* stream, const char* format, ...)</span> - send data to a file <span class=code>stream</span><br /></li>
+                    </ul>
+
+                    <p class="ssection">&lt;cstring&gt; - C-Style Null-Terminated Strings</p>
+                    <ul>
+
+                    <li><span class=code>size_t</span> - non-negative integer type<br /></li>
+
+                    <li><span class=code>size_t strlen(const char* str)</span> - the number of characters in a C-style null-terminated string<br /></li>
+
+                    <li><span class=code>char* strcpy(char* destination, const char* source)</span> - copy C-style null-terminated string from <span class=code>source</span> address to <span class=code>destination</span> address<br /></li>
+
+                    <li><span class=code>char* strcat(char* destination, const char* source)</span> - concatenate C-style null-terminated string from <span class=code>source</span> address to the string at the <span class=code>destination</span> address<br /></li>
+
+                    <li><span class=code>int strcmp(const char* str1, const char* str2)</span> - compare C-style null-terminated strings at two addresses<br /></li>
+                    </ul>
+
+                    <p class="ssection">&lt;cstdlib&gt; - General Utilities</p>
+                    <ul>
+
+                    <li><span class=code>int abs(int i)</span> - absolute value of <span class=code>i</span><br /></li>
+
+                    <li><span class=code>int atoi(const char* str)</span> - convert C-style null-terminated string (<span class=code>str</span>) to an integer<br /></li>
+
+                    <li><span class=code>int rand()</span> - generate a random number<br /></li>
+                    </ul>
+
+                    <p class="ssection">&lt;cmath&gt; - Numerics</p>
+                    <ul>
+
+                    <li><span class=code>double abs(double x)</span> - absolute value of <span class=code>x</span><br /></li>
+
+                    <li><span class=code>float abs(float x)</span> - absolute value of <span class=code>x</span><br /></li>
+
+                    <li><span class=code>double pow(double base, double exponent)</span> - raises <span class=code>base</span> to the power of <span class=code>exponent</span><br /></li>
+
+                    <li><span class=code>double sqrt(double x)</span> - square root of <span class=code>x</span><br /></li>
+                    </ul>
+
+                    <p class="ssection">&lt;cctype&gt; - Character Handling</p>
+                    <ul>
+
+                    <li><span class=code>int toupper(int c)</span> - converts <span class=code>c</span> to upper case<br /></li>
+
+                    <li><span class=code>int tolower(int c)</span> - converts <span class=code>c</span> to lower case<br /></li>
+
+                    <li><span class=code>int isupper(int c)</span> - is <span class=code>c</span> upper case?<br /></li>
+
+                    <li><span class=code>int islower(int c)</span> - is <span class=code>c</span> lower case?<br /></li>
+
+                    <li><span class=code>int isalpha(int c)</span> - is <span class=code>c</span> alphabetic?<br /></li>
+
+                    <li><span class=code>int isdigit(int c)</span> - is <span class=code>c</span> a numeric digit?<br /></li>
+                    </ul>
+                    <br />
+
+                    <p id="clb" class="section">Input Output Library</p>
+
+                    <p class="ssection">&lt;iostream&gt; - Standard Input Output Objects</p>
+                    <ul>
+
+                    <li><span class=code>streamsize</span> - integer type<br /></li>
+
+                    <li><span class=code>fmtflags</span> - format flags type<br /></li>
+
+                    <li><span class=code>char fill(char c)</span> - set fill character to <span class=code>c</span><br /></li>
+
+                    <li><span class=code>fmtflags setf(fmtflags f)</span> - set format to <span class=code>f</span><br /></li>
+
+                    <li><span class=code>fmtflags unsetf(fmtflags f)</span> - unset format for <span class=code>f</span><br /></li>
+
+                    <li><span class=code>streamsize width(streamsize w)</span> - set field width to <span class=code>w</span><br /></li>
+
+                    <li><span class=code>streamsize precision(streamsize p)</span> - set floating-point precision to <span class=code>p</span><br /></li>
+
+                    <li><span class=code>bool good() const</span> - goo bit is set<br /></li>
+
+                    <li><span class=code>bool eof() const</span> - end of file bit is set<br /></li>
+
+                    <li><span class=code>bool fail() const</span> - fail file bit is set<br /></li>
+
+                    <li><span class=code>bool bad() const</span> - bad bit is set<br /></li>
+
+                    <li><span class=code>bool eof() const</span> - end of file bit is set<br /></li>
+
+                    <li><span class=code>void clear()</span> - set error state to good<br /></li>
+                    </ul>
+
+                    <p class="ssection">&lt;iomanip&gt; - Parametric Manipulators</p>
+                    <ul>
+
+                    <li><span class=code>setfill(char c)</span> - set fill character to <span class=code>c</span><br /></li>
+
+                    <li><span class=code>setw(int w)</span> - set field width to <span class=code>w</span><br /></li>
+
+                    <li><span class=code>setprecision(int p)</span> - set floating-point precision to <span class=code>p</span><br /></li>
+                    </ul>
+
+                    <p class="ssection">&lt;fstream&gt; - File Input Output Objects</p>
+                    <ul>
+
+                    <li><span class=code>void open(const char* f, ...)</span> - open file named <span class=code>f</span> and associate it with the current object<br /></li>
+
+                    <li><span class=code>void close()</span> - close file associated with current object<br /></li>
+                    </ul>
+                    <br />
+
+                    <br />
+                    <br />
+                    <br />
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+        <!-- Detail Menu -->
+        <td class="panel1" width="150" valign="top" rowspan="2">
+    <ul id="mennav">
+     <li><a href="../welco.html">Welcome</a></li>
+     <li><a class="active" href="index.html">Notes</a></li>
+     <li><a href="langu.html">&#160;Welcome&nbsp;to&nbsp;OO</a></li>
+     <li><a href="objec.html">&#160;Object&nbsp;Terminology</a></li>
+     <li><a href="compi.html">&#160;Modular&nbsp;Programming</a></li>
+     <li><a href="rudim.html">&#160;Types&nbsp;Overloading</a></li>
+     <li><a href="dynam.html">&#160;Dynamic&#160;Memory</a></li>
+     <li><a href="cppst.html">&#160;Member&#160;Functions</a></li>
+     <li><a href="ctors.html">&#160;Construction</a></li>
+     <li><a href="membe.html">&#160;Current&#160;Object</a></li>
+     <li><a href="overl.html">&#160;Member&nbsp;Operators</a></li>
+     <li><a href="deepc.html">&#160;Class&#160;+&#160;Resources</a></li>
+     <li><a href="nonme.html">&#160;Helper&nbsp;Functions</a></li>
+     <li><a href="custo.html">&#160;Input&#160;Output</a></li>
+     <li><a href="inher.html">&#160;Derived&#160;Classes</a></li>
+     <li><a href="dfunc.html">&#160;Derived&#160;Functions</a></li>
+     <li><a href="inclu.html">&#160;Virtual&nbsp;Functions</a></li>
+     <li><a href="abstr.html">&#160;Abstract&nbsp;Classes</a></li>
+     <li><a href="param.html">&#160;Templates</a></li>
+     <li><a href="adhoc.html">&#160;Polymorphism</a></li>
+     <li><a href="basic.html">&#160;I/O&nbsp;Refinements</a></li>
+     <li><a href="dclas.html">&#160;D&#160;C&nbsp;+&nbsp;Resources</a></li>
+     <li><a href="ansis.html">&#160;Standards</a></li>
+     <li><a href="bibli.html">&#160;Bibliography</a></li>
+     <li><a class="active" href="libraries.html">&#160;Library&nbsp;Functions</a></li>
+     <li><a href="ascii.html">&#160;ASCII&nbsp;Sequence</a></li>
+     <li><a href="prece.html">&#160;Operator&nbsp;Precedence</a></li>
+     <li><a href="c_cpp.html">&#160;C++&nbsp;and&nbsp;C</a></li>
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+     <li><a href="../assignments/index.html">Assignments</a></li>
+     <li><a href="../handouts/index.html">Handouts</a></li>
+     <li><a href="../practice/index.html">Practice</a></li>
+     <li><a href="../resources/index.html">Resources</a></li>
+    </ul>
+        </td>
+    </tr>
+
+    <!-- Content Area Footer -->
+    <tr height="20">
+        <td class="panel3" align="center">
+            <table class="panel2" width="95%">
+                <tr>
+                    <td align="left">
+                        &nbsp;&nbsp;<a href="libraries_p.html" class="text3">
+                        <img src="../images/Printer.gif" height="15" width="10" alt="Printer Friendly Version of this Page" />&nbsp;print this page</a>&nbsp;&nbsp;
+                    </td>
+                    <td align="right">
+                        &nbsp;&nbsp;<a href="libraries.html#top" class="text3">Top&nbsp;
+                        <img src="../images/ArrowToT.gif" height="15" width="15" alt="Go Back to the Top of this Page" /></a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <!-- Left Panel -->
+        <td class="panel1" width="700" align="center">
+            <!-- Lateral Motion Control -->
+            <table width="90%" align="center">
+                <tr>
+                    <td width="50%" align="left">
+                        <a href="libraries.html" class="text3">
+                        <img src="../images/ArrowToL.gif" height="15" width="15" class="panel1" alt="Previous Reading" />&nbsp;&nbsp;Previous: Bibliography</a>
+                    </td>
+                    <td width="50%" align="right">
+                        <a href="ascii.html" class="text3">Next: ASCII Collating Sequence&nbsp;&nbsp;
+                        <img src="../images/ArrowToR.gif" height="15" width="15" class="panel1" alt="Next Reading" /></a>
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <!-- Alternate Navigation Links -->
+            <ul id="altnav" align="center">
+            <li><a href="https://scs.senecac.on.ca">ICT</a></li>
+            <!--<li><a href="http://cs.senecac.on.ca/~bsd">BSD Home</a></li>-->
+            <li><a href="../../index.html">Home</a></li>
+            <li><script type="text/javascript" src="../outline.js"></script></li>
+            <li><a href="../timeline.html">Timeline&nbsp;</a></li>
+            </ul>
+            <ul id="altnav" align="center">
+            <li><a class="active" href="index.html">Notes</a></li>
+            <li><script type="text/javascript" src="../classroom_a.js"></script></li>
+            <li><script type="text/javascript" src="../classroom_b.js"></script></li>
+            <li><script type="text/javascript" src="../workshops.js"></script></li>
+            <li><a href="../assignments/index.html">Assignments</a></li>
+            <li><a href="../instructors/index.html">Instructor</a></li>
+            </ul>
+            <br />
+            <!-- Bottom Line -->
+            <table cellpadding=1 width="90%">
+                <tr>
+                    <td width="33%" class="text3">
+                        &nbsp;&nbsp;Designed by Chris Szalwinski&nbsp;&nbsp;
+                    </td>
+                    <td width="34%" align="center">
+                        <a href="../copyright.html" class="text3">Copying From This Site</a>
+                    </td>
+                    <td width="33%" align="right" class="text3">
+                        <script language="javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+        <!-- Logo - Right Bottom Corner -->
+        <td class=panel2 width="150" align="center">
+            <img src="../images/Logo.gif" height="73" width="85" /><br /><a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/2.5/ca/88x31.png" /></a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

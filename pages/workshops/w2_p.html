@@ -1,0 +1,381 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Workshops | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Part B - Foundations</span>
+        <br />
+        <br />
+        <span class="texthead">Compound Types</span>
+        <br />
+        <br />
+        <span class="textagend">Workshop 2</span>
+       </div>
+       <br />
+       <br />
+
+       <p>In this workshop, you are to define a compound type
+       with private data and public member functions.&#160; </p>
+       <br />
+
+       <p class="section">Learning Outcomes</p>
+
+       <p>Upon successful completion of this workshop, you will have
+       demonstrated the abilities</p>
+
+       <ul>
+        <li>to design a compound type</li>
+
+        <li>to privatize data within instances of that type</li>
+
+        <li>to access data within an instance of the compound type through
+        public member functions</li>
+       </ul>
+       <br />
+
+       <p class="section">Fraction Simplifier - All Groups</p>
+
+       <p>Design and code a compound type named <span class=code>Fraction</span>
+       that has three member functions named
+       </p>
+       <ul>
+       <li><span class=
+       "code">void set(int n, int d)</span></li>
+       <li><span class="code">void simplify()</span></li>
+       <li><span class="code">void display() const</span></li>
+       </ul>
+       <p>The <span class="code">set()</span> function accepts the
+       numerator and denomenator from the client and stores simplified
+       values in a <span class=code>Fraction</span> object.&#160;
+       The <span class="code">simplify()</span> function simplifies
+       the numerator and denominator, if possible, in a <span class=code>Fraction</span>
+       object.&#160; The <span class="code">display()</span> query displays the
+       fraction stored in a <span class=code>Fraction</span> object on
+       standard output.&#160;
+       </p>
+
+       <p>The main program that uses your compound type contains
+       the following code.&nbsp; The output from this program looks
+       something like that shown on the right.</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Workshop 2 - Fraction Simplifier
+ // w2.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Fraction.h"
+
+ int main() {
+     Fraction fraction;
+     int num, den;
+
+     cout &lt;&lt; "Fraction Simplifier" &lt;&lt; endl;
+     cout &lt;&lt; "===================" &lt;&lt; endl;
+
+     cout &lt;&lt; "Numerator   : ";
+     cin &gt;&gt; num;
+     cout &lt;&lt; "Denomenator : ";
+     cin &gt;&gt; den;
+     cout &lt;&lt; endl;
+
+     fraction.set(num, den);
+     fraction.display(fraction);
+     cout &lt;&lt; endl;
+ }
+</pre>
+         </td>
+         <td>
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+ Fraction Simplifier
+ ===================
+
+ Numerator:   4
+
+ Denominator: 16
+
+
+
+
+ 1 / 4
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>Place your definition of the <span class="code">Fraction</span>
+       type in a header file named <span class="code">Fraction.h</span>.&#160;
+       Place your member function definitions in an implementation file
+       named <span class="code">Fraction.cpp</span>.&#160;</p>
+
+       <p>For a complete solution you need to design an algorithm that simplifies
+       a fraction.&nbsp; Test several fractions to ensure that your algorithm
+       works for all cases.&nbsp; Include negative as well as zero values in your
+       test cases.</p>
+
+       <p class="ssection">Typescript - Group X only</p>
+
+       <p>On matrix, create a typescript of your complete solution
+       using the following commands:</p>
+       <table width="45%" summary="">
+        <tr>
+         <td>
+       <pre>
+ + At the prompt, type: script w2.txt
+ + At the prompt, type: whoami
+ + At the prompt, type: cat w2.cpp Fraction.h Fraction.cpp&nbsp;
+ + At the prompt, type: g++ -o w2 w2.cpp Fraction.cpp
+ + At the prompt, type: w2
+ + At the input prompt, enter some test data
+ + At the prompt, type: w2
+ + At the input prompt, enter some other test data
+ + At the prompt, type: w2
+ + At the input prompt, enter some other test data
+ + At the prompt, type: w2
+ + At the input prompt, enter some other test data
+ + At the prompt, type: exit
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>These commands will produce a file named <span class=
+       "code">w2.txt</span>.</p>
+
+       <p>Download your typescript file to your local computer.&#160;</p>
+
+       <p>For submission instructions, see the
+       <a href="w2_p.html#sub">SUBMISSION</a> section below.</p>
+       <br />
+
+       <p class="section">Unit Tests - Group Y</p>
+
+       <p>Design and code the solution described above.&nbsp; In addition, add
+       unit testing to your solution.&nbsp; Upgrade the definition of your compound type to include
+       two more queries:
+       </p>
+       <ul>
+       <li>
+       <span class=code>int numerator() const</span></li>
+       <li><span class=code>int denominator() const</span></li>
+       </ul>
+       <p>
+       The <span class=code>numerator()</span> query returns the
+       numerator stored in a <span class=code>Fraction</span> object.&nbsp;
+       The <span class=code>denomenator()</span> query returns the
+       denomenator stored in a <span class=code>Fraction</span> object.&nbsp;
+       </p>
+
+       <p>The main program that tests your compound type contains
+       the following code.&nbsp; The output from this program looks
+       something like that shown on the right.</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Workshop 2 - Fraction Simplifier
+ // w2.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Fraction.h"
+
+ int unitTests(Fraction* f) {
+
+     cout &lt;&lt; "Fraction Simplifier Tests" &lt;&lt; endl;&nbsp;
+     cout &lt;&lt; "=========================" &lt;&lt; endl;
+
+     <span class=high>// fill in code for unit tests</span>
+
+ }
+
+ int main() {
+     Fraction fraction;
+     bool passed;
+
+     passed = unitTests(&fraction);
+
+     if (passed)
+         cout &lt;&lt; "Passed All Tests" &lt;&lt; endl;
+     else
+         cout &lt;&lt; "Failed Tests" &lt;&lt; endl;
+ }
+</pre>
+         </td>
+         <td>
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+ Fraction Simplifier Tests&nbsp;
+ =========================
+ Test 1 Passed
+ Input:  4/16
+ Output: 1/4
+ Test 2 Passed
+ Input:  -4/16
+ Output: -1/4
+ Test 3 Passed
+ Input:  0/16
+ Output: 0
+ Test 4 Passed
+ Input:  0/0
+ Output: undefined
+ Test 5 Passed
+ Input:  4/0
+ Output: undefined
+ Passed All Tests
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>Place your definition of the <span class="code">Fraction</span>
+       type in a header file named <span class="code">Fraction.h</span>.&#160;
+       Place your member function definitions in an implementation file
+       named <span class="code">Fraction.cpp</span>.&#160;</p>
+
+       <p class="ssection">Typescript</p>
+
+       <p>On matrix, create a typescript of your complete solution
+       using the following commands:</p>
+       <table width="45%" summary="">
+        <tr>
+         <td>
+       <pre>
+ + At the prompt, type: script w2.txt
+ + At the prompt, type: whoami
+ + At the prompt, type: cat w2.cpp Fraction.h Fraction.cpp&nbsp;
+ + At the prompt, type: g++ -o w2 w2.cpp Fraction.cpp
+ + At the prompt, type: w2
+ + At the prompt, type: exit
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>These commands will produce a file named <span class=
+       "code">w2.txt</span>.</p>
+
+       <p>Download your typescript file to your local computer.&#160;</p>
+       <br />
+
+       <p id="sub" class="section">SUBMISSION</p>
+
+       <p class="ssection">Moodle</p>
+
+       <p>
+       Upload your typescript file to Moodle:&#160;</p>
+
+       <ul>
+        <li>Login to Moodle <script type="text/javascript" src="../classroom_a.js"></script></li>
+
+        <li>Select your course code</li>
+
+        <li>Select W2 under Assignments and Tasks</li>
+
+        <li>Upload <span class=code>w2.txt</span></li>
+
+        <li>Write a short note to your instructor
+        <ul>
+        <li>press "Edit"</li>
+        <li>enter your conclusions about this workshop in the notes textbox</li>
+        <li>press "Save Changes"</li>
+        </ul>
+
+        <li>When ready to submit, press "Send for Marking"</li>
+       </ul>
+
+       <p class="ssection">Other Submissions</p>
+
+       <p>
+       Submit your typescript file as your instructor has specified.</p>
+
+        <br />
+        <br />
+        <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

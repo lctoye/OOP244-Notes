@@ -1,0 +1,786 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml' xml:lang=
+"en-us">
+<head>
+ <meta name="generator" content=
+ "HTML Tidy for Windows (vers 25 March 2009), see www.w3.org" />
+
+ <title>Assignments | Introduction to OO
+ Programming</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta http-equiv="PICS-Label" content=
+ '(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+ <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+ <meta name="Description" content=
+ "Welcome to the ICT Programming Stream C++ Web Site. On this site you can find the introductory course to object-oriented programming. Designed by Chris Szalwinski." />
+ <meta name="Abstract" content=
+ "This subject introduces the principles of object-oriented programming. Students study the solution of problems using objects with the C++ programming language. The emphasis throughout is on the solution of small problems." />
+ <meta name="Author" content="chris.szalwinski@senecacollege.ca" />
+ <meta name="Keywords" content=
+ "software development, object-oriented programming, lecture notes" />
+ <link rel="stylesheet" type="text/css" href="../style.043.css" />
+ <link rel="stylesheet" type="text/css" href="../styleScreen.043.css"
+ media="screen" />
+ <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css"
+ media="print" />
+ <link rel="stylesheet" type="text/css" href="../styleNav.043.css" />
+ <style type="text/css">
+/*<![CDATA[*/
+ strong.c3 {text-decoration: underline}
+ a.c2 {text-decoration: underline}
+ div.c1 {text-align: center}
+ /*]]>*/
+ </style>
+</head>
+
+<body>
+ <table id="top" width="850" cellspacing="0" cellpadding="0" summary=
+ "body">
+  <!-- Banner -->
+
+  <tr class="banner">
+   <td colspan="2" class="banner">
+    <table cellspacing="0" cellpadding="0" summary="banner">
+     <tr>
+      <td class="w250 banner">
+       <div class="center">
+        <span class="text0">&#160;&#160;Software&#160;&#160;
+        <br />
+        &#160;&#160;Development&#160;&#160;</span>
+       </div>
+      </td>
+
+      <td class="tbanner"><img src="../images/Banner4.gif" height="120"
+      width="500" alt="Software Development" /></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Navigation Bar -->
+
+  <tr class="navigate">
+   <td class="panel1" align="left" valign="bottom">
+    <ul id="tabnav">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline</a></li>
+
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><a class="active" href=
+     "index.html">Assignments</a></li>
+
+     <li><script type="text/javascript" src="../instructors.js"></script></li>
+
+     <li><a href="a1_p.html"><img src="../images/Printer.gif" height=
+     "15" width="10" alt=
+     "Printer Friendly Version of this Page" /></a></li>
+    </ul>
+   </td><!-- Web Site Title -->
+
+   <td class="panel2 w150" align="center"><span class="text1"><script type=
+   "text/javascript" src="../subject.js">
+</script></span></td>
+  </tr><!-- Body Cells -->
+
+  <tr class="content">
+   <!-- Content Area -->
+
+   <td class="tbody" valign="top">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Assignment 1
+        <br />
+        <span class=high>Version 1.3</span></span>
+        <br />
+        <br />
+        <span class="texthead">EAN Processor - Procedural Version</span>
+        <br />
+        <br />
+       </div>
+       <br />
+       <br />
+
+       <p>In your first assignment, you write code that processes
+       an EAN.&#160; For your second assignment you will convert this
+       procedural code to object-oriented code.&#160;</p>
+       <br />
+
+       <p class="section">Learning Outcomes</p>
+
+       <p>Upon successful completion of this assignment, you will have
+       demonstrated the abilities to</p>
+
+       <ol>
+        <li>design an algorithm that solves a specified problem</li>
+
+        <li>overload a function for different signatures</li>
+
+        <li>compile source code consisting of several modules</li>
+       </ol>
+       <br />
+
+       <p class="section">Background</p>
+
+       <p>
+       Most bookstores use the International Article Number (EAN)
+       system to identify the books that they sell.&#160; EAN stood
+       for European Article Number before being adopted internationally.&nbsp;
+       A book's EAN is the number alongside the barcode typically found on its
+       back cover.&nbsp; Publishers assign unique EANs to each edition that
+       they publish.&#160; An EAN, once assigned, can never be re-used by
+       anyone.&#160; You can find more information on this numbering system
+       at <a class="c2" href="http://www.isbn-international.org">isbn-international.org</a>
+       and on <a class="c2" href="http://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29">Wikipedia</a>.&#160;
+       The <a href="http://www.gs1.org/barcodes/technical/company_prefix">GS1
+       organization</a> oversees the EAN identification system.</p>
+
+       <p>
+       A bookstore, when it places an order with a publisher, identifies
+       the publication being ordered by its EAN.&#160; The publisher
+       prints the EAN on the cover of each copy printed.&#160; The universal use
+       of EANs minimizes errors due to typographical mistakes or
+       confusions amongst similar titles.&#160;</p>
+
+       <p class="ssection">Structure of an EAN</p>
+
+       <p>The EAN system uses a barcode with thirteen characters.&#160;
+       The first three characters identify the application.&nbsp; In the case of
+       books these are either <span class=code>978</span> or <span class=code>979</span>.&nbsp;
+       An EAN starting with either set of digits is called a <i>Bookland</i>
+       EAN.
+       </p>
+
+       <p class="sssection">A Valid EAN</p>
+
+       <p>All of the characters in an EAN are digits between 0
+       and 9 inclusive.&#160; The rightmost digit is called the
+       check digit.&#160;</p>
+       <pre>
+ 978000319487<strong class="c3">6</strong>
+</pre>
+
+       <p>The check digit is determined as follows.&#160;
+       Every second digit from the second to the twelveth - counting from
+       left to right - is multiplied by 3.&#160; The sum of these products
+       and the remaining digits, including the check digit, must be divisible
+       without remainder by 10.&#160; If there is a remainder, the number is
+       not a valid EAN.&#160; (Other systems that use a check digit include
+       Social Insurance Numbers, Universal Product Codes and credit cards.)</p>
+
+       <p class="sssection">A Registered EAN</p>
+
+       <p>A valid EAN may or may not be registered under
+       GS1 organization.&#160; A registered EAN that meets GS1 standards
+       consists of five elements:</p>
+
+       <ol>
+        <li>a prefix element</li>
+
+        <li>a registration group or area element</li>
+
+        <li>a registrant or publisher element</li>
+
+        <li>a publication or title element</li>
+
+        <li>a check digit</li>
+       </ol>
+
+       <p>The prefix element identifies the application area.&#160; The
+       GS1 Organization assigns this element.&#160; This element consists
+       of three (3) digits.&#160; For example, the following are valid Bookland EANs</p>
+       <pre>
+ <strong class="high">978</strong> 0003194876
+ <strong class="high">978</strong> 9070002046
+ <strong class="high">978</strong> 9972000003
+</pre>
+
+       <p>The group or area identifier identifies
+       the country, region or language area participating in the EAN
+       system.&#160; This element consists of between one (1) and five
+       (5) digits inclusive.&#160; For example,</p>
+       <pre>
+ 978 <strong class="high">0</strong> 003194876
+ 978 <strong class="high">90</strong> 70002046
+ 978 <strong class="high">9972</strong> 000003
+</pre>
+
+       <p>The area element 0 stands for the English speaking region
+       of the world: Australia, English Canada, Gibraltar, Ireland,
+       (Namibia), New Zealand, Puerto Rico, South Africa, Swaziland,
+       United Kingdom, the United States of America and
+       Zimbabwe.&#160;</p>
+
+       <p>The publisher element is the third element from the
+       left.&#160; GS1 publishes ranges of publisher identifiers for
+       each area.&#160; Each national GS1 branch assigns publisher
+       identifiers within the range for its own area and maintains
+       an up-to-date register of publishers and their identifiers.&#160;
+       This element consists of between one (1) and seven (7) digits.&#160;
+       For example,</p>
+       <pre>
+ 978 0 <strong class="high">00</strong> 3194876
+ 978 90 <strong class="high">70002</strong> 046
+ 978 9972 <strong class="high">00</strong> 0003
+</pre>
+
+       <p>The title element is the fourth element from the left and
+       identifies the publication itself.&#160; Publishers themselves
+       assign a unique title identifier to each specific edition of a
+       publication.&#160; This component consists of between
+       one (1) and six (6) digits.&#160; For example,</p>
+       <pre>
+ 978 0 00 <strong class="high">319487</strong> 6
+ 978 90 70002 <strong class="high">04</strong> 6
+ 978 9972 00 <strong class="high">000</strong> 3
+</pre>
+
+       <p>Determining the different elements of a Bookland EAN is
+       complicated because the number of digits in each element
+       varies.&nbsp; However, the total number of digits in
+       the first four elements is always twelve (12).&#160; </p>
+
+       <p class="sssection">Finding the Elements of an EAN</p>
+
+       <p>
+       Finding the elements of an EAN is an iterative process.&nbsp; We
+       start with a valid EAN supplied by a client.&nbsp;
+       We test the leftmost digits until we find an area element that is
+       listed in the prefix table.&nbsp; Once we have found the area element,
+       we check the ranges of publisher identifiers in the same prefix
+       table.&#160; The upper limit of a range has the same number
+       of digits as its lower limit.&nbsp; For example, the ranges for
+       the English speaking area of the world (area 0) are:</p>
+       <pre>
+ 00 19
+ 200 699
+ 7000 8499
+ 85000 89999
+ 900000 949999
+ 9500000 9999999
+</pre>
+
+       <p>
+       Note that, for this particular area, the first publisher
+       range starts with a <strong>two</strong> digit value.&#160;
+       Publisher identifiers such as 00, 01, 03, 10, 19 are within this
+       range, while identifiers such as 0, 1, 2, 3, 9 are NOT within
+       this range.&#160; The minimum number of digits in the publisher
+       identifiers of any range can vary from area to area.&#160;</p>
+
+       <p>
+       You can find the GS1 prefix table
+        <a class="c2" href="prefixRanges.txt">here</a>.&#160; Each
+       record in this table describes one publisher range.&#160; The
+       record consists of three fields: an area element, the lowest
+       value for the publisher range and the highest value for the
+       publisher range.&#160; You have permission to use this table for
+       educational purposes only.&#160; You must obtain written
+       permission directly from GS1 for any other use.</p>
+       <br />
+
+       <p class="section">Specifications</p>
+
+       <p>Your solution to this assignment consists of two separate modules:</p>
+
+       <ul>
+        <li>GS1Prefix module</li>
+
+        <li>EAN module</li>
+       </ul>
+
+       <p>
+       The EAN module calls functions in the GS1Prefix module.&nbsp;
+       </p>
+
+       <p class="ssection">GS1Prefix Module</p>
+
+       <p>The GS1Prefix module holds and accesses the GS1 prefix table.&#160;
+       </p>
+
+       <p class="sssection">Prefix Structure</p>
+
+       <p>
+       The data structure that holds the prefix table is
+       </p>
+       <pre>
+const int MAX = 700;
+
+struct Prefix {
+    int  no;             // number of entries
+    int  area[MAX];      // area elements
+    char pubLow[MAX][8]; // low end of publisher range
+    char pubHgh[MAX][8]; // high end of publisher range
+    int  pubLen[MAX];    // no of chars in publisher string
+};</pre>
+
+       <p class="sssection">Prefix Functions</p>
+
+       <p>
+       Four functions access the prefix object:&#160;
+       </p>
+
+       <ul>
+        <li>
+        A function named <span class=code>load()</span> that
+        receives the address of a C-style, null-terminated string
+        containing the name of the file that holds the GS1 prefix data
+        and the address of a <span class=code>Prefix</span> object
+        that will store the data.&nbsp; This function opens the named
+        file and copies its data into the object.&nbsp; The function
+        returns <span class=code>true</span> if successful;
+        <span class=code>false</span> otherwise.&#160; The code is
+        as follows.&nbsp; You will learn how to write this code later
+        in the course:
+         </p>
+         <pre>
+ <span class=high>#include &lt;fstream&gt;</span>
+
+ // load copies the prefix table from filename into *p
+ //
+ bool load(const char* filename, Prefix* p) {
+     bool rc = false;
+     if (filename != nullptr) {
+         std::ifstream file(filename);
+         if (file.is_open()) {
+             int no = 0;
+             <span class=high>while (file.good()) {  // version 1.2
+                 file >> prefix->area[no] >> prefix->pubLow[no]; // version 1.3
+                 if (file.good()) {
+                    file >> prefix->pubHgh[no]; // version 1.3
+                     prefix->pubLen[no] = std::strlen(prefix->pubLow[no]);
+                     no++;
+                 }
+             }</span>
+             if (no > 0) {
+                 rc = true;
+                 prefix->no = no;
+             }
+         }
+     }
+     return rc;
+ }</pre>
+        </li>
+
+        <li>
+        A function named <span class=code>isRegistered()</span> that
+        receives the address of a <span class=code>Prefix</span> object
+        and an area element.&nbsp; This function checks if the area
+        element is registered:
+        <pre>
+ bool isRegistered(const Prefix* p, int area);
+</pre>
+
+         <p>This function returns <span class=code>true</span> if the area element is
+         listed in the prefix table; <span class=code>false</span> otherwise.&#160; </p>
+        </li>
+
+        <li>
+        A function named <span class=code>minNoDigits()</span> that
+        receives the address of a <span class=code>Prefix</span> object
+        and an area element.&nbsp; This function determines
+        the minimum number of digits in a publisher element
+        registered under that area
+         <pre>
+ int minNoDigits(const Prefix* p, int area);
+</pre>
+
+         <p>
+         This function returns the minimum number of digits in a
+         publisher element for the area if successful; zero (0)
+         otherwise.&#160;</p>
+        </li>
+
+        <li>
+        A function named <span class=code>isRegistered()</span> that
+        receives the address of a <span class=code>Prefix</span> object,
+        an area element, and a publisher element.&nbsp; This function
+        checks if the publisher element is within one of the ranges
+        listed in the table under the specified area
+        <pre>
+ bool isRegistered(const Prefix* p, int area, const char* publisher);
+</pre>
+
+         <p>This function returns <span class=code>true</span> if the area is listed <u>and</u>
+         the publisher falls within one of the ranges listed in the
+         prefix table; <span class=code>false</span> otherwise.&#160; Note that the area
+         parameter is of <span class="code">int</span> data type, while
+         the publisher parameter receives the address of a string.&#160;</p>
+         <p>
+         For example, consider the publisher ranges for area <span class=code>0</span>
+         </p>
+         <pre>
+ 0 00 19
+ 0 200 699
+ 0 7000 8499
+ 0 85000 89999
+ 0 900000 949999
+ 0 9500000 9999999&nbsp;
+         </pre>
+         <p>
+         The call <span class="code">isRegistered(fp, 0, "02")</span>
+         returns <span class=code>true</span>,&nbsp;<br />
+         while the call <span class="code">isRegistered(fp, 0, "2")</span>
+         returns <span class=code>false</span>.</p>
+        </li>
+       </ul>
+
+       <p>Store the structure definition and the function prototypes in
+       a header file named <span class="code">GS1Prefix.h</span> and the
+       function definitions in an implementation file named <span class=
+       "code">GS1Prefix.cpp</span>.</p>
+
+       <p class="ssection">EAN Module</p>
+
+       <p>The EAN module processes EAN strings.&#160; This module includes two
+       functions for interpreting a C-style, null-terminated string:</p>
+
+       <ul>
+        <li>
+        A function named <span class=code>isValid()</span> that receives the address of a C-style
+        null-terminated string and determines if the string is a valid EAN
+         <pre>
+ <span class=high>bool</span> isValid(const char* str);
+</pre>
+
+         <p>
+         If the string contains 13 characters, all of characters
+         are digits and the check digit is modulo 10, this
+         function returns <span class=code>true</span>;
+         <span class=code>false</span> otherwise.&#160;</p>
+        </li>
+
+        <li>
+        A function named <span class=code>isRegistered()</span>  that checks if an EAN string is
+        registered and, if so, extracts its area, publisher, and title elements
+         <pre>
+ <span class=high>bool</span> isRegistered(const Prefix* p, const char* str, char area[],
+  char publisher[], char title[]);
+</pre>
+
+         <p>This function receives the address of a <span class=code>Prefix</span>
+         object, the address of a C-style, null-terminated string containing a
+         valid EAN, the address of a C-style null-terminated string that
+         upon success will contain the area element, the address of a C-style,
+         null-terminated string that upon success will contain the publisher
+         element, and the address of a C-style, null-terminated string that upon
+         success will contain the title element.&#160; This function
+         determines if the string is a registered EAN.&#160; If the function
+         finds that the string pointed to by the second parater is a registered
+         EAN, the function passes the area, publisher and title elements through the parameter
+         list and returns <span class=code>true</span>; otherwise, the
+         function does not pass any information through the parameter
+         list and returns <span class=code>false</span>.&#160;
+         <br />
+         <br />
+         This function contains the most complicated algorithm in this
+         assignment.&nbsp; Ask your instructor for help in constructing
+         this algorithm.&nbsp; One approach is to simulate the search
+         that you would perform if you were to determine registration
+         visually by examining the table without a computer.&nbsp; Such
+         an approach might involve searching the area elements in the table
+         followed by a second search of the publisher ranges for an area
+         that has been found in the able; that is, an iteration followed
+         by a second iteration.&nbsp; Use the functions of the GS1Prefix
+         module to simplify each search.
+         <br />
+         &#160;</p>
+        </li>
+       </ul>
+
+       <p>Store your function prototypes in a header file named
+       <span class="code">EAN.h</span> and your function definitions
+       in an implementation file named <span class=
+       "code">EAN.cpp</span>.</p>
+
+       <p class="ssection">Sample Run</p>
+
+       <p>You can find a client program that uses your functions <a href=
+       "a1main.cpp">here</a>.&#160; This client program is
+       especially useful for debugging logic with respect to a particular
+       EAN string.&nbsp; To compile this program
+       with your two modules, use the command:</p>
+       <pre>
+ g++ <span class=high>-std=c++0x</span> a1main.cpp GS1Prefix.cpp EAN.cpp
+</pre>
+
+       <p>The output from a sample run might look something like:</p>
+       <pre>
+ EAN Processor
+ ==============
+
+ EAN (0 to quit) : 9789070002046
+  Area           : 90
+  Publisher      : 70002
+  Title          : 04
+
+ EAN (0 to quit) : 9780003194875
+  Invalid check digit. Try again.
+
+ EAN (0 to quit) : 978000319487
+  Incorrect number of digits. Try again.
+
+ EAN (0 to quit) : 9780003194876
+  Area           : 0
+  Publisher      : 00
+  Title          : 319487
+
+ EAN (0 to quit) : 9789972000003
+  Area           : 9972
+  Publisher      : 00
+  Title          : 000
+
+ EAN (0 to quit) : 9789995500009
+  This EAN is not registered
+
+ EAN (0 to quit) : 0
+
+ Signing off ...
+</pre>
+
+       <p>
+       Testing each of your functions is important and necessary work.&#160;
+       If your instructor has indicated that the official assignment test
+       program (see below) will be released shortly before the due date,
+       you should start to test your work earlier yourself.&nbsp; Otherwise,
+       you may find insufficient time to fix all of the bugs by the due date.&#160;
+       </p>
+       <br />
+
+       <p class="section">Submission</p>
+
+       <p>
+       A file containing a main function to test your classes is
+       posted <a href="a1test.cpp">here</a>.&#160;
+       Copy this file into your assignment directory, re-compile
+       your class modules with this file and run the executable.</p>
+
+       <p>Once the executable indicates that you may submit your
+       program, create a typescript using the following commands:</p>
+       <pre>
+ + At the prompt, type: script a1.txt
+ + At the prompt, type: whoami
+ + At the prompt, type: cat GS1Prefix.h
+ + At the prompt, type: cat GS1Prefix.cpp
+ + At the prompt, type: cat EAN.h
+ + At the prompt, type: cat EAN.cpp
+ + At the prompt, type: g++ <span class=high>-std=c++0x</span> a1test.cpp GS1Prefix.cpp EAN.cpp
+ + At the prompt, type: a.out
+ + At the prompt, type: cat a1main.cpp
+ + At the prompt, type: g++ <span class=high>-std=c++0x</span> a1main.cpp GS1Prefix.cpp EAN.cpp
+ + At the prompt, type: a.out
+ + At each input prompt, enter the data for the sample run shown above.
+ + At the prompt type: exit
+
+</pre>
+
+       <p>
+       These commands will produce a file named <span class=
+       "code">a1.txt</span>.&nbsp; Submit this file according to your
+       professor's instructions along with any other information your
+       professor has requested.</p>
+
+       <p>
+       Assignments that are submitted after the due date will attract
+       a 10% late penalty per school day to a maximum deduction of 50%.</p>
+
+       <!--<table cellpadding=2 cellspacing=2 border=1>-->
+       <!--<tr>
+       <td width="40%">Received On or After</td>
+       <td width="40%">Received On or Before</td>
+       <td width="20%">Penalty</td>
+       </tr>
+       <tr>
+       <td>June 24 24:00:00</td>
+       <td>June 27 23:59:59</td>
+       <td>10%</td>
+       </tr>
+       <tr>
+       <td>June 27 24:00:00</td>
+       <td>June 28 23:59:59</td>
+       <td>20%</td>
+       </tr>
+       <tr>
+       <td>June 28 24:00:00</td>
+       <td>June 29 23:59:59</td>
+       <td>30%</td>
+       </tr>
+       <tr>
+       <td>June 29 24:00:00</td>
+       <td>June 30 23:59:59</td>
+       <td>40%</td>
+       </tr>
+       <tr>
+       <td>June 30 24:00:00</td>
+       <td>...</td>
+       <td>50%</td>
+       </tr>
+       </table>-->
+
+       <p>
+       If you submit an assignment that does not pass all of the tests,
+       you will be asked to fix your code and to resubmit, in which case
+       you will receive an assignment mark no higher than 50% of the mark
+       allocated for this assignment.</p>
+
+       <p>
+       Regardless of how long it takes you to complete this assignment,
+       you will need to submit a completed version in order to pass this
+       course.</p>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+   </td><!-- Detail Menu -->
+
+   <td class="panel1 w150" valign="top" rowspan="2">
+    <ul id="mennav">
+     <li><a href="../welco.html">Welcome</a></li>
+
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+     <li><script type="text/javascript" src="../assignments.a.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_1.a.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_2.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_3.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_4.js"></script></li>
+     <li><script type="text/javascript" src="../assignment_5.js"></script></li>
+
+     <li><a href="../handouts/index.html">Handouts</a></li>
+
+     <li><a href="../practice/index.html">Practice</a></li>
+
+     <li><a href="../resources/index.html">Resources</a></li>
+
+     <!--<li><a href="../content/glossary.html">Glossary</a></li>-->
+    </ul>
+   </td>
+  </tr><!-- Content Area Footer -->
+
+  <tr class="navigate">
+   <td class="panel3" align="center">
+    <table class="panel2" width="95%" summary="footer">
+     <tr>
+      <td align="left">&#160;&#160; <a href="a1_p.html" class=
+      "text3"><img src="../images/Printer.gif" height="15" width="10"
+      alt="Printer Friendly Version of this Page" />&#160;print this
+      page</a>&#160;&#160;</td>
+
+      <td align="right">&#160;&#160;<a href="a1.html#top" class=
+      "text3">Top&#160; <img src="../images/ArrowToT.gif" height="15"
+      width="15" alt="Go Back to the Top of this Page" /></a></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Footer -->
+
+  <tr>
+   <!-- Left Panel -->
+
+   <td class="panel1 lateral center">
+    <!-- Lateral Motion Control -->
+    <!--<table width="90%" class="center" summary="previous next">
+                <tr>
+                    <td class="half" align="left">
+                        <a href="datat.html" class="text3">
+                        <img src="../images/ArrowToL.gif" height="15" width="15" class="panel1" alt="Previous Reading" />&nbsp;&nbsp;Previous: Primitive Data Types</a>
+                    </td>
+                    <td class="half" align="left">
+                        <a href="modul.html" class="text3">Next: Modular Programs&nbsp;&nbsp;
+                        <img src="../images/ArrowToR.gif" height="15" width="15" class="panel1" alt="Next Reading" /></a>
+                    </td>
+                </tr>
+            </table>-->
+
+    <br />
+    <br />
+    <!-- Alternate Navigation Links -->
+
+    <ul id="altnav" class="center">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+     <!--<li><a href="https://cs.senecac.on.ca/~bsd">BSD Home</a></li>-->
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline&#160;</a></li>
+    </ul>
+
+    <ul id="altnav2" class="center">
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><a class="active" href=
+     "index.html">Assignments</a></li>
+
+     <li><script type="text/javascript" src="../instructors.js"></script></li>
+    </ul>
+    <br />
+    <!-- Bottom Line -->
+
+    <table cellpadding="1" width="90%" summary="bottom line">
+     <tr>
+      <td class="w33 text3">&#160;&#160;Designed by Chris
+      Szalwinski&#160;&#160;</td>
+
+      <td class="w33 center"><a href="../copyright.html" class=
+      "text3">Copying From This Site</a></td>
+
+      <td class="w33 text3" align="right">
+       <script type="text/javascript">
+//<![CDATA[
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+       //]]>
+       </script>&#160;&#160;
+      </td>
+     </tr>
+    </table>
+   </td><!-- Logo - Right Bottom Corner -->
+
+   <td class="panel2 w150" align="center"><img src="../images/Logo.gif"
+   alt="Logo" height="73" width="85" /><br /><a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/2.5/ca/88x31.png" /></a></td>
+  </tr>
+ </table>
+</body>
+</html>

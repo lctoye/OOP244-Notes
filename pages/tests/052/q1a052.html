@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+	<title>Seneca | Computer Studies | The Object-Oriented Paradigm Using C++</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+	<meta name="Copyright" content="(c) Copyright Seneca College 2005" />
+	<meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+	<meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+	<meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+	<meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/style.043.css">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleScreen.043.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleSPrint.043.css" media="print">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleNav.043.css">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+
+	<!-- Body Cell -->
+	<tr height="600">
+		<!-- Content Area -->
+		<td class="tbody" bgcolor="ffffff">
+			<table cellpadding="10" width="100%">
+				<tr>
+					<td bgcolor="ffffff" valign="top">
+
+					<span class=texthead>
+					<center>Quiz 1 - Jun 3 2005</center>
+					</span>
+					<br />
+					<br />
+
+					<p>
+					What is the exact output of the following program?
+					<pre>
+ #include &lt;iostream&gt;
+ #include &lt;iomanip&gt;
+ #include &lt;cstring&gt;
+ using namespace std;
+ #define NEN 3
+ #define NN  5
+ #define NE  3
+ #define NC  3
+
+ struct Node {
+ private:
+     int label;
+     int x;
+     int y;
+ public:
+     void set(const char*);
+     int getLabel() const {return label;}
+     void display() const;
+ };
+
+ struct Element {
+ private:
+     char label[NC];
+     int noOfNodes;
+     int node[NEN];
+ public:
+     void set(const char*, int, int, int);
+     int nNodes() const {return noOfNodes;}
+     int getLabel(int) const;
+     void display() const;
+ };
+
+ struct Mesh {
+ private:
+     int nNodes;
+     Node node[NN];
+     int nElements;
+     Element element[NE];
+     int index(int) const;
+ public:
+     void start() {nNodes = 0; nElements = 0;}
+     void set(const char*);
+     void set(const char*, int, int, int);
+     void display() const;
+ };
+
+ int main() {
+     Mesh mesh;
+
+     mesh.start();
+     mesh.set("1 0 0");
+     mesh.set("2 1 0");
+     mesh.set("3 1 1");
+     mesh.set("4 0 1");
+     mesh.set("5 1 2");
+     mesh.set("1", 1, 2, 3);
+     mesh.set("2", 1, 3, 4);
+     mesh.set("3", 4, 3, 5);
+     mesh.display();
+
+     return 0;
+ }
+
+ void Node::set(const char* s) {
+     bool empty;
+     char c;
+     int i, k, v;
+
+     empty = true;
+     i = 0;
+     k = 0;
+     v = 0;
+     while ((c = s[i]) != '\0') {
+         if (c == ' ')
+             if (!empty) {
+                 switch (k) {
+                 case 0: label = v; break;
+                 case 1: x = v; break;
+                 case 2: y = v; break;
+                 }
+                 empty = true;
+                 k++;
+                 v = 0;
+             }
+         else {
+             v = 10 * v + c - '0';
+             empty = false;
+         }
+         i++;
+     }
+ }
+
+ void Node::display() const {
+     cout &lt;&lt; setw(4) &lt;&lt; x &lt;&lt; setw(4) &lt;&lt; y
+          &lt;&lt; ' ' &lt;&lt; label &lt;&lt; endl;
+ }
+
+ void Element::set(const char* s, int na, int nb, int nc) {
+     strcpy(label, s);
+     node[0] = na;
+     node[1] = nb;
+     node[2] = nc;
+     noOfNodes = 3;
+ }
+
+ int Element::getLabel(int i) const {return node[i];}
+
+ void Mesh::set(const char* s) {
+     node[nNodes].set(s);
+     nNodes++;
+ }
+
+ void Mesh::set(const char* s, int na, int nb, int nc) {
+     element[nElements].set(s, na, nb, nc);
+     nElements++;
+ }
+
+ int Mesh::index(int i) const {
+     int found = 0;
+     for (int k = 0; k &lt; nNodes; k++)
+         if (i == node[k].getLabel()) {
+             found = k;
+             k = NN;
+         }
+     return found;
+ }
+
+ void Mesh::display() const {
+     for (int i = 0; i &lt; nElements; i++) {
+         for (int j = 0; j &lt; element[i].nNodes(); j++)
+             node[index(element[i].getLabel(j))].display();
+         node[index(element[i].getLabel(0))].display();
+         cout &lt;&lt; endl;
+     }
+ }</pre>
+					    Show your output here:
+					    <br />
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    Show your rough work on a separate page.
+					    </p>
+						</br>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+	<!-- Footer -->
+	<tr>
+		<td class="tbody">
+			<table cellpadding="1" width="90%" align="center">
+				<tr>
+					<td width="50%" class="text3">
+						<script language="javascript">
+						var lh = document.location.href;
+						document.write(lh)
+						</script>&nbsp;&nbsp;
+					</td>
+					<td width="50%" align="right" class="text3">
+						<script language="javascript">
+						var lm = document.lastModified.slice(0,-3);
+						document.write("Last Modified: " +lm)
+						</script>&nbsp;&nbsp;
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

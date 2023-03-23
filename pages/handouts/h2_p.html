@@ -1,0 +1,319 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Exercises | Intro to C++  </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">In-Class Exercise</span>
+        <br />
+        <br />
+        <span class="texthead">Member Functions and Privacy</span>
+       </div>
+       <br />
+       <br />
+
+       <p>This exercise hides the data members and
+       provides access to them through public member functions.</p>
+       <br />
+
+       <p class="section">Given Information</p>
+
+       <p>The following code is a solution to the Handout on
+       <a href="h1.html">Basic Concepts</a>.</p>
+
+       <p class="ssection">Client Module</p>
+
+       <p class="sssection">h1.h</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Basic Concepts
+ // h1.h
+
+ #define NO_TRANSACTIONS 3
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">h1.cpp</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Basic Concepts
+ // h1.cpp
+
+ #include "h1.h"
+ #include "Transaction.h"
+
+ int main() {
+     Transaction tr;
+
+     for (int i = 0; i &lt; NO_TRANSACTIONS; i++) {&nbsp;
+         enter(tr);
+         display(tr);
+     }
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Transaction Module</p>
+
+       <p class="sssection">Transaction.h</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Basic Concepts
+ // Transaction.h
+
+ struct Transaction {
+     int acct;
+     char type;
+     double amount;
+ };
+
+ void enter(Transaction&amp; tr);
+ void display(const Transaction&amp; tr);&nbsp;
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Transaction.cpp</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Basic Concepts
+ // Transaction.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Transaction.h"
+
+ void enter(Transaction&amp; tr) {
+
+     cout &lt;&lt; "Enter the account number : ";
+     cin  &gt;&gt; tr.acct;
+     cout &lt;&lt; "Enter the account type (d for debit, c for credit) : ";
+     cin  &gt;&gt; tr.type;
+     cout &lt;&lt; "Enter the account amount : ";
+     cin  &gt;&gt; tr.amount;
+ }
+
+ void display(const Transaction&amp; tr) {
+
+     cout &lt;&lt; "Account " &lt;&lt; tr.acct;
+     cout &lt;&lt; ((tr.type == 'd') ? " Debit $" : " Credit $") &lt;&lt; tr.amount;&nbsp;
+     cout &lt;&lt; endl;
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">Your Task</p>
+
+       <p>Convert the global functions into public member functions and the global calls into
+       calls on Transaction objects.
+       </p>
+
+       <p class="ssection">Transaction Module</p>
+
+       <p class="sssection">Transaction.h</p>
+
+       <p>The header file for your Transaction
+       module identifies the <span class="code">enter()</span> and
+       <span class="code">display()</span> functions as public member functions
+       and the data members as private.</p>
+
+       <p>Update your definition of a <span class="code">Transaction</span>:</p>
+       <ol>
+       <li>convert the global <span class=
+       "code">enter()</span> and <span class="code">display()</span>
+       functions into <span class="code">public</span> member functions</li>
+       <li>identify the data members as <span class=
+       "code">private</span></li>
+       </ol>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Member Functions and Privacy
+ // Transaction.h
+
+ struct Transaction {
+
+
+     int acct;
+     char type;
+     double amount;
+
+
+
+
+
+
+ };
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Transaction.cpp</p>
+
+       <p>The implementation file for the Transaction module
+       contains the definitions of the two member functions.&nbsp;</p>
+       <ol>
+       <li>complete the function headers</li>
+       <li>refer to the data members directly</li>
+       </ol>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Member Functions and Privacy
+ // Transaction.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Transaction.h"
+
+ void                                {
+
+     cout &lt;&lt; "Enter the account number : ";
+     cin  &gt;&gt;                              ;
+     cout &lt;&lt; "Enter the account type (d for debit, c for credit) : ";
+     cin  &gt;&gt;                              ;
+     cout &lt;&lt; "Enter the account amount : ";
+     cin  &gt;&gt;                              ;
+ }
+
+ void                                             {
+
+     cout &lt;&lt; "Account " &lt;&lt;                       ;
+     cout &lt;&lt; ((        == 'd') ? " Debit $" : " Credit $") &lt;&lt;         ;&nbsp;
+     cout &lt;&lt; endl;
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Client Module</p>
+
+       <p>The client program now calls member functions
+       on the <span class="code">Transaction</span> object:</p>
+       <ol>
+       <li>replace the global function calls with calls to the member functions</li>
+       </ol>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Member Functions and Privacy
+ // h2.cpp
+
+ #include "h2.h"
+ #include "Transaction.h"
+
+ int main( ) {
+     Transaction tr;
+
+     for (int i = 0; i &lt; NO_TRANSACTIONS; i++) {&nbsp;
+
+
+
+     }
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Note on Encapsulation</p>
+
+       <p>In this example the calls to the member functions
+       have no arguments.&#160; The internal aspects of each <span class=
+       "code">Transaction</span> are completely hidden from the
+       client module.&#160; This is one aspect of encapsulation.&#160;
+       We can change the names and the order of the data members within
+       the Transaction module without having to modify any code within
+       any client module.</p>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>-->
+</table>
+
+</body>
+</html>

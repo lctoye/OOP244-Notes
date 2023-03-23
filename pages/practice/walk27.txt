@@ -1,0 +1,51 @@
+/* Problem 27 */
+	    #include <iostream>
+	    using namespace std;
+	    class last3 {
+		int nums[3];
+		int cnt;
+		int st;
+	      public:
+		last3() { cnt = st = 0; }
+		void store(int);
+		void show();
+	    };
+	    class whazzit: public last3 {
+		int skipped;
+	      public:
+		whazzit() { skipped = 0; }
+		void store(int);
+	    };
+	    void last3::store(int  n) {
+		cout << "In first store (" << n << ")\n";
+		if (cnt == 3)          // Hint:
+		    st = (st + 1) % 3; // recall that x%3 
+		else                   // is between 0 and 2
+		    cnt++;
+		nums[(st + cnt - 1) % 3] = n;
+	    }
+	    void last3::show() {
+		for (int i = 0; i < cnt; i++)
+		    cout << i + 1 << ':' << nums[(st + i) % 3] << ' ';
+		cout << '\n';
+	    }
+	    void whazzit::store(int n) {
+		if (n >= 0 && n <= 15)
+		    last3::store(n);
+		else
+		    skipped++;
+		cout << "In second store (" << n << "): " << skipped << 
+		 " skipped so far\n";
+	    }
+	    int main() { last3 a;
+			 whazzit b;
+			 for (int i = -3; i < 30; i += 7) {
+			     a.store(i);
+			     b.store(i);
+			 }
+			 cout << "The last3 variable is ";
+			 a.show();
+			 cout << "And the whazzit variable is ";
+			 b.show();
+			 return 0;
+		       }

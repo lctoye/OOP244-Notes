@@ -1,0 +1,96 @@
+	32. A. Create a class, called a "transaction", designed to store
+	    a customer's credit card transaction. A transaction has  the
+	    following characteristics:
+
+	      - when a transaction is created, a dollar amount  (double)
+		and a transaction type (char: 'c' for a new charge,  'p'
+		for a payment, 's' for service charge) must be specified
+		(by the program creating the transaction).
+
+	      - a transaction has two member functions,
+		    double amount()
+		    char type()
+		which return the dollar amount and the transaction type,
+		respectively.
+
+	      - a transaction may be displayed using the << operator  to
+		write to an ostream, in which case something in the same
+		format as the following appears:
+		    New Charge: $ 300.24
+		or
+		    Payment: $ 1000.00
+		or
+		    Service Charge: $ 0.50
+		depending, of course, on the type of transaction and its
+		amount.
+
+	      - a transaction may be added to a double, or  vice  versa,
+		using the + operator, where the result of  the  addition
+		is a double. The result is the original double minus the
+		transaction amount, if the transaction is a payment,  or
+		the  original  double  plus   the   transaction   amount
+		otherwise.
+
+
+	    B. Create another class, call an "account", which  simulates
+	    a  credit  card  account.  An  account  has  the   following
+	    characteristics:
+
+	      - when an account is created, a 10-character long  account
+		"number" and  a  dollar  amount,  specifying  a  "credit
+		limit", must be specified. A new account  always  has  a
+		balance of zero.
+
+	      - an account has three member functions,
+		  double balance()
+		  void acctno(char s[])
+		  double limit()
+		which return the current balance  of  the  account,  the
+		account number, and the credit limit,  respectively.  In
+		the acctno function, the account number is sent back  by
+		copying it into the parameter, s, as  a  null-terminated
+		string.
+
+	      - an account also has a member function,
+		    void limit(double x) which resets the  credit  limit
+		to be the amount specified in x.
+
+	      - an account can have  a  transaction  (see  the  previous
+		question for a description of  what  a  transaction  is)
+		added to it using the += operator (the  account  is  the
+		left argument and a transaction is the right  argument),
+		in which case the account's  current  balance  gets  the
+		transaction added to it, as long as the new balance does
+		not exceed the credit limit. If the  new  balance  would
+		exceed the credit limit, the current  balance  does  not
+		get changed.
+
+		Note that for this part of  the  question,  you  are  to
+		assume that  the  transaction  class  has  been  written
+		properly according to its specifications. Your marks for
+		this question do not  depend  on  your  answer  for  the
+		previous question.
+
+	      - an account can be displayed to an ostream using  the  <<
+		operator, with  the  following  format  (where  in  this
+		example the account number is  1123111234,  the  current
+		balance is 1400.25 and the credit limit is 2500):
+
+		Account 1123111234: $ 1400.25 (remaining: 1099.75)
+
+	    C. Write a program that uses the account class (from part B)
+	    and the transaction class (from part A).  This  program  has
+	    the user enter the initial information for an  account,  and
+	    then repeatedly gives the user the following choice:
+
+	      1. Charge something new to the account
+	      2. Apply a service charge to the account
+	      3. Make a payment to the account
+	      4. Change the credit limit
+	      5. Quit the program.
+
+	    After making selections 1-4, the user is asked to enter  the
+	    amount for the  transaction,  which  is  then  appropriately
+	    applied to the account. The account is displayed after  each
+	    change. The  program  finally  stops  when  selection  5  is
+	    chosen.

@@ -1,0 +1,344 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<span lang="en-us" xmlns='http://www.w3.org/1999/xhtml'><p>
+<head>
+	<title>Seneca | Computer Studies | The Object-Oriented Paradigm Using C++</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+	<meta name="Copyright" content="(c) Copyright Seneca College 2005" />
+	<meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+	<meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+	<meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+	<meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/style.043.css">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleSPrint.043.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/stylePPrint.043.css" media="print">
+</head>
+
+<span><p>
+
+<table cellspacing="0" cellpadding="0">
+
+	<!-- Body Cell -->
+	<tr height="600">
+		<!-- Content Area -->
+		<td class="tbody" bgcolor="ffffff">
+			<table cellpadding="10" width="100%">
+				<tr>
+					<td bgcolor="ffffff" valign=top>
+					<center><span class=texthead>
+					Test 1 - June 21 2006</span><br />
+					<br />
+					</center>
+					<br />
+					Name __________________________________ Student Number ____________
+					<br />
+
+					<p class="section">Notes:</p>
+					<p>
+					<ul>
+					<li>This test has 2 pages and lasts two full periods</li>
+					<li>This test is out of 20 marks and is worth 15% of your final grade</li>
+					<li>There are 2 questions in this paper - attempt both of them</li>
+					<li>Each question is of equal weight in marks (10 each)</li>
+					<li>Answer all questions in the exam booklet provided</li>
+					<li>Hand in this test paper with your answer booklet</li>
+					<li>You may use your copy of the lecture notes, the subject notes, one textbook and one study sheet both sides</li>
+					<li>You may use a non-programmable, non-messaging calculator</li>
+					<li>You may use a paper foreign-language dictionary</li>
+					</ul>
+					</p>
+					<br />
+
+					<p class="section">Question 1 - Word Problem - (10 marks):</p>
+					<p>
+					Design and code a class named <span class=code>Flight</span>
+					that holds information about an airline flight.&nbsp;
+					Upon instantiation, a <span class=code>Flight</span>
+					object may receive an <span class=code>int</span> holding
+					the flight number, and a null-terminated C-style string
+					holding the flight destination.&nbsp; The flight number
+					should be positive-valued.&nbsp;
+					If the object receives a valid number and a string, the
+					object accepts both.&nbsp; Otherwise, the object assumes
+					a safe empty state.&nbsp; The object adopts a default output
+					width of ten (10) characters for the flight number.&nbsp;
+					Your class does not impose any limitation on the number of
+					characters in a <span class=code>Flight</span> object.&nbsp;
+					Your design includes all of the member functions needed to
+					accomodate this feature under a variety of applications,
+					including the one below.
+					</p>
+					<p>
+					Your class also includes the following functions:
+					<ul>
+					<li><span class=code>const char* destination() const</span>
+					- a query that returns the address of the first non-whitepsace
+					character in the description of the <span class=code>Flight</span>
+					object;</li>
+					<li><span class=code>int number() const</span> - a query that
+					returns the flight number; and</li>
+					<li><span class=code>Flight& width(int)</span> - a modifier
+					that changes the width of the output field for the flight
+					number to the integer value received if that value is a
+					greater than that needed to display fully the flight number;
+					if the integer value received is invalid, your object reverts
+					to the default number of characters for the class.&nbsp;
+					Your function returns a reference to the current object as
+					modified, so that your function can be used to insert the
+					current object into the output stream directly as shown
+					below; and
+					</li>
+					<li>an insertion operator that inserts the flight number
+					followed by the flight description into an output stream.&nbsp;
+					Your operator displays the flight number left-justified
+					in the current field width, followed by a trailing space
+					and the flight description.&nbsp; Your operator accepts
+					cascading.&nbsp;</li>
+					</ul>
+					For example, consider the following program that uses
+					your class
+					<table width="45%">
+					<tr>
+					<td>
+					<br />
+					<pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Flight.h"
+
+ void display(Flight flight) {
+
+     cout &lt;&lt; flight.width(2) &lt;&lt; endl;
+
+ }
+
+ int main ( ) {
+     Flight f, g(857, "Toronto");&nbsp;
+
+     cout &lt;&lt; g.width(9) &lt;&lt; endl;
+     f = g;
+     display(f);
+     cout &lt;&lt; f.number() &lt;&lt; endl;
+     cout &lt;&lt; f.description() &lt;&lt; endl;
+     return 0;
+ } </pre><br /></td></tr></table>
+ 					This program produces the following output
+					<table width="45%">
+					<tr>
+					<td>
+					<br />
+					<pre class=result>
+ 857       Toronto
+ 857        Toronto
+ 857
+ Toronto
+ </pre><br /></td></tr></table>
+					</p>
+					<br />
+
+					<p class="section">Question 2 - Walkthrough - (10 marks):</p>
+					<p>
+					What is the exact output of the following program?&nbsp; Show your
+					rough work to avoid deductions.
+					<table width="45%">
+					<tr>
+					<td>
+					<pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+
+ #define GST 0.07
+ #define PST 0.08
+
+ class Total; // tells compiler Total will be defined below&nbsp;
+
+ class SaleLineItem {
+     int quantity;
+     double unitPrice;
+     char taxable;
+ public:
+     SaleLineItem();
+     SaleLineItem(int, double, char);
+     ~SaleLineItem();
+     void operator++();
+     void operator++(int);
+     Total display() const;
+ };
+
+ class Total {
+     double total;
+     double gst;
+     double pst;
+     double subtotal;
+ public:
+     Total();
+     Total(double, char);
+     Total(const Total& t);
+     void operator+=(Total);
+     void display() const;
+     ~Total();
+ };
+
+ class Sale {
+     SaleLineItem item[4];
+     int noItems;
+ public:
+     Sale();
+     void display() const;
+     void operator+=(const SaleLineItem& item);
+     ~Sale();
+ };
+
+ int main ( ) {
+     SaleLineItem item[3];
+     item[0] = SaleLineItem(3, 1.50, '-');
+     item[1] = SaleLineItem(2, 0.50, 'b');
+     item[2] = SaleLineItem(1, 2.00, 'g');
+
+     Sale sale;
+     for (int i = 0; i &lt; 3; i++)
+         sale += item[i];
+     sale.display();
+     item[1]++;
+
+     return 0;
+ }
+
+ Sale::Sale() {
+     noItems = 0;
+     cout &lt;&lt; " S: " &lt;&lt; endl;
+ }
+
+ void Sale::display() const {
+     Total total;
+
+     cout &lt;&lt; "Sale Receipt" &lt;&lt; endl;
+     for (int i = 0; i &lt; noItems; i++)
+         total += item[i].display();
+     total.display();
+     cout &lt;&lt; "------------" &lt;&lt; endl;
+ }
+
+ void Sale::operator+=(const SaleLineItem& lineItem) {
+     item[noItems++] = lineItem;
+ }
+
+ Sale::~Sale() {
+     cout &lt;&lt; "~S: " &lt;&lt; noItems &lt;&lt; endl;
+ }
+
+ SaleLineItem::SaleLineItem() {
+     quantity = 0;
+     unitPrice = 0.0;
+     taxable = ' ';
+ }
+
+ SaleLineItem::SaleLineItem(int q, double u, char t) {
+     quantity = q;
+     unitPrice = u;
+     taxable = t;
+ }
+
+ void SaleLineItem::operator++() {
+     quantity += 2;
+ }
+
+ void SaleLineItem::operator++(int) {
+     quantity++;
+ }
+
+ SaleLineItem::~SaleLineItem() {
+     cout &lt;&lt; "~L: " &lt;&lt; quantity &lt;&lt; endl;
+ }
+
+ Total SaleLineItem::display() const {
+     double price = quantity * unitPrice;
+
+     cout &lt;&lt; "SR: ";
+     cout &lt;&lt; quantity &lt;&lt; '@' &lt;&lt; unitPrice &lt;&lt; " = "
+      &lt;&lt; price&lt;&lt; ' ' &lt;&lt; taxable &lt;&lt; endl;
+     Total total(price, taxable);
+     return total;
+ }
+
+ Total::Total() {
+     subtotal = 0;
+     gst      = 0;
+     pst      = 0;
+     total    = 0;
+     cout &lt;&lt; " T: " &lt;&lt; endl;
+ }
+
+ Total::~Total() {
+     cout &lt;&lt; "~T: " &lt;&lt; total &lt;&lt; endl;
+ }
+
+ Total::Total(const Total& t) {
+     subtotal = t.subtotal;
+     gst      = t.gst;
+     pst      = t.pst;
+     total    = t.total;
+     cout &lt;&lt; "CT: " &lt;&lt; total &lt;&lt; endl;
+ }
+
+ Total::Total(double s, char t) {
+     subtotal = s;
+     if (t == 'g' || t == 'b')
+         gst      = GST * s;
+     else
+         gst = 0;
+     if (t == 'p' || t == 'b')
+         pst      = PST * s;
+     else
+         pst = 0;
+     total    = s + gst + pst;
+     cout &lt;&lt; " T: " &lt;&lt; total &lt;&lt; endl;
+ }
+
+ void Total::display() const {
+
+     cout &lt;&lt; "SR: " &lt;&lt; subtotal &lt;&lt; endl;
+     cout &lt;&lt; "SR: " &lt;&lt; gst &lt;&lt; endl;
+     cout &lt;&lt; "SR: " &lt;&lt; pst &lt;&lt; endl;
+     cout &lt;&lt; "SR: " &lt;&lt; total &lt;&lt; endl;
+ }
+
+ void Total::operator+=(Total t) {
+     subtotal += t.subtotal;
+     gst      += t.gst;
+     pst      += t.pst;
+     total    += t.total;
+     cout &lt;&lt; "+T: " &lt;&lt; total &lt;&lt; endl;
+ }</pre></td></tr></table>
+					</p>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+	<!-- Footer -->
+	<!--tr>
+		<td class="tbody">
+			<table cellpadding="1" width="90%" align="center">
+				<tr>
+					<td width="50%" class="text3">
+						&nbsp;&nbsp;
+					</td>
+					<td width="50%" align="right" class="text3">
+						&nbsp;&nbsp;
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr-->
+</table>
+
+</span>
+</span>

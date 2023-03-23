@@ -1,0 +1,264 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<span lang="en-us" xmlns='http://www.w3.org/1999/xhtml'><p>
+<head>
+    <title>Object-Oriented Paradigm Using C++ | Computer Studies | Seneca</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Seneca College 2010" />
+    <meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../stylePPrint.043.css" media="print">
+</head>
+
+<span><p>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign=top>
+                    <center><span class=texthead>
+                    Test 1 - February 26 2010</span><br />
+                    <br />
+                    </center>
+                    <br />
+                    Name _________________________________________________ Student Number ______________
+                    <br />
+
+                    <p class="section">Question 1 - Word Problem (10 marks)</p>
+                    <p>
+                    Design and code a class named <span class=code>Timer</span>
+                    that keeps track of the hours, minutes and seconds
+                    remaining on some task.&nbsp; Upon instantiation, a
+                    <span class=code>Timer</span> object may receive either no arguments
+                    or two arguments.&nbsp; The two arguments represent the hours
+                    and minutes remaining respectively.&nbsp; If there are no arguments
+                    or if the hours passed are outside the range [0,23] or if the
+                    minutes passed are outside the range [0,59], the object
+                    assumes a safe empty state.&nbsp; In any case, a newly
+                    created object assumes the number of seconds remaining
+                    is zero (0).&nbsp;
+                    </p>
+                    <p>
+                    Your design includes the necessary constructors and the following
+                    member functions:&nbsp;
+                    <ul>
+                    <li><span class=code>void display() const</span> - a query that
+                    displays the time remaining in two adjacent fields:
+                    <ol>
+                    <li>in HH:MM:SS format in a width of 10, right justified
+                    as shown in the example below.&nbsp; The hours, minutes and
+                    seconds are in widths of 2 with zero padding</li>
+                    <li>in HH.dd format in a width of 10, right justified,
+                    where dd is the decimal fraction representing the minutes
+                    and seconds part of the time remaining (for example, 11:30:00 is
+                    also displayed as 11.50)</li>
+                    </ol>
+                    If the object is in a safe empty state, this function displays
+                    <span class=code>"Timer is off"</span>.<br /><br /></li>
+                    <li><span class=code>Timer set(int hour, int minute)</span> - a
+                    modifier that resets the time remaining to the values received
+                    in its parameters and returns a copy of the updated current object.<br /><br /></li>
+                    <li><span class=code>Timer click()</span> - a modifier that
+                    reduces the time remaining by one second and returns a copy
+                    of the updated current object.&nbsp; This
+                    function changes the minutes remaining and the hours remaining
+                    when limiting values are reached.&nbsp; If there is no time
+                    remaining, this function does nothing and returns a copy of
+                    the current object.</li>
+                    </ul>
+                    </p>
+                    <p>
+                    Place your class declaration in a header file named
+                    <span class=code>Timer.h</span> and your function definitions in an
+                    implementation file named <span class=code>Timer.cpp</span>.&nbsp;
+                    Include all coding necessary to compile and run successfully
+                    with the help of a standard C++ compiler.&nbsp;
+                    The following program that uses your design produces the output
+                    shown on the right
+                    <table>
+                    <tr>
+                    <td width="50%">
+                    <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Timer.h"
+ int main() {
+     Timer myTimer(2, 2), myTimerClone;&nbsp;
+     myTimer.display();
+     myTimer.click();
+     myTimer.click();
+     mytimer.display();
+     for (int i = 0; i &lt; 60; i++)
+         myTimer.click();
+     myTimerClone.display();
+     myTimerClone = myTimer.click();
+     myTimerClone.display();
+     return 0;
+ }</pre></td><td width="50%">
+                    <pre class=result>
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+   02:02:00      2.03
+   02:01:58      2.03
+ Timer is off
+   02:00:57      2.02&nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;</pre></td></tr></table>
+                    </p>
+                    <br />
+
+                    <p class="section">Question 2 - Walkthrough (10 marks)</p>
+                    <p>
+                    What is the exact output of the following program?&nbsp; Show your
+                    rough work to avoid deductions.
+                    <table>
+                    <tr>
+                    <td>
+                    <pre>
+#include &lt;iostream&gt;
+using namespace std;
+const int MAX_CARDS = 3;
+
+//--- Card.h -------------------------------------------------------------
+
+class Card {
+	int rank;
+	char suit;
+  public:
+	Card();
+	void set(char s, int r);
+	void display() const;
+	~Card();
+};
+
+//--- Card.cpp -----------------------------------------------------------
+
+Card::Card() {
+	rank = 0;
+	suit = '?';
+	cout &lt;&lt; suit &lt;&lt; rank;
+}
+void Card::set(char s, int r) {
+	suit = s;
+	rank = r;
+}
+void Card::display() const {
+	cout &lt;&lt; suit &lt;&lt; rank;
+}
+
+Card::~Card() {
+	cout &lt;&lt; '~';
+	display();
+}
+
+
+//--- Hand.h -------------------------------------------------------------
+
+class Hand {
+	int noCards;
+	Card card[MAX_CARDS];
+  public:
+	Hand();
+	void swap(int i, int j);
+	void add(char s, int r);
+	void display() const;
+	~Hand();
+};
+
+
+//--- Hand.cpp -----------------------------------------------------------
+
+Hand::Hand() {
+	noCards = 0;
+	cout &lt;&lt; '$' &lt;&lt; endl;
+}
+
+void Hand::swap(int i, int j) {
+	if (i &lt; noCards && j &lt; noCards) {
+		Card temp = card[i];
+		card[i] = card[j];
+		card[j] = temp;
+	}
+}
+
+void Hand::add(char s, int r) {
+	if (noCards &lt; MAX_CARDS)
+		card[noCards++].set(s, r);
+}
+
+void Hand::display() const {
+	for (int i = 0; i &lt; noCards; i++)
+		card[i].display();
+	cout &lt;&lt; endl;
+}
+
+Hand::~Hand() {
+	cout &lt;&lt; '*';
+}
+
+//--- main.cpp -----------------------------------------------------------
+
+int main() {
+	Hand hand;
+
+	hand.add('H', 9);
+	hand.add('S', 6);
+	hand.add('C', 3);
+	hand.display();
+	hand.swap(0,2);
+	hand.swap(0,1);
+	cout &lt;&lt; endl;
+	hand.display();
+
+	return 0;
+}</pre></td></tr></table>
+                    </p>
+
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <!--tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr-->
+</table>
+
+</span>
+</span>

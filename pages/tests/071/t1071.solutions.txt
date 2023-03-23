@@ -1,0 +1,191 @@
+Test 1 Solutions
+================
+
+Word Problem
+------------
+
+// Header File for Car Class
+// Car.h
+// Feb 23 2007
+// OOP244
+
+#define MAKE 30
+
+class Car {
+    int odometer;
+    double value;
+    char make[MAKE+1];
+  public:
+    Car();
+    Car(int o, double v, const char* m);
+    void set(int o, double v, const char* m);
+    int  valid() const;
+    int  valid(const char* m) const;
+    void display() const;
+};
+
+// Implementation File For Car Class
+// Car.cpp
+// Feb 23 2007
+// OOP244
+
+#include<iostream>   // for cout and endl
+#include<iomanip>    // for setw(), setprecision(), setfill()
+#include<cstring>    // for strlen()
+using namespace std; // for cout and endl
+#include "Car.h"
+
+#define OMAX 999999  // maximum odometer
+#define OMIN 0       // minimum odometer
+#define VMIN 500.00  // minimum value
+
+Car::Car() { set(0, 0.0, ""); }
+
+Car::Car(int o, double v, const char* m) { set(o, v, m); }
+
+// set replaces the odometer reading, the market value, and the
+// make if each is valid, otherwise stores a safe empty state
+//
+void Car::set(int o, double v, const char* m) {
+
+    if (o < OMIN || o > OMAX || v < VMIN || m[0] == '\0') {
+        odometer = 0;
+        value = 0.0;
+        make[0] = '\0';
+    }
+    else {
+        odometer = o;
+        value = v;
+        strncpy(make, m, MAKE);
+        make[MAKE] = '\0';
+    }
+}
+
+// valid reutrns ture if the data stored is valid
+//
+int Car::valid() const { return odometer; }
+
+// valid returns true if m matches make or the first part of make
+//
+int Car::valid(const char* m) const {
+
+    int match = m[0]; // no match if m is empty
+
+    for (int i = 0; i < strlen(m); i++)
+        if (make[i] != m[i])
+            match = 0;
+
+    return match;
+}
+
+// display inserts the odometer reading, market value, and make
+// into the standard output stream
+//
+void Car::display() const {
+
+    cout << fixed << setprecision(2) << setfill('0') <<
+     setw(6) << odometer << setfill(' ') << setw(10) <<
+     value << ' ' << make << endl;
+}
+
+#include "Car.h"
+
+int main ( ) {
+    Car car[5];
+
+    car[0].set(   12345, 20000., "2005 Camry");
+    car[1].set(     -45, 20000., "2005 Ford");
+    car[2].set(   12345,   200., "2005 BMW");
+    car[3] = Car(456123,  2000., "1995 Mercedes");
+    car[4] = Car(  1234, 40000., "2005 BMW");
+
+    for (int i = 0; i < 5; i++)
+        if (car[i].valid() != 0)
+            car[i].display();
+
+    for (int i = 0; i < 5; i++)
+        if (car[i].valid("2005") != 0)
+            car[i].display();
+
+    return 0;
+}
+
+
+Version a - Walkthrough
+-----------------------
+
+######*0||*0||
+--------------
+######*3|Jim|
+*5|Notes|
+*0||*0||*0||
+------------
+*3|C++|*4|HTML|
+---------------
+Notes
+by: Jim
+  1.C++
+  2.
+  3.HTML
+-----------
+~00||
+~04|HTML|
+~00||
+~03|C++|
+~05|Notes|
+~03|Jim|
+-----------
+*4|Perl|
+-----------
+Notes
+by: Jim
+  1.C++
+  2.Perl
+  3.HTML
+-----------
+~00||
+~04|HTML|
+~04|Perl|
+~03|C++|
+~05|Notes|
+~03|Jim|
+
+
+Version b - Walkthrough
+-----------------------
+
+######*0||*0||
+--------------
+######*3|Kim|
+*5|Notes|
+*0||*0||*0||
+------------
+*3|C++|*4|HTML|
+---------------
+Notes
+by: Kim
+  1.C++
+  2.
+  3.HTML
+-----------
+~00||
+~04|HTML|
+~00||
+~03|C++|
+~05|Notes|
+~03|Kim|
+-----------
+*3|Php|
+-----------
+Notes
+by: Kim
+  1.C++
+  2.Php
+  3.HTML
+-----------
+~00||
+~04|HTML|
+~03|Php|
+~03|C++|
+~05|Notes|
+~03|Kim|

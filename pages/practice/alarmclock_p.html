@@ -1,0 +1,306 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Practice | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the Computer Programming and Analysis Diploma Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign="top">
+                        <br />
+                        <center>
+                        <span class=texth>Practice</span>
+                        <br />
+                        <br />
+                        <span class=texthead>
+                        Alarm Clock</span>
+                        </center>
+                        <br />
+                        <br />
+                        <br />
+
+                        <p>
+                        What is the exact output of the following program?&nbsp;
+                        Show your intermediate work.
+                        <table width="45%">
+                        <tr>
+                        <td>
+                        <br />
+                        <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+
+ class Time {
+     int hour;
+     int minute;
+   public:
+     Time() {
+         hour = 0;
+         minute = 0;
+         cout &lt;&lt; "T$";
+     }
+     Time(int h, int m) {
+         hour = h;
+         minute = m;
+         cout &lt;&lt; "T*";
+     }
+     Time(const Time& t) {
+         hour = t.hour;
+         minute = t.minute;
+         cout &lt;&lt; "T#";
+     }
+     ~Time() {
+         cout &lt;&lt; "T%";
+         show();
+         cout &lt;&lt; endl;
+     }
+     void operator++(int) {
+         minute++;
+         if (minute &gt;= 60) {
+             minute -= 60;
+             hour++;
+         }
+         if (hour &gt; 12) {
+             hour -= 12;
+         }
+     }
+     void show() const {
+         cout &lt;&lt; hour &lt;&lt; ':' &lt;&lt; minute &lt;&lt; ' ';
+     }
+     void operator++() {
+         minute+=2;
+         if (minute &gt;= 60) {
+             minute -= 60;
+             hour++;
+         }
+         if (hour &gt; 12) {
+             hour -= 12;
+         }
+     }
+     friend bool operator==(const Time& a, const Time& b) {
+         return a.hour == b.hour && a.minute == b.minute;
+     }
+ };
+
+ class Clock {
+     Time t;
+   public:
+     Clock() {
+         cout &lt;&lt; "C$";
+         show();
+     }
+     Clock(const Time& c) {
+         t = c;
+         cout &lt;&lt; "C*" &lt;&lt; endl;
+         show();
+     }
+     Clock(const Clock& c) {
+         t = c.t;
+         cout &lt;&lt; "C#";
+         show();
+     }
+     ~Clock() {
+         cout &lt;&lt; "C%" &lt;&lt; endl;
+         show();
+     }
+     Time time() const { return t; }
+     void show() const {
+         cout &lt;&lt; "T:";
+         t.show();
+         cout &lt;&lt; endl;
+     }
+     void tick() { t++; }
+ };
+
+ class AlarmClock : public Clock {
+     Time a;
+     int on;
+   public:
+     AlarmClock() {
+         on = 0;
+         cout &lt;&lt; "A$";
+         show();
+     }
+     AlarmClock(const Time& c, const Time& a) : Clock(c) {
+         on = 0;
+         this-&gt;a = a;
+         cout &lt;&lt; "A*" &lt;&lt; endl;
+         show();
+         cout &lt;&lt; endl;
+     }
+     AlarmClock(const AlarmClock& ac) : Clock(ac) {
+         on = ac.on;
+         a  = ac.a;
+         cout &lt;&lt; "A#";
+         show();
+     }
+     ~AlarmClock() {
+         cout &lt;&lt; "A%" &lt;&lt; endl;
+         show();
+         cout &lt;&lt; endl;
+     }
+     void show() const {
+         Clock::show();
+         cout &lt;&lt; "A:";
+         a.show();
+     }
+     void flip() { on = !on; }
+     void tick() {
+         Clock::tick();
+         if (on == 1 && a == time())
+             cout &lt;&lt; "brring..." &lt;&lt; endl;
+         else if (on == 1)
+             cout &lt;&lt; "zzzzzz..." &lt;&lt; endl;
+     }
+ };
+
+ int main() {
+     AlarmClock a[2] = {AlarmClock(Time(11,59),Time(12,0)),
+                        AlarmClock(Time( 6,59),Time( 7,0))};
+
+     cout &lt;&lt; "---------" &lt;&lt; endl;
+     a[1].flip();
+     a[0].tick();
+     a[1].tick();
+     a[0].flip();
+     a[0].tick();
+     a[1].tick();
+     cout &lt;&lt; "---------" &lt;&lt; endl;
+
+     return 0;
+ }</pre><br /></td></tr></table>
+                        </p>
+                        <p>
+                        Show your output here:
+                        <br />
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        </p>
+                        <br />
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        <script language="javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        <script language="javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

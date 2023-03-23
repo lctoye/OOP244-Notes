@@ -1,0 +1,93 @@
+Test 1 - OOP244 - Solutions
+===========================
+
+Question 1
+==========
+// Test 1 - Course Assignments
+// Course.h
+// Feb 27 2009
+// Chris Szalwinski
+
+const int MAX_CHAR = 20;
+
+class Course {
+    char name[MAX_CHAR + 1];
+    int assignments;
+  public:
+    Course();
+    Course(const char* n);
+    void display() const;
+    Course operator++();
+};
+
+// Test 1 - Course Assignments
+// Course.cpp
+// Feb 27 2009
+// Chris Szalwinski
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+#include "Course.h"
+
+Course::Course() {
+    *name = '\0';
+    assignments = 0;
+}
+
+Course::Course(const char* s) {
+    strncpy(name, s, MAX_CHAR);
+    name[MAX_CHAR] = '\0';
+    assignments = 0;
+}
+
+void Course::display() const {
+    if (*name == '\0')
+        cout << "no data available" << endl;
+    else
+        cout << left << setw(MAX_CHAR + 1) << name 
+             << right << setw(5) << assignments << endl;
+}
+
+Course Course::operator++() {
+    if (name[0] != '\0')
+        assignments++;
+    return *this;
+}
+
+Question 2
+==========
+
+Version A
+---------
+^^^
+-----
+-----
+1/2
+2/3
+-----
+^~2/6
+~2/6
+-----
+=2/6
+-----
+~2/6
+~2/3
+~1/2
+
+Version B
+---------
+^^^
+-----
+-----
+2/3
+1/2
+-----
+^~2/6
+~2/6
+-----
+=2/6
+-----
+~2/6
+~1/2
+~2/3

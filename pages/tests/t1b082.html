@@ -1,0 +1,260 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<span lang="en-us" xmlns='http://www.w3.org/1999/xhtml'><p>
+<head>
+    <title>Seneca | Computer Studies | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Seneca College 2008" />
+    <meta name="Description" content="Welcome to the Computer Programming and Analysis Diploma Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<span><p>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign=top>
+                    <center><span class=texthead>
+                    Test 1 - June 17 2008</span><br />
+                    <br />
+                    <br />
+                    <br />
+                    </center>
+                    <br />
+                    Name _________________________________________________ Student Number ______________
+                    <br />
+                    <br />
+
+                    <p class="section">Notes:</p>
+                    <p>
+                    <ul>
+                    <li>This test has 3 pages and lasts two full periods</li>
+                    <li>This test is out of 20 marks and is worth 20% of your final grade</li>
+                    <li>There are 2 questions in this paper - attempt both of them</li>
+                    <li>Answer all questions in the exam booklet provided</li>
+                    <li>Hand in this test paper with your answer booklet</li>
+                    <li>You may use your copy of the lecture notes, the subject notes, and
+                    one textbook</li>
+                    <li>You may use a non-programmable, non-messaging calculator</li>
+                    <li>You may use a paper foreign-language dictionary</li>
+                    </ul>
+                    </p>
+                    <br />
+
+                    <p class="section">Question 1 - Word Problem - (10 marks):</p>
+                    <p>
+                    A cash card is a new type of plastic card, like a credit or debit
+                    card, that holds the equivalent of cash on an integrated chip, which
+                    is imbedded within the card itself.&nbsp; It is similar to a gift
+                    card, but is issued by a bank or financial institution, and can
+                    be used at any store that has a debit or credit card machine.&nbsp;
+                    </p>
+                    <p>
+                    Design and code a class named <span class=code>CashCard</span>
+                    that holds information about such a card.&nbsp; Place your
+                    class declaration in a header file named <span class=code>CashCard.h</span>
+                    and your function definitions in an implementation file named
+                    <span class=code>CashCard.cpp</span>.&nbsp; Include in your coding
+                    all of the statements necessary for your code to compile under
+                    a standard C++ compiler and to run successfully.
+                    </p>
+                    <p>
+                    Upon instantiation, a <span class=code>CashCard</span>
+                    object may receive no parameters or may receive a C-style,
+                    null terminated string holding the identifying number of the
+                    card and an <span class=code>int</span> holding the PIN for
+                    the card.&nbsp; The identifying number must consist of digits
+                    and must not contain more than 6 digits.&nbsp; The PIN must be
+                    a whole number greater than 0.&nbsp; If the data received by
+                    your object does not satisfy both of these conditions, your
+                    object sets itself to a safe empty state.&nbsp;
+                    Upon instantiation, the object holds a cash balance of $0.00.&nbsp;
+                    </p>
+                    <p>
+                    Your class includes the following member functions:
+                    <ul>
+                    <!--<li><span class=code>int resetPin(int old, int pin)</span> - a
+                    modifier that accepts an old PIN and a new PIN.&nbsp; If the old
+                    value matches the current PIN and the new PIN is greater than 0,
+                    your function replaces the old PIN with the new PIN and returns true.&nbsp;
+                    Otherwise, your function, does nothing and returns false;</li>-->
+                    <li><span class=code>int deposit(double amount)</span>
+                    - a modifier that receives the amount to be deposited.&nbsp;
+                    If this amount is a positive value, your function adds the amount to
+                    the cash already on the card and returns true.&nbsp; Otherwise, your
+                    function does nothing and returns false.&nbsp;
+                    </li>
+                    <li><span class=code>int withdraw(double amount, int pin)</span>
+                    - a modifier that receives the amount to be withdrawn and a PIN.&nbsp;
+                    If your object has enough cash to support this withdrawal and the
+                    same PIN as the PIN received, your function withdraws the requested
+                    amount and returns true.&nbsp; Otherwise, your function does nothing
+                    and returns false.&nbsp;
+                    </li>
+                    <li><span class=code>void display() const</span> - a query that
+                    inserts information stored in your object to the standard output
+                    stream.&nbsp; This function displays the identifying number
+                    right-justified in a field of 6 with 0 padding followed by the
+                    amount of cash on the card right-justified in a field of 6, showing
+                    2 decimal places.&nbsp; If your object is in a safe empty state, this
+                    function displays "<span class=code>empty card</span>".&nbsp;</li>
+                    </ul>
+                    </p>
+                    <!--<p>
+                    Your class includes an overloaded <span class=code>+=</span> operator
+                    that accepts a <span class=code>double</span> as its right operand
+                    and increases the cash on the card by the amount received if the
+                    amount received is positive.&nbsp; If the amount received is 0 or
+                    a negative value, your function does nothing.&nbsp; In either case,
+                    your operator returns a reference to the current object.&nbsp;
+                    </p>-->
+                    <p>
+                    As an example, consider the following program that uses
+                    your class
+                    <table>
+                    <tr>
+                    <td>
+                    <pre>
+ #include "CashCard.h"
+
+ int main() {
+     CashCard card("12341", 1234), x;&nbsp;
+
+     card.display();
+     card.deposit(45.00);
+     card.display();
+     card.withdraw(120.00, 1234);
+     card.display();
+     card.withdraw(20.00, 1234);
+     card.display();
+     x.display();
+
+     return 0;
+ } </pre></td></tr></table>
+                    </p>
+                    <p>
+                    This program produces the following output
+                    <table>
+                    <tr>
+                    <td>
+                    <pre class=result>
+ 012341  0.00
+ 012341 45.00
+ 012341 45.00
+ 012341 25.00&nbsp;
+ empty card</pre></td></tr></table>
+                    </p>
+                    <br />
+                    <br />
+
+                    <p class="section">Question 2 - Walkthrough - (10 marks):</p>
+                    <p>
+                    What is the exact output of the following program?&nbsp; Show your
+                    rough work to avoid deductions.
+                    <table>
+                    <tr>
+                    <td>
+                    <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #define MCHAR   4
+ #define NTOKENS 4
+
+ class Token {
+     char str[MCHAR + 1];
+   public:
+     Token() {
+         cout &lt;&lt; '*';
+         strcpy(str, "?");
+     }
+     ~Token() {
+         display();
+         cout &lt;&lt; ',';
+     }
+     int extract(const char* in, int& i) {
+         int rc = 1, j = 0, accept = 1;
+         while (in[i] == ' ') i++;
+         while (accept && j &lt; MCHAR) {
+             if (in[i] == '\0') {
+                 str[j] = '\0';
+                 rc = 0;
+                 accept = 0;
+             }
+             else if (in[i] == ' ') {
+                 str[j] = '\0';
+                 accept = 0;
+             }
+             else
+                 str[j++] = in[i];
+             cout &lt;&lt; i &lt;&lt; ',' &lt;&lt; j &lt;&lt; '|';
+             i++;
+         }
+         cout &lt;&lt; endl;
+         return rc;
+     }
+     void display() const { cout &lt;&lt; str; }
+ };
+
+ int main() {
+     Token token[NTOKENS];
+     int rc, i = 0, noTokens = 0;
+     char str[] = "244 is tuf";
+
+     cout &lt;&lt; '\n';
+     cout &lt;&lt; "----------------" &lt;&lt; endl; // 16 -s
+     do {
+         rc = token[noTokens].extract(str, i);
+         noTokens++;
+     } while (rc != 0);
+     for (int i = 0; i &lt; noTokens; i++) {
+         cout &lt;&lt; i &lt;&lt; ' ';
+         token[i].display();
+         cout &lt;&lt; endl;
+     }
+     cout &lt;&lt; "----------------" &lt;&lt; endl; // 16 -s&nbsp;
+
+     return 0;
+ }</pre></td></tr></table>
+                    </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <!--tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr-->
+</table>
+
+</span>
+</span>

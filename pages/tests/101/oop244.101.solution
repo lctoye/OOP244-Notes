@@ -1,0 +1,214 @@
+Final Exam - Solutions - OOP244 Winter 2010
+===========================================
+
+Question 1
+----------
+// Ticket.h
+
+#include <iostream>
+using namespace std;
+
+class Ticket {
+    double price;
+    int date;
+  public:
+    Ticket();
+    Ticket(int, double);
+    bool empty() const;
+    Ticket& operator+=(int);
+    void display(ostream&) const;
+};
+
+ostream& operator<<(ostream&, const Ticket&);
+
+// Ticket.cpp
+
+#include <iomanip>
+#include "Ticket.h"
+
+Ticket::Ticket() {
+    date = 0;
+    price = 0;
+}
+
+Ticket::Ticket(int yd, double p) {
+    int y = yd/1000;
+    int d = yd%1000;
+    if (y >= 2010 && y <= 2050 &&
+        d >= 1 && (d <= 366 ||
+        d == 366 && (y - 2008) % 4 == 0) &&
+        p > 0.0) {
+        date = y * 1000 + d;
+        price = p;
+    }
+    else
+        *this = Ticket();
+}
+
+bool Ticket::empty() const {
+    return date == 0;
+}
+
+Ticket& Ticket::operator+=(int a) {
+    if (a > 0 && !empty()) {
+        int y = date/1000;
+        int d = date%1000;
+        while (a > 0) {
+            if ((y - 2008) % 4 == 0) {
+                if (d + a > 366) {
+                    y++;
+                    a = a - 366;
+                    if (a < 0)
+                        d = d + a;
+                }
+                else {
+                    d = d + a;
+                    a = 0;
+                }
+            }
+            else {
+                if (d + a > 365) {
+                    y++;
+                    a = a - 365;
+                    if (a < 0)
+                        d = d + a;
+                }
+                else {
+                    d = d + a;
+                    a = 0;
+                }
+            }
+        }
+        date = y * 1000 + d;
+    }
+    return *this;
+}
+
+void Ticket::display(ostream& os) const {
+    if (!empty())
+        os << setw(6) << date/1000 << '-'
+           << setfill('0') << setw(3) << date%1000
+           << setw(6) << fixed << setprecision(2)
+           << setfill(' ')
+           << price;
+}
+
+ostream& operator<<(ostream& os, const Ticket& t) {
+    t.display(os);
+    return os;
+}
+
+// Ticket main.cpp
+
+#include <iostream>
+using namespace std;
+#include "Ticket.h"
+
+int main ( ) {
+    Ticket adult(2010200, 12.50);
+
+   adult.display(cout);
+    cout << endl;
+   adult += 165;
+   adult.display(cout);
+    cout << endl;
+   adult += 1;
+   adult.display(cout);
+   return 0;
+}
+
+Question 2
+----------
+add to Ticket.h
+    virtual void display(ostream&) const;
+    virtual ~Ticket() {}
+
+// MTicket.h
+
+#include "Ticket.h"
+
+class MTicket : public Ticket {
+    char* title;
+  public:
+    MTicket();
+    MTicket(int, double, const char*);
+    MTicket(const MTicket&);
+    MTicket& operator=(const MTicket&);
+    ~MTicket();
+    void display(ostream&) const;
+};
+
+// MTicket.cpp
+
+#include <cstring>
+using namespace std;
+#include "MTicket.h"
+
+MTicket::MTicket() {
+    title = NULL;
+}
+
+MTicket::MTicket(int d, double p, const char* t) :
+Ticket(d, p) {
+    if (!empty() && t != NULL) {
+        title = new char[strlen(t) + 1];
+        strcpy(title, t);
+    }
+    else {
+        title = NULL;
+        *this = MTicket();
+    }
+}
+
+MTicket::MTicket(const MTicket& t) {
+    title = NULL;
+    *this = t;
+}
+
+MTicket& MTicket::operator=(const MTicket& t) {
+    if (this != &t) {
+        if (title != NULL) delete [] title;
+        if (t.title != NULL) {
+            title = new char[strlen(t.title) + 1];
+            strcpy(title, t.title);
+        }
+        else
+            title = NULL;
+    }
+    return *this;
+}
+
+MTicket::~MTicket() {
+    if (title) delete [] title;
+}
+
+void MTicket::display(ostream& os) const {
+    Ticket::display(os);
+    os << ' ' << title;
+}
+
+Question 3
+----------
+version a
+!#
+=5-2
+#&$*
+%2-1 reduced
+~2-1
+=2-1 reduced
+%2-1 reduced
+~2-1
+~0-0
+~3-2
+
+version b
+!#
+=5-2
+#&$*
+%2-1 day old
+~2-1
+=2-1 day old
+%2-1 day old
+~2-1
+~0-0
+~3-2

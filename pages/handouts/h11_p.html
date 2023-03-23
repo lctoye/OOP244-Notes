@@ -1,0 +1,485 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Exercises | Intro to C++  </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">In-Class Exercise</span>
+        <br />
+        <br />
+        <span class="texthead">File Operators</span>
+       </div>
+       <br />
+       <br />
+
+       <p>This exercise introduces member functions for reading from
+       and writing to a file, which enables client programs to backup
+       and restore object data.
+       </p>
+       <br />
+
+       <p class="section">Given Information</p>
+
+       <p>The following code is a solution to the Handout on
+       <a href="h10.html">Custom I/O Operators</a>.</p>
+
+       <p class="ssection">Client Module</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Custom I/O Operators
+ // h10.cpp
+
+ #include &lt;iostream&gt;
+ #include "Employee.h"
+
+ int main() {
+     Employee mark, rose;
+
+     std::cin &gt;&gt; mark;
+     std::cin &gt;&gt; rose;
+
+     std::cout &lt;&lt; mark &lt;&lt; std::endl;
+     mark = mark + 0.50;       // raise of 50 cents&nbsp;
+     std::cout &lt;&lt; mark &lt;&lt; std::endl;
+
+     std::cout &lt;&lt; rose &lt;&lt; std::endl;
+     rose = 0.50 + rose;       // raise of 50 cents&nbsp;
+     std::cout &lt;&lt; rose &lt;&lt; std::endl;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Employee Module</p>
+
+       <p class="sssection">Employee.h</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Custom I/O Operators
+ // Employee.h
+
+ #include &lt;iostream&gt;
+
+ const double MIN_WAGE = 10.25;
+ const int    MAX_NAME = 20;
+
+ class Employee {
+     int no;
+     char name[MAX_NAME + 1];
+     double rate;
+ public:
+     Employee();
+     Employee(int, const char*);
+     Employee(int, const char*, double);
+     void display(std::ostream&) const;
+     Employee& operator+=(double);
+ };
+
+ Employee operator+(const Employee&, double);
+ Employee operator+(double, const Employee&);
+ std::istream& operator&gt;&gt;(std::istream&, Employee&);
+ std::ostream& operator&lt;&lt;(std::ostream&, const Employee&);&nbsp;</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Employee.cpp</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Custom I/O Operators
+ // Employee.cpp
+
+ #include &lt;iostream&gt;
+ #include &lt;iomanip&gt;
+ #include &lt;cstring&gt;
+ #include "Employee.h"
+
+ Employee::Employee() {
+     // safe empty state
+     no = 0;
+     name[0] = '\0';
+     rate = MIN_WAGE;
+ }
+
+ Employee::Employee(int n, const char* nm) {
+     Employee temp(n, nm, MIN_WAGE);
+     *this = temp;
+ }
+
+ Employee::Employee(int n, const char* nm, double r) {
+     if (n &gt; 0 && nm[0] != '\0' && r &gt;= MIN_WAGE) {
+         no = n;
+         std::strncpy(name, nm, MAX_NAME); // copy first MAX_NAME characters&nbsp;
+         name[MAX_NAME] = '\0';       // ensure that last byte is null
+         rate = r;
+     } else {
+         Employee temp;
+         *this = temp;
+     }
+ }
+
+ void Employee::display(std::ostream& os) const {
+    if (no &gt; 0) {
+        os &lt;&lt; std::fixed &lt;&lt; std::setprecision(2);
+        os &lt;&lt; name &lt;&lt; " (" &lt;&lt; no &lt;&lt; ") $" &lt;&lt; rate;
+    }
+    else
+        os &lt;&lt; "no data available";
+ }
+
+ Employee& Employee::operator+=(double r) {
+     if (no &gt; 0 && r &gt; 0.0)
+         rate += r;
+     return *this;
+ }
+
+ Employee operator+(const Employee& e, double r) {
+     Employee ee = e;
+     ee += r;
+     return ee;
+ }
+
+ Employee operator+(double r, const Employee& e) {
+     return e + r;
+ }
+
+ std::istream& operator&gt;&gt;(std::istream& is, Employee& e) {
+     int no;
+     char name[MAX_NAME + 1];
+     double rate;
+
+     std::cout &lt;&lt; "Employee number : ";
+     is &gt;&gt; no;
+     is.ignore();
+     std::cout &lt;&lt; "Employee name   : ";
+     is.getline(name, MAX_NAME + 1);
+     std::cout &lt;&lt; "Hourly Pay Rate : ";
+     is &gt;&gt; rate;
+     Employee temp(no, name, rate);
+     e = temp;
+     return is;
+ }
+
+ std::ostream& operator&lt;&lt;(std::ostream& os, const Employee& e) {
+     e.display(os);
+     return os;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">Your Task</p>
+
+       <p>Add two member functions to the definition of the
+       <span class="code">Employee</span> class for backing up and
+       restoring data.&#160; You may assume that any name in the
+       file contains no more than <span class="code">MAX_NAME</span>
+       characters.&#160;</p>
+
+       <p class="ssection">Client Module</p>
+
+       <p>The following main program uses your upgraded <span class=
+       "code">Employee</span> class is</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td class="half">
+          <pre>
+ // Custom File Operators
+ // h11.cpp
+
+ #include &lt;iostream&gt;
+ #include &lt;fstream&gt;
+ #include "Employee.h"
+
+ int main() {
+     Employee mark, rose;
+     std::ofstream file("Employee.dat");
+
+     std::cin &gt;&gt; mark;
+     std::cin &gt;&gt; rose;
+
+     mark.save(file);
+     rose.save(file);
+     mark = mark + 0.50;
+     rose = rose + 0.75;
+     std::cout &lt;&lt; mark &lt;&lt; std::endl;
+     std::cout &lt;&lt; rose &lt;&lt; std::endl;
+     file.close();
+
+     std::ifstream oldData("Employee.dat");
+     mark.restore(oldData);
+     rose.restore(oldData);
+     std::cout &lt;&lt; mark &lt;&lt; std::endl;
+     std::cout &lt;&lt; rose &lt;&lt; std::endl;
+ }</pre>
+         </td>
+
+         <td class="half">
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+ Employee number : 3456
+ Employee name   : Mark J.&nbsp;
+ Hourly Pay Rate : 10.25
+ Employee number : 3457
+ Employee name   : Rose
+ Hourly Pay Rate : 10.70
+
+ Mark J. (3456) $10.75
+ Rose (3457) $11.20
+
+
+
+
+
+ Mark J. (3456) $10.25
+ Rose (3457) $10.70
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>Note that the name of an employee may contain whitespace.&#160;
+       </p>
+
+       <p class="ssection">Employee Module</p>
+
+       <p class="sssection">Employee.h</p>
+
+       <p>Add the following to the header file for your upgraded class:
+       </p>
+
+       <ul>
+        <li>include the <span class=code>fstream</span> header file</li>
+
+        <li>add the prototype for the <span class=code>save(std::ofstream&)</span> member function that saves data to a file object</li>
+
+        <li>add the prototype for the <span class=code>restore(std::ifstream)</span> member function that restores data from a file object</li>
+       </ul>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // File Operators
+ // Employee.h
+
+ #include &lt;iostream&gt;
+
+
+ const double MIN_WAGE = 10.25;
+ const int    MAX_NAME = 20;
+
+ class Employee {
+     int no;
+     char name[MAX_NAME + 1];
+     double rate;
+ public:
+     Employee();
+     Employee(int, const char*);
+     Employee(int, const char*, double);
+     void display(std::ostream&) const;
+     Employee& operator+=(double);
+
+
+
+ };
+
+ Employee operator+(const Employee&, double);
+ Employee operator+(double, const Employee&);
+ std::istream& operator>>(std::istream&, Employee&);
+ std::ostream& operator<<(std::ostream&, const Employee&);&nbsp;</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Employee.cpp</p>
+
+       <p>Add the definitions for the <span class=code>save()</span>
+       and <span class=code>restore()</span> functions to the implementation file.&nbsp;
+       To accept input with embedded whitespace inside your definition of the overloaded
+       extraction operator, you need to use the <span class=code>get()</span>
+       or <span class=code>getline()</span> methods on the file input object.</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // File Operators
+ // Employee.cpp
+
+ #include &lt;iomanip&gt;
+ #include &lt;cstring&gt;
+ #include "Employee.h"
+
+ Employee::Employee() {
+     // safe empty state
+     no = 0;
+     name[0] = '\0';
+     rate = MIN_WAGE;
+ }
+
+ Employee::Employee(int n, const char* nm) {
+     Employee temp(n, nm, MIN_WAGE);
+     *this = temp;
+ }
+
+ Employee::Employee(int n, const char* nm, double r) {
+     if (n &gt; 0 && nm[0] != '\0' && r &gt;= MIN_WAGE) {
+         no = n;
+         std::strncpy(name, nm, MAX_NAME); // copy first MAX_NAME characters&nbsp;
+         name[MAX_NAME] = '\0';       // ensure that last byte is null
+         rate = r;
+     } else {
+         Employee temp;
+         *this = temp;
+     }
+ }
+
+ void Employee::display(std::ostream& os) const {
+    if (no &gt; 0) {
+        os &lt;&lt; std::fixed &lt;&lt; std::setprecision(2);
+        os &lt;&lt; name &lt;&lt; " (" &lt;&lt; no &lt;&lt; ") $" &lt;&lt; rate;
+    }
+    else
+        os &lt;&lt; "no data available";
+ }
+
+ Employee& Employee::operator+=(double r) {
+     if (no &gt; 0 && r &gt; 0.0)
+         rate += r;
+     return *this;
+ }
+
+ // save to file
+ //
+
+
+
+
+ // restore from file
+ //
+
+
+
+
+
+ Employee operator+(const Employee& e, double r) {
+     Employee ee = e;
+     ee += r;
+     return ee;
+ }
+
+ Employee operator+(double r, const Employee& e) {
+     return e + r;
+ }
+
+ std::istream& operator&gt;&gt;(std::istream& is, Employee& e) {
+     int no;
+     char name[MAX_NAME + 1];
+     double rate;
+
+     std::cout &lt;&lt; "Employee number : ";
+     is &gt;&gt; no;
+     is.ignore();
+     std::cout &lt;&lt; "Employee name   : ";
+     is.getline(name, MAX_NAME + 1);
+     std::cout &lt;&lt; "Hourly Pay Rate : ";
+     is &gt;&gt; rate;
+     Employee temp(no, name, rate);
+     e = temp;
+     return is;
+ }
+
+ std::ostream& operator&lt;&lt;(std::ostream& os, const Employee& e) {
+     e.display(os);
+     return os;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>-->
+</table>
+
+</body>
+</html>

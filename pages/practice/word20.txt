@@ -1,0 +1,52 @@
+	20. Write a class called apartment  that  simulates  the  income
+	    available from an apartment building.  An  apartment  stores
+	    one double, containing the monthly rent, for  each  unit  in
+	    the building.
+
+	    When instantiated, an apartment may be supplied  the  number
+	    of units in the building. If the  number  of  units  is  not
+	    supplied, then 50 units are to be assumed. Regardless of the
+	    number of suites, each unit should be  initialized  to  have
+	    $500 monthly rent. The number of  units  should  be  limited
+	    only by available memory, not by some arbitrary maximum size
+	    (i.e. use dynamic memory allocation).
+
+	    There are member functions:
+
+		void set(int unit, double rent) - changes the  rent  for
+		  unit "unit" (where 0  is  the  first  one,  1  is  the
+		  second, and so on) to be "rent" dollars. If "unit"  is
+		  not in range,  considering  the  actual  size  of  the
+		  building, then nothing is changed.
+
+		void increase(double percent) - increase  the  rent  for
+		  all  units  by  "percent"  percent.  For  example,  if
+		  "percent" is 7.5, the  rent  for  each  unit  will  be
+		  raised  by  7.5%.  (Note  that  the  percent  may   be
+		  negative, even though the owners  never  plan  to  use
+		  that feature).
+
+		double rent(int unit) - returns a copy of the  rent  for
+		  unit "unit" (where 0  is  the  first  one,  1  is  the
+		  second, and  so  on).  If  "unit"  is  not  in  range,
+		  considering the actual size of the building, then zero
+		  is returned.
+
+		double rent() - returns the total monthly rental  income
+		  for the entire building.
+
+	    Furthermore, apartments may be  copied  (e.g.  in  parameter
+	    passing or using the  =  operator)  without  causing  memory
+	    allocation problems (i.e. you need to write  a  proper  copy
+	    constructor, etc.).
+
+	    The following shows some ways you might use an apartment (to
+	    help illuminate the specs above):
+
+	      apartment fifty, onetwenty(120); // different # of units
+	      for (int i = 80; i < 115; i++)
+		  onetwenty.set(i, 1000);      // some units are $1000
+	      fifty.set(70, 400);     // invalid unit - nothing changed
+	      cout << onetwenty.rent() << '\n'; // rent for whole building
+	      cout << fifty.rent(40) << ',' << fifty.rent() << '\n';
+		 // line above should show 500,25000

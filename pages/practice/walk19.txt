@@ -1,0 +1,46 @@
+/* Problem 19 */
+	    #include <iostream>
+	    using namespace std;
+	    #include <string.h>
+
+	    class a {
+		char str[21];
+	      public:
+		a() { strcpy(str, "ordinary"); cout << str << '\n'; }
+		a(char s[]) { strcpy(str, s); cout << str << '\n'; }
+		void swap(int i, int j) { char t = str[j]; 
+					  str[j] = str[i];
+					  str[i] = t; }
+		virtual void switchem() { swap(2, 5); }
+		virtual void out(ostream &os) const { os << str; }
+	    };
+
+	    ostream &operator<<(ostream &os, const a &x)
+	    {
+		x.out(os);
+		return os;
+	    }
+
+	    class b: public a {
+	      public:
+		b() {}
+		b(char s[]): a(s) { cout << "extra extra!\n"; }
+		void switchem() { swap(3, 1); a::switchem(); }
+	    };
+
+	    void doit(a one, a &two)
+	    {
+		one.switchem();
+		two.switchem();
+		cout << one << ',' << two << '\n';
+	    }
+
+	    int main()
+	    {
+		a x, y("baneose");
+		b r, s("dieevrd");
+		doit(x, y);
+		doit(r, s);
+		cout << x << ',' << y << ',' << r << ',' << s << '\n';
+		return 0;
+	    }

@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+	<title>Seneca | Computer Studies | The Object-Oriented Paradigm Using C++</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+	<meta name="Copyright" content="(c) Copyright Chris Szalwinski 2007" />
+	<meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+	<meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+	<meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+	<meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/style.043.css">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleScreen.043.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleSPrint.043.css" media="print">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleNav.043.css">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+
+	<!-- Body Cell -->
+	<tr height="600">
+		<!-- Content Area -->
+		<td class="tbody" bgcolor="ffffff">
+			<table cellpadding="10" width="100%">
+				<tr>
+					<td bgcolor="ffffff" valign="top">
+
+					<span class=texthead>
+					<center>Quiz 1 - Feb 9 2007</center>
+					</span>
+					<br />
+					<br />
+
+					<p>
+					What is the exact output of the following program?
+					<pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+
+ class Ticket {
+     int t;
+     double f;
+   public:
+     Ticket() {
+         cout &lt;&lt; "T";
+         t = 0;
+         f = 0.0;
+     }
+     Ticket(int a, double b) {
+         t = a + 1;
+         f = b;
+     }
+     ~Ticket() {
+         cout &lt;&lt; "D" &lt;&lt; t &lt;&lt; '|' &lt;&lt; f &lt;&lt; endl;
+     }
+     double fare() const { return f; }
+ };
+
+ class Collector {
+     int no;
+     double amount;
+   public:
+     Collector() {
+         no = 0;
+         amount = 0.0;
+     }
+     ~Collector() {
+         cout &lt;&lt; "Collected " &lt;&lt; amount &lt;&lt; endl;
+     }
+     void accept(const Ticket& t) {
+         no++;
+         amount += t.fare();
+     }
+     void display() const {
+         cout &lt;&lt; no &lt;&lt; ',' &lt;&lt; amount &lt;&lt; endl;
+     }
+ };
+
+ int main() {
+     Collector collector;
+     Ticket* t;
+     double fare[] = { 2.25, 2.75, 1.40, 0.50};
+
+     t = new Ticket[5];
+
+     for (int i = 0; i &lt; 4; i++) {
+         Ticket tt(i, fare[i]);
+         t[i] = tt;
+     }
+
+     collector.accept(t[3]);
+     collector.display();
+     collector.accept(t[1]);
+     collector.display();
+     collector.accept(t[2]);
+     collector.display();
+     collector.accept(t[4]);
+     collector.display();
+
+     delete [] t;
+
+     return 0;
+ }</pre>
+					    Show your output here:
+					    <br />
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    <hr>
+					    <br />
+					    Show your rough work on a separate page.
+					    </p>
+						</br>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+	<!-- Footer -->
+	<tr>
+		<td class="tbody">
+			<table cellpadding="1" width="90%" align="center">
+				<tr>
+					<td width="50%" class="text3">
+						<script language="javascript">
+						var lh = document.location.href;
+						document.write(lh)
+						</script>&nbsp;&nbsp;
+					</td>
+					<td width="50%" align="right" class="text3">
+						<script language="javascript">
+						var lm = document.lastModified.slice(0,-3);
+						document.write("Last Modified: " +lm)
+						</script>&nbsp;&nbsp;
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

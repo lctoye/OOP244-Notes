@@ -1,0 +1,51 @@
+/* Problem 7 */
+	    #include <stdio.h>
+	    class crypt {
+		char stuff[30];
+		int num;
+	      public:
+		crypt(char s[]);
+		void out();
+		friend crypt operator&&(crypt, crypt);
+	    };
+
+	    crypt::crypt(char s[]) {
+		num = 0;
+		while (s[num] != '\0')
+		    num++;
+		for (int i = 0; i < num; i++)
+		    stuff[i] = s[num - (i + 1)];
+	    }
+
+	    void crypt::out() {
+		int i = 0, j = 1;
+		while (i < num) {
+		    printf("%c", stuff[i]);
+		    if (stuff[i + 1] == 'X') {
+			i = i + 2;
+			j = 1;
+		    }
+		    else {
+			j++;
+			i = i + j;
+		    }
+		}
+		printf("\n");
+	    }
+
+	    crypt operator&&(crypt a, crypt b) {
+		crypt c = a;
+		c.stuff[c.num]='X';
+		c.num++;
+		for (int i = 0; i < b.num; i++)
+		    c.stuff[c.num + i] = b.stuff[i];
+		c.num = c.num + b.num;
+		return c;
+	    }
+
+	    int main() {
+		crypt x("o*ygs+"), y("+h$d#o");
+		crypt z = x && y;
+		z.out();
+		return 0;
+	    }

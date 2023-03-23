@@ -1,0 +1,163 @@
+Test 2 - OOP244 - Winter 2009 - Solutions
+=========================================
+
+Question 1
+----------
+// Test 2 - OOP244 - Winter 2009 - Stock 
+// Stock.h
+// Chris Szalwinski
+// Mar 30 2009
+
+#include <iostream>
+using namespace std;
+
+class Stock {
+    int no;
+    double price;
+    char* desc;
+  public:
+    Stock();
+    Stock(int n, double p, const char* d);
+    Stock(const Stock& s);
+    Stock& operator=(const Stock& s);
+    Stock& operator+=(double raise);
+    ~Stock();
+    friend ostream& operator<<(ostream& os, const Stock& s);
+};
+
+// Test 2 - OOP244 - Winter 2009 - Stock
+// Stock.cpp
+// Chris Szalwinski
+// Mar 30 2009
+
+#include <iomanip>
+#include "Stock.h"
+
+Stock::Stock() {
+
+    no = 0;
+    price = 0.0;
+    desc = NULL;
+}
+
+Stock::Stock(int n, double p, const char* d) {
+
+    if (n > 0 && p > 0.0 && d != NULL) {
+        no = n;
+        price = p;
+        desc = new char[strlen(d) + 1];
+        strcpy(desc, d);
+    }
+    else
+        *this = Stock();
+}
+
+Stock::Stock(const Stock& s) {
+
+    desc = NULL;
+    *this = s;
+}
+
+Stock& Stock::operator=(const Stock& s) {
+
+    if (this != &s) {
+        if (desc != NULL)
+            delete [] desc;
+        if (s.desc != NULL) {
+            desc = new char[strlen(s.desc) + 1];
+            strcpy(desc, s.desc);
+        }
+        else
+            desc = NULL;
+        no = s.no;
+        price = s.price;
+    }
+    return *this;
+}
+
+Stock& Stock::operator+=(double raise) {
+
+    if (no != 0)
+        price += raise;
+
+    return *this;
+}
+
+Stock::~Stock() {
+
+    if (desc != NULL)
+        delete [] desc;
+}
+
+ostream& operator<<(ostream& os, const Stock& s) {
+
+    if (s.no != 0)
+        os << setfill('0') << setw(6) << s.no << ' ' << setfill(' ')
+           << setw(10) << fixed << setprecision(2) << s.price << ' '
+           << (s.desc ? s.desc : "");
+    else
+        os << "                  empty object";
+
+    return os;
+}
+
+// Test 2 - OOP244 - Winter 2009 - Stock
+// mainStock.cpp
+// Chris Szalwinski
+// Mar 30 2009
+
+#include <iostream>
+using namespace std;
+const int N = 4;
+#include "Stock.h"
+
+int main ( ) {
+    Stock stock[N];
+
+    stock[0] = Stock(1101, 5.66, "My Brand Cereal");
+    stock[1] = Stock(1102, 3.67, "My Name Chips");
+    stock[2] = Stock(1200, 5.67, "My Cow Milk");
+    stock[1] += 0.50;
+    for (int i = 0; i < N; i++)
+       cout << stock[i] << endl;
+
+    return 0;
+}
+
+Question 2
+----------
+Version A
+
+%*#@%
+-----------
+100,10,100
+10,2
+-----------
+^+
+0,0,0
+-----------
+100,10,100~
+100,10$
+5,1$
+0,0,0~
+0,0$
+80,8,80~
+80,8$
+
+Version B
+
+%*#@%
+-----------
+100,10,100
+10,2
+-----------
+^+
+0,0,0
+-----------
+100,10,100~
+100,10$
+0,0$
+0,0,0~
+0,0$
+60,6,60~
+60,6$

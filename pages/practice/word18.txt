@@ -1,0 +1,63 @@
+	18. Write the code to implement  a  class  called  an  occasion,
+	    which  stores  information  about   an   up-coming   special
+	    occasion. An occasion has the following publicly  accessible
+	    characteristics:
+		- a member function
+		    int date(int day, int month, int year)
+		  which sets the date on which the occasion will  occur.
+		  This function performs a SIMPLE check of the  supplied
+		  data (to make sure that day is 1-31, month is 1-12 and
+		  year is 1900-9999). If the data is OK, the  occasion's
+		  date is set as requested and a true value is returned.
+		  Otherwise, the occasion's date is set  to  January  1,
+		  1980 and a false value is returned.
+		- a member function
+		    void set(char s[])
+		  which sets the description for the  occasion  to  (the
+		  null- terminated string) s.
+		- a member function
+		    long date()
+		  which  returns  the  occasion's  date  in  the  format
+		  yyyymmdd (e.g. 19960315 for March 15, 1996).
+		- a member function
+		    char *tell(char s[])
+		  which extracts the occasion's description  and  places
+		  it in s as a null-terminated string. For  convenience,
+		  this function also returns s.
+		- when instantiated, the  default  date  is  January  1,
+		  1980, and the default description is an empty  string.
+		  Additionally, three ints (day, month, year) and a char
+		  string (description) may be supplied,  in  which  case
+		  the occasion is initialized according to the rules  in
+		  date(int, int, int) and set(char []) above.
+		- the == operator may be used to compare two  occasions.
+		  Two occasions are considered equal if  they  occur  on
+		  the  same  date.  (I.e.  the  descriptions   for   the
+		  occasions have nothing to do  with  whether  they  are
+		  equal or not).
+
+	    For  example,  the  following  program  reads  a   file   of
+	    occassions, and displays the description for every  occasion
+	    that occured on November 5, 1996:
+
+		int read(FILE *fp, occasion *p) // read an occasion from file
+		{   int rc = 0, d, m, y;        // returns true if successful
+		    char s[81];
+		    if (4 == fscanf(fp, "%d/%d/%d %80[^\n]", &d, &m, &y, s))
+			if (p->date(d, m, y)) {
+			    p->set(s);
+			    rc = 1;
+			}
+		    return rc;
+		}
+
+		int main()
+		{   FILE *fp = fopen("occasion.dat", "r");
+		    occasion today(5, 11, 1996, "Today"), x;
+		    char desc[81];
+		    while (read(fp, &x))
+			if (x == today)
+			    printf("%s\n", x.tell(desc));
+		    fclose(fp);
+		    return 0;
+		}

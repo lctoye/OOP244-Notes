@@ -1,0 +1,363 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Exercises | Intro to C++  </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">In-Class Exercise</span>
+        <br />
+        <br />
+        <span class="texthead">Derived Classes</span>
+       </div>
+       <br />
+       <br />
+
+       <p>This exercise distinguishes more general data from more specific
+       data to creating a simple class hierarchy.
+       </p>
+       <br />
+
+       <p class="section">Given Information</p>
+
+       <p>Parts of the following code are extracted from the starting
+       Employee example in the Handout on
+       <a href="h8.html">Member Operators</a>.</p>
+
+       <p class="ssection">Client Module</p>
+
+       <p>Consider the client program listed on the left and the output
+       shown on the right:</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td class="w70">
+          <pre>
+ // Client Program
+ // h12.cpp
+
+ #include &lt;iostream&gt;
+ #include "Employee.h"
+
+ int main() {
+     Employee employee(1234, "Jane Doe", 15.50);&nbsp;
+
+     employee.display(std::cout);
+     std::cout &lt;&lt; std::endl;
+ }</pre>
+         </td>
+
+         <td class="w30">
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+ Jane Doe (1234) $15.50
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Employee Module</p>
+
+       <p>The <span class=code>Employee</span> module used by the client program
+       is defined in the following two files.
+       </p>
+
+       <p class="sssection">Employee.h</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Employee
+ // Employee.h
+
+ #include &lt;iostream&gt;
+
+ const int MAX_NAME = 20;
+
+ class Employee {
+     int no;
+     char name[MAX_NAME + 1];
+     double rate;
+ public:
+     Employee();
+     Employee(int, const char*, double);&nbsp;
+     void display(std::ostream&) const;
+ };
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Employee.cpp</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Employee
+ // Employee.cpp
+
+ #include &lt;iomanip&gt;
+ #include &lt;cstring&gt;
+ #include "Employee.h"
+
+ const double MIN_WAGE = 10.25;
+ const int    SAFE_NUM = 0;
+
+ Employee::Employee() {
+     // safe empty state
+     no      = SAFE_NUM;
+     name[0] = '\0';
+     rate    = MIN_WAGE;
+ }
+
+ Employee::Employee(int n, const char* nm, double w) {&nbsp;
+     if (n &gt; SAFE_NUM &amp;&amp; r &gt;= MIN_WAGE) {
+         no = n;
+         strncpy(name, nm, MAX_NAME);
+         name[MAX_NAME] = '\0';
+         rate = r;
+     } else {
+         Employee temp;
+         *this = temp;
+     }
+ }
+
+ void Employee::display(std::ostream& os) const {
+    if (no != SAFE_NUM) {
+        os &lt;&lt; std::fixed &lt;&lt; std::setprecision(2);
+        os &lt;&lt; name &lt;&lt; " (" &lt;&lt; no &lt;&lt; ") $" &lt;&lt; rate;&nbsp;
+    }
+    else
+        os &lt;&lt; "no data available";
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">Your Task</p>
+
+       <p>
+       Divide the <span class="code">Employee</span> class
+       into two definitions
+       </p>
+       <ul>
+       <li>a <span class="code">Person</span> base class</li>
+       <li>an <span class="code">Employee</span> derived class</li>
+       </ul>
+       <p>
+       Redefine the member functions for each class
+       by rearranging the existing logic.
+       </p>
+
+       <p class="ssection">Employee Module</p>
+
+       <p class="sssection">Employee.h</p>
+
+       <p>The <span class="code">Person</span> class holds a person's name
+       in a private data member and provides access through three member functions:
+       </p>
+       <ul>
+       <li><span class=code>Person()</span> - no-argument constructor that initializes the data member</li>
+       <li><span class=code>void set(const char*)</span> - copies the name into the data member</li>
+       <li><span class=code>void displayName(std::ostream& os) const</span> - inserts the name into <span class=code>os</span></li>
+       </ul>
+       </p>
+
+       <p>The <span class="code">Employee</span> class holds an employee's
+       number and wage rate in its private data members and provides access
+       through two member functions:
+       </p>
+       <ul>
+       <li><span class=code>Employee(int, const char*, double)</span> - three-argument constructor
+       that receives the number, the name and the wage rate</li>
+       <li><span class=code>void display(std::ostream& os) const</span> - inserts all data into <span class=code>os</span></li>
+       </ul>
+
+       <p>
+       The header file contains both class definitions:</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Derived Classes
+ // Employee.h
+
+ #include &lt;iostream&gt;
+
+ const int MAX_NAME = 20;
+
+ class Person {
+
+
+   public:
+
+
+
+ };
+
+ class Employee                             {&nbsp;
+
+
+
+   public:
+     Employee();
+     Employee(int, const char*, double);&nbsp;
+     void display(std::ostream&) const;
+ };
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Employee.cpp</p>
+
+       <p>
+       The implementation file that contains the function definitions
+       for both classes:</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Derived Classes
+ // Employee.cpp
+
+ #include &lt;iomanip&gt;
+ #include &lt;cstring&gt;
+ #include "Employee.h"
+
+ Person::Person() {
+
+ }
+
+ void Person::set(const char* n) {
+
+
+ }
+
+ void Person::displayName(std::ostream& os) const {&nbsp;
+
+
+ }
+
+ const double MIN_WAGE = 10.25;
+ const int    SAFE_NUM = 0;
+
+ Employee::Employee() {
+     // safe empty state
+     no      = SAFE_NUM;
+     name[0] = '\0';
+     rate    = MIN_WAGE;
+ }
+
+ Employee::Employee(int n, const char* nm, double r) {&nbsp;
+     if (n &gt; SAFE_NUM &amp;&amp; r &gt;= MIN_WAGE) {
+
+
+
+
+     } else {
+         Employee temp;
+         *this = temp;
+     }
+ }
+
+ void Employee::display(std::ostream& os) const {
+    if (no != SAFE_NUM) {
+
+        os &lt;&lt; std::fixed &lt;&lt; std::setprecision(2);
+
+    }
+    else
+        os &lt;&lt; "no data available";
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>
+       Call the <span class=code>set()</span> member function from the
+       <span class=code>Employee</span> three-argument constructor.&nbsp;
+       Code the <span class=code>display()</span> member
+       function to display the employee's name before their number and
+       wage rate.</p>
+
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>-->
+</table>
+
+</body>
+</html>

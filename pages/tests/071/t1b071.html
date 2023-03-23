@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<span lang="en-us" xmlns='http://www.w3.org/1999/xhtml'><p>
+<head>
+    <title>Seneca | Computer Studies | The Object-Oriented Paradigm Using C++</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Seneca College 2005" />
+    <meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/style.043.css">
+    <link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/stylePPrint.043.css" media="print">
+</head>
+
+<span><p>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign=top>
+                    <center><span class=texthead>
+                    Test 1 - February 23 2007</span><br />
+                    <br />
+                    </center>
+                    <br />
+                    Name _________________________________________________ Student Number ______________
+                    <br />
+
+                    <p class="section">Notes:</p>
+                    <p>
+                    <ul>
+                    <li>This test has 2 pages and lasts two full periods</li>
+                    <li>This test is out of 20 marks and is worth 17% of your final grade</li>
+                    <li>There are 2 questions in this paper - attempt both of them</li>
+                    <li>Each question is of equal weight in marks (10 each)</li>
+                    <li>Answer all questions in the exam booklet provided</li>
+                    <li>Hand in this test paper with your answer booklet</li>
+                    <li>You may use your copy of the lecture notes, the subject notes, one textbook and one study sheet both sides</li>
+                    <li>You may use a non-programmable, non-messaging calculator</li>
+                    <li>You may use a paper foreign-language dictionary</li>
+                    </ul>
+                    </p>
+                    <br />
+
+                    <p class="section">Question 1 - Word Problem - (10 marks):</p>
+                    <p>
+                    Design and code a class named <span class=code>Car</span>
+                    that holds sales information about a car.&nbsp; Place your
+                    class declaration in a header file named <span class=code>Car.h</span>
+                    and your function definitions in an implementation file named
+                    <span class=code>Car.cpp</span>.&nbsp; Include in your coding
+                    all of the statements necessary for your code to compile under
+                    a standard C++ compiler.
+                    </p>
+                    <p>
+                    Upon instantiation, a <span class=code>Car</span>
+                    object may receive no parameters or may receive an
+                    <span class=code>int</span> holding the odometer reading,
+                    a double holding the market value and a
+                    null-terminated C-style string holding the make.&nbsp;
+                    The odometer reading should be
+                    positive-valued but not greater than 999999.&nbsp;
+                    The market value should be greater than $499.99.&nbsp;
+                    If the object receives a valid number, a valid value and
+                    a non-empty string, the object accepts all three values.&nbsp; Otherwise,
+                    the object assumes a safe empty state.&nbsp; You may assume
+                    that the string holding the make of the car shall not be
+                    greater than 30 characters in length.&nbsp;
+                    </p>
+                    <p>
+                    Your class also includes the following member functions:
+                    <ul>
+                    <li><span class=code>void set(int o, double v, const char* s)</span>
+                    - a modifier that changes the data stored in the object only
+                    if this function receives valid parameter values.&nbsp; The first parameter
+                    receives the odometer reading.&nbsp; The second parameter
+                    receives the market value.&nbsp; The third parameter receives
+                    the make.&nbsp; If any of the values received is invalid, the
+                    object stores a safe empty state.&nbsp; The criteria for validity
+                    are listed in the constructor description above.&nbsp;
+                    </li>
+                    <li><span class=code>int valid() const</span> - a query that
+                    returns 1 if the data stored is valid and 0 if there is no
+                    valid data stored;</li>
+                    <li><span class=code>int valid(const char* s) const</span> - a query that
+                    returns 1 if the string received is the same as the make of the car
+                    or as the first part of the make of the car.&nbsp; This function
+                    returns 0 otherwise; and</li>
+                    <li><span class=code>void display() const</span>
+                    - a query that inserts into the standard output stream
+                    the odometer reading, the market value, and the make of
+                    the car.&nbsp; The odometer reading displays in a field of
+                    six, right justified, and zero-filled.&nbsp;
+                    The market value displays in a field of ten,
+                    right justified, and blank filled.&nbsp; The
+                    make of the car displays left-justified in a field of 30.&nbsp;
+                    This function flushes the output buffer and starts a new line.&nbsp;</li>
+                    </ul>
+                    For example, consider the following program that uses
+                    your class
+                    <table>
+                    <tr>
+                    <td>
+                    <br />
+                    <pre>
+ #include "Car.h"
+
+ int main ( ) {
+     Car car[5];
+
+     car[0].set(   12345, 20000., "2005 Camry");&nbsp;
+     car[1].set(     -45, 20000., "2005 Ford");&nbsp;
+     car[2].set(   12345,   200., "2005 BMW");&nbsp;
+     car[3] = Car(456123,  2000., "1995 Mercedes");&nbsp;
+     car[4] = Car(  1234, 40000., "2005 BMW");&nbsp;
+
+     for (int i = 0; i &lt; 5; i++)
+         if (car[i].valid() != 0)
+             car[i].display();
+
+     for (int i = 0; i &lt; 5; i++)
+         if (car[i].valid("2005") != 0)
+             car[i].display();
+
+     return 0;
+ } </pre><br /></td></tr></table>
+                    This program produces the following output
+                    <table>
+                    <tr>
+                    <td>
+                    <br />
+                    <pre class=result>
+  012345  20000.00 2005 Camry
+  456123   2000.00 1995 Mercedes&nbsp;
+  001234  40000.00 2005 BMW
+  012345  20000.00 2005 Camry
+  001234  40000.00 2005 BMW</pre><br /></td></tr></table>
+                    </p>
+                    <br />
+
+                    <p class="section">Question 2 - Walkthrough - (10 marks):</p>
+                    <p>
+                    What is the exact output of the following program?&nbsp; Show your
+                    rough work to avoid deductions.
+                    <table>
+                    <tr>
+                    <td>
+                    <pre>
+ #include &lt;iostream&gt;
+ #include &lt;iomanip&gt;
+ #include &lt;cstring&gt;
+ using namespace std;
+
+ #define STR_MAX 20
+ #define MAX_CHAPTERS 4
+
+ class String {
+     int no;
+     char string[STR_MAX];
+   public:
+     String() {
+         no = 0;
+         strcpy(string, "");
+         cout &lt;&lt; '#';
+     }
+     void operator=(const char* str) {
+         no = strlen(str);
+         strcpy(string, str);
+         cout &lt;&lt; '*' &lt;&lt; no &lt;&lt; '|' &lt;&lt; string &lt;&lt; '|';
+     }
+     ~String() {
+         cout &lt;&lt; '~' &lt;&lt; setw(2) &lt;&lt; setfill('0') &lt;&lt; no &lt;&lt;
+          setfill(' ') &lt;&lt; '|' &lt;&lt; string &lt;&lt; '|' &lt;&lt; endl;
+     }
+     void display() const {
+         cout &lt;&lt; string &lt;&lt; endl;
+     }
+ };
+
+ class Book {
+     String authour;
+     String title;
+     int nc;
+     String chapter[MAX_CHAPTERS];
+   public:
+     Book() {
+         nc = 0;
+         authour = "";            // calls = operator above
+         title = "";              // calls = operator above
+     }
+     Book(int c, const char* a, const char* t) {
+         authour = a;             // calls = operator above
+         cout &lt;&lt; endl;
+         title = t;               // calls = operator above
+         cout &lt;&lt; endl;
+         for (int i = 0; i &lt; c; i++)
+             (*this)++;           // calls post-fix operator below
+     }
+     ~Book() {
+         display();
+         cout &lt;&lt; "-----------" &lt;&lt; endl; // 11 -'s
+     }
+     void display() const {
+         title.display();
+         cout &lt;&lt; "by: ";
+         authour.display();
+         for (int i = 0; i &lt; nc; i++) {
+             cout &lt;&lt; setw(3) &lt;&lt; i + 1 &lt;&lt; '.';
+             chapter[i].display();
+         }
+     }
+     void operator++() {
+         chapter[nc++] = "?";  // calls = operator above
+     }
+     void operator++(int) {
+         chapter[nc++] = "";   // calls = operator above
+     }
+     void write(int i, const char* str) {
+         if (i &gt;= 0 && i &lt; nc)
+             chapter[i] = str; // calls = operator above
+     }
+ };
+
+ int main() {
+
+     Book* book;
+     Book  copy;
+
+     cout &lt;&lt; "\n--------------" &lt;&lt; endl;  // 14 -'s
+     book = new Book(3, "Kim", "Notes");  // allocate on fresstore
+
+     cout &lt;&lt; "\n------------" &lt;&lt; endl;    // 12 -'s
+     book-&gt;write(0, "C++");
+     book-&gt;write(2, "HTML");
+     copy = *book;
+     cout &lt;&lt; "\n---------------" &lt;&lt; endl; // 15 -'s
+     delete book;                         // remove from freestore&nbsp;
+     cout &lt;&lt; "-----------" &lt;&lt; endl;       // 11 -'s
+     copy.write(1, "Php");
+     cout &lt;&lt; "\n-----------" &lt;&lt; endl;     // 11 -'s
+
+     return 0;
+ }</pre></td></tr></table>
+                    </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <!--tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr-->
+</table>
+
+</span>
+</span>

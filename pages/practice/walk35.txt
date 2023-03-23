@@ -1,0 +1,46 @@
+/* Problem 35 */
+	    #include <iostream>
+	    using namespace std;
+
+	    class one {
+		int n;
+		int m;
+	      public:
+		one() { n = 5; m = 6; cout << "one one made\n"; }
+		one(int a, int b) {
+		  n = a; 
+		  m = b; 
+		  cout << "made one one\n"; 
+		}
+		friend ostream &operator<<(ostream &, one);
+	    };
+
+	    ostream &operator<<(ostream &os, one a) {
+		return os << a.n << '/' << a.m << '=' << 
+		 (a.n/a.m) << '\n';
+	    }
+
+	    class two {
+		one x;
+		one y;
+	      public:
+		two() { cout << "one two made\n"; }
+		two(int a, int b, int c, int d) { 
+		  x = one(a, b); 
+		  y = one(c, d); 
+		  cout << "made one two\n";
+		}
+		friend ostream &operator<<(ostream &, two);
+	    };
+
+	    ostream &operator<<(ostream &os, two a) { 
+		return os << a.x << a.y;
+	    }
+
+	    int main() {
+		two t1, t2(4, 2, 8, 3);
+		cout << t1 << t2;
+		one t3(5, 10), t4;
+		cout << t3 << t4;
+		return 0;
+	    }

@@ -1,0 +1,32 @@
+	14. Given the following public part of a class declaration:
+
+	    class charfile {
+		//...there is some private stuff, but you can't use it!
+	      public:
+		charfile(char name[]); // opens text file named "name"
+		~charfile();           // closes the file
+		virtual int read(char *ptr);   // reads next character
+			     // from the file into the memory location 
+			     // pointed to by ptr. Returns 1 if it 
+			     // read OK, 0 if not (e.g. end of file)
+	    };
+
+	    derive a class, called a "linefile",  that  is  a  charfile,
+	    except that the read member function reads  an  entire  line
+	    into the memory location pointed to by ptr, rather than just
+	    one character. (A "line" is defined to end  with  a  newline
+	    character,   although   if   some   non-newline   characters
+	    immediately precede the end  of  the  file,  they  are  also
+	    considered a line.) Once the newline character is  read,  it
+	    is not placed in memory at the end of the rest of the  data;
+	    it is simply discarded. A null terminating byte, however, is
+	    placed in memory at the end of the data.
+
+	    Hint: the new class will need (1) a constructor  and  (2)  a
+	    new version of read. Have this new version of read call  the
+	    base version in a loop that ends when the base version fails
+	    or reads a newline.
+
+	    It is very important for you to note that YOU DO NOT NEED TO
+	    KNOW how a charfile works, you only need to understand  what
+	    the parts of a charfile do.

@@ -1,0 +1,43 @@
+	16. Create a class, called a Buffer, that  can  store  up  to  4
+	    strings destined for output. Each string has a maximum  size
+	    of 81 bytes. A Buffer has the following characteristics:
+
+		- when a Buffer is created, it is empty.
+
+		- the operator, <<, may have a Buffer on the  left  side
+		  and a character string on the right side.  The  string
+		  is stored in the Buffer. If the Buffer is  full  (i.e.
+		  this is the fourth string that has  been  sent  to  an
+		  empty Buffer) then all the strings in the  Buffer  are
+		  displayed on the screen (with a  new-line  after  each
+		  one) and the Buffer is made empty.
+
+		- there is a member function
+
+			void flush()
+
+		  that displays all the strings in the  Buffer  (with  a
+		  new-line after each one) and the Buffer is made empty.
+
+		- when a Buffer disappears, any strings stored in it are
+		  displayed with a new-line after each one).
+
+	    For example, the following code:       produces this output:
+
+	    {   Buffer x;                         123hi
+		x << "hi";                        hello
+		printf("1");                      morning
+		x << "hello";                     greetings
+		printf("2");                      45howdy
+		x << "morning";                   yo!
+		printf("3");                      6hey
+		x << "greetings";                 bye
+		printf("4");                      
+		x << "howdy";
+		printf("5");
+		x << "yo!";
+		x.flush();
+		x << "hey";
+		printf("6");
+		x << "bye";
+	    }

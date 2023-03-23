@@ -1,0 +1,363 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Practice | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the Computer Programming and Analysis Diploma Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Practice</span>
+        <br />
+        <br />
+        <span class="texthead">Cashable Vacation</span>
+       <br />
+       <br />
+       </div>
+       <br />
+
+       <p class="section">Vacation</p>
+
+       <p>Your company needs a program to track the vacation time that
+       its employees accumulate and has asked you to design and to code
+       a class named <span class="code">Vacation</span> that holds
+       vacation data for a single employee.&#160;</p>
+
+       <p>Upon instantiation, a <span class="code">Vacation</span>
+       object accepts either no arguments or two arguments.&#160; If
+       the object accepts arguments, the first one is an integer that
+       holds the number of the employee.&#160; This number is
+       positive-valued and contains no more than 6 digits.&#160; The
+       second argument is a C-style null-terminated string that holds
+       the name of the employee.&#160; This string may contain any
+       number of characters without limitation, except that it is not
+       an empty string.&#160; If the object receives no data or
+       unacceptable data - either an invalid number or an empty string
+       as a name - the object stores a safe empty state.&#160;</p>
+
+       <p>Your design includes the following member functions:</p>
+
+       <ul>
+        <li>Queries:</li>
+
+        <li class="c2">
+         <ul>
+          <li><span class="code">valid()</span> - returns true if the
+          object's data is valid; false if the object holds a safe
+          empty state</li>
+
+          <li><span class="code">name()</span> - returns the address of
+          a string that contains the employee's name if the object's
+          data is valid; NULL otherwise</li>
+
+          <li><span class="code">number()</span> - returns the
+          employee's number if the object's data is valid; 0
+          otherwise</li>
+
+          <li><span class="code">time()</span> - returns the vacation
+          time that the employee has accumulated if the object's data
+          is valid; 0 otherwise</li>
+         </ul>
+        </li>
+
+        <li>Modifiers:</li>
+
+        <li class="c2">
+         <ul>
+          <li><span class="code">+= operator</span> - takes a
+          floating-point value as its right operand and adds this value
+          to the accumulated vacation time if the value is positive and
+          the object's data is valid; does nothing otherwise.&#160;
+          This function returns true if successful, false
+          otherwise.</li>
+
+          <li><span class="code">-= operator</span> - takes a
+          floating-point value as its right operand and subtracts this
+          value from the accumulated vacation time if the value is
+          positive, the value is not greater than the accumulated
+          vacation time and the object's data is valid; does nothing
+          otherwise.&#160; This function returns true if successful,
+          false otherwise.</li>
+         </ul>
+        </li>
+       </ul>
+
+       <p>Your design also overloads the insertion operator
+       (<span class="code">&lt;&lt;</span>) for displaying vacation
+       data on an output stream.&#160; The data fields occupy a single
+       line in the following order: the employee number in a field of 6
+       with 0 padding, the accumulated vacation time in a field of 12
+       with 2 decimal places, and the employee name preceded by a
+       single space.&#160; Refer to the sample output listed above to
+       clarify this description.&#160; Note that in the case where the
+       object holds a safe empty state, this operator simply displays:
+       no data available</p>
+
+       <p>Since the employee's name may contain any number of
+       characters, your design must use dynamic memory.&#160; Hence,
+       the code includes a copy constructor, an assignment operator,
+       and a destructor.&#160; [For those who wish to use the string
+       class in the C++ library, please note that this class is not
+       implemented on your company's platform.]</p>
+
+       <p>Consider the following application that will use your
+       class:</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Vacation.h"
+
+ int main() {
+
+     Vacation jim(345, "Jim"), ghost;
+
+     // Output heading
+     cout &lt;&lt; "Number Accumulated Name" &lt;&lt; endl;
+
+     // should show that Jim starts with nothing
+     cout &lt;&lt; jim &lt;&lt; endl;
+
+     // Jim accumulates 6.5 hours of vacation time
+     jim += 6.5;
+     cout &lt;&lt; jim &lt;&lt; endl;
+
+     // Jim accumulates 4.5 more hours of vacation time
+     jim += 4.5;
+     cout &lt;&lt; jim &lt;&lt; endl;
+
+     // Jim takes 5 hours of vacation
+     jim -= 5;
+     cout &lt;&lt; jim &lt;&lt; endl;
+
+     // data for the ghost employee
+     cout &lt;&lt; endl &lt;&lt; ghost &lt;&lt; endl;
+
+     return 0;
+ }
+</pre>
+         </td>
+        </tr>
+
+        <tr>
+         <td>
+          <p>This application will produce the following output:</p>
+          <pre class="result">
+ Number Accumulated Name
+ 000345        0.00 Jim
+ 000345        6.50 Jim
+ 000345       11.00 Jim
+ 000345        6.00 Jim
+
+ no data available
+</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">CashableVacation</p>
+
+       <p>Your company has decided to let its employees cash out their
+       accumulated vacation time.&#160; To implement this feature, you
+       are to derive a class named <span class=
+       "code">CashableVacation</span> from the Vacation class described
+       above.&#160;</p>
+
+       <p>Upon instantiation, a <span class=
+       "code">CashableVacation</span> object accepts either no
+       arguments or three arguments.&#160; If the object accepts
+       arguments, the first one is an integer that holds the employee's
+       number.&#160; This number is positive-valued and contains no
+       more than 6 digits.&#160; The second argument is a C-style
+       null-terminated string that holds the employee's name.&#160;
+       This string may contain any positive number of characters
+       without limitation.&#160; It may not be an empty string.&#160;
+       The third argument is a floating-point number that holds the
+       rate for converting vacation time to cash.&#160; The provincial
+       minimum wage is defined in symbolic constant MIN_WAGE.&#160; If
+       the object receives no data or unacceptable data - either an
+       invalid number, empty name, or a rate less than MIN_WAGE - the
+       object stores a safe empty state.</p>
+
+       <p>Your design includes the following member functions:</p>
+
+       <ul>
+        <li>Queries:</li>
+
+        <li class="c2">
+         <ul>
+          <li><span class="code">valid()</span> - returns true if the
+          object's data is valid; false if the object holds a safe
+          empty state</li>
+
+          <li><span class="code">cashable()</span> - returns the cash
+          left from the vacation time that the company converted into
+          cash if the object's data is valid; 0 otherwise</li>
+
+          <li><span class="code">conversionRate()</span> - returns the
+          rate for converting vacation time into cash if the object's
+          data is valid; 0 otherwise</li>
+         </ul>
+        </li>
+
+        <li>Modifiers:</li>
+
+        <li class="c2">
+         <ul>
+          <li><span class="code">-= operator</span> - takes a
+          floating-point value as its right operand and subtracts this
+          value from the cash available for withdrawal if the value is
+          positive, the value is not greater than the cash available
+          and the object's data is valid; does nothing otherwise.&#160;
+          This function returns true if successful, false
+          otherwise.</li>
+
+          <li><span class="code">makeCashable(double)</span> - takes a
+          floating-point value as the amount of vacation time to
+          convert into cash and converts this amount into cash for
+          future withdrawal by the employee if the value received is
+          positive and not greater than the accumulated vacation time;
+          does nothing otherwise.&#160; This function does not return
+          anything.</li>
+         </ul>
+        </li>
+       </ul>
+
+       <p>Your design also overloads the insertion operator
+       (<span class="code">&lt;&lt;</span>) for displaying vacation
+       data on an output stream.&#160; The data fields occupy a single
+       line in the following order: the employee number in a field of 6
+       with 0 padding; the accumulated vacation time in a field of 12
+       with 2 decimal places; the conversion rate in a field of 6 with
+       2 decimal places; the cash that is available for withdrawals in
+       a field of 9 with 2 decimal places.&#160; Refer to the sample
+       listed above to clarify this description.&#160; Note that in the
+       case where the object holds a safe state, this operator simply
+       displays: no data available</p>
+
+       <p>Consider the following application that will use your derived
+       class:</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "CashableVacation.h"
+
+ int main() {
+
+     CashableVacation jim(345, "Jim", 8.50), ghost;
+
+     cout &lt;&lt; "Number Accumulated  Rate Cashable Name" &lt;&lt; endl;
+
+     // should show that Jim starts with nothing
+     cout &lt;&lt; jim &lt;&lt; endl;
+
+     // Jim accumulates 6.5 hours of vacation time
+     jim += 6.5;
+     cout &lt;&lt; jim &lt;&lt; endl;
+
+     // Jim accumulates 4.5 more hours of vacation time
+     jim += 4.5;
+     cout &lt;&lt; jim &lt;&lt; endl;
+
+     // The company makes 10 hours of vacation time cashable
+     jim.makeCashable(10);
+     cout &lt;&lt; jim &lt;&lt; endl;
+
+     // Jim withdraws $40
+     jim -= 40.0;
+     cout &lt;&lt; jim &lt;&lt; endl;
+
+     // data for ghost employee
+     cout &lt;&lt; endl &lt;&lt; ghost &lt;&lt; endl;
+
+     return 0;
+ }
+</pre>
+         </td>
+        </tr>
+
+        <tr>
+         <td>
+          <p>This application generates the following output:</p>
+          <pre class="result">
+ Number Accumulated  Rate Cashable Name
+ 000345        0.00  8.50     0.00 Jim
+ 000345        6.50  8.50     0.00 Jim
+ 000345       11.00  8.50     0.00 Jim
+ 000345        1.00  8.50    85.00 Jim
+ 000345        1.00  8.50    45.00 Jim
+
+ no data available
+</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

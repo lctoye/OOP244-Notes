@@ -1,0 +1,76 @@
+	24. Code three classes: publication, periodical and book,  where
+	    periodical and book are both derived from publication.
+
+	    A publication stores the  following  information,  which  is
+	    common to any publication (including periodicals and books):
+
+		- Title (char string, max length 60 characters)
+
+		- Publisher (char string, max length 40 characters)
+
+	    A periodical additionally stores a  string  (max  length  20
+	    characters) which contains a description of  how  often  the
+	    periodical is published, such as  "Monthly"  or  "Daily"  or
+	    "Every Three Weeks".
+
+	    A book additionally stores:
+
+		- Author (char string, max length 80 characters)
+
+		- ISBN number (char string, max length 20 characters)
+
+	    When instantiating one of these classes, data  for  each  of
+	    the fields (specified above) must be supplied. (See  example
+	    below for the order).
+
+	    The  only  public  feature  of  these  classes,  other  than
+	    construction  (and  destruction,  if   your   implementation
+	    requires it), is that instances of each of these classes may
+	    be sent to any ostream using the << operator  (in  a  manner
+	    similar  to  the  built-in  types).   Additionally,   if   a
+	    periodical or book is sent to  an  ostream  using  <<  in  a
+	    publication context, the additional information pertinent to
+	    the periodical  or  book  is  shown,  in  a  format  exactly
+	    matching that of the example below.
+
+	      [Hint: this last specification implies that the display 
+	      action must be "virtual". But the << operator cannot be 
+	      virtual, since it cannot be a member.  Therefore,  your 
+	      << operator will need  to  call  one  or  more  virtual 
+	      functions to do the actual display work. This function, 
+	      or set of functions, should be private or protected, to
+	      fully  meet  the  requirements  outlined  above.   Look 
+	      carefully at ALL the output below  before designing the 
+	      code to perform output in the base class.]
+
+	    For example, the following program:
+
+		int main() {
+		    publication *p[3];
+		    p[0] = new
+		     publication("OOP244 Notes", "Seneca College");
+		    p[1] = new 
+		     periodical("Toronto Sun", "Southam News", "Daily");
+		    p[2] = new 
+		     book("21 Days to a Better You", "Pretice Hall",
+		     "Joseph Noodlemeyer", "1-234-5546-3");
+
+		    for (int i = 0; i < 3; i++) {
+			cout << *p[i] << '\n';
+			delete p[i];
+		    }
+		    return 0;
+		}
+
+	    would output:
+
+		Publication: OOP244 Notes
+		Published by Seneca College
+
+		Periodical: Toronto Sun
+		Published Daily by Southam News
+
+		Book: 21 Days to a Better You
+		Published by Prentice Hall
+		Written by Joseph Noodlemeyer
+		ISBN: 1-234-5546-3

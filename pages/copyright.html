@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Intro to OO Programming Using C++11 | ICT - Seneca</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2020" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="style.043.css">
+    <link rel="stylesheet" type="text/css" href="styleScreen.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="styleSPrint.043.css" media="print">
+    <link rel="stylesheet" type="text/css" href="styleNav.043.css">
+</head>
+
+<body>
+
+<table id="top" width="850" cellspacing="0" cellpadding="0">
+
+    <!-- Banner -->
+    <tr height="120">
+        <td colspan="2" class="banner">
+        <table cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="250" class="banner">
+                    <center><span class="text0">&nbsp;&nbsp;Software&nbsp;&nbsp;<br />
+                    &nbsp;&nbsp;Development&nbsp;&nbsp;</span></center>
+                </td>
+                <td class="tbanner">
+                    <img src="images/Banner4.gif" height="120" width="500" alt="Software Development" />
+                </td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+
+    <!-- Navigation Bar -->
+    <tr height="20">
+        <td class="panel1" align="left" valign="bottom">
+            <ul id="tabnav">
+            <li><script type="text/javascript" src="ict.js"></script></li>
+
+            <li><a href="../index.html">Home</a></li>
+            <li><script type="text/javascript" src="outline.js"></script></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="content/index.html">Notes</a></li>
+            <li><script type="text/javascript" src="classroom_a.js"></script></li>
+            <li><script type="text/javascript" src="classroom_b.js"></script></li>
+            <li><a href="../dynamic/workshops/index.html">Workshops</a></li>
+            <li><a href="../dynamic/assignments/index.html">Assignments</a></li>
+            <li><a href="../dynamic/instructors/index.html">Instructors</a></li>
+            <li><a href="copyright_p.html"><img align="center" src="images/Printer.gif" height=15 width=10 alt="Printer Friendly Version of this Page" /></a></li>
+            </ul>
+        </td>
+        <!-- Web Site Title -->
+        <td class="panel2" width="150" align="center">
+            <span class="text1"><script type="text/javascript" src="subject.js"></script></span>
+        </td>
+    </tr>
+
+    <!-- Body Cells -->
+    <tr height="600">
+
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff" valign="top">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign="top">
+                    <br />
+                    <center><span class=texthead>
+                    Terms of Use</span>
+                    </center>
+                    <br />
+                    <br />
+                    <p>
+                    This site was designed by Chris Szalwinski, Professor,
+                    Seneca College, Toronto, Canada.&nbsp;
+                    </p>
+
+                    <p>
+                    <em>Documentation</em></p>
+
+                    <p>
+                    Except where otherwise noted, all documentation on this site is © Copyright 2020 Chris Szalwinski and Seneca
+                    College and may be used in accordance with the Creative Commons License, Attribution 2.5.&nbsp;  This copyleft
+                    license allows you to copy, modify, and redistribute modifications of all or some of the pages as long as you
+                    </p>
+                    <ol>
+                    <li>include the license with all copies or redistributions</li>
+                    <li>attribute Chris Szalwinski and Seneca College as the copyright holders</li>
+                    </ol>
+
+                    <p>
+                    <a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/2.5/ca/88x31.png" /></a><br /><br /><span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" property="dc:title" rel="dc:type">This Web Site</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://scs.senecac.on.ca/~chris.szalwinski" property="cc:attributionName" rel="cc:attributionURL">Chris Szalwinski</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/">Creative Commons Attribution 2.5 Canada License</a>.
+                    </p>
+
+                    <p>
+                    <em>Software</em></p>
+
+                    <p>
+                    Except where otherwise noted, all software downloadable from this site is © Copyright 2020 Chris Szalwinski and
+                    Seneca College and may be used in accordance with the <a href="http://www.opensource.org/licenses/postgresql">PostgreSQL
+                    License (TPL)</a>:&nbsp;
+                    </p>
+                    <blockquote>
+                    Permission to use, copy, modify, and distribute this software and its documentation for any purpose, without fee, and
+                    without a written agreement is hereby granted, provided that the above copyright notice and this paragraph and the
+                    following two paragraphs appear in all copies.
+                    <br />
+                    <br />
+                    IN NO EVENT SHALL Chris Szalwinski or Seneca College BE LIABLE TO ANY PARTY FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL
+                    DAMAGES, INCLUDING LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF Chris Szalwinski or Seneca College
+                    HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+                    <br />
+                    <br />
+                    Chris Szalwinski and Seneca College SPECIFICALLY DISCLAIM ANY WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+                    MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE SOFTWARE PROVIDED HEREUNDER IS ON AN "AS IS" BASIS, AND
+                    Chris Szalwinski and Seneca College HAVE NO OBLIGATIONS TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+                    </blockquote>
+                    <p>This permissive license allows you to copy, modify, and redistribute modifications of all or some of the software as long as you
+                    <ol>
+                    <li>include the license with all copies or redistributions</li>
+                    <li>attribute Chris Szalwinski and Seneca College as the copyright holders</li>
+                    </ol>
+
+                    <p>
+                    Please direct any comments regarding this site or the software downloadable from this site <a href="mailto:chris.szalwinski@senecacollege.ca?subject=websites">here</a>.</p>
+                    </p>
+
+                    <br />
+                    <br />
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+        <!-- Detail Menu -->
+        <td class="panel1" width="150" valign="top" rowspan="2">
+            <ul id="mennav">
+            <li><a href="welco.html">Welcome</a></li>
+            <li><a href="content/index.html">Notes</a></li>
+            <li><a href="../dynamic/workshops/index.html">Workshops</a></li>
+            <li><a href="../dynamic/assignments/index.html">Assignments</a></li>
+            <li><a href="handouts/index.html">Handouts</a></li>
+            <li><a href="practice/index.html">Practice</a></li>
+            <li><a href="resources/index.html">Resources</a></li>
+            <!--<li><a href="content/glossary.html">Glossary</a></li>-->
+            </ul>
+        </td>
+    </tr>
+
+    <!-- Content Area Footer -->
+    <tr height="20">
+        <td class="panel3" align="center">
+            <table class="panel2" width="95%">
+                <tr>
+                    <td align="left">
+                        &nbsp;&nbsp;<a href="copyright_p.html" class="text3">
+                        <img src="images/Printer.gif" height="15" width="10" alt="Printer Friendly Version of this Page" />&nbsp;print this page</a>&nbsp;&nbsp;
+                    </td>
+                    <td align="right">
+                        &nbsp;&nbsp;<a href="copyright.html#top" class="text3">Top&nbsp;
+                        <img src="images/ArrowToT.gif" height="15" width="15" alt="Go Back to the Top of this Page" /></a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <!-- Left Panel -->
+        <td class="panel1" width="700" align="center">
+            <!-- Lateral Motion Control -->
+            <br />
+            <br />
+            <!-- Alternate Navigation Links -->
+            <ul id="altnav" align="center">
+            <li><script type="text/javascript" src="ict.js"></script></li>
+            <!--<li><a href="https://cs.senecac.on.ca/~bsd">BSD Home</a></li>-->
+            <li><a href="../index.html">Home</a></li>
+            <li><script type="text/javascript" src="outline.js"></script></li>
+            <li><a href="timeline.html">Timeline&nbsp;</a></li>
+            </ul>
+            <ul id="altnav" align="center">
+            <li><a href="content/index.html">Notes</a></li>
+            <li><script type="text/javascript" src="classroom_a.js"></script></li>
+            <li><script type="text/javascript" src="classroom_b.js"></script></li>
+            <li><a href="../dynamic/workshops/index.html">Workshops</a></li>
+            <li><a href="../dynamic/assignments/index.html">Assignments</a></li>
+            <li><a href="../dynamic/instructors/index.html">Instructors</a></li>
+            </ul>
+            <br />
+            <!-- Bottom Line -->
+            <table cellpadding=1 width="90%">
+                <tr>
+                    <td width="33%" class="text3">
+                        &nbsp;&nbsp;Designed by Chris Szalwinski&nbsp;&nbsp;
+                    </td>
+                    <td width="34%" align="center">
+                        <a href="copyright.html" class="text3">Copying From This Site</a>
+                    </td>
+                    <td width="33%" align="right" class="text3">
+                        <script language="javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+        <!-- Logo - Right Bottom Corner -->
+        <td class=panel2 width="150" align="center">
+            <img src="images/Logo.gif" height="73" width="85" /><br /><a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/2.5/ca/88x31.png" /></a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

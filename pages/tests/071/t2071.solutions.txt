@@ -1,0 +1,172 @@
+Question 1 - Word Problem
+=========================
+
+/* IDCard Header File
+ * IDCard.h
+ * OOP244 - Test 2
+ * Apr 1 2007
+ */
+ 
+#include <iostream>
+using namespace std;
+
+class IDCard {
+    char* person;
+  public:
+    IDCard();
+    IDCard(const char* n);
+    IDCard(const IDCard& c);
+    IDCard& operator=(const IDCard& c);
+    ~IDCard();
+    virtual int valid() const;
+    const char* name() const;
+};
+
+ostream& operator<<(ostream& os, const IDCard& c);
+
+/* IDCard Implementation File
+ * IDCard.cpp
+ * OOP244 - Test 2
+ * Apr 1 2007
+ */
+
+#include <iostream>
+#include <iomanip>
+#include <cstring>
+using namespace std;
+#include "IDCard.h"
+
+IDCard::IDCard() { person = NULL; }
+
+IDCard::IDCard(const char* n) {
+    if (n[0] != '\0') {
+        person = new char[strlen(n) + 1];
+        strcpy(person, n);
+    }
+    else
+        person = NULL;
+}
+
+IDCard::IDCard(const IDCard& c) {
+    person = NULL;
+    *this = c;
+}
+
+IDCard& IDCard::operator=(const IDCard& c) {
+    if (this != &c) {
+        if (person) delete [] person;
+        if (c.person) {
+            person = new char[strlen(c.person) + 1];
+            strcpy(person, c.person);
+        }
+        else
+            person = NULL;
+    }
+    return *this;
+}
+
+IDCard::~IDCard() {
+    if (person) delete [] person;
+}
+
+int IDCard::valid() const { return person != NULL; }
+
+const char* IDCard::name() const { return person; }
+
+ostream& operator<<(ostream& os, const IDCard& c) {
+    if (c.valid())
+        os << c.name();
+    else
+        os << "unknown";
+    return os;
+}
+
+
+Question 2 - Word Problem
+=========================
+
+/* SINCard Header File
+ * SINCard.h
+ * OOP244 - Test 2
+ * Apr 1 2007
+ */
+
+#include <iostream>
+using namespace std;
+#include "IDCard.h"
+
+class SINCard : public IDCard {
+    int no;
+  public:
+    SINCard();
+    SINCard(const char* name, int n);
+    int valid() const;
+    int sin() const;
+    SINCard& operator=(int n);
+};
+
+ostream& operator<<(ostream& os, const SINCard& s);
+
+/* SINCard Implementation File
+ * SINCard.cpp
+ * OOP244 - Test 2
+ * Apr 1 2007
+ */
+
+#include <iostream>
+#include <iomanip>
+#include <cstring>
+using namespace std;
+#include "SINCard.h"
+
+SINCard::SINCard() { no = 0; }
+
+SINCard::SINCard(const char* name, int n) : IDCard(name) {
+    if (n > 0)
+        no = n;
+    else
+        *this = SINCard();
+}
+
+SINCard& SINCard::operator=(int n) {
+    if (valid() && n > 0)
+        no = n;
+    return *this;
+}
+
+int SINCard::valid() const { return IDCard::valid() && no != 0; }
+
+int SINCard::sin() const { return no; }
+
+ostream& operator<<(ostream& os, const SINCard& c) {
+    os << setfill('0') << setw(9) << c.SINCard() << setfill(' ') << ' ';
+    if (c.valid())
+        os << c.name();
+    else
+        os << "unknown";
+    return os;
+}
+
+
+Question 3 - Walkthrough
+========================
+
+CACAHY
+--------
+0|50
+0|50:0
+--------
+60|44
+60|44:30
+--------
+90|41
+75|42:15
+--------
+90|41~
+90|41
+75|42~
+75|42
+--------
+15|15%~
+75|42~
+90|41

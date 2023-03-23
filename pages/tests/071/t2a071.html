@@ -1,0 +1,388 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<span lang="en-us" xmlns='http://www.w3.org/1999/xhtml'><p>
+<head>
+    <title>Seneca | Computer Studies | The Object-Oriented Paradigm Using C++</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Seneca College 2005" />
+    <meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../stylePPrint.043.css" media="print">
+</head>
+
+<span><p>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign=top>
+                    <center><span class=texthead>
+                    Test 2 - April 2 2007</span><br />
+                    <br />
+                    </center>
+                    <br />
+                    Name ____________________________________ Student Number ______________
+                    <br />
+
+                    <p class="section">Notes:</p>
+                    <p>
+                    <ul>
+                    <li>This test has 5 pages and lasts two full periods</li>
+                    <li>This test is out of 40 marks and is worth 17% of your final grade</li>
+                    <li>There are 3 questions in this paper - attempt all of them</li>
+                    <!--<li>Each question is of equal weight in marks (10 each)</li>-->
+                    <li>Answer all questions in the exam booklet provided</li>
+                    <li>Hand in this test paper with your answer booklet</li>
+                    <li>You may use your copy of the lecture notes, the subject notes, one textbook and one study sheet both sides</li>
+                    <li>You may use a non-programmable, non-messaging calculator</li>
+                    <li>You may use a paper foreign-language dictionary</li>
+                    </ul>
+                    </p>
+                    <br />
+
+                    <p class="section">Question 1 - Word Problem - (10 marks):</p>
+                    <p>
+                    Design and code a class named <span class=code>IDCard</span>
+                    that holds identity information about a card holder.&nbsp; Place your
+                    class declaration in a header file named <span class=code>IDCard.h</span>
+                    and your function definitions in an implementation file named
+                    <span class=code>IDCard.cpp</span>.&nbsp; Include in your coding
+                    all of the statements necessary for your code to compile under
+                    a standard C++ compiler.
+                    </p>
+                    <p>
+                    Upon instantiation, an <span class=code>IDCard</span>
+                    object may receive no parameters or a
+                    null-terminated C-style string holding the name of
+                    the card holder.&nbsp; If the object receives
+                    a non-empty string, the object accepts the string
+                    as the card holder's name.&nbsp; Otherwise, the object assumes
+                    a safe empty state.&nbsp; <i>The string holding the card holder's
+                    name may be of any length.&nbsp;</i>
+                    </p>
+                    <p>
+                    Since the name of the card holder may be of any length,
+                    your design must include a copy constructor, an assignment
+                    operator and a destructor.&nbsp;
+                    </p>
+                    <p>
+                    Your class also includes the following member functions:
+                    <ul>
+                    <li><span class=code>const char* name() const</span> - a query that
+                    returns the address of the card holder's name if the data
+                    stored is valid and the NULL address if there is no valid data stored;
+                    and</li>
+                    <li><span class=code>int valid() const</span> - a query that
+                    returns 1 if the data stored is valid and 0 otherwise.</li>
+                    </ul>
+                    </p>
+                    <p>
+                    Finally, your design overloads the insertion operator for an
+                    <span class=code>ostream</span> object as the left operand
+                    and an <span class=code>IDCard</span> as the right operand.&nbsp;
+                    The operator displays on the left operand the
+                    name of the card holder stored in the right operand.&nbsp;
+                    If the right operand does not contain valid data, this operator
+                    displays the string "unknown" on the left operand.&nbsp;
+                    Design this operator so that it handles cascading.
+                    </p>
+                    <p>
+                    For example, consider the following program that uses
+                    your class
+                    <table>
+                    <tr>
+                    <td>
+                    <br />
+                    <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "IDCard.h"
+
+ int main ( ) {
+     IDCard person("Jane Doe");
+     IDCard clone = person;
+     IDCard forgery;
+
+     cout &lt;&lt; forgery.valid() &lt;&lt; clone.valid() &lt;&lt; endl;
+     cout &lt;&lt; person &lt;&lt; endl;
+     cout &lt;&lt; clone &lt;&lt; endl;
+     cout &lt;&lt; forgery &lt;&lt; endl;
+
+     forgery = person;
+
+     cout &lt;&lt; forgery.valid() &lt;&lt; clone.valid() &lt;&lt; endl;
+     cout &lt;&lt; person &lt;&lt; endl;
+     cout &lt;&lt; clone &lt;&lt; endl;
+     cout &lt;&lt; forgery &lt;&lt; endl;
+
+     return 0;
+ } </pre><br /></td></tr></table>
+                    </p>
+                    <p>
+                    This program produces the following output
+                    <table>
+                    <tr>
+                    <td>
+                    <br />
+                    <pre class=result>
+  01
+  Jane Doe
+  Jane Doe
+  unknown
+  11
+  Jane Doe
+  Jane Doe
+  Jane Doe&nbsp;</pre><br /></td></tr></table>
+                    </p>
+                    <br />
+
+                    <p class="section">Question 2 - Word Problem - (10 marks):</p>
+                    <p>
+                    Derive from an <span class=code>IDCard</span> class a new class
+                    named <span class=code>SINCard</span> that holds social insurance
+                    information about a card holder.&nbsp; Place your
+                    class declaration in a header file named <span class=code>SINCard.h</span>
+                    and your function definitions in an implementation file named
+                    <span class=code>SINCard.cpp</span>.&nbsp; Include in your coding all
+                    of the statements necessary for your code to compile under
+                    a standard C++ compiler.
+                    </p>
+                    <p>
+                    If you have not answered Question 1, you may, for the purpose
+                    of answering this question, assume that you have been provided
+                    with a complete answer to Question 1.&nbsp; You do not need to
+                    implement the specifications of Question 1 to obtain full marks
+                    for your solution to this question.&nbsp;
+                    </p>
+                    <p>
+                    Upon instantiation, an <span class=code>SINCard</span>
+                    object may receive
+                    <ul>
+                    <li>no parameters</li>
+                    <li>a null-terminated C-style string holding the name of
+                    the card holder and an integer holding the social insurance
+                    number of the cardholder.&nbsp; </li>
+                    </ul>
+                    </p>
+                    <p>
+                    If the object receives two arguments, the object accepts the string
+                    as the card holder's name and the number as the card holder's social insurance
+                    number.&nbsp; If the name supplied is a valid name and if the number
+                    supplied is a positive number, the object stores the number supplied
+                    as the card holder's social insurance number.&nbsp; Otherwise, the object
+                    stores a safe empty state.&nbsp;
+                    </p>
+                    <p>
+                    Your derived class includes the following member functions:
+                    <ul>
+                    <li><span class=code>int valid() const</span> - a query that
+                    returns 1 if the object holds a valid name and a valid social
+                    insurance number.&nbsp; Otherwise, this function returns 0.&nbsp;</li>
+                    <li><span class=code>int sin() const</span> - a query that
+                    returns the social insurance number of the object if it holds
+                    a valid name and a valid number.&nbsp; Otherwise, this function
+                    returns 0.&nbsp;</li>
+                    <li><span class=code>SINCard&amp; operator=(int n)</span> - a modifier that
+                    receives an integer n and, if n is valid, stores the integer as the
+                    card holder's social insurance number.&nbsp; If n is invalid or the
+                    object is not holding valid name data, this function does
+                    nothing.&nbsp;</li>
+                    </ul>
+                    </p>
+                    <p>
+                    Finally, your design overloads the insertion operator for an
+                    <span class=code>ostream</span> object as the left operand
+                    and an <span class=code>SINCard</span> as the right operand.&nbsp;
+                    The operator displays on the left operand the
+                    social insurance number of the card holder in a field of 9
+                    with zero fill followed by the name of the card holder.&nbsp;
+                    If the right operand does not contain valid data, this operator
+                    displays a number filled with 0's followed by the string "unknown".&nbsp;
+                    Design this operator so that it handles cascading.
+                    </p>
+                    <p>
+                    For example, consider the following program that uses
+                    your class
+                    <table>
+                    <tr>
+                    <td>
+                    <br />
+                    <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "SINCard.h"
+
+ int main ( ) {
+     SINCard person("Jane Doe", 66666666), unknown;
+
+     cout &lt;&lt; person.valid() &lt;&lt; unknown.valid() &lt;&lt; endl;
+     cout &lt;&lt; person &lt;&lt; endl;
+     cout &lt;&lt; unknown &lt;&lt; endl;
+
+     person = 123456789;
+
+     cout &lt;&lt; person &lt;&lt; endl;
+
+     return 0;
+ } </pre><br /></td></tr></table>
+                    </p>
+                    <p>
+                    This program produces the following output
+                    <table>
+                    <tr>
+                    <td>
+                    <br />
+                    <pre class=result>
+  10
+  066666666 Jane Doe
+  000000000 unknown
+  123456789 Jane Doe&nbsp;</pre><br /></td></tr></table>
+                    </p>
+                    <br />
+
+                    <p class="section">Question 3 - Walkthrough - (10 marks):</p>
+                    <p>
+                    What is the exact output of the following program?&nbsp; Show your
+                    rough work to avoid deductions.
+                    <table>
+                    <tr>
+                    <td>
+                    <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+
+ #define CUTOFF 30
+ #define C_RATE 1
+ #define U_RATE 2
+ #define F_RATE 0.1
+
+ class Car {
+     int odometer;
+     double fuel;
+   public:
+     Car() { cout &lt;&lt; "CA"; odometer = 0; fuel = 0; }
+     ~Car() { cout &lt;&lt; '~'; display(); }
+     void operator+=(double f) { fuel += f; }
+     virtual void drive(double speed, double time) {
+         double distance = speed * time;
+         if (fuel > distance * F_RATE)
+             fuel -= distance * F_RATE;
+         else
+             distance = fuel / F_RATE;
+         odometer += distance;
+     }
+     virtual void display() const {
+         cout &lt;&lt; '\n' &lt;&lt; odometer &lt;&lt; '|' &lt;&lt; int(fuel);
+     }
+ };
+
+ class Hybrid : public Car {
+     int gauge;
+     double charge;
+   public:
+     Hybrid() { cout &lt;&lt; "HY"; gauge = 0; charge = 0.0; }
+     ~Hybrid() { cout &lt;&lt; '\n' &lt;&lt; gauge &lt;&lt; '|' &lt;&lt; charge &lt;&lt; '%'; }
+     void drive(double speed, double time) {
+         if (speed > CUTOFF)  {
+             Car::drive(speed, time);
+             charge += CUTOFF * time * C_RATE;
+         }
+         else if (charge > speed * time * U_RATE) {
+             charge -= speed * time * U_RATE;
+             gauge += speed * time;
+         } else {
+             double eTime = charge / (U_RATE * speed);
+             gauge += speed * eTime;
+             charge = 0;
+             time -= eTime;
+             Car::drive(speed, time);
+             charge += speed * time * C_RATE;
+         }
+     }
+     void display() const {
+         Car::display();
+         cout &lt;&lt; ':' &lt;&lt; charge;
+     }
+ };
+
+ void drive(Car& car, double speed, double time) {
+
+     car.drive(speed, time);
+     car.display();
+ }
+
+ void fill(Car& car, double fuel) {
+
+     car += fuel;
+     car.display();
+ }
+
+ void show(Car car) {
+
+     car.display();
+ }
+
+ int main() {
+     Car car;
+     Hybrid hybrid;
+
+     cout &lt;&lt; "\n--------";
+     fill(car, 50);
+     fill(hybrid, 50);
+
+     cout &lt;&lt; "\n--------";
+     drive(car, 60, 1);
+     drive(hybrid, 60, 1);
+
+     cout &lt;&lt; "\n--------";
+     drive(car, 10, 3);
+     drive(hybrid, 10, 3);
+
+     cout &lt;&lt; "\n--------";
+     show(car);
+     show(hybrid);
+
+     cout &lt;&lt; "\n--------";
+     return 0;
+ }</pre></td></tr></table>
+                    </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <!--tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr-->
+</table>
+
+</span>
+</span>

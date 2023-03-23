@@ -1,0 +1,287 @@
+OOP244 - Final Exam - Winter 2009
+=================================
+
+Question 1
+==========
+// Light - Final Exam - OOP244 - Winter 2009
+// Light.h
+// Chris Szalwinski
+// March 28 2009
+
+#include <iostream>
+using namespace std;
+
+class Light {
+    int red;
+    int green;
+    int blue;
+    double brightness;
+    int empty_;
+  public:
+    Light();
+    Light(int color, double b);
+    int setColor(char rgb, int value);
+    int empty() const;
+    virtual void operator++();
+    virtual void operator--();
+    friend ostream& operator<<(ostream& os, const Light& light);
+};
+
+// Light - Final Exam - OOP244 - Winter 2009
+// Light.cpp
+// Chris Szalwinski
+// March 28 2009
+
+#include <iomanip>
+#include "Light.h"
+const double INC = 0.10;
+
+Light::Light() {
+    red = green = blue = 0;
+    brightness = 0.0;
+    empty_ = 1;
+}
+Light::Light(int color, double b) {
+    if (color >= 0 && color <= 999999 && b >= 0.0 && b <= 1.0) {
+        red = color / 10000;
+        green = color / 100 % 100;
+        blue = color % 100;
+        brightness = b;
+        empty_ = 0;
+    }
+    else
+        *this = Light();
+}
+int Light::setColor(char rgb, int value) {
+    int rc = 0;
+    if (empty_ == 0 && value >= 0 && value <= 99) {
+        rc = 1;
+        switch (rgb) {
+            case 'r':
+                red = value;
+                break;
+            case 'g':
+                green = value;
+                break;
+            case 'b':
+                blue = value;
+                break;
+            default:
+                rc = 0;
+        }
+    }
+    return rc;
+}
+int Light::empty() const {
+    return empty_;
+}
+void Light::operator++() {
+    if (empty_ == 0) {
+        brightness += INC;
+        if (brightness > 1.0)
+            brightness = 1.0;
+    }
+}
+void Light::operator--() {
+    if (empty_ == 0) {
+        brightness -= INC;
+        if (brightness < 0.0)
+            brightness = 0.0;
+    }
+}
+ostream& operator<<(ostream& os, const Light& light) {
+    if (light.empty_ == 1)
+        os << "no data";
+    else
+        os << setw(6) << light.red << setfill('0') <<
+              setw(2) << light.green << setw(2) << light.blue <<
+              setfill(' ') << fixed << setprecision(2) <<
+              setw(6) << light.brightness;
+    return os;
+}
+
+// Light - Final Exam - OOP244 - Winter 2009
+// fe091.light.cpp
+// Chris Szalwinski
+// March 28 2009
+
+#include <iostream>
+using namespace std;
+#include "Light.h"
+
+int main ( ) {
+    Light light(990099, 0.8);
+
+    ++light;
+    cout << light << endl;
+    ++light;
+    ++light;
+    light.setColor('r', 66);
+    light.setColor('g', 30);
+    cout << light << endl;
+    --light;
+    cout << light << endl;
+
+    return 0;
+}
+
+Question 2
+==========
+// SLight - Final Exam - OOP244 - Winter 2009
+// SLight.h
+// Chris Szalwinski
+// Apr 8 2009
+
+#include <iostream>
+using namespace std;
+#include "Light.h"
+
+class SLight : public Light {
+    int on;
+  public:
+    SLight();
+    SLight(int color, double b, int o);
+    void toggle();
+    void operator++();
+    void operator--();
+    friend ostream& operator<<(ostream& os, const SLight& sLight);
+};
+
+// SLight - Final Exam - OOP244 - Winter 2009
+// SLight.cpp
+// Chris Szalwinski
+// Apr 8 2009
+
+#include <iomanip>
+#include "SLight.h"
+const double INC = 0.10;
+
+SLight::SLight() {
+    on = 0;
+}
+SLight::SLight(int color, double b, int o) : Light(color, b) {
+    if (!empty())
+        on = o;
+    else
+        *this = SLight();
+}
+void SLight::toggle() {
+    if (!empty())
+        on = !on;
+}
+void SLight::operator++() {
+    if (!empty() && on)
+        Light::operator++();
+}
+void SLight::operator--() {
+    if (!empty() && on)
+        Light::operator--();
+}
+ostream& operator<<(ostream& os, const SLight& sLight) {
+    os << (Light&)sLight;
+    if (!light->empty())
+        os << ' ' << (sLight.on ? "on" : "off");
+    return os;
+}
+
+// Light - Final Exam - OOP244 - Winter 2009
+// fe091.sLight.cpp
+// Chris Szalwinski
+// March 28 2009
+
+#include <iostream>
+using namespace std;
+#include "SLight.h"
+
+int main ( ) {
+    SLight light(990099, 0.8, 1);
+
+    ++light;
+    cout << light << endl;
+    ++light;
+    ++light;
+    light.setColor('r', 66);
+    light.setColor('g', 30);
+    cout << light << endl;
+    light.toggle();
+    --light;
+    cout << light << endl;
+
+    return 0;
+}
+
+Question 3
+==========
+
+Version A
+---------
+good
+oofd
+good
+ate
+SURPRISE!
+oogd food
+oogd tea
+good food : good tea
+
+Version B
+---------
+good
+rowk
+good
+ate
+SURPRISE!
+oogd work
+oogd tea
+good work : good tea
+
+Version C
+---------
+good
+lawk
+good
+ate
+SURPRISE!
+oogd walk
+oogd tea
+good walk : good tea
+
+
+Question 4
+==========
+
+Version A
+---------
+!$1
+1
+=^
+=9
+5
+~~4
+5
+~9
+5
+
+Version B
+---------
+!$2
+2
+=^
+=9
+5
+~~4
+5
+~9
+5
+
+Version C
+---------
+!$3
+3
+=^
+=9
+5
+~~4
+5
+~9
+5

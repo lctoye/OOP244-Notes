@@ -1,0 +1,372 @@
+BTP200 Mid Term 2
+
+Version b
+
+BTP200
+======
+Encaps
+ulatio
+
+...
+BTP200
+======
+n, Inh
+eritan
+
+ooo
+===
+BTP200
+======
+ce and
+ Polym
+
+BTP200
+======
+orphis
+m
+
+BTP200
+========
+Encapsul
+ation, I
+
+BTP
+200
+===
+nhe
+rit
+
+======
+^^^
+===
+^^^
+
+Version a
+
+BTP200
+======
+Inheri
+tance,
+
+...
+BTP200
+======
+ Encap
+sulati
+
+ooo
+===
+BTP200
+======
+on and
+ Polym
+
+BTP200
+======
+orphis
+m
+
+BTP200
+========
+Inherita
+nce, Enc
+
+BTP
+200
+===
+aps
+ula
+
+======
+^^^
+===
+^^^
+
+Word Problem
+
+// Mid-Term Test 2
+// Bank Account
+// Date.h
+// April 1 2004
+
+#define LOWYEAR 1969
+#include <iostream>
+using namespace std;
+
+class Date {
+	int day;
+	int month;
+	int year;
+	int dayInYear() const;
+public:
+	Date();
+	Date(const char*);
+	bool valid() const;
+	int daysInYear() const;
+	int daysTo(const Date&) const;
+	friend ostream& operator<<(ostream&, const Date&);
+};
+
+int daysInYear(int);
+int daysInMonth(int);
+
+// Mid-Term Test 2
+// Bank Account
+// Date.cpp
+// April 1 2004
+
+#include <stdio.h>
+#include "Date.h"
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int daysInMonth(int m, int y) {
+	int n = 0;
+	if (m == 2) {
+		if (y % 4 == 0 && y % 100 != 0 || y % 400 == 0)
+			n = 29;
+		else
+			n = 28;
+	} else if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12)
+		n = 31;
+	else if (m == 4 || m == 6 || m == 9 || m == 11)
+		n = 30;
+	return n;
+}
+
+int Date::dayInYear() const {
+	int d = day;
+	for (int i = 1; i < month; i++)
+		d += daysInMonth(i, year);
+	return d;
+}
+
+int Date::daysInYear() const {
+	return (year % 4 == 0 && year % 100 || year % 400) ? 366 : 365;
+}
+
+int daysInYear(int year) {
+	return (year % 4 == 0 && year % 100 || year % 400) ? 366 : 365;
+}
+
+Date::Date() {
+	day = month = year = 0;
+}
+
+bool Date::valid() const {
+	return day != 0 && month != 0;
+}
+
+Date::Date(const char* s) {
+	int d, m, y;
+	sscanf(s, "%d%*c%d%*c%d", &d, &m, &y);
+	if (m > 0 && m <= 12 && y > LOWYEAR) {
+		if (d > 0 && d <= daysInMonth(m, y)) {
+			day = d;
+			month = m;
+			year = y;
+		}
+	}
+}
+
+int Date::daysTo(const Date& to) const {
+	int d = 0;
+	if (valid() && to.valid()) {
+		d = to.dayInYear() - dayInYear();
+		if (year <= to.year) {
+			for(int i = year; i < to.year; i++)
+				d += ::daysInYear(i);
+		} else {
+			for(int i = year - 1; i >= to.year; i--)
+				d -= ::daysInYear(i);
+		}
+	}
+	return d;
+}
+
+ostream& operator<<(ostream& os, const Date& date) {
+	if (date.valid()) {
+		os.fill('0');
+		os << setw(2) << date.day << '/' << setw(2) << date.month << '/' << setw(4) << date.year;
+		os.fill(' ');
+	} else
+		os << "*Bad Date*";
+	return os;
+}
+
+// Mid-Term Test 2
+// Bank Account
+// Account.h
+// April 1 2004
+
+class Account {
+	int number;
+	char* name;
+	double balance;
+	void init(const char* n);
+	Account(const Account& a){}
+	void operator=(const Account& a){}
+public:
+	Account(int, const char*, double);
+	~Account();
+	void deposit(double);
+	bool withdraw(double);
+	void display() const;
+	double acctBalance() const;
+};
+
+// Mid-Term Test 2
+// Bank Account
+// Account.cpp
+// April 1 2004
+
+#include <string>
+#include "Account.h"
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+void Account::init(const char* m) {
+	name = new char[strlen(m) + 1];
+	strcpy(name, m);
+}
+
+Account::Account(int n, const char* m, double b) {
+	if (n > 0 && b >= 0) {
+		number = n;
+		balance = b;
+		init(m);
+	}
+	else {
+		number = 0;
+		name = NULL;
+		balance = 0;
+	}
+}
+
+Account::~Account() {
+	if(name)delete [] name;
+}
+
+void Account::deposit(double amount) {
+	balance += amount;
+}
+
+double Account::acctBalance() const {
+	return balance;
+}
+
+bool Account::withdraw(double amount) {
+	bool accepted;
+	if (amount > balance) {
+		cout << "**Insufficient funds - withdrawal rejected**" << endl;
+		accepted = false;
+	} else {
+		balance -= amount;
+		accepted = true;
+	}
+	return accepted;
+}
+
+void Account::display() const {
+	cout.fill('0');
+	cout << setw(11) << number << ' ';
+	cout.fill('.');
+	cout << setprecision(2) << fixed << setw(10) << balance << ' ';
+	cout.fill(' ');
+	cout << left << ((name) ? name : "") << right;
+}
+
+// Mid-Term Test 2
+// Bank Account
+// Savings.h
+// April 1 2004
+
+#include "Date.h"
+#include "Account.h"
+
+class Savings : public Account {
+	double rate;
+	double accrued;
+	Date mostRecent;
+	void accrue(const Date&);
+public:
+	Savings(int, const char*, double, double, const char*);
+	bool deposit(double, const char*);
+	bool withdraw(double, const char*);
+	void compound();
+	void display() const;
+};
+
+// Mid-Term Test 2
+// Bank Account
+// Savings.cpp
+// April 1 2004
+
+#include "Savings.h"
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+Savings::Savings(int n, const char* m, double b, double r, const char* s) : Account(n, m, b) {
+	accrued = 0;
+	mostRecent = Date(s);
+	if (r > 0 && mostRecent.valid())
+		rate = 0.01 * r / mostRecent.daysInYear();
+	else
+		rate = 0;
+}
+
+void Savings::accrue(const Date& date) {
+	accrued += mostRecent.daysTo(date) * rate * acctBalance();
+	mostRecent = date;
+}
+
+bool Savings::deposit(double amount, const char* d) {
+	Date date(d);
+	bool done;
+
+	if (date.valid() && mostRecent.daysTo(date) >= 0) {
+		done = true;
+		accrue(date);
+		Account::deposit(amount);
+	} else if (!date.valid()){
+		cout << "Deposit rejected - invalid date" << endl;
+		done = false;
+	} else {
+		cout << "**Deposit rejected - date specified predates most recent transaction**" << endl;
+		done = false;
+	}
+	return done;
+}
+
+bool Savings::withdraw(double amount, const char* d) {
+	Date date(d);
+	bool done;
+
+	if (date.valid() && mostRecent.daysTo(date) >= 0) {
+		accrue(date);
+		done = Account::withdraw(amount);
+	} else if (!date.valid()){
+		cout << "Withdrawal rejected - invalid date" << endl;
+		done = false;
+	} else {
+		cout << "**Withdrawal rejected - date specified predates most recent transaction**" << endl;
+		done = false;
+	}
+	return done;
+}
+
+void Savings::compound() {
+	Account::deposit(accrued);
+	accrued = 0;
+}
+
+void Savings::display() const {
+	cout << mostRecent << " ";
+	Account::display();
+	cout << " (" << accrued << " accrued interest) " << endl;
+}
+
+

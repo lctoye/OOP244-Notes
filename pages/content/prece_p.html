@@ -1,0 +1,211 @@
+
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Appendices | Operator Precedence</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2016" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign=top>
+                    <br />
+                    <center>
+                    <span class="texth">Appendices</span>
+                    <br />
+                    <br />
+                    <span class=texthead>Operator Precedence</span>
+                    </center>
+                    <br />
+                    <br />
+                    <br />
+
+       <p>
+       The precedence order of the operators covered in these notes is important in
+       the evaluation of compound expressions.&nbsp; A compound expression consists
+       of several sub-expressions.&nbsp; Different orders of evaluation are possible
+       in such expressions.&nbsp; That is, the results of evaluating the entire
+       compound expression depend on the order of evaluating its sub-expressions.&nbsp;
+       </p>
+       <p>
+       To ensure unique evaluation of all compound expressions, C++ defines rules of
+       precedence on the operators in a compound expression.&nbsp; This order is from
+       top to bottom in the table shown below.&nbsp; The operators associate operands
+       in each sub-expression as noted in the right column, mostly from left to right.
+       </p>
+
+       <table class="center" summary="">
+        <tr class="desc">
+         <td class="w70" align="center">Operator</td>
+
+         <td align="center" class="w30">Associate
+         From</td>
+        </tr>
+
+        <tr class="value">
+         <td><span class="code">::</span></td>
+
+         <td align="center">left to right</td>
+        </tr>
+
+        <tr class="value">
+         <td><span class="code">[ ] . -&gt; ++ (postfix) -- (postfix)
+         </span></td>
+
+         <td align="center">left to right</td>
+        </tr>
+
+        <tr class="value">
+         <td><span class="code">&#160;++ (prefix) -- (prefix) + - &amp; !
+         (all unary)&#160;
+         <br />
+         new new[] delete delete[] (type), type()</span></td>
+
+         <td align="center">right to left</td>
+        </tr>
+
+        <tr class="value">
+         <td><span class="code">.* -&gt;*</span></td>
+
+         <td align="center">left to right</td>
+        </tr>
+
+        <tr class="value">
+         <td><span class="code">* / %</span></td>
+
+         <td align="center">left to right</td>
+        </tr>
+
+        <tr class="value">
+         <td><span class="code">+ -</span></td>
+
+         <td align="center">left to right</td>
+        </tr>
+
+        <tr class="value">
+         <td><span class="code">&gt;&gt; &lt;&lt;</span></td>
+
+         <td align="center">left to right</td>
+        </tr>
+
+        <tr class="value">
+         <td><span class="code">&lt; &lt;= &gt; &gt;=</span></td>
+
+         <td align="center">left to right</td>
+        </tr>
+
+        <tr class="value">
+         <td><span class="code">== !=</span></td>
+
+         <td align="center">left to right</td>
+        </tr>
+
+        <tr class="value">
+         <td><span class="code">&amp;&amp;</span></td>
+
+         <td align="center">left to right</td>
+        </tr>
+
+        <tr class="value">
+         <td><span class="code">||</span></td>
+
+         <td align="center">left to right</td>
+        </tr>
+
+        <tr class="value">
+         <td><span class="code">= += -= *= /= %=</span></td>
+
+         <td align="center">right to left</td>
+        </tr>
+
+        <tr class="value">
+         <td><span class="code">?:</span></td>
+
+         <td align="center">left to right</td>
+        </tr>
+
+        <tr class="value">
+         <td><span class="code">,</span></td>
+
+         <td align="center">left to right</td>
+        </tr>
+       </table>
+
+       <p>The scope resolution operator <span class="code">::</span> has
+       the highest precedence.&#160; An expression containing this operator
+       is always evaluated first.&nbsp;
+       </p>
+       <p>
+       We can change the order of evaluation within a compound expression by
+       enclosing a sub-expression in parentheses.&nbsp; That is, we use
+       <span class="code">(sub-expression)</span> to evaluate
+       <span class="code">sub-expression</span> before applying the
+       rules of precedence to the entire expression.&#160;
+       </p>
+       <p>
+       For example,</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+   2 + 3   * 5 evalues to 2 + 15 evalues to 17
+ ( 2 + 3 ) * 5 evalues to 5 * 5  evalues to 25
+</pre>
+         </td>
+        </tr>
+       </table>
+
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        <script language="javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        <script language="javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>-->
+</table>
+
+</body>
+</html>

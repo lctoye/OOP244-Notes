@@ -1,0 +1,73 @@
+	28. A. The Unwanted Animals Shelter (UAS) wants you to  do  some
+	    programming to  help  keep  track  of  the  pets  they  have
+	    available for adoption.
+
+	    Declare and define a class, called a Pet, with the following
+	    publicly accessible characteristics:
+
+		- A constructor that is passed the following  pieces  of
+		  data (in this order):
+		    1. a character string, up  to  15  characters  long,
+		       with the type of Pet (e.g. "cat", "dog",  "bird",
+		       etc.)
+		    2. a character string, up  to  20  characters  long,
+		       with the breed of Pet (e.g. "doberman",  "Russian
+		       Blue", etc.)
+		    3. a character string, up  to  20  characters  long,
+		       with the Pet's name (e.g. "Worf", "Rover", etc.)
+		    4. an integer with the approximate age of the pet in
+		       years.
+
+		- a member function
+			void waiting(int num_weeks)
+		    which specifies how many  weeks  the  Pet  has  been
+		    waiting to be adopted. (If this  function  is  never
+		    called, assume the Pet has been waiting 0 weeks).
+
+		- a member function
+			int waiting()
+		    which returns the number of weeks the Pet  has  been
+		    waiting to  be  adopted  (see  the  other  waiting()
+		    function above).
+
+		- a member function
+			int adopt()
+		    which specifies that the Pet has been adopted and is
+		    no longer available. If this function is called  for
+		    a Pet that has already  been  adopted,  the  message
+		    "NNN is already adopted" (where NNN is the  name  of
+		    the Pet) is displayed and a false value is returned,
+		    otherwise nothing  is  displayed  and  the  function
+		    returns  a  true  value.  (Until  this  function  is
+		    called, the Pet  is  assumed  to  be  available  for
+		    adoption). Note that this function does  not  change
+		    the number of  weeks  the  Pet  was  waiting  to  be
+		    adopted.
+
+		- a member function
+			int adopted()
+		    which returns a true  value  if  the  Pet  has  been
+		    adopted (see the  adopt()  function  above),  and  a
+		    false value otherwise.
+
+		- a friend operator
+			friend ostream &operator<<(ostream &os, Pet p)
+		    which displays (on os) Pet p's  type,  breed,  name,
+		    age and a message either (1) saying that the Pet has
+		    been adopted or (2) telling how  long  the  Pet  has
+		    been waiting to be adopted. The operator  returns  a
+		    reference to the ostream it was given.
+
+	    Note that you have to decide what private members  you  need
+	    in order to implement these specifications.
+
+	    B. Since most Pets the UAS deals with  are  cats  and  dogs,
+	    derive two classes, Cat and Dog, from Pet. A Cat  works  the
+	    same as a Pet, except that only three  values  (breed,  name
+	    and age) are specified when a Cat is created, and the  "Cat"
+	    is shown as the type in the output of the << operator. A Dog
+	    is similar, except that the assumed  type  is  "Dog"  rather
+	    than "Cat".
+
+	    Hint: when calling the  base  class  constructor,  supply  a
+	    constant string value for the Pet's type.

@@ -1,0 +1,142 @@
+Test 2 - OOP244 - Winter 2010
+=============================
+
+1 - Word Problem
+----------------
+// ---- Mug.h -----------------------
+
+#include <iostream>
+using namespace std;
+
+class Mug {
+    int volume;
+    int full;
+    char* label;
+  public:
+    Mug();
+    Mug(int, const char*);
+    Mug(const Mug&);
+    Mug& operator=(const Mug&);
+    Mug& operator+=(int);
+    Mug& operator-=(int);
+    ~Mug();
+    friend ostream& operator<<(ostream&, const Mug&);
+};
+
+// ---- Mug.cpp ----------------------
+
+#include <iomanip>  // for setw(5)
+#include <cstring>  // for strlen, strcpy
+#include "Mug.h"
+
+Mug::Mug() {
+	volume = 0;
+	full   = 0;
+	label  = NULL;
+}
+Mug::Mug(int v, const char* l) {
+    if (v > 0 && l != NULL) {
+        volume = v;
+        full   = 0;
+        label  = new char[strlen(l) + 1];
+        strcpy(label, l);
+    }
+    else {
+        label  = NULL;   // to omit delete [] in = operator
+        *this  = Mug();
+    }
+}
+Mug::Mug(const Mug& m) {
+    label = NULL;
+    *this = m;
+}
+Mug& Mug::operator=(const Mug& m) {
+    if (this != &m) {
+        volume = m.volume;
+        full   = m.full;
+        if (label) delete [] label;
+        if (m.label) {
+            label = new char[strlen(m.label) + 1];
+            strcpy(label, m.label);
+        }
+        else
+            label = NULL;
+    }
+    return *this;
+}
+Mug& Mug::operator+=(int f) {
+    if (volume != 0 && f > 0) {
+        full += f;
+        if (full > volume) full = volume;
+    }
+    return *this;
+}
+Mug& Mug::operator-=(int f) {
+    if (volume != 0 && f > 0) {
+        full -= f;
+        if (full < 0) full = 0;
+    }
+    return *this;
+}
+Mug::~Mug() {
+    if (label) delete [] label;
+}
+ostream& operator<<(ostream& os, const Mug& m) {
+    if (m.volume != 0)
+        os << setw(5) << m.volume << setw(5)
+           << m.full << ' ' 
+           << (m.label != NULL ? m.label : ""); // check if label exists
+    else
+        os << "empty object";
+    return os;
+}
+
+// ---- main.cpp
+#include <iostream>
+using namespace std;
+#include "Mug.h"
+
+int main ( ) {
+    Mug coffee(250, "My Mug"); 
+    cout << coffee << endl;
+    coffee += 200;
+    cout << coffee << endl;
+    coffee -= 50;
+    cout << coffee << endl;
+    return 0;
+} 
+
+
+2 - Walkthrough
+---------------
+version a
+
+%*%
+-----------
+12,12,24
+10,10
+-----------
+^+
+12,11,22
+-----------
+12,11,22~
+12,11$
+10,9$
+12,12,24~
+12,12$
+
+version b
+
+%*%
+-----------
+12,12,24
+7,7
+-----------
+^+
+12,11,22
+-----------
+12,11,22~
+12,11$
+7,6$
+12,12,24~
+12,12$

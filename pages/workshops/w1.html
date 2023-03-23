@@ -1,0 +1,713 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml' xml:lang=
+"en-us">
+<head>
+ <meta name="generator" content=
+ "HTML Tidy for Windows (vers 25 March 2009), see www.w3.org" />
+
+ <title>Workshops | Introduction to OO Programming </title>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta http-equiv="PICS-Label" content=
+ '(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+ <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+ <meta name="Description" content=
+ "Welcome to the ICT Programming Stream C++ Web Site. On this site you can find the introductory course to object-oriented programming. Designed by Chris Szalwinski." />
+ <meta name="Abstract" content=
+ "This subject introduces the principles of object-oriented programming. Students study the solution of problems using objects with the C++ programming language. The emphasis throughout is on the solution of small problems." />
+ <meta name="Author" content="chris.szalwinski@senecacollege.ca" />
+ <meta name="Keywords" content=
+ "software development, object-oriented programming, lecture notes" />
+ <link rel="stylesheet" type="text/css" href="../style.043.css" />
+ <link rel="stylesheet" type="text/css" href="../styleScreen.043.css"
+ media="screen" />
+ <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css"
+ media="print" />
+ <link rel="stylesheet" type="text/css" href="../styleNav.043.css" />
+ <style type="text/css">
+/*<![CDATA[*/
+ span.c2 {text-decoration: underline}
+ div.c1 {text-align: center}
+ /*]]>*/
+ </style>
+</head>
+
+<body>
+ <table id="top" width="850" cellspacing="0" cellpadding="0" summary=
+ "body">
+  <!-- Banner -->
+
+  <tr class="banner">
+   <td colspan="2" class="banner">
+    <table cellspacing="0" cellpadding="0" summary="banner">
+     <tr>
+      <td class="w250 banner">
+       <div class="center">
+        <span class="text0">&#160;&#160;Software&#160;&#160;
+        <br />
+        &#160;&#160;Development&#160;&#160;</span>
+       </div>
+      </td>
+
+      <td class="tbanner"><img src="../images/Banner4.gif" height="120"
+      width="500" alt="Software Development" /></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Navigation Bar -->
+
+  <tr class="navigate">
+   <td class="panel1" align="left" valign="bottom">
+    <ul id="tabnav">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline</a></li>
+
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><a class="active" href=
+     "index.html">Workshops</a></li>
+
+     <li><script type="text/javascript" src="../assignments.js"></script></li>
+
+     <li><script type="text/javascript" src="../instructors.js"></script></li>
+
+     <li><a href="w1_p.html"><img src="../images/Printer.gif" height=
+     "15" width="10" alt=
+     "Printer Friendly Version of this Page" /></a></li>
+    </ul>
+   </td><!-- Web Site Title -->
+
+   <td class="panel2 w150" align="center"><span class="text1"><script type=
+   "text/javascript" src="../subject.js">
+</script></span></td>
+  </tr><!-- Body Cells -->
+
+  <tr class="content">
+   <!-- Content Area -->
+
+   <td class="tbody" valign="top">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Part A - Introduction</span>
+        <br />
+        <br />
+        <span class="texthead">Compiling Modular Source Code</span>
+        <br />
+        <br />
+        <span class="textagend">Workshop 1</span>
+       </div>
+       <br />
+       <br />
+
+       <p>In your first workshop, you are to sub-divide a simple
+       program into two modules and compile the modules separately
+       on different platforms.</p>
+       <br />
+
+       <p class="section">Learning Outcomes</p>
+
+       <p>Upon successful completion of this workshop, you will have
+       demonstrated the abilities</p>
+
+       <ul>
+        <li>to organize source code into modules, with header and
+        implementation files</li>
+
+        <li>to compile and run modular programs on different platforms</li>
+        <!--<li>to identify the difference between a program that uses standard
+                    input/output library facilities and a program that uses pre-standard
+                    library facilities.</li>-->
+       </ul>
+       <br />
+
+       <p class="section">Original Source Code - All Groups</p>
+
+       <p>Save the following program as <span class=
+       "code">w1.cpp</span> on your local computer:</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Modular Programs - Workshop 1
+ // w1.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #define MAX 25
+
+ int getPosInt(int max);
+
+ int main() {
+     int i;
+     i = getPosInt(MAX);
+     cout &lt;&lt; "You entered " &lt;&lt; i &lt;&lt; endl;
+ }
+
+ // getPosInt returns a positive integer not greater than max
+ //
+ int getPosInt(int max) {
+     int i;
+     int keepasking;
+
+     keepasking = 1;
+     do {
+         cout &lt;&lt; "Enter a positive integer not greater than "
+              &lt;&lt; max &lt;&lt; " : ";
+         cin &gt;&gt; i;
+         if ( i &lt; 0 || i &gt; max)
+             cout &lt;&lt; "Your entry is out of range.  Try again." &lt;&lt; endl;&nbsp;
+         else
+             keepasking = 0;
+     } while ( keepasking == 1 );
+
+     return i;
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>Compile <span class="code">w1.cpp</span> and run the
+       executable on</p>
+
+       <ul>
+        <li>Linux
+
+         <table width="45%" summary="">
+          <tr>
+           <td>
+            <pre>
+ g++ -o w1 w1.cpp
+ w1
+</pre>
+           </td>
+          </tr>
+         </table>
+        </li>
+
+        <li>Windows (at the command line):
+
+         <table width="45%" summary="">
+          <tr>
+           <td>
+            <pre>
+ cl /EHsc w1.cpp
+ w1
+</pre>
+           </td>
+          </tr>
+         </table>
+        </li>
+       </ul>
+
+       <p>The <span class="code">/EHsc</span> option suppresses the
+       <span class="code">cl</span> warning messages.</p>
+       <br />
+
+       <p class="section">Modular Source Code - All Groups</p>
+
+       <p>Once <span class="code">w1.cpp</span> runs successfully
+       on each platform, sub-divide <span class="code">w1.cpp</span>
+       into</p>
+
+       <ol>
+       <li>a main module named <span class="code">w1</span>
+       <ul>
+        <li>a header file named <span class="code">w1.h</span></li>
+
+        <li>an implementation file named <span class="code">w1.cpp</span></li>
+       </ul>
+       </li>
+       <li>a <span class="code">getPosInt</span> module
+       <ul>
+        <li>a header file named <span class=
+        "code">getPosInt.h</span></li>
+
+        <li>an implementation file named <span class=
+        "code">getPosInt.cpp</span>&#160;</li>
+       </ul>
+       </li>
+       </ol>
+
+       <p>Your <span class="code">w1.h</span> header file should
+       only contain the <span class="code">#define</span> directive.&#160;
+       Your <span class="code">getPosInt.h</span> header file should
+       only contain the <span class="code">getPosInt()</span> prototype.&#160;
+       Add header comments to each file.&#160;</p>
+
+       <p>Recompile your modularized source code and run the executable
+       on</p>
+
+       <ul>
+        <li>Linux
+
+         <table width="45%" summary="">
+          <tr>
+           <td>
+            <pre>
+ g++ -o w1 w1.cpp getPosInt.cpp
+ w1
+</pre>
+           </td>
+          </tr>
+         </table>
+        </li>
+
+        <li>Windows (at the command line):
+
+         <table width="45%" summary="">
+          <tr>
+           <td>
+            <pre>
+ cl /EHsc w1.cpp getPosInt.cpp
+ w1
+</pre>
+           </td>
+          </tr>
+         </table>
+        </li>
+       </ul>
+
+       <p>Note the size of the executable file on each platform.</p>
+
+       <p class="ssection">Typescript (Group X Only)</p>
+
+       <p>On Linux, create a typescript of your complete solution
+       using the following commands:</p>
+       <table width="45%" summary="">
+        <tr>
+         <td>
+       <pre>
+ + At the prompt, type: script w1.txt
+ + At the prompt, type: whoami
+ + At the prompt, type: cat w1.h w1.cpp getPosInt.h getPosInt.cpp&nbsp;
+ + At the prompt, type: g++ w1.cpp getPosInt.cpp
+ + At the prompt, type: w1
+ + At the input prompt, enter some test data
+ + At the prompt type: exit
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>These commands will produce a file named <span class=
+       "code">w1.txt</span>.</p>Download this file to your local
+       computer.&#160; </p>
+
+       <br />
+
+       <p class="section">Make Utility - Group Y</p>
+
+       <p>
+       Complete the modularization exercise described above.&nbsp; In addition,
+       create a Makefile to automate the compilation process.&nbsp;
+       </p>
+       <p>Linux commands include a <span class=
+       "code">make</span> utility that simplifies the compilation of
+       modular programs.&#160; This utility uses a makefile that describes
+       the dependency structure amongst modules in terms of the rules
+       followed in each step of the compilation process.&#160; The
+       <span class="code">make</span> utility uses this makefile to
+       determine the steps that eed to be executed in order to reach
+       a specified end point in the compilation process.&#160;</p>
+
+       <p>Each rule in a makefile has two or more lines: a dependency
+       line and one or more command lines</p>
+       <pre class="defin">
+ target: pre-requisite files
+ TAB commands
+</pre>
+
+       <p>TAB stands for the tab character (\t).&#160;</p>
+
+       <p>Consider the files in this workshop: <span class="code">w1.h</span>,
+       <span class="code">w1.cpp</span>, <span class="code">getPosInt.h</span>
+       and <span class="code">getPosInt.cpp</span>.&#160; The
+       executable file <span class="code">w1</span> needs to be
+       re-created everytime <span class="code">w1.h</span>,
+       <span class="code">getPosInt.h</span>, <span class=
+       "code">w1.cpp</span> <span class="c2">or</span> <span class=
+       "code">getPosInt.cpp</span> change.&#160; We express this
+       rule as follows</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+w1: w1.h getPosInt.h w1.cpp getPosInt.cpp&nbsp;
+    g++ -o w1 w1.cpp getPosInt.cpp
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>
+       The dependency line first identifies the name of the target
+       file.&#160; A colon follows that name.&nbsp; The names of the
+       files upon which the target depends follow the colon.&#160;
+       The target file is typically an executable file or a binary file
+       for a module.&#160;
+       </p>
+       <p>
+       The command line below the dependency line consists of the TAB
+       character followed by the command to be executed in order to create
+       (or re-create) the target file.&#160; Note that the command line
+       must begin with a TAB character and not a space or several spaces.&#160;</p>
+
+       <p>The <span class="code">make</span> utility takes as an
+       optional argument the name of the target file to be
+       (re-)created.&#160; If the user does not provide any argument,
+       the <span class="code">make</span> utility uses the default
+       target, which is the target on the first rule in the
+       makefile.&#160;</p>
+
+       <p>The <span class="code">make</span> utility assumes a default
+       makefile named <span class="code">Makefile</span>.&#160; To
+       re-construct the program upon which we are currently working, we
+       only need to define <span class="code">Makefile</span> for our
+       program.&nbsp; Then, we can simply enter <span class=
+       "code">make</span> without any argument every time we choose to
+       re-build.&#160;</p>
+
+       <p>To re-build a program that is different than that
+       described in <span class="code">Makefile</span>, we use the
+       <span class="code">make</span> command with the <span class=
+       "code">-f</span> option followed by the name of the makefile
+       that contains the set of rules for that program.&#160;</p>
+
+       <p>A makefile can include rules to simplify file
+       management.&#160; For instance, to delete all intermediate
+       files, we can define a dummy target named <span class=
+       "code">clean</span></p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+clean:
+    command to delete all intermediate files&nbsp;
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>
+       We can also introduce variables into the makefile to
+       facilitate changes, such as switches between different
+       compilers.&#160; We define the values for the selected platform
+       at the top of the makefile and use the variable identifiers
+       throughout the makefile.</p>
+
+       <p class="ssection">Makefile for Workshop 1</p>
+
+       <p>The <span class="code">makefile</span> for this workshop can
+       be</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+# Makefile for Workshop 1 - GCC Platform
+# Makefile
+
+#----------------------------------------------------------
+# Platform Variables
+
+# uncomment to select option
+OPT=
+#OPT=-std=c++0x
+
+#----------------------------------------------------------
+# Set of Rules
+
+# links the binary components together to form the executable
+<span class="high">w1:</span> w1.o getPosInt.o
+    g++ -o w1 w1.o getPosInt.o
+
+# recompiles w1.cpp if any recent changes have affected it
+<span class="high">w1.o:</span> w1.cpp getPosInt.h w1.h
+    g++ -c $(OPT) w1.cpp
+
+# recompiles getPosInt.cpp if any recent changes have affected it&nbsp;
+<span class="high">getPosInt.o:</span> getPosInt.cpp getPosInt.h
+    g++ -c $(OPT) getPosInt.cpp
+
+# removes intermediate files
+<span class="high">clean:</span>
+    rm *.o
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p><i>When copying the makefile, you may need to edit the copy to
+       ensure that the command lines begin with a TAB character (not
+       several spaces).
+       </i></p>
+
+       <p class="ssection">Linux</p>
+
+       <p>Open the above <span class="code">Makefile</span> with a text
+       editor and check that the command lines start with a TAB
+       character.&#160;</p>
+
+       <p>To create an executable version of your source code,
+       enter</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ make
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>To remove the intermediate files, enter</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ make clean
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>To find out what <span class="code">make</span> would do if
+       executed, enter</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ make -n
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Typescript</p>
+
+       <p>On Linux, create a typescript of your complete solution
+       using the following commands:</p>
+       <table width="45%" summary="">
+        <tr>
+         <td>
+       <pre>
+ + At the prompt, type: script w1.txt
+ + At the prompt, type: whoami
+ + At the prompt, type: cat w1.h w1.cpp getPosInt.h getPosInt.cpp&nbsp;
+ + At the prompt, type: cat Makefile
+ + At the prompt, type: make
+ + At the prompt, type: w1
+ + At the input prompt, enter some test data
+ + At the prompt type: exit
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>These commands will produce a file named <span class=
+       "code">w1.txt</span>.</p>Download this file to your local
+       computer.&#160; </p>
+
+       <br />
+
+       <p id="sub" class="section">SUBMISSION</p>
+
+       <p class="ssection">Moodle</p>
+
+       <p>
+       Upload your typescript file to Moodle:&#160;</p>
+
+       <ul>
+        <li>Login to Moodle <script type="text/javascript" src="../classroom_a.js"></script></li>
+
+        <li>Select your course code</li>
+
+        <li>Select W1 under Assignments and Tasks</li>
+
+        <li>Upload <span class=code>w1.txt</span></li>
+
+        <li>Write a short note to your instructor
+        <ul>
+        <li>press "Edit"</li>
+        <li>enter your conclusions about this workshop in the notes textbox</li>
+        <li>list the sizes of the executables within the notes textbox</li>
+        <li>press "Save Changes"</li>
+        </ul>
+
+        <li>When ready to submit, press "Send for Marking"</li>
+       </ul>
+
+       <p class="ssection">Other Submissions</p>
+
+       <p>
+       Submit your typescript file as your instructor has specified.</p>
+
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+   </td><!-- Detail Menu -->
+
+   <td class="panel1 w150" valign="top" rowspan="2">
+    <ul id="mennav">
+     <li><a href="../welco.html">Welcome</a></li>
+
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li><script type="text/javascript" src="../workshops.a.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_1.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_2.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_3.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_4.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_5.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_6.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_7.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_8.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_9.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_10.js"></script></li>
+     <li><script type="text/javascript" src="../assignments.js"></script></li>
+
+     <li><a href="../handouts/index.html">Handouts</a></li>
+
+     <li><a href="../practice/index.html">Practice</a></li>
+
+     <li><a href="../resources/index.html">Resources</a></li>
+
+     <!--<li><a href="../content/glossary.html">Glossary</a></li>-->
+    </ul>
+   </td>
+  </tr><!-- Content Area Footer -->
+
+  <tr class="navigate">
+   <td class="panel3" align="center">
+    <table class="panel2" width="95%" summary="footer">
+     <tr>
+      <td align="left">&#160;&#160; <a href="w1_p.html" class=
+      "text3"><img src="../images/Printer.gif" height="15" width="10"
+      alt="Printer Friendly Version of this Page" />&#160;print this
+      page</a>&#160;&#160;</td>
+
+      <td align="right">&#160;&#160;<a href="w1.html#top" class=
+      "text3">Top&#160; <img src="../images/ArrowToT.gif" height="15"
+      width="15" alt="Go Back to the Top of this Page" /></a></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Footer -->
+
+  <tr>
+   <!-- Left Panel -->
+
+   <td class="panel1 lateral center">
+    <!-- Lateral Motion Control -->
+    <!--<table width="90%" class="center" summary="previous next">
+                <tr>
+                    <td class="half" align="left">
+                        <a href="datat.html" class="text3">
+                        <img src="../images/ArrowToL.gif" height="15" width="15" class="panel1" alt="Previous Reading" />&nbsp;&nbsp;Previous: Primitive Data Types</a>
+                    </td>
+                    <td class="half" align="left">
+                        <a href="modul.html" class="text3">Next: Modular Programs&nbsp;&nbsp;
+                        <img src="../images/ArrowToR.gif" height="15" width="15" class="panel1" alt="Next Reading" /></a>
+                    </td>
+                </tr>
+            </table>-->
+
+    <br />
+    <br />
+    <!-- Alternate Navigation Links -->
+
+    <ul id="altnav" class="center">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+     <!--<li><a href="https://cs.senecac.on.ca/~bsd">BSD Home</a></li>-->
+
+     <li><a href="../../index.html">BTP200 Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline&#160;</a></li>
+    </ul>
+
+    <ul id="altnav2" class="center">
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><a class="active" href=
+     "index.html">Workshops</a></li>
+
+     <li><script type="text/javascript" src="../assignments.js"></script></li>
+
+     <li><script type="text/javascript" src="../instructors.js"></script></li>
+    </ul>
+    <br />
+    <!-- Bottom Line -->
+
+    <table cellpadding="1" width="90%" summary="bottom line">
+     <tr>
+      <td class="w33 text3">&#160;&#160;Designed by Chris
+      Szalwinski&#160;&#160;</td>
+
+      <td class="w33 center"><a href="../copyright.html" class=
+      "text3">Copying From This Site</a></td>
+
+      <td class="w33 text3" align="right">
+       <script type="text/javascript">
+//<![CDATA[
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+       //]]>
+       </script>&#160;&#160;
+      </td>
+     </tr>
+    </table>
+   </td><!-- Logo - Right Bottom Corner -->
+
+   <td class="panel2 w150" align="center"><img src="../images/Logo.gif"
+   alt="Logo" height="73" width="85" /><br /><a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/2.5/ca/88x31.png" /></a></td>
+  </tr>
+ </table>
+</body>
+</html>

@@ -1,0 +1,607 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml' xml:lang=
+"en-us">
+<head>
+ <meta name="generator" content=
+ "HTML Tidy for Windows (vers 25 March 2009), see www.w3.org" />
+
+ <title>Workshops | Introduction to OO Programming
+ </title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta http-equiv="PICS-Label" content=
+ '(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+ <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+ <meta name="Description" content=
+ "Welcome to the ICT Programming Stream C++ Web Site. On this site you can find the introductory course to object-oriented programming. Designed by Chris Szalwinski." />
+ <meta name="Abstract" content=
+ "This subject introduces the principles of object-oriented programming. Students study the solution of problems using objects with the C++ programming language. The emphasis throughout is on the solution of small problems." />
+ <meta name="Author" content="chris.szalwinski@senecacollege.ca" />
+ <meta name="Keywords" content=
+ "software development, object-oriented programming, lecture notes" />
+ <link rel="stylesheet" type="text/css" href="../style.043.css" />
+ <link rel="stylesheet" type="text/css" href="../styleScreen.043.css"
+ media="screen" />
+ <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css"
+ media="print" />
+ <link rel="stylesheet" type="text/css" href="../styleNav.043.css" />
+ <style type="text/css">
+/*<![CDATA[*/
+ div.c1 {text-align: center}
+ /*]]>*/
+ </style>
+</head>
+
+<body>
+ <table id="top" width="850" cellspacing="0" cellpadding="0" summary=
+ "body">
+  <!-- Banner -->
+
+  <tr class="banner">
+   <td colspan="2" class="banner">
+    <table cellspacing="0" cellpadding="0" summary="banner">
+     <tr>
+      <td class="w250 banner">
+       <div class="center">
+        <span class="text0">&#160;&#160;Software&#160;&#160;
+        <br />
+        &#160;&#160;Development&#160;&#160;</span>
+       </div>
+      </td>
+
+      <td class="tbanner"><img src="../images/Banner4.gif" height="120"
+      width="500" alt="Software Development" /></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Navigation Bar -->
+
+  <tr class="navigate">
+   <td class="panel1" align="left" valign="bottom">
+    <ul id="tabnav">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline</a></li>
+
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><a class="active" href=
+     "index.html">Workshops</a></li>
+
+     <li><script type="text/javascript" src="../assignments.js"></script></li>
+
+     <li><script type="text/javascript" src="../instructors.js"></script></li>
+
+     <li><a href="w5_p.html"><img src="../images/Printer.gif" height=
+     "15" width="10" alt=
+     "Printer Friendly Version of this Page" /></a></li>
+    </ul>
+   </td><!-- Web Site Title -->
+
+   <td class="panel2 w150" align="center"><span class="text1"><script type=
+   "text/javascript" src="../subject.js">
+</script></span></td>
+  </tr><!-- Body Cells -->
+
+  <tr class="content">
+   <!-- Content Area -->
+
+   <td class="tbody" valign="top">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Part C - Encapsulation</span>
+        <br />
+        <br />
+        <span class="texthead">Class with a Resource</span>
+        <br />
+        <br />
+        <span class="textagend">Workshop 5</span>
+       </div>
+       <br />
+       <br />
+
+       <p>In this workshop, you are to design and code a class that
+       accesses a resource.&#160;</p>
+       <br />
+
+       <p class="section">Learning Outcomes</p>
+
+       <p>Upon successful completion of this workshop, you will have
+       demonstrated the abilities to</p>
+
+       <ul>
+        <li>allocate and deallocate dynamic memory</li>
+
+        <li>code a copy constructor</li>
+
+        <li>code an assignment operator</li>
+
+       </ul>
+       <br />
+
+       <p class="section">Staff List - All Groups</p>
+
+       <p class="ssection">Employee Class</p>
+
+       <p>Design and code a class named <span class=
+       "code">Employee</span> that holds information about an
+       employee.&#160; Place your class definition in a header file
+       named <span class="code">Employee.h</span> and your function
+       definitions in an implementation file named <span class=
+       "code">Employee.cpp</span></p>
+
+       <p>Upon instantiation, an <span class="code">Employee</span>
+       object may receive no information or two pieces of
+       information</p>
+
+       <ol>
+        <li>the employee's number</li>
+
+        <li>the employee's name</li>
+       </ol>
+
+       <p>Your design does not impose any limit on the number of
+       characters in the employee's name.</p>
+
+       <p>
+       A valid employee number is positive-valued.&#160; If upon
+       instantiation the object receives an invalid value or an empty
+       string, the object takes on a safe empty state.</p>
+
+       <p>
+       Your <span class=code>Employee</span> class includes the
+       following public member functions:
+       </p>
+
+       <ul>
+       <li><span class=code>void display() const</span> - displays on
+       standard output the employee number left-justified in a field
+       width of 8 followed by the employee's name</li>
+       <li><span class=code>bool isGreaterThan(const Employee&) const</span> -
+       returns true if the <span class="code">Employee</span>'s name is
+       alphabetically later in the list than the name of the <span class="code">Employee</span>
+       referenced in the function parameter.</li>
+       </ul>
+
+       <p>
+       Since your <span class=code>Employee</span> class can process
+       names without limitation on length, your design needs to use
+       dynamic memory allocation and should also include
+       </p>
+
+       <ul>
+       <li>a copy constructor</li>
+       <li>an assignment operator</li>
+       <li>a destructor</li>
+       </ul>
+
+       <p class="ssection">Client Module</p>
+
+       <p>
+       The client program that uses your <span class="code">Employee</span>
+       class prompts for information and accepts input for up to
+       ten (10) employees and displays the information in tabular form.&#160;</p>
+
+       <p>
+       The implementation file for the main module that uses your
+       <span class="code">Employee</span> class is:
+       </p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Workshop 5 - Staff List
+ // w5.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Employee.h"
+
+ void sort(Employee* employee, int n);
+
+ int main() {
+     int no, n = 0;
+     Employee employee[MAX_EMPLOYEES];
+
+     cout &lt;&lt; "Staff List Processor\n";
+     cout &lt;&lt; "====================\n";
+
+     do {
+         cout &lt;&lt; " Employee number (0 to quit) ? ";
+         cin &gt;&gt; no;
+         error = true;
+         if (cin.fail()) {
+             cin.ignore(2000, '\n');
+             cerr &lt;&lt; "Bad character.  Try again." &lt;&lt; endl;
+             cin.clear();
+         }
+         if (cin.get() != '\n') {
+             cin.ignore(2000, '\n');
+             cerr &lt;&lt; "Trailing characters.  Try again." &lt;&lt; endl;&nbsp;
+         }
+         else if (no &lt; 0) {
+             cin.ignore(2000, '\n');
+             cerr &lt;&lt; "Must be positive.  Try again." &lt;&lt; endl;
+             error = false;
+             n++;
+             finished = true;
+         }
+         else if (no != 0) {
+             cout &lt;&lt; " Employee name ? ";
+             string str;
+             getline(cin, str);
+             if (str.length() &gt; 0)
+                 employee[n++] = Employee(no, str.c_str());
+         }
+     } while (no != 0 && n &lt; MAX_EMPLOYEES);
+     cout &lt;&lt; endl;
+
+     sort(employee, n);
+
+     cout &lt;&lt; "        Staff List\n\n";
+     cout &lt;&lt; " Number    Name\n";
+     cout &lt;&lt; "------------------------------\n";
+
+     for (int i = 0; i &lt; n; i++) {
+         employee[i].display();
+         cout &lt;&lt; endl;
+     }
+ }
+
+ // sort sorts the elements of employee[n] in ascending order
+ //
+ void sort(Employee* employee, int n) {
+
+     int i, j;
+     Employee temp;
+
+     for (i = n - 1; i &gt; 0; i--) {
+         for (j = 0; j &lt; i; j++) {
+             if (employee[j].isGreaterThan(employee[j+1])) {
+                 temp          = employee[j];
+                 employee[j]   = employee[j+1];
+                 employee[j+1] = temp;
+             }
+         }
+     }
+ }</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>A sample run of this program with your <span class=
+       "code">Employee</span> class might look something like:</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre class="result">
+ Staff List Processor
+ ====================
+ Employee number (0 to quit) ? 999999&nbsp;
+ Employee name ? Zorro, Frank
+ Employee number (0 to quit) ? 888888
+ Employee name ? Black, Barbara
+ Employee number (0 to quit) ? 777777
+ Employee name ? Windsor, Tony
+ Employee number (0 to quit) ? 0
+
+            Staff List
+
+  Number  Name
+  ----------------------------
+  888888  Black, Barbara
+  777777  Windsor, Tony
+  999999  Zorro, Frank
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <br />
+
+       <p class="section">Validation - Group Y</p>
+
+       <p>
+       Design and code the <span class=code>Employee</span> class described above.&nbsp;
+       Add a member function that accepts data from standard input:
+       </p>
+       <ul>
+       <li><span class=code>bool read()</span> - reads input data from the
+       standard input stream</li>
+       </ul>
+       <p>
+       This function includes all of the input validation logic shown in the main program
+       listed above.
+       </p>
+
+       <p class="ssection">Client Module</p>
+
+       <p>
+       The implementation file for the main module that uses your
+       <span class="code">Employee</span> class is:
+       </p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Workshop 5 - Staff List
+ // w5.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Employee.h"
+
+ void sort(Employee* employee, int n);
+
+ int main() {
+     int n = 0;
+     bool more = true;
+     Employee employee[MAX_EMPLOYEES];
+
+     cout &lt;&lt; "Staff List Processor\n";
+     cout &lt;&lt; "====================\n";
+
+     do {
+         more = employee[n].read();
+         if (more) n++;
+     } while (more && n &lt; MAX_EMPLOYEES);
+     cout &lt;&lt; endl;
+
+     sort(employee, n);
+
+     cout &lt;&lt; "        Staff List\n\n";
+     cout &lt;&lt; " Number    Name\n";
+     cout &lt;&lt; "------------------------------\n";
+
+     for (int i = 0; i &lt; n; i++) {
+         employee[i].display();
+         cout &lt;&lt; endl;
+     }
+ }
+
+ // sort sorts the elements of employee[n] in ascending order&nbsp;
+ //
+ void sort(Employee* employee, int n) {
+
+     int i, j;
+     Employee temp;
+
+     for (i = n - 1; i &gt; 0; i--) {
+         for (j = 0; j &lt; i; j++) {
+             if (employee[j].isGreaterThan(employee[j+1])) {
+                 temp          = employee[j];
+                 employee[j]   = employee[j+1];
+                 employee[j+1] = temp;
+             }
+         }
+     }
+ }</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p>
+       This upgraded version has encapsulated more of the logic
+       within your <span class=code>Employee</span> class.
+       </p>
+
+       <br />
+
+       <p id="sub" class="section">SUBMISSION</p>
+
+       <p class="ssection">Typescript</p>
+
+       <p>Create a typescript of your complete solution
+       using the following commands:&#160;</p>
+       <table width="45%" summary="">
+        <tr>
+         <td>
+       <pre>
+ + At the prompt, type: script w5.txt
+ + At the prompt, type: whoami
+ + At the prompt, type: cat Employee.h Employee.cpp
+ + At the prompt, type: g++ -o w5 w5.cpp Employee.cpp&nbsp;
+ + At the prompt, type: w5
+ + At the input prompt, enter test data
+ + At the prompt type: exit
+</pre>
+          </td>
+        </tr>
+       </table>
+
+       <p>These commands will produce a file named <span class=
+       "code">w5.txt</span>.&nbsp; Download this file to your local
+       computer.&#160;</p>
+
+       <p class="ssection">Moodle</p>
+
+       <p>
+       Upload your typescript file to Moodle:&#160;</p>
+
+       <ul>
+        <li>Login to Moodle <script type="text/javascript" src="../classroom_a.js"></script></li>
+
+        <li>Select your course code</li>
+
+        <li>Select W5 under Assignments and Tasks</li>
+
+        <li>Upload <span class=code>w5.txt</span></li>
+
+        <li>Write a short note to your instructor
+        <ul>
+        <li>press "Edit"</li>
+        <li>enter your conclusions about this workshop in the notes textbox</li>
+        <li>press "Save Changes"</li>
+        </ul>
+
+        <li>When ready to submit, press "Send for Marking"</li>
+       </ul>
+
+       <p class="ssection">Other Submissions</p>
+
+       <p>
+       Submit your typescript file as your instructor has specified.</p>
+
+        <br />
+        <br />
+        <br />
+      </td>
+     </tr>
+    </table>
+   </td><!-- Detail Menu -->
+
+   <td class="panel1 w150" valign="top" rowspan="2">
+    <ul id="mennav">
+     <li><a href="../welco.html">Welcome</a></li>
+
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li><script type="text/javascript" src="../workshops.a.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_1.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_2.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_3.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_4.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_5.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_6.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_7.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_8.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_9.js"></script></li>
+     <li><script type="text/javascript" src="../workshop_10.js"></script></li>
+     <li><script type="text/javascript" src="../assignments.js"></script></li>
+
+     <li><a href="../handouts/index.html">Handouts</a></li>
+
+     <li><a href="../practice/index.html">Practice</a></li>
+
+     <li><a href="../resources/index.html">Resources</a></li>
+
+     <!--<li><a href="../content/glossary.html">Glossary</a></li>-->
+    </ul>
+   </td>
+  </tr><!-- Content Area Footer -->
+
+  <tr class="navigate">
+   <td class="panel3" align="center">
+    <table class="panel2" width="95%" summary="footer">
+     <tr>
+      <td align="left">&#160;&#160; <a href="w5_p.html" class=
+      "text3"><img src="../images/Printer.gif" height="15" width="10"
+      alt="Printer Friendly Version of this Page" />&#160;print this
+      page</a>&#160;&#160;</td>
+
+      <td align="right">&#160;&#160;<a href="w5.html#top" class=
+      "text3">Top&#160; <img src="../images/ArrowToT.gif" height="15"
+      width="15" alt="Go Back to the Top of this Page" /></a></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Footer -->
+
+  <tr>
+   <!-- Left Panel -->
+
+   <td class="panel1 lateral center">
+    <!-- Lateral Motion Control -->
+    <!--<table width="90%" class="center" summary="previous next">
+                <tr>
+                    <td class="half" align="left">
+                        <a href="datat.html" class="text3">
+                        <img src="../images/ArrowToL.gif" height="15" width="15" class="panel1" alt="Previous Reading" />&nbsp;&nbsp;Previous: Primitive Data Types</a>
+                    </td>
+                    <td class="half" align="left">
+                        <a href="modul.html" class="text3">Next: Modular Programs&nbsp;&nbsp;
+                        <img src="../images/ArrowToR.gif" height="15" width="15" class="panel1" alt="Next Reading" /></a>
+                    </td>
+                </tr>
+            </table>-->
+
+    <br />
+    <br />
+    <!-- Alternate Navigation Links -->
+
+    <ul id="altnav" class="center">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+     <!--<li><a href="https://cs.senecac.on.ca/~bsd">BSD Home</a></li>-->
+
+     <li><a href="../../index.html">BTP200 Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline&#160;</a></li>
+    </ul>
+
+    <ul id="altnav2" class="center">
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><a class="active" href=
+     "index.html">Workshops</a></li>
+
+     <li><script type="text/javascript" src="../assignments.js"></script></li>
+
+     <li><script type="text/javascript" src="../instructors.js"></script></li>
+    </ul>
+    <br />
+    <!-- Bottom Line -->
+
+    <table cellpadding="1" width="90%" summary="bottom line">
+     <tr>
+      <td class="w33 text3">&#160;&#160;Designed by Chris
+      Szalwinski&#160;&#160;</td>
+
+      <td class="w33 center"><a href="../copyright.html" class=
+      "text3">Copying From This Site</a></td>
+
+      <td class="w33 text3" align="right">
+       <script type="text/javascript">
+//<![CDATA[
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+       //]]>
+       </script>&#160;&#160;
+      </td>
+     </tr>
+    </table>
+   </td><!-- Logo - Right Bottom Corner -->
+
+   <td class="panel2 w150" align="center"><img src="../images/Logo.gif"
+   alt="Logo" height="73" width="85" /><br /><a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/2.5/ca/88x31.png" /></a></td>
+  </tr>
+ </table>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml' xml:lang=
+"en-us">
+<head>
+ <meta name="generator" content=
+ "HTML Tidy for Windows (vers 25 March 2009), see www.w3.org" />
+
+ <title>Practice | Introduction to OO
+ Programming</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta http-equiv="PICS-Label" content=
+ '(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+ <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+ <meta name="Description" content=
+ "Welcome to the Computer Programming and Analysis Diploma Web Site. On this site you can find the introductory course to object-oriented programming. Designed by Chris Szalwinski." />
+ <meta name="Abstract" content=
+ "This subject introduces the principles of object-oriented programming. Students study the solution of problems using objects with the C++ programming language. The emphasis throughout is on the solution of small problems." />
+ <meta name="Author" content="chris.szalwinski@senecac.on.ca" />
+ <meta name="Keywords" content=
+ "software development, object-oriented programming, lecture notes" />
+ <link rel="stylesheet" type="text/css" href="../style.043.css" />
+ <link rel="stylesheet" type="text/css" href="../styleScreen.043.css"
+ media="screen" />
+ <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css"
+ media="print" />
+ <link rel="stylesheet" type="text/css" href="../styleNav.043.css" />
+ <style type="text/css">
+/*<![CDATA[*/
+ div.c1 {text-align: center}
+ /*]]>*/
+ </style>
+</head>
+
+<body>
+ <table id="top" width="850" cellspacing="0" cellpadding="0" summary=
+ "body">
+  <!-- Banner -->
+
+  <tr class="banner">
+   <td colspan="2" class="banner">
+    <table cellspacing="0" cellpadding="0" summary="banner">
+     <tr>
+      <td class="w250 banner">
+       <div class="center">
+        <span class="text0">&#160;&#160;Software&#160;&#160;
+        <br />
+        &#160;&#160;Development&#160;&#160;</span>
+       </div>
+      </td>
+
+      <td class="tbanner"><img src="../images/Banner4.gif" height="120"
+      width="500" alt="Software Development" /></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Navigation Bar -->
+
+  <tr class="navigate">
+   <td class="panel1" align="left" valign="bottom">
+    <ul id="tabnav">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline</a></li>
+
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><script type="text/javascript" src="../assignments.js"></script></li>
+
+     <li><script type="text/javascript" src="../instructors.js"></script></li>
+
+     <li><a href="sincard_p.html"><img src="../images/Printer.gif"
+     height="15" width="10" alt=
+     "Printer Friendly Version of this Page" /></a></li>
+    </ul>
+   </td><!-- Web Site Title -->
+
+   <td class="panel2 w150" align="center"><span class="text1"><script type=
+   "text/javascript" src="../subject.js">
+</script></span></td>
+  </tr><!-- Body Cells -->
+
+  <tr class="content">
+   <!-- Content Area -->
+
+   <td class="tbody" valign="top">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Practice</span>
+        <br />
+        <br />
+        <span class="texthead">SIN Card</span>
+       <br />
+       <br />
+       </div>
+       <br />
+
+       <p class="section">ID Card</p>
+
+       <p>Design and code a class named <span class=
+       "code">IDCard</span> that holds identity information about a
+       card holder.&#160; Place your class declaration in a header file
+       named <span class="code">IDCard.h</span> and your function
+       definitions in an implementation file named <span class=
+       "code">IDCard.cpp</span>.&#160; Include in your coding all of
+       the statements necessary for your code to compile under a
+       standard C++ compiler.</p>
+
+       <p>Upon instantiation, an <span class="code">IDCard</span>
+       object may receive no parameters or a null-terminated C-style
+       string holding the name of the card holder.&#160; If the object
+       receives a non-empty string, the object accepts the string as
+       the card holder's name.&#160; Otherwise, the object assumes a
+       safe empty state.&#160; <em>The string holding the card holder's
+       name may be of any length.&#160;</em></p>
+
+       <p>Since the name of the card holder may be of any length, your
+       design must include a copy constructor, an assignment operator
+       and a destructor.&#160;</p>
+
+       <p>Your class also includes the following member functions:</p>
+
+       <ul>
+        <li><span class="code">const char* name() const</span> - a
+        query that returns the address of the card holder's name if the
+        data stored is valid and the NULL address if there is no valid
+        data stored; and</li>
+
+        <li><span class="code">int valid() const</span> - a query that
+        returns 1 if the data stored is valid and 0 otherwise.</li>
+       </ul>
+
+       <p>Finally, your design overloads the insertion operator for an
+       <span class="code">ostream</span> object as the left operand and
+       an <span class="code">IDCard</span> as the right operand.&#160;
+       The operator displays on the left operand the name of the card
+       holder stored in the right operand.&#160; If the right operand
+       does not contain valid data, this operator displays the string
+       "unknown" on the left operand.&#160; Design this operator so
+       that it handles cascading.</p>
+
+       <p>For example, consider the following program that uses your
+       class</p>
+
+       <table summary="">
+        <tr>
+         <td>
+          <br />
+          <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "IDCard.h"
+
+ int main ( ) {
+     IDCard person("Jane Doe");
+     IDCard clone = person;
+     IDCard forgery;
+
+     cout &lt;&lt; forgery.valid() &lt;&lt; clone.valid() &lt;&lt; endl;
+     cout &lt;&lt; person &lt;&lt; endl;
+     cout &lt;&lt; clone &lt;&lt; endl;
+     cout &lt;&lt; forgery &lt;&lt; endl;
+
+     forgery = person;
+
+     cout &lt;&lt; forgery.valid() &lt;&lt; clone.valid() &lt;&lt; endl;
+     cout &lt;&lt; person &lt;&lt; endl;
+     cout &lt;&lt; clone &lt;&lt; endl;
+     cout &lt;&lt; forgery &lt;&lt; endl;
+
+     return 0;
+ }
+</pre>
+          <br />
+         </td>
+        </tr>
+       </table>
+
+       <p>This program produces the following output</p>
+
+       <table summary="">
+        <tr>
+         <td>
+          <br />
+          <pre class="result">
+  01
+  Jane Doe
+  Jane Doe
+  unknown
+  11
+  Jane Doe
+  Jane Doe
+  Jane Doe
+</pre>
+          <br />
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">SIN Card</p>
+
+       <p>Derive from an <span class="code">IDCard</span> class a new
+       class named <span class="code">SINCard</span> that holds social
+       insurance information about a card holder.&#160; Place your
+       class declaration in a header file named <span class=
+       "code">SINCard.h</span> and your function definitions in an
+       implementation file named <span class=
+       "code">SINCard.cpp</span>.&#160; Include in your coding all of
+       the statements necessary for your code to compile under a
+       standard C++ compiler.</p>
+
+       <p>Upon instantiation, an <span class="code">SINCard</span>
+       object may receive</p>
+
+       <ul>
+        <li>no parameters</li>
+
+        <li>a null-terminated C-style string holding the name of the
+        card holder and an integer holding the social insurance number
+        of the cardholder.&#160;</li>
+       </ul>
+
+       <p>If the object receives two arguments, the object accepts the
+       string as the card holder's name and the number as the card
+       holder's social insurance number.&#160; If the name supplied is
+       a valid name and if the number supplied is a positive number,
+       the object stores the number supplied as the card holder's
+       social insurance number.&#160; Otherwise, the object stores a
+       safe empty state.&#160;</p>
+
+       <p>Your derived class includes the following member
+       functions:</p>
+
+       <ul>
+        <li><span class="code">int valid() const</span> - a query that
+        returns 1 if the object holds a valid name and a valid social
+        insurance number.&#160; Otherwise, this function returns
+        0.&#160;</li>
+
+        <li><span class="code">int sin() const</span> - a query that
+        returns the social insurance number of the object if it holds a
+        valid name and a valid number.&#160; Otherwise, this function
+        returns 0.&#160;</li>
+
+        <li><span class="code">SINCard&amp; operator=(int n)</span> - a
+        modifier that receives an integer n and, if n is valid, stores
+        the integer as the card holder's social insurance number.&#160;
+        If n is invalid or the object is not holding valid name data,
+        this function does nothing.&#160;</li>
+       </ul>
+
+       <p>Finally, your design overloads the insertion operator for an
+       <span class="code">ostream</span> object as the left operand and
+       an <span class="code">SINCard</span> as the right operand.&#160;
+       The operator displays on the left operand the social insurance
+       number of the card holder in a field of 9 with zero fill
+       followed by the name of the card holder.&#160; If the right
+       operand does not contain valid data, this operator displays a
+       number filled with 0's followed by the string "unknown".&#160;
+       Design this operator so that it handles cascading.</p>
+
+       <p>For example, consider the following program that uses your
+       class</p>
+
+       <table summary="">
+        <tr>
+         <td>
+          <br />
+          <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "SINCard.h"
+
+ int main ( ) {
+     SINCard person("Jane Doe", 66666666), unknown;
+
+     cout &lt;&lt; person.valid() &lt;&lt; unknown.valid() &lt;&lt; endl;
+     cout &lt;&lt; person &lt;&lt; endl;
+     cout &lt;&lt; unkonwn &lt;&lt; endl;
+
+     person = 123456789;
+
+     cout &lt;&lt; person &lt;&lt; endl;
+
+     return 0;
+ }
+</pre>
+          <br />
+         </td>
+        </tr>
+       </table>
+
+       <p>This program produces the following output</p>
+
+       <table summary="">
+        <tr>
+         <td>
+          <br />
+          <pre class="result">
+  10
+  066666666 Jane Doe
+  000000000 unknown
+  123456789 Jane Doe
+</pre>
+          <br />
+         </td>
+        </tr>
+       </table>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+   </td><!-- Detail Menu -->
+
+   <td class="panel1 w150" valign="top" rowspan="2">
+    <ul id="mennav">
+     <li><a href="../welco.html">Welcome</a></li>
+
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><script type="text/javascript" src="../assignments.js"></script></li>
+
+     <li><a href="../handouts/index.html">Handouts</a></li>
+
+     <li><a class="active" href=
+     "index.html">Practice</a></li>
+
+     <li><a href="../resources/index.html">Resources</a></li>
+
+     <!--<li><a href="../content/glossary.html">Glossary</a></li>-->
+    </ul>
+   </td>
+  </tr><!-- Content Area Footer -->
+
+  <tr class="navigate">
+   <td class="panel3" align="center">
+    <table class="panel2" width="95%" summary="footer">
+     <tr>
+      <td align="left">&#160;&#160; <a href="sincard_p.html" class=
+      "text3"><img src="../images/Printer.gif" height="15" width="10"
+      alt="Printer Friendly Version of this Page" />&#160;print this
+      page</a>&#160;&#160;</td>
+
+      <td align="right">&#160;&#160;<a href="sincard.html#top" class=
+      "text3">Top&#160; <img src="../images/ArrowToT.gif" height="15"
+      width="15" alt="Go Back to the Top of this Page" /></a></td>
+     </tr>
+    </table>
+   </td>
+  </tr><!-- Footer -->
+
+  <tr>
+   <!-- Left Panel -->
+
+   <td class="panel1 lateral center">
+    <!-- Lateral Motion Control -->
+    <!--<table width="90%" class="center" summary="previous next">
+                <tr>
+                    <td class="half" align="left">
+                        <a href="datat.html" class="text3">
+                        <img src="../images/ArrowToL.gif" height="15" width="15" class="panel1" alt="Previous Reading" />&nbsp;&nbsp;Previous: Primitive Data Types</a>
+                    </td>
+                    <td class="half" align="left">
+                        <a href="modul.html" class="text3">Next: Modular Programs&nbsp;&nbsp;
+                        <img src="../images/ArrowToR.gif" height="15" width="15" class="panel1" alt="Next Reading" /></a>
+                    </td>
+                </tr>
+            </table>-->
+
+    <br />
+    <br />
+    <!-- Alternate Navigation Links -->
+
+    <ul id="altnav" class="center">
+     <li><script type="text/javascript" src="../ict.js"></script></li>
+
+     <!--<li><a href="https://cs.senecac.on.ca/~bsd">BSD Home</a></li>-->
+
+     <li><a href="../../index.html">Home</a></li>
+
+     <li><script type="text/javascript" src="../outline.js"></script></li>
+
+     <li><a href="../timeline.html">Timeline&#160;</a></li>
+    </ul>
+
+    <ul id="altnav2" class="center">
+     <li><a href="../content/index.html">Notes</a></li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_a.js">
+</script>
+     </li>
+
+     <li>
+      <script type="text/javascript" src="../classroom_b.js">
+</script>
+     </li>
+
+     <li><script type="text/javascript" src="../workshops.js"></script></li>
+
+     <li><script type="text/javascript" src="../assignments.js"></script></li>
+
+     <li><script type="text/javascript" src="../instructors.js"></script></li>
+    </ul>
+    <br />
+    <!-- Bottom Line -->
+
+    <table cellpadding="1" width="90%" summary="bottom line">
+     <tr>
+      <td class="w33 text3">&#160;&#160;Designed by Chris
+      Szalwinski&#160;&#160;</td>
+
+      <td class="w33 center"><a href="../copyright.html" class=
+      "text3">Copying From This Site</a></td>
+
+      <td class="w33 text3" align="right">
+       <script type="text/javascript">
+//<![CDATA[
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+       //]]>
+       </script>&#160;&#160;
+      </td>
+     </tr>
+    </table>
+   </td><!-- Logo - Right Bottom Corner -->
+
+   <td class="panel2 w150" align="center"><img src="../images/Logo.gif"
+   alt="Logo" height="73" width="85" /><br /><a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/2.5/ca/88x31.png" /></a></td>
+  </tr>
+ </table>
+</body>
+</html>

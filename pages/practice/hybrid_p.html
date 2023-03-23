@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Practice | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the Computer Programming and Analysis Diploma Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign="top">
+                        <br />
+                        <center>
+                        <span class=texth>Practice</span>
+                        <br />
+                        <br />
+                        <span class=texthead>
+                        Hybrid</span>
+                        </center>
+                        <br />
+                        <br />
+                        <br />
+
+                        <p>
+                        What is the exact output of the following program?&nbsp;
+                        Show your intermediate work.
+                        <table width="45%">
+                        <tr>
+                        <td>
+                        <br />
+                        <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #define CUTOFF 30
+ #define C_RATE 1
+ #define U_RATE 2
+ #define F_RATE 0.1
+
+ class Car {
+     int odometer;
+     double fuel;
+   public:
+     Car() { cout &lt;&lt; "CA"; odometer = 0; fuel = 0; }
+     ~Car() { cout &lt;&lt; '~'; display(); }
+     void operator+=(double f) { fuel += f; }
+     virtual void drive(double speed, double time) {
+         double distance = speed * time;
+         if (fuel > distance * F_RATE)
+             fuel -= distance * F_RATE;
+         else
+             distance = fuel / F_RATE;
+         odometer += distance;
+     }
+     virtual void display() const {
+         cout &lt;&lt; '\n' &lt;&lt; odometer &lt;&lt; '|' &lt;&lt; int(fuel);
+     }
+ };
+
+ class Hybrid : public Car {
+     int gauge;
+     double charge;
+   public:
+     Hybrid() { cout &lt;&lt; "HY"; gauge = 0; charge = 0.0; }
+     ~Hybrid() { cout &lt;&lt; '\n' &lt;&lt; gauge &lt;&lt; '|' &lt;&lt; charge &lt;&lt; '%'; }
+     void drive(double speed, double time) {
+         if (speed > CUTOFF)  {
+             Car::drive(speed, time);
+             charge += CUTOFF * time * C_RATE;
+         }
+         else if (charge > speed * time * U_RATE) {
+             charge -= speed * time * U_RATE;
+             gauge += speed * time;
+         } else {
+             double eTime = charge / (U_RATE * speed);
+             gauge += speed * eTime;
+             charge = 0;
+             time -= eTime;
+             Car::drive(speed, time);
+             charge += speed * time * C_RATE;
+         }
+     }
+     void display() const {
+         Car::display();
+         cout &lt;&lt; ':' &lt;&lt; charge;
+     }
+ };
+
+ void drive(Car& car, double speed, double time) {
+     car.drive(speed, time);
+     car.display();
+ }
+
+ void fill(Car& car, double fuel) {
+     car += fuel;
+     car.display();
+ }
+
+ void show(Car car) {
+     car.display();
+ }
+
+ int main() {
+     Car car;
+     Hybrid hybrid;
+
+     cout &lt;&lt; "\n--------";
+     fill(car, 50);
+     fill(hybrid, 50);
+     cout &lt;&lt; "\n--------";
+     drive(car, 60, 1);
+     drive(hybrid, 60, 1);
+     cout &lt;&lt; "\n--------";
+     drive(car, 10, 3);
+     drive(hybrid, 10, 3);
+     cout &lt;&lt; "\n--------";
+     show(car);
+     show(hybrid);
+     cout &lt;&lt; "\n--------";
+
+     return 0;
+ }</pre><br /></td></tr></table>
+                        </p>
+                        <p>
+                        Show your output here:
+                        <br />
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        </p>
+                        <br />
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        <script language="javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        <script language="javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

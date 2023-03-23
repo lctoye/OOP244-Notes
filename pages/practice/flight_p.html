@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Practice | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the Computer Programming and Analysis Diploma Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Practice</span>
+        <br />
+        <br />
+        <span class="texthead">Flight</span>
+       <br />
+       <br />
+       </div>
+       <br />
+
+       <p>Design and code a class named <span class=
+       "code">Flight</span> that holds information about an airline
+       flight.&#160; Upon instantiation, a <span class=
+       "code">Flight</span> object may receive an <span class=
+       "code">int</span> holding the flight number, and a
+       null-terminated C-style string holding the flight
+       destination.&#160; The flight number should be
+       positive-valued.&#160; If the object receives a valid number and
+       a string, the object accepts both.&#160; Otherwise, the object
+       assumes a safe empty state.&#160; The object adopts a default
+       output width of ten (10) characters for the flight number.&#160;
+       Your class does not impose any limitation on the number of
+       characters in a <span class="code">Flight</span> object.&#160;
+       Your design includes all of the member functions needed to
+       accomodate this feature under a variety of applications,
+       including the one below.</p>
+
+       <p>Your class also includes the following functions:</p>
+
+       <ul>
+        <li><span class="code">const char* destination() const</span> -
+        a query that returns the address of the first non-whitepsace
+        character in the description of the <span class=
+        "code">Flight</span> object;</li>
+
+        <li><span class="code">int number() const</span> - a query that
+        returns the flight number; and</li>
+
+        <li><span class="code">Flight&amp; width(int)</span> - a
+        modifier that changes the width of the output field for the
+        flight number to the integer value received if that value is a
+        greater than that needed to display fully the flight number; if
+        the integer value received is invalid, your object reverts to
+        the default number of characters for the class.&#160; Your
+        function returns a reference to the current object as modified,
+        so that your function can be used to insert the current object
+        into the output stream directly as shown below; and</li>
+
+        <li>an insertion operator that inserts the flight number
+        followed by the flight description into an output stream.&#160;
+        Your operator displays the flight number left-justified in the
+        current field width, followed by a trailing space and the
+        flight description.&#160; Your operator accepts
+        cascading.&#160;</li>
+       </ul>For example, consider the following program that uses your
+       class
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <br />
+          <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Flight.h"
+
+ void display(Flight flight) {
+
+     cout &lt;&lt; flight.width(2) &lt;&lt; endl;
+
+ }
+
+ int main ( ) {
+     Flight f, g(857, "Toronto");
+
+     cout &lt;&lt; g.width(9) &lt;&lt; endl;
+     f = g;
+     display(f);
+     cout &lt;&lt; f.number() &lt;&lt; endl;
+     cout &lt;&lt; f.description() &lt;&lt; endl;
+     return 0;
+ }
+</pre>
+          <br />
+         </td>
+        </tr>
+       </table>This program produces the following output
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <br />
+          <pre class="result">
+ 857       Toronto
+ 857        Toronto
+ 857
+ Toronto
+
+</pre>
+          <br />
+         </td>
+        </tr>
+       </table>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

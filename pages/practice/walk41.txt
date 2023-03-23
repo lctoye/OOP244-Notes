@@ -1,0 +1,51 @@
+/* Problem 41 */
+	    // assume all dynamic memory allocation succeeds
+	    #include <iostream>
+	    using namespace std;
+	    #include <string.h>
+
+	    class artist {
+		char name[31];
+		char desc[31];
+	      public:
+		artist() { name[0] = desc[0] = '\0'; }
+		artist(char n[], char d[]) 
+		    { strcpy(name, n); strcpy(desc, d); }
+		virtual void display(ostream &os) const
+		    { os << name << ", " << desc; }
+	    };
+
+	    ostream &operator<<(ostream &out, const artist &a)
+		{ a.display(out);  return out; }
+
+	    class group: public artist {
+		artist *members;
+		int size;
+		int count;
+	      public:
+		group(char n[], int sz): artist(n, "Group")
+		    { members = new artist[sz]; size = sz; count = 0; }
+		~group() { delete [] members; }
+		void operator+=(artist x) {
+		   if (count < size) { members[count] = x; 
+				       count++; }
+		}
+		void display(ostream &os) const {
+		   artist::display(os);
+		   os << ':';
+		   for (int i = 0; i < count; i++)
+			os << "\n - " << members[i];
+		}
+	    };
+
+	    int main() {
+		artist one("Leonard Cohen", "good poet, bad singer");
+		group two("Spice Girls", 4);
+		two += artist("Mel B.", "scary singer");
+		two += artist("Mel C.", "sporty singer");
+		two += artist("Emma", "baby singer");
+		two += artist("Victoria", "posh singer");
+		two += artist("Geri", "ginger singer");
+		cout << one << '\n' << two << '\n';
+		return 0;
+	    }

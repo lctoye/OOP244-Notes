@@ -1,0 +1,72 @@
+	26. Given the following class:
+
+	      class person {
+		  char name[41];
+		  char relation[41];
+		public:
+		  person() { name[0] = relation[0] = '\0'; }
+		  person(const char s1[], const char s2[])
+		      { strcpy(name, s1); strcpy(relation, s2); }
+		  void getname(char s[]) const { strcpy(s, name); }
+		  void getrelation(char s[]) const 
+		      { strcpy(s, relation); }
+	      };
+
+	    which  stores  the  information  about  a  person  and  that
+	    person's relationship to someone else, create a class called
+	    family,  which  stores  a  number   of   person   instances,
+	    representing an entire family.
+
+	    When instantiated, a family may be given an int,  specifying
+	    the maximum number of persons which will be  stored  in  the
+	    family, and  a  person  instance  representing  the  central
+	    person in the family. Alternatively, either or both of these
+	    may be omitted. Use a maximum of 10 persons, if the  maximum
+	    is omitted, and use the first person  put  into  the  family
+	    (using the 2nd = operator described below)  as  the  central
+	    person, if the central person is omitted.
+
+	    The following operators can be used with a family:
+
+		- the = operator with a family on both sides  makes  the
+		  family instance on the left  be  a  duplicate  of  the
+		  family on the right. All data which had  been  in  the
+		  (left  side)  family  is  destroyed.  As  well,   this
+		  operator returns a reference  to  the  family  on  the
+		  left.
+
+		- the = operator, with a family on the left side  and  a
+		  person on the right side, adds the person to  the  end
+		  of the family as long as the maximum  for  the  family
+		  will not be exceeded. If the family  already  has  its
+		  maximum number of members, no change is  made  to  the
+		  family. As with the other = operator, a  reference  to
+		  the family on the left is returned.
+
+		- the << operator, with an ostream on the left side  and
+		  a family on the right side, displays the  family  (one
+		  person per line, showing the name, a colon,  a  space,
+		  and that person's relationship) on the  ostream.  This
+		  operator returns a reference to the ostream. The first
+		  person shown should  be  the  central  person  in  the
+		  family.
+
+	    For example:
+
+		family simpsons(5);
+		// Homer is the central figure
+		simpsons = person("Homer Simpson", "The Man");
+		simpsons = person("Marge Simpson", "Homer's wife");
+		simpsons = person("Bart Simpson", "Homer's son");
+		cout << simpsons;
+
+	    displays:
+
+		Homer Simpson: The Man
+		Marge Simpson: Homer's wife
+		Bart Simpson: Homer's son
+
+	    Tips: To do this right,  you  need  to  use  dynamic  memory
+	    allocation. There will be 5  ways  to  construct  a  family,
+	    including the copy constructor.  Don't  forget  to  write  a
+	    destructor.

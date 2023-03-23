@@ -1,0 +1,76 @@
+	8.  Write the C++ code to implement a  class  called  a  fillup,
+	    which represents filling a car up with fuel.
+
+	    Background: Whenever putting fuel into the car, a car  owner
+	    may  record  the  odometer  reading  (measure  of  how  many
+	    kilometres the car has travelled since new) and  the  number
+	    of litres of fuel placed in the tank. As  long  as  the  car
+	    owner always fills the tank all the way up, fuel consumption
+	    can be calculated by dividing the number of litres  of  fuel
+	    by the difference between the current odometer  reading  and
+	    the previous fill-up's  odometer  reading.  This  figure  is
+	    multiplied by 100 to get the "litres of fuel per  100km".  A
+	    lower L/100km figure means better fuel economy.
+
+	    A  fillup  has  the  following  publicly  accessible  member
+	    functions:
+
+		void previous(long k) - sets   the   previous   odometer
+		  reading  to  the  value  passed  in  "k".  If  "k"  is
+		  negative, zero is used instead, since odometers do not
+		  show negative values. If "k" is greater  than  999999,
+		  then 999999 is  used  instead,  since  odometers  only
+		  store 6 digits.
+
+		void current(long k) - sets the current odometer reading
+		  to the value passed in "k". If "k" is  negative,  zero
+		  is used instead, since odometers do not show  negative
+		  values. If "k" is greater than 999999, then 999999  is
+		  used instead, since odometers only store 6 digits.
+
+		long km() - returns the number of  kilometres  travelled
+		  since the last fill-up. This is the difference between
+		  the current odometer reading and the previous one.  If
+		  the current one is less than the  previous  one,  this
+		  functions compensates for  the  "wrap-around"  at  the
+		  1000000 kilometre  mark.  (E.g.  if  the  previous  is
+		  999980 and the current is 120, then km() returns 140).
+
+		void l(double litres) - sets the  number  of  litres  of
+		  fuel put into the car to the value passed in "litres".
+		  If "litres" is negative, 0 is used instead, since  you
+		  can only put fuel into the car, not take it out.
+
+		double l() - returns the number of litres  of  fuel  put
+		  in.
+
+		double lp100km() - returns the number of litres of  fuel
+		  used per 100km travelled.
+
+	    When instantiated,  a  fillup  may  be  supplied  two  longs
+	    (previous and current odometer readings) and a  double  (the
+	    number of litres of fuel put into the car), subject  to  the
+	    validations mentioned in the functions above. If no data  is
+	    supplied, then all these values are assumed to be zero.
+
+	    Also, two fillups may be compared  using  the  >  sign.  The
+	    result (an int, by the way, using 0 for false  and  anything
+	    other than 0 for true) will be true when the fuel economy of
+	    the left side is better than the fuel economy of  the  right
+	    side. (Remember that a lower  L/100km  figure  means  better
+	    fuel economy).
+
+	    For example, the following program displays
+
+		15.0 is the best
+
+		int main()
+		{
+		    fillup x(3000, 3200, 30), y; // x consumes 15 L/100km
+		    y.previous(999950);
+		    y.current(50);
+		    y.l(20);                     // y consumes 20 L/100km
+		    printf("%.1lf is the best\n",
+		      x > y ? x.lp100km() : y.lp100km());
+		    return 0;
+		}

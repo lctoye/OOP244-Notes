@@ -1,0 +1,504 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Workshops | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Part D - Inheritance</span>
+        <br />
+        <br />
+        <span class="texthead">Derived Classes</span>
+        <br />
+        <br />
+        <span class="textagend">Workshop 8</span>
+       </div>
+       <br />
+       <br />
+
+       <p>In this workshop, you code a hierarchy consisting of two classes,
+       where one class contains the structure of the other class.</p>
+       <br />
+
+       <p class="section">Learning Outcomes</p>
+
+       <p>Upon successful completion of this workshop, you will have
+       demonstrated the abilities to</p>
+
+       <ul>
+        <li>derive one class from another</li>
+
+        <li>call a base class constructor from the derived class
+        constructor</li>
+
+        <li>access a base class function that is shadowed by a
+        derived class function</li>
+       </ul>
+       <br />
+
+       <p id="pho" class="section">Telephony - All Groups</p>
+
+       <p>
+       Your hierarchy consists of two classes:
+       </p>
+       <ul>
+       <li>Phone</li>
+       <li>IntlPhone</li>
+       </ul>
+
+       <p class="ssection">Phone Class</p>
+
+       <p>Design and code a class named <span class=
+       "code">Phone</span> that holds a telephone
+       number.&#160; Upon instantiation, a <span class=
+       "code">PhoneNumber</span> object receives either nothing
+       or two integers: one identifying the area code and the other
+       identifying the local telephone number.&#160; If the object
+       receives nothing or an invalid number, the object adopts a
+       safe empty state.&#160; A valid area code is between 100 and 999
+       inclusive.&#160; A valid local number is between 1,000,000 and
+       9,999,999 inclusive.&#160;</p>
+
+       <p>Your <span class="code">Phone</span> class includes the
+       following member functions:</p>
+
+       <ul>
+        <li><span class="code">void display() const</span> - a query
+        that displays the telephone number in <span class=
+        "code">AAA-LLL-LLLL</span> format, where <span class=
+        "code">AAA</span> denotes area code and <span class=
+        "code">LLL-LLLL</span> denotes local number separated
+        into two parts by a dash.&#160;</li>
+
+        <li><span class="code">bool isValid() const</span> - a query that
+        returns <span class=code>true</span> if the number is valid,
+        <span class=code>false</span> if the object is in a safe
+        empty state.&#160;</li>
+       </ul>
+
+       <p>Place your class definition in a header file
+       named <span class="code">Phone.h</span> and your function
+       definitions in an implementation file named <span class=
+       "code">Phone.cpp</span></p>
+
+       <p class="sssection">Client Module</p>
+
+       <p>The implementation file for the main module that uses your
+       class is listed on the left, while the results are shown on the
+       right:</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Workshop 8 - Derived Classes
+ // w8.cpp
+
+ #include &lt;iostream&gt;
+ #include "Phone.h"
+
+ const int MAX_NO = 20;
+
+ int main() {
+     int  n = 0, code, local;
+     Phone phone[MAX_NO];
+
+     std::cout &lt;&lt; "Telephone List\n";
+     std::cout &lt;&lt; "==============\n";
+     do {
+         std::cout &lt;&lt; "Area Code: ";
+         std::cin &gt;&gt; code;
+         if (code != 0) {
+             std::cout &lt;&lt; "Local No.: ";
+             std::cin &gt;&gt; local;
+             Phone temp(code, local);
+             if (temp.isValid())
+                 phone[n++] = temp;
+         }
+     } while (code != 0 && n &lt; MAX_NO);
+     std::cout &lt;&lt; std::endl;
+
+     for (int i = 0; i &lt; n; i++) {
+         phone[i].display();
+         std::cout &lt;&lt; std::endl;
+     }
+ }</pre>
+         </td>
+         <td>
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+
+ Telephone List
+ ==============
+
+ Area Code : 416
+
+ Local No. : 5551212
+
+ Area Code : 141
+
+ Local No. : 4441111
+
+ Area Code : 228
+
+ Local No. : 6661234
+
+ Area Code : 0
+
+ 416-555-1212
+ 141-444-1111
+ 228-666-1234
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">IntlPhone Class</p>
+
+       <p>Design and code a class named <span class=
+       "code">IntlPhone</span>, derived from <span class=
+       "code">Phone</span> that holds an international
+       telephone number.&#160; Upon instantiation, an <span class=
+       "code">IntlPhone</span> object receives either nothing or
+       three integers: one identifying the country or region code, one
+       identifying the area code within that country or region and one
+       identifying the local telephone number within that area
+       code.&#160; If the object receives nothing or an invalid number,
+       the object adopts a safe empty state.&#160; A valid country or
+       region code is between 1 and 999 inclusive.&#160; A valid area
+       code is between 100 and 999 inclusive.&#160; A valid local
+       number is between 1,000,000 and 9,999,999 inclusive.&#160;</p>
+
+       <p>Your <span class="code">IntlPhone</span> class includes
+       the following member functions:</p>
+
+       <ul>
+        <li><span class="code">void display() const</span> - a query
+        that displays the phone number in <span class=
+        "code">CCC-AAA-LLL-LLLL</span> format, where <span class=
+        "code">CCC</span> denotes country code, <span class=
+        "code">AAA</span> denotes area code within a country or region,
+        and <span class="code">LLL-LLLL</span> denotes local
+        number.&#160;</li>
+
+        <li><span class="code">bool isValid() const</span> - a query that
+        returns <span class=code>true</span> if the number is valid,
+        <span class=code>false</span> if the current object is in a
+        safe empty state.&#160;</li>
+       </ul>
+
+       <p>Add your class definition to the header file
+       named <span class="code">Phone.h</span> and your function
+       definitions to the implementation file named <span class=
+       "code">Phone.cpp</span></p>
+
+       <p class="sssection">Client Module</p>
+
+       <p>The implementation file for the main module that uses your
+       class is listed on the left, while the results are shown on the
+       right:</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Workshop 8 - Derived Classes
+ // w8.cpp
+
+ #include &lt;iostream&gt;
+ #include "Phone.h"
+
+ const int MAX_NO = 20;
+
+ int main() {
+     int  n = 0, country, code, local;
+     IntlPhone phone[MAX_NO];
+
+     std::cout &lt;&lt; "Telephone List\n";
+     std::cout &lt;&lt; "==============\n";
+     do {
+         std::cout &lt;&lt; "Country   : ";
+         std::cin &gt;&gt; country;
+         if (country != 0) {
+             std::cout &lt;&lt; "Area Code : ";
+             std::cin &gt;&gt; code;
+             std::cout &lt;&lt; "Local No. : ";
+             std::cin &gt;&gt; local;
+             IntlPhone temp(country, code, local);
+             if (temp.isValid())
+                 phone[n++] = temp;
+         }
+     } while (country != 0 && n &lt; MAX_NO);
+     std::cout &lt;&lt; std::endl;
+
+     for (int i = 0; i &lt; n; i++) {
+         phone[i].display();
+         std::cout &lt;&lt; std::endl;
+     }
+ }</pre>
+         </td>
+         <td>
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+
+ Telephone List
+ ==============
+
+ Country   : 1
+ Area Code : 416
+ Local No. : 5551212
+
+ Country   : 44
+ Area Code : 141
+ Local No. : 4441111
+
+ Country   : 49
+ Area Code : 228
+ Local No. : 6661234
+
+ Country   : 0
+
+
+  1-416-555-1212
+ 44-141-444-1111
+ 49-228-666-1234
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <br />
+
+       <p id="man" class="section">Upgrade - Group Y</p>
+
+       <p>
+       Design and code the <span class=code>Phone</span> and
+       <span class=code>IntlPhone</span> classes described above.&nbsp;
+       Add input and output functionality to your design by overloading
+       the following helper operators:</p>
+
+       <ul>
+        <li><span class="code">std::istream& operator&gt;&gt;(std::istream&, Phone& p)</span>
+        - extracts data from standard input and stores it in <span class=code>p</span></li>
+
+        <li><span class="code">std::istream& operator&gt;&gt;(std::istream&, IntlPhone& p)</span>
+        - extracts data from standard input and stores it in <span class=code>p</span></li>
+
+        <li><span class="code">std::ostream& operator&lt;&lt;(std::ostream&, const Phone& p)</span>
+        - inserts data from <span class=code>p</span> into standard output</li>
+
+        <li><span class="code">std::ostream& operator&lt;&lt;(std::ostream&, const IntlPhone& p)</span>
+        - inserts data from <span class=code>p</span> into standard output</li>
+       </ul>
+
+       <p>Add your prototypes to the header file
+       named <span class="code">Phone.h</span> and your function
+       definitions to the implementation file named <span class=
+       "code">Phone.cpp</span></p>
+
+       <p class="sssection">Client Module</p>
+
+       <p>The implementation file for the main module that uses your
+       class is listed on the left, while the results are shown on the
+       right:</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Workshop 8 - Derived Classes
+ // w8.cpp
+
+ #include &lt;iostream&gt;
+ #include "Phone.h"
+
+ const int MAX_NO = 20;
+
+ int main() {
+     int  n = 0, country, code, local;
+     IntlPhone temp, phone[MAX_NO];
+
+     std::cout &lt;&lt; "Telephone List\n";
+     std::cout &lt;&lt; "==============\n";
+     do {
+         std::cin &gt;&gt; temp;
+         if (temp.isValid())
+             phone[n++] = temp;
+     } while (temp.isValid() && n &lt; MAX_NO);
+     std::cout &lt;&lt; std::endl;
+
+     for (int i = 0; i &lt; n; i++)
+         std::cout &lt;&lt; phone[i] &lt;&lt; std::endl;
+ }</pre>
+         </td>
+         <td>
+          <pre class="result">
+
+
+
+
+
+
+
+ Telephone List
+ ==============
+ Country   : 1
+ Area Code : 416
+ Local No. : 5551212
+ Country   : 44
+ Area Code : 141
+ Local No. : 4441111
+ Country   : 49
+ Area Code : 228
+ Local No. : 6661234
+ Country   : 0
+
+  1-416-555-1212
+ 44-141-444-1111
+ 49-228-666-1234
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <br />
+
+       <p class="section">SUBMISSION</p>
+
+       <p class="ssection">Typescript</p>
+
+       <p>Create a typescript of your complete solution
+       using the following commands:&#160;</p>
+       <table width="45%" summary="">
+        <tr>
+         <td>
+       <pre>
+ + At the prompt, type: script w8.txt
+ + At the prompt, type: whoami
+ + At the prompt, type: cat Phone.h Phone.cpp
+ + At the prompt, type: g++ -o w8 w8.cpp Phone.cpp&nbsp;
+ + At the prompt, type: w8
+ + At the prompt type: exit
+</pre>
+          </td>
+        </tr>
+       </table>
+
+       <p>These commands will produce a file named <span class=
+       "code">w8.txt</span>.&nbsp; Download this file to your local
+       computer.&#160;</p>
+
+       <p class="ssection">Moodle</p>
+
+       <p>
+       Upload your typescript file to Moodle:&#160;</p>
+
+       <ul>
+        <li>Login to Moodle <script type="text/javascript" src="../classroom_a.js"></script></li>
+
+        <li>Select your course code</li>
+
+        <li>Select W8 under Assignments and Tasks</li>
+
+        <li>Upload <span class=code>w8.txt</span></li>
+
+        <li>Write a short note to your instructor
+        <ul>
+        <li>press "Edit"</li>
+        <li>enter your conclusions about this workshop in the notes textbox</li>
+        <li>press "Save Changes"</li>
+        </ul>
+
+        <li>When ready to submit, press "Send for Marking"</li>
+       </ul>
+
+       <p class="ssection">Other Submissions</p>
+
+       <p>
+       Submit your typescript file as your instructor has specified.</p>
+
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

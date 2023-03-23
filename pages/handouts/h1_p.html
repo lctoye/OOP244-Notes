@@ -1,0 +1,312 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Exercises | Intro to C++  </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">In-Class Exercise</span>
+        <br />
+        <br />
+        <span class="texthead">Basic Concepts</span>
+       </div>
+       <br />
+       <br />
+
+       <p>This exercise covers block scope and references.&#160;</p>
+       <br />
+
+       <p class="section">Given Information</p>
+
+       <p>The following code is extracted from the Example in the Chapter on <a href=
+       "../content/compi.html#exa">Modular Programming</a>.</p>
+
+       <p class="ssection">Client Module</p>
+
+       <p class="sssection">main.h</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Modular Example
+ // main.h
+
+ #define NO_TRANSACTIONS 3
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">main.cpp</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Modular Example
+ // main.cpp
+
+ #include "main.h"
+ #include "Transaction.h"
+
+ int main() {
+     int i;
+     struct Transaction tr;
+
+     for (i = 0; i &lt; NO_TRANSACTIONS; i++) {&nbsp;
+         enter(&amp;tr);
+         display(&amp;tr);
+     }
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Transaction Module</p>
+
+       <p class="sssection">Transaction.h</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Modular Example
+ // Transaction.h
+
+ struct Transaction {
+     int acct;
+     char type;
+     double amount;
+ };
+
+ void enter(struct Transaction* tr);
+ void display(const struct Transaction* tr);&nbsp;
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Transaction.cpp</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Modular Example
+ // Transaction.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Transaction.h"
+
+ void enter(struct Transaction* tr) {
+
+     cout &lt;&lt; "Enter the account number : ";
+     cin  &gt;&gt; tr-&gt;acct;
+     cout &lt;&lt; "Enter the account type (d for debit, c for credit) : ";
+     cin  &gt;&gt; tr-&gt;type;
+     cout &lt;&lt; "Enter the account amount : ";
+     cin  &gt;&gt; tr-&gt;amount;
+ }
+
+ void display(const struct Transaction* tr) {
+
+     cout &lt;&lt; "Account " &lt;&lt; tr-&gt;acct;
+     cout &lt;&lt; ((tr-&gt;type == 'd') ? " Debit $" : " Credit $") &lt;&lt; tr-&gt;amount;&nbsp;
+     cout &lt;&lt; endl;
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">Your Task</p>
+
+       <p>Incorporate into the above code the following simplifications:</p>
+
+       <ol>
+        <li>limit the use of the <span class="code">struct</span>
+        keyword wherever possible</li>
+
+        <li>define the sentinel <span class="code">i</span> within the <span class="code">for</span>
+        block's scope instead of outside its scope</li>
+
+        <li>pass the Transactions by references instead of by address wherever possible</li>
+       </ol>
+
+       <p class="ssection">Client Module</p>
+
+       <p>In your updated implementation file for the client module fill in the
+       missing code:</p>
+
+       <ol>
+        <li>define an instance of a Transaction</li>
+
+        <li>define the sentinel</li>
+
+        <li>insert the proper argument in each function call</li>
+       </ol>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Basic Concepts
+ // h1.cpp
+
+ #include "h1.h"
+ #include "Transaction.h"
+
+ int main() {
+
+
+
+     for (    i = 0; i &lt; NO_TRANSACTIONS; i++) {&nbsp;
+         enter(    );
+         display(   );
+     }
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Transaction Module</p>
+
+       <p class="sssection">Transaction.h</p>
+
+       <p>In your updated header file for the Transaction module fill in the missing code:</p>
+
+       <ol>
+        <li>simplify the parameter list in each function prototype</li>
+
+        <li>pass-by-reference rather than pass-by-address in each prototype</li>
+       </ol>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Basic Concepts
+ // Transaction.h
+
+ struct Transaction {
+     int acct;
+     char type;
+     double amount;
+ };
+
+ void enter(                                               );&nbsp;
+ void display(                                             );
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Transaction.cpp</p>
+
+       <p>In your updated implementation file for the Transaction module
+       fill in the missing code:</p>
+
+       <ol>
+        <li>simplify the parameter list in the function header of each function definition</li>
+
+        <li>pass-by-reference rather than pass-by-address in each function header</li>
+
+        <li>complete the syntax within the body of each function definition</li>
+       </ol>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Basic Concepts
+ // Transaction.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Transaction.h"
+
+ void enter(                                              ) {
+
+     cout &lt;&lt; "Enter the account number : ";
+     cin  &gt;&gt;                              ;
+     cout &lt;&lt; "Enter the account type (d for debit, c for credit) : ";
+     cin  &gt;&gt;                              ;
+     cout &lt;&lt; "Enter the account amount : ";
+     cin  &gt;&gt;                              ;
+ }
+
+ void display(                                            ) {
+
+     cout &lt;&lt; "Account " &lt;&lt;                       ;
+     cout &lt;&lt; ((           == 'd') ? " Debit $" : " Credit $") &lt;&lt;           ;&nbsp;
+     cout &lt;&lt; endl;
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>-->
+</table>
+
+</body>
+</html>

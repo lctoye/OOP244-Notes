@@ -1,0 +1,347 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<span lang="en-us" xmlns='http://www.w3.org/1999/xhtml'><p>
+<head>
+	<title>Seneca | Computer Studies | The Object-Oriented Paradigm Using C++</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+	<meta name="Copyright" content="(c) Copyright Seneca College 2005" />
+	<meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+	<meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+	<meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+	<meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/style.043.css">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/styleSPrint.043.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="https://ict.senecacollege.ca/~oop244/pages/tests/stylePPrint.043.css" media="print">
+</head>
+
+<span><p>
+
+<table cellspacing="0" cellpadding="0">
+
+	<!-- Body Cell -->
+	<tr height="600">
+		<!-- Content Area -->
+		<td class="tbody" bgcolor="ffffff">
+			<table cellpadding="10" width="100%">
+				<tr>
+					<td bgcolor="ffffff" valign=top>
+					<center><span class=texthead>
+					Test 2 - Apr 1 2005</span><br />
+					<br />
+					</center>
+					<br />
+					Name ________________________________________________________________ Student Number _______________________
+					<br />
+
+					<p class="section">Notes:</p>
+					<p>
+					<ul>
+					<li>This test has 2 pages and lasts two full periods</li>
+					<li>This test is out of 30 marks and is worth 15% of your final grade</li>
+					<li>There are 3 questions in this paper - attempt each of them</li>
+					<li>Each question is of equal weight in marks (10 each)</li>
+					<li>Answer all questions in the exam booklet provided</li>
+					<li>Hand in this test paper with your answer booklet</li>
+					<li>You may use your copy of the lecture notes, the subject notes, one textbook and one study sheet both sides</li>
+					<li>You may use a non-programmable, non-messaging calculator</li>
+					<li>You may use a paper foreign-language dictionary</li>
+					</ul>
+					</p>
+					<br />
+
+					<p class="section">Question 1 - Word Problem - (10 marks):</p>
+					<p>
+					Design and code a class named <span class=code>Record</span>
+					that holds information about a text record.&nbsp;
+					Upon instantiation, a <span class=code>Record</span>
+					object may receive a null-terminated C-style string.&nbsp;
+					If the object does not receive a string, the object stores
+					a safe empty state.&nbsp;
+					Your class does not impose any limitation on the number of
+					characters stored in a <span class=code>Record</span> object.&nbsp;
+					Your design includes all of the member functions needed to
+					accomodate this feature under a variety of applications,
+					including the one below.
+					</p>
+					<p>
+					Your class includes the following member functions:
+					<ul>
+					<li><span class=code>void display(ostream&amp;)</span> - a query that
+					sends the text stored in the <span class=code>Record</span>
+					object to the output stream specified in the parameter;</li>
+					<li><span class=code>Record&amp; operator=(const char*)</span> - a modifier that
+					replaces the text stored in the <span class=code>Record</span>
+					object with the text specified through the parameter;</li>
+					</ul>
+					Your class also includes the following helper function:
+					<ul>
+					<li>an insertion operator that inserts a <span class=code>Record</span>
+					object into an output stream.</li>
+					</ul>
+					For example, the following program produces the output shown on the right
+					<table width="95%">
+					<tr>
+					<td width="50%">
+					<br />
+					<pre>
+ #include &lt;iostream&gt;
+ #include "Record.h"
+ using namespace std;
+
+ int main() {
+	Record rec1("inheritance"), rec2 = rec1;
+
+	cout &lt;&lt; rec1 &lt;&lt; endl;
+	cout &lt;&lt; rec2 &lt;&lt; endl;
+	rec1 = "overloading";
+	cout &lt;&lt; rec1 &lt;&lt; endl;
+	rec2 = rec1;
+	cout &lt;&lt; rec2 &lt;&lt; endl;
+
+	return 0;
+ } </pre><br /></td><td width="50%"><br /><pre class=result>
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ inheritance
+ inheritance
+ &nbsp;
+ overloading
+ &nbsp;
+ overloading
+ &nbsp;
+ &nbsp;
+ &nbsp;</pre><br /></td></tr></table>
+					</p>
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+
+					<p class="section">Question 2 - Word Problem - (10 marks):</p>
+					<p>
+					Design and code a class named <span class=code>IRecord</span>
+					that holds information about a text record that is part
+					of an index.&nbsp; Derive your class from the <span class=code>Record</span>.&nbsp;
+					Upon instantiation, a <span class=code>IRecord</span>
+					object may receive a triple consisting of
+					<ul>
+					<li>a null-terminated C-style string,</li>
+					<li>an array of integer values holding page numbers and</li>
+					<li>an integer holding the number of elements in the array.&nbsp;</li>
+					</ul>
+					If the object does not receive this triple or if any of the
+					values are invalid, the object stores a safe empty state.&nbsp;
+					Your class does not impose any limitation on the number of
+					pages stored in an <span class=code>IRecord</span> object.&nbsp;
+					Your design includes all of the member functions needed to
+					accomodate this feature under a variety of applications,
+					including the one below.
+					</p>
+					<p>
+					Your class also includes the following functions:
+					<ul>
+					<li><span class=code>void display(ostream&amp;)</span> - a query that
+					sends the text stored in the <span class=code>IRecord</span>
+					object to the output stream specified in the parameter
+					followed by the space and comma delimited page numbers
+					in the format shown below;</li>
+					<li><span class=code>void operator+=(int)</span> - a modifier
+					that inserts the value received into
+					the list of page numbers stored by the object.</li>
+					</ul>
+					For example, consider the following program that uses
+					your class
+					<table width="45%">
+					<tr>
+					<td>
+					<br />
+					<pre>
+ #include &lt;iostream&gt;
+ #include "IRecord.h"
+ using namespace std;
+
+ int main() {
+ 	int p[] = {23, 45, 67}, n = 3;
+	IRecord rec1("inheritance"), rec2("overloading", p, n);
+
+	rec1 += 78;
+	cout &lt;&lt; rec1 &lt;&lt; endl;
+	rec1 += 121;
+	cout &lt;&lt; rec1 &lt;&lt; endl;
+	rec2 += 89;
+	rec1 = rec2;
+	cout &lt;&lt; rec1 &lt;&lt; endl;
+
+	return 0;
+ } </pre><br /></td></tr></table>
+ 					This program produces the following output
+					<table width="45%">
+					<tr>
+					<td>
+					<br />
+					<pre class=result>
+ inheritance 78
+ inheritance 78, 121
+ overloading 23, 45, 67, 89</pre><br /></td></tr></table>
+					</p>
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+
+					<p class="section">Question 3 - Walkthrough - (10 marks):</p>
+					<p>
+					What is the exact output of the following program?&nbsp; Show your
+					rough work to avoid deductions.
+					<table width="45%">
+					<tr>
+					<td>
+					<pre>
+ #include &lt;iostream&gt;
+ #include &lt;iomanip&gt;
+ using namespace std;
+ #define MK 3
+ #define MT 4
+ #define BR 60000
+ #define SH 32
+
+ class Key {
+	int n;
+	int m;
+	bool on;
+ public:
+	Key() {n = 0; m = 0; on = false; cout &lt;&lt; "K0 ";}
+	Key(int k, int mm) {n = k; m = mm; on = false; cout &lt;&lt; "K2 ";}
+	~Key() {cout &lt;&lt; '~' &lt;&lt; n &lt;&lt; ' ';}
+	int  toggle() {on = !on; return on ? m : m + BR;}
+	bool pressed() const {return on;}
+	bool operator==(int k) const {return n == k;}
+	friend ostream&amp; operator&lt;&lt;(ostream&amp; os, const Key&amp; k) {
+		char c = k.on ? '*' : ' ';
+		os &lt;&lt; c &lt;&lt; setfill('0') &lt;&lt; setw(2) &lt;&lt; k.n &lt;&lt; setfill(' ') &lt;&lt; c;&nbsp;
+		return os;
+	}
+ };
+
+ class KB {
+	Key key[MK];
+	int nKeys;
+ public:
+	KB(const Key* k, int n) {
+		for (int i = 0; i &lt; n; i++)
+			key[i] = k[i];
+		nKeys = n;
+		cout &lt;&lt; "KB ";
+	}
+	virtual ~KB() {cout &lt;&lt; "~KB ";}
+	virtual int toggle(int j) {
+		int rc = 0;
+		for (int i = 0; i &lt; nKeys; i++)
+			if (key[i] == j)
+				rc = key[i].toggle();
+		return rc;
+	}
+	bool pressed(int j) const {
+		bool rc = false;
+		for (int i = 0; i &lt; nKeys; i++)
+			if (key[i] == j)
+				rc = key[i].pressed();
+		return rc;
+	}
+	friend ostream&amp; operator&lt;&lt;(ostream&amp; os, const KB&amp; p) {
+		for (int i = 0; i &lt; p.nKeys; i++)
+			os &lt;&lt; p.key[i] &lt;&lt; ' ';
+		return os;
+	}
+ };
+
+ class KBWS : public KB {
+	bool down;
+	int shift;
+ public:
+	KBWS(const Key* k, int n, int s) : KB(k, n) {
+		down = false; shift = s; cout &lt;&lt; "KBWS ";
+	}
+	~KBWS() {cout &lt;&lt; "~KBWS ";}
+	int toggle(int j) {
+		int rc;
+		if (shift == j) {
+			down = !down;
+			rc = KB::toggle(j);
+		} else if (pressed(j))
+			rc = KB::toggle(j);
+		else
+			rc = KB::toggle(j) - (down ? SH: 0);
+		return rc;
+	}
+ };
+
+ void process(KB&amp; v) {
+	int k[] = {22, 44, 22, 50};
+	for (int i = 0; i &lt; MT; i++) {
+		cout &lt;&lt; setw(5) &lt;&lt; v.toggle(k[i]) &lt;&lt; ": ";
+		cout &lt;&lt; v &lt;&lt; endl;
+	}
+ }
+
+ int main() {
+	Key y[MK];
+	y[0] = Key(44,34);
+	y[1] = Key(50,49);
+	y[2] = Key(22,53);
+	cout &lt;&lt; endl;
+	KBWS v(y, MK, 44);
+	cout &lt;&lt; endl &lt;&lt; "    0: " &lt;&lt; v &lt;&lt; endl;
+	process(v);
+	return 0;
+ }</pre></td></tr></table>
+					</p>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+	<!-- Footer -->
+	<!--tr>
+		<td class="tbody">
+			<table cellpadding="1" width="90%" align="center">
+				<tr>
+					<td width="50%" class="text3">
+						&nbsp;&nbsp;
+					</td>
+					<td width="50%" align="right" class="text3">
+						&nbsp;&nbsp;
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr-->
+</table>
+
+</span>
+</span>

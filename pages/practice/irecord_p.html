@@ -1,0 +1,245 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Practice | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the Computer Programming and Analysis Diploma Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Practice</span>
+        <br />
+        <br />
+        <span class="texthead">Indexed Record</span>
+       <br />
+       <br />
+       </div>
+       <br />
+
+       <p class="section">Record</p>
+
+       <p>Design and code a class named <span class=
+       "code">Record</span> that holds information about a text
+       record.&#160; Upon instantiation, a <span class=
+       "code">Record</span> object may receive a null-terminated
+       C-style string.&#160; If the object does not receive a string,
+       the object stores a safe empty state.&#160; Your class does not
+       impose any limitation on the number of characters stored in a
+       <span class="code">Record</span> object.&#160; Your design
+       includes all of the member functions needed to accomodate this
+       feature under a variety of applications, including the one
+       below.</p>
+
+       <p>Your class includes the following member functions:</p>
+
+       <ul>
+        <li><span class="code">void display(ostream&amp;)</span> - a
+        query that sends the text stored in the <span class=
+        "code">Record</span> object to the output stream specified in
+        the parameter;</li>
+
+        <li><span class="code">Record&amp; operator=(const
+        char*)</span> - a modifier that replaces the text stored in the
+        <span class="code">Record</span> object with the text specified
+        through the parameter;</li>
+       </ul>Your class also includes the following helper function:
+
+       <ul>
+        <li>an insertion operator that inserts a <span class=
+        "code">Record</span> object into an output stream.</li>
+       </ul>For example, the following program produces the output
+       shown on the right
+
+       <table width="95%" summary="">
+        <tr>
+         <td class="half">
+          <br />
+          <pre>
+ #include &lt;iostream&gt;
+ #include "Record.h"
+ using namespace std;
+
+ int main() {
+    Record rec1("inheritance"), rec2 = rec1;
+
+    cout &lt;&lt; rec1 &lt;&lt; endl;
+    cout &lt;&lt; rec2 &lt;&lt; endl;
+    rec1 = "overloading";
+    cout &lt;&lt; rec1 &lt;&lt; endl;
+    rec2 = rec1;
+    cout &lt;&lt; rec2 &lt;&lt; endl;
+
+    return 0;
+ }
+</pre>
+          <br />
+         </td>
+
+         <td class="half">
+          <br />
+          <pre class="result">
+
+
+
+
+
+
+
+ inheritance
+ inheritance
+
+ overloading
+
+ overloading
+
+
+
+</pre>
+          <br />
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">Indexed Record</p>
+
+       <p>Design and code a class named <span class=
+       "code">IRecord</span> that holds information about a text record
+       that is part of an index.&#160; Derive your class from the
+       <span class="code">Record</span>.&#160; Upon instantiation, a
+       <span class="code">IRecord</span> object may receive a triple
+       consisting of</p>
+
+       <ul>
+        <li>a null-terminated C-style string,</li>
+
+        <li>an array of integer values holding page numbers and</li>
+
+        <li>an integer holding the number of elements in the
+        array.&#160;</li>
+       </ul>If the object does not receive this triple or if any of the
+       values are invalid, the object stores a safe empty state.&#160;
+       Your class does not impose any limitation on the number of pages
+       stored in an <span class="code">IRecord</span> object.&#160;
+       Your design includes all of the member functions needed to
+       accomodate this feature under a variety of applications,
+       including the one below.
+
+       <p>Your class also includes the following functions:</p>
+
+       <ul>
+        <li><span class="code">void display(ostream&amp;)</span> - a
+        query that sends the text stored in the <span class=
+        "code">IRecord</span> object to the output stream specified in
+        the parameter followed by the space and comma delimited page
+        numbers in the format shown below;</li>
+
+        <li><span class="code">void operator+=(int)</span> - a modifier
+        that inserts the value received into the list of page numbers
+        stored by the object.</li>
+       </ul>For example, consider the following program that uses your
+       class
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <br />
+          <pre>
+ #include &lt;iostream&gt;
+ #include "IRecord.h"
+ using namespace std;
+
+ int main() {
+    int p[] = {23, 45, 67}, n = 3;
+    IRecord rec1("inheritance"), rec2("overloading", p, n);
+
+    rec1 += 78;
+    cout &lt;&lt; rec1 &lt;&lt; endl;
+    rec1 += 121;
+    cout &lt;&lt; rec1 &lt;&lt; endl;
+    rec2 += 89;
+    rec1 = rec2;
+    cout &lt;&lt; rec1 &lt;&lt; endl;
+
+    return 0;
+ }
+</pre>
+          <br />
+         </td>
+        </tr>
+       </table>This program produces the following output
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <br />
+          <pre class="result">
+ inheritance 78
+ inheritance 78, 121
+ overloading 23, 45, 67, 89
+</pre>
+          <br />
+         </td>
+        </tr>
+       </table>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Exercises | Intro to C++  </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">In-Class Exercise</span>
+        <br />
+        <br />
+        <span class="texthead">Helper Operators</span>
+       </div>
+       <br />
+       <br />
+
+       <p>This exercise overloads a helper operator, enabling
+       client programs to use objects in expressions that create
+       new objects from the operands that don't change in value.
+       </p>
+       <br />
+
+       <p class="section">Given Information</p>
+
+       <p>The following code is a solution to the Handout on
+       <a href="h8.html">Member Operators</a>.</p>
+
+       <p class="ssection">Client Module</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Member Operator
+ // h8.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Employee.h"
+
+ int main() {
+     Employee null,
+              mark(3456, "Mark"),
+              rose(3457, "Rose", 10.70);&nbsp;
+     null.display();
+     cout &lt;&lt; endl;
+     null += 0.50;       // raise of 50 cents&nbsp;
+     null.display();
+     cout &lt;&lt; endl;
+     mark.display();
+     cout &lt;&lt; endl;
+     mark += 0.50;       // raise of 50 cents&nbsp;
+     mark.display();
+     cout &lt;&lt; endl;
+     rose.display();
+     cout &lt;&lt; endl;
+     rose += 0.50;       // raise of 50 cents&nbsp;
+     rose.display();
+     cout &lt;&lt; endl;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Employee Module</p>
+
+       <p class="sssection">Employee.h</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Member Operators
+ // Employee.h
+
+ const double MIN_WAGE = 10.25;
+ const int    MAX_NAME = 20;
+
+ class Employee {
+     int no;
+     char name[MAX_NAME + 1];
+     double rate;
+ public:
+     Employee();
+     Employee(int, const char*);
+     Employee(int, const char*, double);&nbsp;
+     void display() const;
+     Employee& operator+=(double);
+ };</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Employee.cpp</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Member Operators
+ // Employee.cpp
+
+ #include &lt;iostream&gt;
+ #include &lt;iomanip&gt;
+ #include &lt;cstring&gt;
+ #include "Employee.h"
+ using namespace std;
+
+ Employee::Employee() {
+     // safe empty state
+     no = 0;
+     name[0] = '\0';
+     rate = MIN_WAGE;
+ }
+
+ Employee::Employee(int n, const char* nm) {
+     Employee temp(n, nm, MIN_WAGE);
+     *this = temp;
+ }
+
+ Employee::Employee(int n, const char* nm, double r) {
+     if (n &gt; 0 && nm[0] != '\0' && r &gt;= MIN_WAGE) {
+         no = n;
+         strncpy(name, nm, MAX_NAME); // copy first MAX_NAME characters&nbsp;
+         name[MAX_NAME] = '\0';       // ensure that last byte is null
+         rate = r;
+     } else {
+         Employee temp;
+         *this = temp;
+     }
+ }
+
+ void Employee::display() const {
+    if (no &gt; 0) {
+        cout &lt;&lt; fixed &lt;&lt; setprecision(2);
+        cout &lt;&lt; name &lt;&lt; " (" &lt;&lt; no &lt;&lt; ") $" &lt;&lt; rate;
+    }
+    else
+        cout &lt;&lt; "no data available";
+ }
+
+ Employee& Employee::operator+=(double r) {
+     if (no &gt; 0 && r &gt; 0.0)
+         rate += r;
+     return *this;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">Your Task</p>
+
+       <p>
+       Upgrade the <span class=code>Employee</span>
+       module to overload the <span class="code">+</span> operator in two
+       ways:</p>
+
+       <ul>
+        <li>overload the
+        <span class="code">+</span> operator for an <span class="code">Employee</span>
+        object as the left operand and a <span class=code>double</span> as the right
+        operand</li>
+        <li>overload the
+        <span class="code">+</span> operator for a <span class=code>double</span> as
+        the left operand and an <span class="code">Employee</span>
+        object as the right operand</li>
+       </ul>
+       <p>
+       In each case, use an independent helper definition (non-friend).</p>
+
+       <p class="ssection">Client Module</p>
+
+       <p>The client program that uses the upgraded class looks something
+       like</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Helper Operator
+ // h9.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Employee.h"
+
+ int main() {
+     Employee null,
+              mark(3456, "Mark"),
+              rose(3457, "Rose", 10.70);&nbsp;
+     null.display();
+     cout &lt;&lt; endl;
+     null = null + 0.50;       // raise of 50 cents&nbsp;
+     null.display();
+     cout &lt;&lt; endl;
+     mark.display();
+     cout &lt;&lt; endl;
+     mark = mark + 0.50;       // raise of 50 cents&nbsp;
+     mark.display();
+     cout &lt;&lt; endl;
+     rose.display();
+     cout &lt;&lt; endl;
+     rose = 0.50 + rose;       // raise of 50 cents&nbsp;
+     rose.display();
+     cout &lt;&lt; endl;
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Employee Module</p>
+
+       <p class="sssection">Employee.h</p>
+
+       <p>Add your prototype declarations after the class definition:</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Helper Operator
+ // Employee.h
+
+ const double MIN_WAGE = 10.25;
+ const int    MAX_NAME = 20;
+
+ class Employee {
+     int no;
+     char name[MAX_NAME + 1];
+     double rate;
+ public:
+     Employee();
+     Employee(int, const char*);
+     Employee(int, const char*, double);&nbsp;
+     void display() const;
+     Employee& operator+=(double);
+ };
+
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Employee.cpp</p>
+
+       <p>Add the helper operator definitions to the implementation file:</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Helper Operator
+ // Employee.cpp
+
+ #include &lt;iostream&gt;
+ #include &lt;iomanip&gt;
+ #include &lt;cstring&gt;
+ #include "Employee.h"
+ using namespace std;
+
+ Employee::Employee() {
+     // safe empty state
+     no = 0;
+     name[0] = '\0';
+     rate = MIN_WAGE;
+ }
+
+ Employee::Employee(int n, const char* nm) {
+     Employee temp(n, nm, MIN_WAGE);
+     *this = temp;
+ }
+
+ Employee::Employee(int n, const char* nm, double r) {
+     if (n &gt; 0 &amp;&amp; nm[0] != '\0' &amp;&amp; r &gt;= MIN_WAGE) {
+         no = n;
+         strncpy(name, nm, MAX_NAME); // copy first MAX_NAME characters
+         name[MAX_NAME] = '\0';       // ensure that last byte is null
+         rate = r;
+     } else {
+         Employee temp;
+         *this = temp;
+     }
+ }
+
+ void Employee::display() const {
+    if (no &gt; 0) {
+        cout &lt;&lt; fixed &lt;&lt; setprecision(2);
+        cout &lt;&lt; name &lt;&lt; " (" &lt;&lt; no &lt;&lt; ") $" &lt;&lt; rate;
+    }
+    else
+        cout &lt;&lt; "no data available";
+ }
+
+ Employee& Employee::operator+=(double r) {
+     if (no &gt; 0 && r &gt; 0.0)
+         rate += r;
+     return *this;
+ }
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>-->
+</table>
+
+</body>
+</html>

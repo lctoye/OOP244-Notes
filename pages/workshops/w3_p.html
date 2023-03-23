@@ -1,0 +1,308 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Workshops | Introduction to OO Programming </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Part B - Foundations</span>
+        <br />
+        <br />
+        <span class="texthead">Dynamic Memory</span>
+        <br />
+        <br />
+        <span class="textagend">Workshop 3</span>
+       </div>
+       <br />
+       <br />
+
+       <p>In this workshop, you are to process an array of objects
+       of compound type where the user specifies the number of elements
+       in the array at run-time.&nbsp;</p>
+       <br />
+
+       <p class="section">Learning Outcomes</p>
+
+       <p>Upon successful completion of this workshop, you will have
+       demonstrated the abilities</p>
+
+       <ul>
+        <li>to allocate and deallocate dynamic memory for an array of compound types</li>
+
+        <li>to use standard library functions to accept input data</li>
+
+        <li>to use standard library functions to format output data</li>
+       </ul>
+       <br />
+
+       <p class="section">Molecules - All Groups</p>
+
+       <p class="ssection">Molecule Class</p>
+
+       <p>Code a compound type named <span class=
+       "code">Molecule</span> that holds information about a single
+       molecule.&#160; The information consists of
+       </p>
+       <ul>
+       <li>a C-style string of no more than 20 characters, which holds the
+       symbol for the molecule</li>
+       <li>a C-style string of no more than 20 characters, which holds the
+       description of the molecule</li>
+       <li>a floating-point variable, which holds the molecular weight</li>
+       </ul>
+
+       <p>Your compound type includes the following member functions:</p>
+
+       <ul>
+        <li><span class="code">void set(const char*, const char*, double)</span> -
+        a modifier that stores valid data in an instance of the compound type.&nbsp;
+        The first parameter receives the address of a C-style string that holds
+        the symbolic structure.&nbsp; The second parameter receives the address
+        of a C-style string that holds the name of the molecule.&nbsp; The third
+        parameter receives the molecular weight.&nbsp; Valid data consists of
+        strings that do not exceed 20 characters in length and a molecular weight
+        that is positive-valued.</li>
+
+        <li><span class="code">void display() const</span> - a query
+        that displays molecular information on standard output as
+        follows: the symbol left-justified in a field width of 20, a
+        single space, the description left-justified in a field width
+        of 20, a single space, the molecular weight right-justified in
+        a field width of 7 with 3 decimal places.&#160; If the object
+        is empty, your function displays the message <span class=code>no
+        data available</span>.</li>
+       </ul>
+
+       <p>
+       Place your definition of the compound type in a header file
+       named <span class="code">Molecule.h</span> and your function definitions
+       in an implementation file named <span class="code">Molecule.cpp</span></p>
+
+       <p class="ssection">Client Module</p>
+
+       <p>Complete the following implementation file for the
+       <span class="code">w3</span> main module.&nbsp; The missing regions of
+       code are highlighted.&nbsp; In your solution (group x) you may assume
+       that the user inputs the data correctly:
+       </p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Workshop 3 - Molecules
+ // w3.cpp
+
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Molecule.h"
+
+ int main() {
+     int n;
+     <span class=high>// allocate static memory here</span>
+
+     cout &lt;&lt; "Molecular Information\n";
+     cout &lt;&lt; "=====================" &lt;&lt; endl;
+
+     cout &lt;&lt; "Number of Molecules : ";
+     cin &gt;&gt; n;
+     <span class=high>// allocate dynamic memory here</span>
+
+     for (int i = 0; i &lt; n; i++) {
+         char symbol[21];
+         char description[21];
+         double weight;
+
+         <span class=high>// ... add code to accept user input for a Molecule</span>
+
+         molecule[i].set(symbol, description, weight);
+     }
+     cout &lt;&lt; endl;
+
+     cout &lt;&lt; "Structure            Name                     Mass\n";
+     cout &lt;&lt; "==================================================" &lt;&lt; endl;&nbsp;
+
+     for (int i = 0; i &lt; n; i++) {
+         molecule[i].display();
+         cout &lt;&lt; endl;
+     }
+
+     <span class=high>// deallocate dynamic memory here</span>
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+       <p>
+       Your completed application, when used with your <span class=code>Molecule</span>
+       type, produces output that looks something like:&#160;</p>
+
+       <table width="45%" summary="">
+    <tr>
+     <td>
+      <pre class="result">
+ Molecular Information
+ =====================
+ Number of Molecules : 3
+ Enter structure : H2O
+ Enter full name : Water
+ Enter weight    : 18.015
+ Enter structure : CO2
+ Enter full name : Carbon Dioxide
+ Enter weight    : 44.010
+ Enter structure : NaCl
+ Enter full name : Sodium Chloride
+ Enter weight    : 58.443
+
+ Structure            Name                     Mass&nbsp;
+ --------------------------------------------------
+ H2O                  Water                  18.015
+ CO2                  Carbon Dioxide         44.010
+ NaCl                 Sodium Chloride        58.443
+</pre>
+     </td>
+    </tr>
+       </table>
+
+       <p>Note the sections of your code that required special
+       attention.&nbsp; Post advice to the forum letting
+       other students know where they should take care.</p>
+
+       <p>
+       You can find some data for amino-acids <a class="c2"
+       href=
+       "http://www.chemie.fu-berlin.de/chemistry/bio/amino-acids_en.html">
+       here</a> and a molecular weight calculator <a class="c2" href=
+       "http://www.chemie.fu-berlin.de/cgi-bin/molform">here</a>.
+       </p>
+       <br />
+
+       <p class="section">Robust Validation - Group Y</p>
+
+       <p>
+       Design and code the <span class=code>Molecule</span> type described
+       above.&nbsp; Complete the <span class=code>w3.cpp</span> implementation
+       file.&nbsp; Upgrade this file to include robust validation of the input
+       data provided by the user.
+       </p>
+
+       <br />
+
+       <p id="sub" class="section">SUBMISSION</p>
+
+       <p class="ssection">Typescript</p>
+
+       <p>Create a typescript of your complete solution
+       using the following commands:&#160;</p>
+       <table width="45%" summary="">
+        <tr>
+         <td>
+       <pre>
+ + At the prompt, type: script w3.txt
+ + At the prompt, type: whoami
+ + At the prompt, type: cat w3.cpp Molecule.h Molecule.cpp&nbsp;
+ + At the prompt, type: g++ -o w3 w3.cpp Molecule.cpp
+ + At the prompt, type: w3
+ + At the input prompt, enter test data
+ + At the prompt type: exit
+</pre>
+          </td>
+        </tr>
+       </table>
+
+       <p>These commands will produce a file named <span class=
+       "code">w3.txt</span>.&nbsp; Download this file to your local
+       computer.&#160;</p>
+
+       <p class="ssection">Moodle</p>
+
+       <p>
+       Upload your typescript file to Moodle:&#160;</p>
+
+       <ul>
+        <li>Login to Moodle <script type="text/javascript" src="../classroom_a.js"></script></li>
+
+        <li>Select your course code</li>
+
+        <li>Select W3 under Assignments and Tasks</li>
+
+        <li>Upload <span class=code>w3.txt</span></li>
+
+        <li>Write a short note to your instructor
+        <ul>
+        <li>press "Edit"</li>
+        <li>enter your conclusions about this workshop in the notes textbox</li>
+        <li>press "Save Changes"</li>
+        </ul>
+
+        <li>When ready to submit, press "Send for Marking"</li>
+       </ul>
+
+       <p class="ssection">Other Submissions</p>
+
+       <p>
+       Submit your typescript file as your instructor has specified.</p>
+
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

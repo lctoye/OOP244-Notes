@@ -1,0 +1,66 @@
+/* Problem 17 */
+	    #include <stdio.h>
+	    #include <string.h>
+	    class folder {
+		char s[31];
+		int pos;
+		int len;
+		int inc;
+	      public:
+		folder(char []);
+		char next();
+		void operator+=(folder);
+		int size() { return len; }
+	    };
+
+	    folder::folder(char str[])
+	    {
+		strcpy(s, str);
+		len = strlen(s);
+		pos = 1; 
+		inc = 2;
+	    }
+
+	    char folder::next()
+	    {
+		char c = s[pos];
+		pos = pos + inc;
+		if (pos >= len) {
+		    inc = -2;
+		    if (pos == len)
+			pos--;
+		    else
+			pos = pos - 3;
+		}
+		else if (pos < 0) {
+		    inc = 2;
+		    pos = pos + 3;
+		}
+		return c;
+	    }
+
+	    void folder::operator+=(folder a)
+	    {
+		int i = 0;
+		while (i < a.len) {
+		    s[len] = a.s[i];
+		    i++;
+		    len++;
+		}
+		s[len] = '\0';
+	    }
+
+	    void operator!(folder a) // hint: this is no longer not!
+	    {
+		for (int i = 0; i < a.size(); i++)
+		    printf("%c",  a.next());
+	    }
+
+	    int main()
+	    {
+		folder x("tgnee"), y("tb*");
+		x += y;
+		!x;
+		printf("\n");
+		return 0;
+	    }

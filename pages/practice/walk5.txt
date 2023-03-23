@@ -1,0 +1,42 @@
+/* Problem 5 */
+	    #include <stdio.h>
+	    #include <string.h>
+	    class abc {
+		    char def[21];
+		public:
+		    abc() { strcpy(def, "Help"); }
+		    abc(char s[]) { strcpy(def, s); }
+		    abc(char c) { def[0] = c; def[1] = '\0'; }
+		    void operator=(abc); // redefines = between abc's!!!
+		    friend abc operator+(abc, abc);
+		    void out() { printf("%s\n", def); }
+	    };
+	    void abc::operator=(abc x)
+	    {
+		int i, n = strlen(x.def);
+		for (i = 0; i < n; i++)
+		    def[i] = x.def[n - (i + 1)];
+		def[n] = '\0';
+	    }
+	    abc operator+(abc a, abc b)
+	    {
+		int i = 0;
+		abc c = a;
+		while (c.def[i] != '\0')
+		    i++;
+		for (int j = 0; b.def[j] != '\0'; j++) {
+		    c.def[i] = b.def[j];
+		    i++;
+		}
+		c.def[i] = '\0';
+		return c;
+	    }
+	    int main()
+	    {
+		abc x, y("!e"), z('M');
+		x = x + z;
+		x.out();
+		y = y + x;
+		y.out();
+		return 0;
+	    }

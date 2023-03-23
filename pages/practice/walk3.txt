@@ -1,0 +1,49 @@
+/* Problem 3 */
+	    #include <stdio.h>
+	    #include <string.h>
+	    class something {
+		char str[31];
+		int n;
+	      public:
+		something();
+		something(char s[]);
+		~something();
+		int dedah(char s[]);
+		int dedah(int num);
+	    };
+	    int main() {
+		something la, lala("dedah");
+
+		// concentrate!
+		la.dedah(lala.dedah("ladedah"));
+
+		something looloo("");
+		looloo.dedah("so long");
+		looloo.dedah(5);
+		return 0;
+	    }
+	    something::something() {
+		strcpy(str, "nothing");
+		n = -6;
+	    }
+	    something::something(char s[]) {
+		strcpy(str, s);
+		if (str[0] == '\0')
+		    n = 0;
+		else
+		    n = 2;
+	    }
+	    something::~something() {
+		printf("Good Bye from %s %d\n", str, n);
+	    }
+	    int something::dedah(char s[]) {
+		printf("was <%s>, <%d>\n", str, n);
+		strcpy(str, s);
+		n++;
+		return n + 2;
+	    }
+	    int something::dedah(int num) {
+		printf("was <%s>, <%d>\n", str, n);
+		n = n + num;
+		return n + 1;
+	    }

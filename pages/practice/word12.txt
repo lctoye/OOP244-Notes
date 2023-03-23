@@ -1,0 +1,52 @@
+	12. Code a class called tvshow, which stores information about a
+	    TV show. When instantiated, two character strings (title  of
+	    the show and name of the network on which the show  appears)
+	    and an  int  (the  Kneelson  rating  of  the  show)  may  be
+	    supplied.
+
+	    If the title is longer than 50 characters, only the first 50
+	    characters are stored, and if the  network  name  is  longer
+	    than 20 characters only the first 20 characters are stored.
+
+	    Alternatively,  a  tvshow  may   be   instantiated   without
+	    supplying any data, in which case an empty  string  is  used
+	    for the show's title as well as the network's name, and 0 is
+	    used for the Kneelson rating.
+
+	    There are public member functions:
+		void title(char s[])
+		    which copies the show's title into the array s, as a
+		    null- terminated string.
+		void network(char s[])
+		    which copies the network's name into  the  array  s,
+		    also as a null-terminated string.
+		int rating()
+		    which returns the Kneelson rating for the show.
+
+	     As well, two tvshows may be compared using >, which returns
+	     a true value if the Kneelson rating of the  tvshow  on  the
+	     left side is higher than the Kneelson rating of the  tvshow
+	     on the right side.
+
+	     Similarly, a tvshow can be compared to an int  value  using
+	     >, where the tvshow's Kneelson rating is  compared  to  the
+	     int.
+
+	     Finally, there is a non-member function
+		  tvshow best(tvshow x[], int count)
+	     which is passed an array of tvshows along with  the  number
+	     of elements in the array, and returns the element with  the
+	     highest Kneelson rating.
+
+	     For example
+		tvshow shows[3], top;
+		shows[0] = tvshow("This Hour Has 22 Minutes", "CBC", 15);
+		shows[1] = tvshow("Frasier", "NBC", 30);
+		shows[2] = tvshow("Beavis and Butthead", "MuchMusic", 1);
+		top = best(shows, 3);
+		char s1[51], s2[21];
+		top.title(s1);
+		top.network(s2);
+		printf("%s on %s tops ratings at %d\n",s1,s2,top.rating());
+	    displays
+		Frasier on NBC tops ratings at 30

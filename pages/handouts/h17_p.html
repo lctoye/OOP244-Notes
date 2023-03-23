@@ -1,0 +1,359 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Exercises | Intro to C++  </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">In-Class Exercise</span>
+        <br />
+        <br />
+        <span class="texthead">Abstract Base Class</span>
+       </div>
+       <br />
+       <br />
+
+       <p>This exercise identifies the member functions that all concrete
+       classes in an inheritance hierarchy must implement.
+       </p>
+       <br />
+
+       <p class="section">Given Information</p>
+
+       <p>The following code for the Animal hierarchy is from
+       the Handout on <a href="h16.html">Virtual Functions</a>.</p>
+
+       <p class="ssection">Client Module</p>
+
+       <p>
+       The client program is listed on the left and the output is shown on the right</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Virtual Functions
+ // h16.cpp
+
+ #include "Animal.h"
+
+ void foo(Animal a)  {
+     a.display();
+ }
+ void goo(Animal&amp; a) {
+     a.display();
+ }
+
+ int main() {
+     Animal* a;
+
+     a = new Animal();
+     a-&gt;display();
+     foo(*a);
+     goo(*a);
+     delete a;
+     a = new Horse();
+     a-&gt;display();
+
+     foo(*a);
+     goo(*a);
+     delete a;
+ }</pre>
+         </td>
+         <td>
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Animal
+ Animal
+ Animal
+
+
+ Animal
+ Horse
+ Animal
+ Animal
+ Horse
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Animal Module</p>
+
+       <p class="sssection">Animal.h</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Virtual Functions
+ // Animal.h
+
+ #include &lt;iostream&gt;
+
+ class Animal {
+   public:
+     virtual void display() const;
+ };
+
+ class Horse : public Animal {
+   public:
+     void display() const;
+ };</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Animal.cpp</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Virtual Functions
+ // Animal.cpp
+
+ #include "Animal.h"
+
+ void Animal::display() const {
+     std::cout &lt;&lt; "Animal" &lt;&lt; std::endl;&nbsp;
+ }
+
+ void Horse::display() const {
+     Animal::display();
+     std::cout &lt;&lt; "Horse" &lt;&lt; std::endl;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">Your Task</p>
+
+       <p>
+       Define an abstract base class named <span class=code>iAnimal</span>.&nbsp;
+       Identify the following two member functions as functions that any
+       concrete class derived from this abstract class must implement:
+       </p>
+       <ul>
+       <li><span class=code>void display() const</span> - displays the name of the animal</li>
+       <li><span class=code>void noise() const</span> - displays the sound that the animal makes</li>
+       </ul>
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Abstract Base Class
+ // iAnimal.h
+
+ class iAnimal {
+   public:
+
+
+
+ };</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Client Module</p>
+
+       <p>
+       The client program that uses your upgraded class is
+       listed on the left and the results are listed on the right:
+       </p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Abstract Base Class
+ // h17.cpp
+
+ #include &lt;iostream&gt;
+ #include "Animal.h"
+
+ int main() {
+     <span class=high>iAnimal</span>* a;
+
+     a = new Cat();
+     a-&gt;display();
+     a-&gt;noise();
+     delete a;
+
+     a = new Cow();
+     a-&gt;display();
+     a-&gt;noise();
+     delete a;
+ }</pre>
+         </td>
+         <td class="w30">
+          <pre class="result">
+
+
+
+
+
+
+
+
+
+
+ Cat
+ meow meow
+
+
+
+ Cow
+ moo moo
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Animal Module</p>
+
+       <p>
+       Complete the following header and implementation files.
+       </p>
+
+       <p class="sssection">Animal.h</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Abstract Base Class
+ // Animal.h
+
+ #include "iAnimal.h"
+
+ class Cat : public iAnimal {
+   public:
+
+
+
+ };
+
+ class Cow : public iAnimal {
+   public:
+
+
+
+ };</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Animal.cpp</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Abstract Base Class
+ // Animal.cpp
+
+ #include &lt;iostream&gt;
+ #include "Animal.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>-->
+</table>
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<span lang="en-us" xmlns='http://www.w3.org/1999/xhtml'><p>
+<head>
+    <title>Introduction to OO Programming | Seneca - Computer Studies</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Seneca College 2010" />
+    <meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../stylePPrint.043.css" media="print">
+</head>
+
+<span><p>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign=top>
+                    <center><span class=texthead>
+                    Test 1 - February 22 2011</span><br />
+                    <br />
+                    </center>
+                    <br />
+                    Name _________________________________________ Student Number ______________
+                    <br />
+
+                    <p class="section">Question 1 - Word Problem (10 marks)</p>
+                    <p>
+                    Design and code a class named <span class=code>CreditCard</span>
+                    that keeps track of the credit available on a credit card.&nbsp; Upon
+                    instantiation, a <span class=code>CreditCard</span> object may
+                    receive either no arguments or three arguments.&nbsp; The three
+                    arguments are the card number, the PIN number, and the credit
+                    limit in that order.&nbsp; If there are no arguments or if the
+                    card number or credit limit are not positive values, the object
+                    assumes a safe empty state.&nbsp; A newly created object assumes
+                    that the full amount of the credit limit is available.&nbsp;
+                    </p>
+                    <p>
+                    Your design includes two constructors - the no-argument constructor
+                    and the three-argument constructor - and the following methods:&nbsp;
+                    <ul>
+                    <li><span class=code>void display() const</span> - a query that
+                    displays on standard output (as shown in the example below):
+                    <ul>
+                    <li>the last four digits of the card number in a field width
+                    of 8 padded with '<span class=code>*</span>'s&nbsp;</li>
+                    <li>the amount of credit available on the card to 2 decimal
+                    places in a field width of 8</li>
+                    </ul>
+                    If the object is in a safe empty state, this method displays
+                    <span class=code>"Card is inactive"</span><br /><br /></li>
+                    <li><span class=code>bool charge(int pin, double amount)</span>
+                    - a modifier that accepts a charge against the credit card.&nbsp;
+                    If the <span class=code>pin</span> number is valid and there is
+                    sufficient credit available to cover the <span class=code>amount</span>
+                    charged, this method reduces the credit available by the
+                    <span class=code>amount</span> charged and returns
+                    <span class=code>true</span>; otherwise, this method returns
+                    <span class=code>false</span><br /><br /></li>
+                    <li><span class=code>void settle(double payment)</span> - a modifier
+                    that pays down the amount charged on the card by the
+                    <span class=code>payment</span> received and adjusts the credit
+                    available</li>
+                    </ul>
+                    </p>
+                    <p>
+                    Place your class declaration in a header file named
+                    <span class=code>CreditCard.h</span> and your function definitions
+                    in an implementation file named <span class=code>CreditCard.cpp</span>.&nbsp;
+                    Include all coding necessary to compile and run successfully
+                    under a standard C++ compiler.&nbsp;
+                    The following program that uses your design produces the output
+                    shown on the right
+                    <table>
+                    <tr>
+                    <td width="50%">
+                    <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "CreditCard.h"
+ int main() {
+     bool accepted;
+     CreditCard card1(51915166, 1234, 5000.0);
+     CreditCard card2(51915167, 4321, -4000.0);
+     card1.display();
+     card2.display();
+     accepted = card2.charge(4321, 4000.0);
+     cout &lt;&lt; (accepted ? "accepted" : "rejected") &lt;&lt; endl;
+     for (int i = 0; i &lt; 2; i++) {
+         accepted = card1.charge(1234, 325.00);
+         cout &lt;&lt; (accepted ? "accepted" : "rejected") &lt;&lt; endl;
+     }
+     card1.settle(300.00);
+     card1.display();
+ }</pre></td><td width="50%">
+                    <pre class=result>
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ ****5166 5000.00
+ Card is inactive&nbsp;
+ &nbsp;
+ rejected
+ &nbsp;
+ &nbsp;
+ accepted
+ accepted
+ &nbsp;
+ ****5166 4650.00
+ &nbsp;</pre></td></tr></table>
+                    </p>
+                    <br />
+
+                    <p class="section">Question 2 - Walkthrough (10 marks)</p>
+                    <p>
+                    What is the exact output of the following program?&nbsp; Show your
+                    rough work to avoid deductions.
+                    <table>
+                    <tr>
+                    <td>
+                    <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+
+ class Peanut {
+     int size;
+   public:
+     Peanut();
+     Peanut(int s);
+     void bite();
+     ~Peanut();
+ };
+
+ class Jar {
+     int no;
+     Peanut peanut[4];
+   public:
+     Jar(int n);
+     void takeBite(int i);
+     void swallow(int i);
+     ~Jar();
+ };
+
+ Peanut::Peanut() {
+     size = 0;
+     cout &lt;&lt; "p0" &lt;&lt; size &lt;&lt; endl;
+ }
+ Peanut::Peanut(int s) {
+     size = s;
+     cout &lt;&lt; "ps" &lt;&lt; size &lt;&lt; endl;
+ }
+ void Peanut::bite() {
+     size = size / 2;
+     cout &lt;&lt; "pw" &lt;&lt; size &lt;&lt; endl;
+ }
+ Peanut::~Peanut() {
+     cout &lt;&lt; "p~" &lt;&lt; size &lt;&lt; endl;
+ }
+
+ Jar::Jar(int n) {
+     Peanut local(4);
+     for (int i = 0; i &lt; n; i++)
+         peanut[i] = local;
+     no = n;
+     cout &lt;&lt; "jq" &lt;&lt; no &lt;&lt; endl;
+ }
+ void Jar::takeBite(int i) {
+     if (i &gt;= 0 && i &lt; no)
+         peanut[i].bite();
+ }
+ void Jar::swallow(int i) {
+     Peanut local;
+     if (i &gt;= 0 && i &lt; no)
+         peanut[i] = local;
+     if (i == no - 1)
+         no--;
+ }
+ Jar::~Jar() {
+     cout &lt;&lt; "j~" &lt;&lt; no &lt;&lt; endl;
+ }
+
+ int main() {
+     Jar jar(3);
+     jar.takeBite(1);
+     jar.swallow(2);
+     jar.takeBite(1);
+ }</pre></td></tr></table>
+                    </p>
+
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <!--tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr-->
+</table>
+
+</span>
+</span>

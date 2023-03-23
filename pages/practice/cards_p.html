@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Practice | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the Computer Programming and Analysis Diploma Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign="top">
+                        <br />
+                        <center>
+                        <span class=texth>Practice</span>
+                        <br />
+                        <br />
+                        <span class=texthead>
+                        Cards</span>
+                        </center>
+                        <br />
+                        <br />
+                        <br />
+
+                        <p>
+                        What is the exact output of the following program?&nbsp;
+                        Show your intermediate work.
+                        <table width="45%">
+                        <tr>
+                        <td>
+                        <br />
+                        <pre>
+ #include &lt;iostream&gt;
+ #include &lt;cstring&gt;
+ using namespace std;
+ #define NC 3
+
+ struct Card {
+ private:
+     int s;
+     int r;
+     char sr[4];
+ public:
+     int  set(const char* c) {
+         int rc;
+         char rr[] = "234567891JQKA";
+
+         if (c[0]=='1') {
+             sr[0] = '1';
+             sr[1] = '0';
+             sr[2] = c[2];
+             rc = 3;
+         } else {
+             sr[0] = ' ';
+             sr[1] = c[0];
+             sr[2] = c[1];
+             rc = 2;
+         }
+         sr[3] = '\0';
+         s = 0;
+         switch (sr[2]) {
+             case 'S': s++;
+             case 'H': s++;
+             case 'D': s++;
+             case 'C': s++;
+         }
+         r = 0;
+         while (rr[r] != '\0' &amp;&amp; c[0] != rr[r])
+             r++;
+         r += 11;
+
+         return rc;
+     }
+     void disp() const {cout &lt;&lt; r &lt;&lt; s &lt;&lt; ' ';}
+     void show() const {cout &lt;&lt; sr &lt;&lt; ' ';}
+     int  rn() const {return r;}
+ };
+
+ struct Hand {
+ private:
+     int n;
+     Card c[NC];
+ public:
+     void set(const char* s) {
+         int i, len = strlen(s);
+
+         n = 0;
+         i = 0;
+         while (i &lt; len)
+             i += c[n++].set(&amp;s[i]);
+         show();
+     }
+     void disp() const {
+         for (int i = 0; i &lt; n; i++)
+             c[i].disp();
+         cout &lt;&lt; endl;
+     }
+     void show() const {
+         for (int i = 0; i &lt; n; i++)
+             c[i].show();
+         cout &lt;&lt; endl;
+     }
+     void sort() {
+         Card temp;
+         for (int i = n - 1; i &gt;= 0; i--)
+             for (int j = 0; j &lt; i; j++)
+                 if (c[j].rn() &gt; c[j+1].rn()) {
+                     temp = c[j];
+                     c[j] = c[j+1];
+                     c[j+1] = temp;
+                 }
+     }
+ };
+
+ int main() {
+     Hand h;
+
+     h.set("KD6S10C");
+     h.disp();
+     h.sort();
+     h.disp();
+     h.show();
+
+     return 0;
+ }</pre><br /></td></tr></table>
+                        </p>
+                        <p>
+                        Show your output here:
+                        <br />
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        Show your rough work on a separate page.
+                        </p>
+                        </br>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        <script language="javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        <script language="javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

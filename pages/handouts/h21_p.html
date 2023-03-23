@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Exercises | Intro to C++  </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">In-Class Exercise</span>
+        <br />
+        <br />
+        <span class="texthead">Memory Allocation Order</span>
+       <br />
+       <br />
+       </div>
+       <br />
+
+       <p class="section">Walkthrough</p>
+
+       <p>What is the output of the following program:</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Memory Allocation Order
+ // h21.cpp
+
+ #include &lt;iostream&gt;
+ #include &lt;cstring&gt;
+ const int MNAME = 30;
+
+ class String {
+     char str[MNAME + 1];
+   public:
+     String() { std::cout &lt;&lt; "S"; }
+     String(const char* s) {
+         std::strncpy(str, s, MNAME);
+         str[MNAME] = '\0';
+         std::cout &lt;&lt; "S(" &lt;&lt; str &lt;&lt; ')';
+     }
+     ~String() {
+         std::cout &lt;&lt; "~S";
+     }
+ };
+
+ class Base {
+     String string;
+   public:
+     Base() { std::cout &lt;&lt; "B"; }
+     Base(const char* s) {
+         string = String(s);
+         std::cout &lt;&lt; "B(" &lt;&lt; s &lt;&lt; ')';
+     }
+     ~Base() {
+         std::cout &lt;&lt; "~B";
+     }
+ };
+
+ class Derived : public Base {
+     String string;
+   public:
+     Derived() { std::cout &lt;&lt; "D"; }
+     Derived(const char* s, const char* t) : Base(s) {&nbsp;
+         string = String(t);
+         std::cout &lt;&lt; "D(" &lt;&lt; t &lt;&lt; ')';
+     }
+     ~Derived() {
+         std::cout &lt;&lt; "~D";
+     }
+ };
+
+ int main() {
+     Derived one;
+     std::cout &lt;&lt; std::endl;
+     Derived two("two", "two plus");
+     std::cout &lt;&lt; std::endl;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>-->
+</table>
+
+</body>
+</html>

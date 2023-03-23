@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Introduction to Object-Oriented Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski 2011" />
+    <meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../../styleScreen.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../styleSPrint.043.css" media="print">
+    <link rel="stylesheet" type="text/css" href="../../styleNav.043.css">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign="top">
+
+                    <span class=texthead>
+                    <center>Quiz 1 - Feb 8 2011</center>
+                    </span>
+                    <br />
+
+                    <p>
+                    <pre>
+// What is the output of the following code?    Name ________________________________
+// Show your rough work!
+//
+#include <iostream>
+using namespace std;
+const int MAX_CHARS = 4;
+const int MAX_APPS = 2;
+
+struct App {
+  private:
+    char str[MAX_CHARS + 1];
+  public:
+    void set(const char* s);
+    void play();
+    void display() const;
+};
+struct Phone {
+  private:
+    int noApps;
+    App app[MAX_APPS];
+  public:
+    void start();
+    void add(const char* s);
+    void play();
+    void display() const;
+};
+
+int main() {
+    Phone iPhone;
+    iPhone.start();
+    iPhone.add("Vkog");
+    iPhone.display();
+    iPhone.play();
+    iPhone.add("Dbmd");
+    iPhone.display();
+    iPhone.play();
+    iPhone.add("Ring");
+    iPhone.display();
+};
+
+void App::set(const char* s) {
+    int i;
+    for (i = 0; s[i] != '\0' && i < MAX_CHARS; i++)
+        str[i] = s[i];
+    str[i] = '\0';
+}
+void App::play() {
+    for (int i = 0; str[i] != '\0'; i++)
+        str[i] = str[i] - 1;
+}
+void App::display() const {
+    cout << str << endl;
+}
+
+void Phone::start() { noApps = 0; }
+void Phone::add(const char* s) {
+    if (noApps < MAX_APPS)
+        app[noApps++].set(s);
+}
+void Phone::play() {
+    for (int i = 0; i < noApps; i++)
+        app[i].play();
+}
+void Phone::display() const {
+    for (int i = 0; i < noApps; i++)
+        app[i].display();
+}</pre>
+                        <br />
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        <script language="javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        <script language="javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr> -->
+</table>
+
+</body>
+</html>

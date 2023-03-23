@@ -1,0 +1,100 @@
+	39. A. Code a class named polygon, which stores the  coordinates
+	    for a (two dimensional) polygon. In mathematics,  a  polygon
+	    is a shape composed of points connected with lines. For  the
+	    purposes of this question, a polygon is defined  by  the  x-
+	    and  y-coordinates  of  each  of  the  points,  also  called
+	    vertices, which make  up  the  polygon.  The  order  of  the
+	    vertices matters, and must be maintained.
+
+	    When a polygon is instantiated, the program must pass
+
+	     (1) an int  specifying  the  number  of  vertices  for  the
+		 polygon. This also is the size of the next two arrays.
+
+	     (2) an array of x-coordinates (int values).
+
+	     (3) an array of y-coordinates (int values).
+
+	    There are also the following public member functions:
+
+	     int size() const - returns the number of vertices
+
+	     void point(int index, int &x, int &y) const - sets x to the
+		value of the x-coordinate of vertex i  of  the  polygon,
+		and sets y to the value of the y-coordinate of vertex  i
+		of the polygon (where  vertex  number  0  is  the  first
+		vertex in the polygon).
+
+	    For example, the program
+
+		#include <iostream.h>
+		int main()
+		{
+		    int xs[5] = {1, 2, 3, 4, 5};
+		    int ys[5] = {5, 6, 7, 8, 9};
+		    polygon a(5, xs, ys);
+
+		    for (int i = 0; i < a.size(); i++) {
+			int x, y;
+			a.point(i, x, y);
+			cout << "Vertex " << i << ": (" << x 
+			 << ',' << y << ")\n";
+		    }
+		    return 0;
+		}
+
+	    would output:
+
+		Vertex 0: (1,5)
+		Vertex 1: (2,6)
+		Vertex 2: (3,7)
+		Vertex 3: (4,8)
+		Vertex 4: (5,9)
+
+	    Note that to do this question properly, you must use dynamic
+	    memory allocation to allocate arrays of the proper size when
+	    instantiating the polygon. This means you will also need  to
+	    code a destructor, copy constructor and  =  operator  for  a
+	    polygon.
+
+	    B. Code the << operator so that a polygon can be sent to any
+	    ostream (just like all the built-in types can),  to  display
+	    the polygon's coordinates. The output should have the  exact
+	    same output format as the sample main() program supplied  in
+	    part A. In other words, the for-loop in part A's sample main
+	    could be replaced with
+
+		cout << a;
+
+	    and it would still produce the same  output.  Your  operator
+	    should allow subsequent  output  operations,  so  that,  for
+	    example, if a and b were both polygons, the following line:
+
+		cout << "First\n" << a << "Second\n" << b;
+
+	    would display both a and b with  the  headings  "First"  and
+	    "Second", respectively.
+
+	    C. Derive a class, shape, from polygon. A shape is just like
+	    a polygon, except that  it  also  has  an  int  value  which
+	    identifies the colour of the interior of  the  polygon.  The
+	    constructor  for  a  shape  has  four,  instead  of   three,
+	    parameters, where the fourth parameter is an int  containing
+	    the colour of the shape. A  shape  also  has  an  additional
+	    member function:
+
+		int colour() const - returns the colour of the shape.
+
+	    As well, the << operator which sends a shape to an  ostream,
+	    should display a line like:
+
+		Colour: 56
+
+	    (where 56 would be replaced by  the  shape's  actual  colour
+	    value) before displaying all the vertices of the shape.
+
+	    HINT: because of inheritance,  it  is  possible  to  cast  a
+	    derived instance to a base class instance without having  to
+	    write any special code to do this. So, if x is a shape, then
+	    polygon(x) would be just the polygon portion of  the  shape,
+	    which could be sent to an ostream...

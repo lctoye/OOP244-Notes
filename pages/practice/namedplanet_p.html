@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Practice | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the Computer Programming and Analysis Diploma Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Practice</span>
+        <br />
+        <br />
+        <span class="texthead">Named Planet</span>
+       <br />
+       <br />
+       </div>
+       <br />
+
+       <p class="section">Planet</p>
+
+       <p>Design and code a class named <span class=
+       "code">Planet</span> that holds information about a planet in
+       our solar system.&#160; Upon instantiation, a <span class=
+       "code">Planet</span> object may receive a double-precision,
+       floating-point value holding the mantissa part of the mass of
+       the planet in kilograms and an integer holding the power of 10
+       by which the mantissa part must be multiplied to obtain the mass
+       of the planet in kilograms (see the example below).&#160; If
+       these values are not provided or the mantissa part is not
+       greater than of equal to 1.0 and less than 10.0, the object
+       adopts a safe empty state.&#160;</p>
+
+       <p>Define as <span class="code">const</span> variables the mass
+       of the sun, which is 1.989e30 kilograms, and the universal
+       constant of gravitation, which is 6.674e-38
+       kilometers<sup>3</sup> kilograms<sup>-1</sup>
+       seconds<sup>-2</sup>.&#160; Include all of the prototypes
+       necessary to ensure proper compilation and execution of your
+       class declaration and implementation of your function
+       definitions.</p>
+
+       <p>Your design includes the following member and helper
+       functions:</p>
+
+       <ul>
+        <li><span class="code">double mass() const</span> - a query
+        that returns the mass of the planet in kilograms;</li>
+
+        <li>
+         <span class="code">double gravity(double r) const</span> - a
+         query that returns the force of gravity between the planet and
+         the sun, which is given by
+
+         <table width="95%" summary="">
+          <tr>
+           <td>
+            <pre>
+ Force = G m m<sub>sun</sub> / r<sup>2</sup>
+</pre>
+           </td>
+          </tr>
+         </table>
+
+         <p>where <span class="code">G</span> denotes the universal
+         constant of gravitational attraction, <span class=
+         "code">m</span> denotes the mass of the planet in kilograms,
+         <span class="code">m<sub>sun</sub></span> denotes the mass of
+         the sun in kilograms, and <span class="code">r</span> is the
+         distance between the planet and the sun in kilometers;</p>
+        </li>
+
+        <li>an insertion operator that inserts into an output stream
+        the mass of the planet in mantissa-exponent form to 2 decimal
+        places as shown in the example below.&#160; Design your
+        operator so that it handles cascading.&#160;</li>
+       </ul>
+
+       <p>For example, the following program uses your class and
+       produces the output shown below</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Planet.h"
+
+ int main ( ) {
+     Planet earth(5.97, 24);
+
+     cout &lt;&lt; earth &lt;&lt; endl;
+     cout &lt;&lt; "The force of gravity at the perihelion is " &lt;&lt;
+      earth.gravity(1.5e8) &lt;&lt; "N" &lt;&lt; endl;
+
+     return 0;
+ }
+</pre>
+         </td>
+        </tr>
+
+        <tr>
+         <td>
+          <pre class="result">
+ The mass of the planet is 5.97 x 10^24 kg
+ The force of gravity at the perihelion is 35.22 N
+
+</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">NamedPlanet</p>
+
+       <p>Derive from your <span class="code">Planet</span> class a
+       class named <span class="code">NamedPlanet</span> that holds
+       information for a planet including its name.&#160;</p>
+
+       <p>Upon instantiation, an <span class="code">NamedPlanet</span>
+       object may receive a double-precision, floating-point value
+       holding the mantissa part of the mass of the planet in
+       kilograms, an integer holding the power of 10 by which the
+       mantissa part must be multiplied to obtain the mass of the
+       planet in kilograms, and a null-terminated C-style string
+       holding the name of the planet (see the example boelow).&#160;
+       The name of the planet is not limited to any number of
+       characters.&#160;</p>
+
+       <p><em>Include all of the functions necessary to ensure the
+       proper copying and assignment of the data from one object to
+       another and to avoid memory leaks.</em></p>
+
+       <p>Your design includes the following member and helper
+       functions:</p>
+
+       <ul>
+        <li><span class="code">const char* name() const</span> - a
+        query that returns the name of the planet;</li>
+
+        <li>an insertion operator that inserts into an output stream
+        the name of the planet along with its mass in the format shown
+        below.&#160; Design your operator so that it allows
+        cascading.&#160;</li>
+       </ul>
+
+       <p>For example, the following program uses your class and
+       produces the output shown below</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td>
+          <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "NamedPlanet.h"
+
+ int main ( ) {
+     NamedPlanet earth(5.97, 24, "Earth");
+
+     cout &lt;&lt; earth &lt;&lt; endl;
+     cout &lt;&lt; "The force of gravity at the perihelion is " &lt;&lt;
+      earth.gravity(1.5e8) &lt;&lt; " N" &lt;&lt; endl;
+     return 0;
+ }
+</pre>
+         </td>
+        </tr>
+
+        <tr>
+         <td>
+          <pre class="result">
+The mass of Earth is 5.97 x 10^24 kg
+The force of gravity at the perihelion is 35.22 N
+</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

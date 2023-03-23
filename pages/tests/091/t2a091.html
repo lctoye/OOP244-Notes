@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<span lang="en-us" xmlns='http://www.w3.org/1999/xhtml'><p>
+<head>
+    <title>Seneca | Computer Studies | The Object-Oriented Paradigm Using C++</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Seneca College 2009" />
+    <meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../stylePPrint.043.css" media="print">
+</head>
+
+<span><p>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign=top>
+                    <center><span class=texthead>
+                    Test 2 - Apr 3 2009</span><br />
+                    <br />
+                    </center>
+                    <br />
+                    <br />
+                    Name _______________________________________ Student Number ________________
+                    <br />
+                    <br />
+
+                    <p class="section">Notes:</p>
+                    <p>
+                    <ul>
+                    <li>This test has 2 pages and lasts two full periods</li>
+                    <li>This test is out of 20 marks and is worth 15% of your final grade</li>
+                    <li>There are 2 questions - attempt both of them</li>
+                    <li>Answer all questions in the exam booklet provided</li>
+                    <li>Hand in this test paper with your answer booklet</li>
+                    <li>You may use your copy of the lecture notes, the subject notes, one textbook,
+                    a non-programmable, non-messaging calculator and a paper foreign-language dictionary</li>
+                    </ul>
+                    </p>
+
+                    <p class="section">Question 1 - Word Problem - (10 marks):</p>
+                    <p>
+                    Design and code a class named <span class=code>Stock</span>
+                    that holds information about a stock item in a store.&nbsp;
+                    Upon instantiation, a <span class=code>Stock</span>
+                    object may receive nothing or may receive three pieces of
+                    information: an integer identifying the item, a double-precision,
+                    floating point value holding the price of the item and the address
+                    of a C-style null-terminated string describing the item.&nbsp;
+                    A valid identifier is a positive integer.&nbsp; A valid price
+                    is a positive value.&nbsp; The description may be of any length.&nbsp;
+                    If the object does not receive any data or the data provided is
+                    invalid in any way, the object adopts a safe empty state.&nbsp;
+                    </p>
+                    <p>
+                    Store your class declaration in a header file named
+                    <span class=code>Stock.h</span>
+                    and your function definitions in an implementation file named
+                    <span class=code>Stock.cpp</span>.&nbsp;
+                    Include all of the prototypes necessary to ensure proper compilation
+                    and execution of your coding.
+                    </p>
+                    <p>
+                    Since your design must accommodate a description of any length,
+                    your design should include a deep copy constructor, a deep
+                    assignment operator and a destructor.
+                    </p>
+                    <p>
+                    Your design also includes a member operator and overloads the
+                    insertion operator:
+                    <ul>
+                    <li>
+                    <span class="code">Stock& operator+=(double raise)</span> - a member
+                    operator that receives a double value and increases the price of
+                    the item by that value if the object is not empty.&nbsp; The operator
+                    returns a reference to the current object.</li>
+                    <li>
+                    the overloaded insertion operator outputs a stock item's information
+                    in the following form:
+                    <ul>
+                    <li>the item number padded with 0's in a field of eight(6)</li>
+                    <li>the price of the item to 2 decimal places in a field of ten(10)</li>
+                    <li>the description of the item</li>
+                    </ul>
+                    </p>
+                    <p>
+                    The pieces of information are separated by a single space.&nbsp;
+                    Design your operator so that it allows cascading.&nbsp; If the
+                    object is empty, your operator outputs "empty object" in the
+                    description field as shown in the example below.
+                    </li>
+                    </ul>
+                    </p>
+                    <p>
+                    The following program uses your class and produces the output
+                    shown on the right
+                    <table width="95%">
+                    <tr>
+                    <td width="50%">
+                    <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ const int N = 4;
+ #include "Stock.h"
+
+ int main ( ) {
+     Stock stock[N];&nbsp;
+     stock[0] = Stock(1101, 5.66, "My Brand Cereal");
+     stock[1] = Stock(1102, 3.67, "My Name Chips);
+     stock[2] = Stock(1200, 5.67, "My Cow Milk");
+     stock[1] += 0.50;
+     for (int i = 0; i &lt; N; i++)
+        cout &lt;&lt; stock[i] &lt;&lt; endl;
+     return 0;
+ } </pre></td><td width="50%">
+                    <pre class="result">
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ &nbsp;
+ 001101       5.66 My Brand Cereal&nbsp;
+ 001102       4.17 My Name Chips
+ 001200       5.67 My Cow Milk
+                   empty object</pre></td></tr></table>
+                    </p>
+                    <br />
+
+                    <p class="section">Question 2 - Walkthrough - (10 marks):</p>
+                    <p>
+                    What is the exact output of the following program?&nbsp; Show your
+                    rough work to avoid deductions.
+                    <table width="45%">
+                    <tr>
+                    <td>
+                    <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+
+ class Bread {
+     double weight;
+     int slices;
+   public:
+     Bread() {
+         weight = 0.0;
+         slices = 0;
+         cout &lt;&lt; '#';
+     }
+     Bread(double w, int s) {
+         weight = w;
+         slices = s;
+         cout &lt;&lt; '%';
+     }
+     Bread(const Bread& b) {
+         weight = b.weight;
+         slices = b.slices;
+         cout &lt;&lt; '^';
+     }
+     void operator--() {
+         weight -= weight / slices;
+         slices--;
+     }
+     void operator--(int) {
+         weight -= 2 * weight / slices;
+         slices -= 2;
+     }
+     ~Bread() {
+         display();
+         cout &lt;&lt; '$' &lt;&lt; endl;
+     }
+     void display() const {
+         cout &lt;&lt; weight &lt;&lt; ',' &lt;&lt; slices;
+     }
+ };
+
+ class RaisinBread : public Bread {
+     int raisins;
+     int r_per_slice;
+   public:
+     RaisinBread() {
+         raisins = 0;
+         r_per_slice = 1;
+         cout &lt;&lt; '@';
+     }
+     RaisinBread(double w, int s, int r) : Bread(w, s) {
+         raisins = r;
+         r_per_slice = r / s;
+         cout &lt;&lt; '*';
+     }
+     RaisinBread(const RaisinBread& r) : Bread(r) {
+         raisins = r.raisins;
+         r_per_slice = r.r_per_slice;
+         cout &lt;&lt; '+';
+     }
+     void operator--() {
+         Bread::operator--();  // calls base class operator
+         raisins -= r_per_slice;
+     }
+     void operator--(int) {
+         Bread::operator--(2);  // calls base class operator
+         raisins -= r_per_slice * 2;
+     }
+     ~RaisinBread() {
+         display();
+         cout &lt;&lt; '~' &lt;&lt; endl;
+     }
+     void display() const {
+         Bread::display();
+         cout &lt;&lt; ',' &lt;&lt; raisins;
+     }
+ };
+
+ int main() {
+     RaisinBread rb(100.0, 10, 100), rd;
+     Bread b(10,2);
+     cout &lt;&lt; "\n-----------" &lt;&lt; endl; // 11 dashes
+
+     rb.display();
+     cout &lt;&lt; endl;
+     b.display();
+     cout &lt;&lt; endl;
+
+     cout &lt;&lt; "-----------" &lt;&lt; endl;   // 11 dashes
+     RaisinBread rc = rb;
+     --rb;
+     --b;
+     --rb;
+     cout &lt;&lt; endl;
+     rd.display();
+     cout &lt;&lt; endl;
+     cout &lt;&lt; "-----------" &lt;&lt; endl;   // 11 dashes
+
+     return 0;
+ }</pre></td></tr></table>
+                    </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <!--tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr-->
+</table>
+
+</span>
+</span>

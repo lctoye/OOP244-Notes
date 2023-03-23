@@ -1,0 +1,340 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Exercises | Intro to C++  </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">In-Class Exercise</span>
+        <br />
+        <br />
+        <span class="texthead">Constructor and Destructor</span>
+       </div>
+       <br />
+       <br />
+
+       <p>This exercise introduces a constructor and destructor
+       to a class definition to ensure that all objects contain
+       either valid data or a safe empty state and introduces logic
+       to ensure that member functions gracefully handle objects
+       that contain a safe empty state.</p>
+       <br />
+
+       <p class="section">Given Information</p>
+
+       <p>The following code is a solution to the Handout on
+       <a href="h4.html">Dynamic Memory</a>.</p>
+
+       <p class="ssection">Client Module</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Dynamic Memory
+ // h4.cpp
+
+ #include &lt;new&gt;
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Transaction.h"
+
+ int main() {
+     int n; // user-specified number of Transactions
+     Transaction* tr;
+
+     cout &lt;&lt; "Enter the number of Transactions : ";
+     cin  &gt;&gt; n;
+     tr = new (nothrow) Transaction[n];
+     if (tr == nullptr) {
+         cout &lt;&lt; "Memory Allocation Error " &lt;&lt; endl;
+         return 1;
+     }
+
+     cout &lt;&lt; "Enter " &lt;&lt; n &lt;&lt; " Transactions" &lt;&lt; endl;
+     for (int i = 0; i &lt; n; i++)
+         tr[i].enter();
+     cout &lt;&lt; endl;
+
+     cout &lt;&lt; "   Account Description             Credit     Debit" &lt;&lt; endl;&nbsp;
+     for (int i = 0; i &lt; n; i++) {
+         tr[i].display();
+         cout &lt;&lt; endl;
+     }
+
+     delete [] tr;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">Transaction Module</p>
+
+       <p class="sssection">Transaction.h</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Dynamic Memory
+ // Transaction.h
+
+ struct Transaction {
+   private:
+     int acct;
+     char type;
+     char desc[21];
+     double amount;
+   public:
+     void enter();
+     void display() const;
+ };</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Transaction.cpp</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Dynamic Memory
+ // Transaction.cpp
+
+ #include &lt;iostream&gt;
+ #include &lt;iomanip&gt;
+ using namespace std;
+ #include "Transaction.h"
+
+ void Transaction::enter() {
+
+     cout &lt;&lt; "Enter the account number : ";
+     cin  &gt;&gt; acct;
+     cin.ignore();
+     cout &lt;&lt; "Enter the desription : ";
+     cin.getline(desc, 21);
+     cout &lt;&lt; "Enter the account type (d for debit, c for credit) : ";&nbsp;
+     cin  &gt;&gt; type;
+     cout &lt;&lt; "Enter the account amount : ";
+     cin  &gt;&gt; amount;
+ }
+
+ void Transaction::display() const {
+
+     cout &lt;&lt; setw(10) &lt;&lt; acct;
+     cout &lt;&lt; ' ' &lt;&lt; setw(20) &lt;&lt; left &lt;&lt; desc &lt;&lt; right;
+     cout &lt;&lt; setprecision(2) &lt;&lt; fixed;
+     if (type == 'd')
+         cout &lt;&lt; setw(20) &lt;&lt; amount;
+     else
+         cout &lt;&lt; setw(10) &lt;&lt; amount;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">Your Task</p>
+
+       <p class="ssection">Transaction Module</p>
+
+       <p>
+       Upgrade the definition of the <span class="code">Transaction</span> class
+       to include a no-argument constructor and an empty destructor.&#160; Make
+       sure that your member functions gracefully process objects
+       in a safe empty state.</p>
+
+       <p class="sssection">Transaction.h</p>
+
+       <p>
+       Upgrade the header file for your <span class="code">Transaction</span> type:
+       </p>
+       <ol>
+       <li>replace the keywords <span class="code">struct</span>
+       and <span class="code">private</span> with the keyword
+       <span class="code">class</span></li>
+       <li>add the prototype for the no-argument constructor</li>
+       <li>add the prototype for the destructor</li>
+       </ol>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Constructor and Destructor
+ // Transaction.h
+
+       Transaction {
+
+     int acct;
+     char type;
+     char desc[21];
+     double amount;
+   public:
+
+
+     void enter();
+     void display() const;
+
+
+ };
+</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">Transaction.cpp</p>
+
+       <p>
+       Upgrade the implementation file for your <span class=
+       "code">Transaction</span> type:
+       </p>
+       <ol>
+       <li>add the function definition for the no-argument constructor</li>
+       <li>add the function definition for the empty destructor</li>
+       <li>complete the logic for the <span class=code>enter()</span> member
+       function, rejecting account numbers that aren't positive, amounts that
+       aren't positive, and types that are neither 'c' nor 'd'</li>
+       <li>complete the logic for your <span class=code>display()</span>
+       query</li>
+       </ol>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Constructor and Destructor
+ // Transaction.cpp
+
+ #include &lt;iostream&gt;
+
+ using namespace std;
+ #include "Transaction.h"
+
+
+
+
+
+
+
+
+
+
+
+ void Transaction::enter() {
+
+     // local variables accept input temporarily
+     int           ;
+     char          ;
+     char      [21];
+     double        ;
+
+     // store input from the user in the local variables
+     cout &lt;&lt; "Enter the account number : ";
+     cin  &gt;&gt;      ;                             ;
+     cin.ignore();
+     cout &lt;&lt; "Enter the desription : ";
+     cin.getline(desc, 21);
+     cout &lt;&lt; "Enter the account type (d for debit, c for credit) : ";&nbsp;
+     cin  &gt;&gt;      ;                             ;
+     cout &lt;&lt; "Enter the account amount : ";
+     cin  &gt;&gt;      ;
+
+     if (                                                 ) {
+         // copy validated input into the instance variables
+         acct =           ;
+         type =           ;
+                          ;
+         amount =         ;
+     }
+     else {
+         // input was invalid - adopt a safe empty state
+         acct =           ;
+         type =           ;
+                          ;
+         amount =         ;
+     }
+ }
+
+ void Transaction::display() const {
+
+     if (                 ) {
+         cout &lt;&lt; setw(10) &lt;&lt; acct;
+         cout &lt;&lt; ' ' &lt;&lt; setw(20) &lt;&lt; left &lt;&lt; desc &lt;&lt; right;&nbsp;
+         cout &lt;&lt; setprecision(2) &lt;&lt; fixed;
+         if (type == 'd')
+             cout &lt;&lt; setw(20) &lt;&lt; amount;
+         else
+             cout &lt;&lt; setw(10) &lt;&lt; amount;
+     }
+     else
+         cout &lt;&lt;                 &lt;&lt; endl;
+ }
+</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>-->
+</table>
+
+</body>
+</html>

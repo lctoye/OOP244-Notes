@@ -1,0 +1,66 @@
+	36. Create a class called  "usedcar"  which  is  used  to  store
+	    information about a used car. The usedcar  constructor  must
+	    be passed the following data, which will be  stored  in  the
+	    usedcar:
+	       (1) the model year of the car (int, e.g. 1997)
+	       (2) the make of the car (char string, max  20  characters
+		   long, e.g. "Ford")
+	       (3) the model of the car (char string, max 20  characters
+		   long, e.g. "Mustang")
+	       (4) the original purchase price of the  car  when  bought
+		   new (double, e.g. 28385.00)
+	       (5) a comment describing the car  (char  string,  max  60
+		   characters long, e.g. "Exceptionally clean  car,  one
+		   owner only")
+	       (6) the year in which the used car is to  be  sold  (int,
+		   e.g. 2001)
+
+	    There are member functions:
+		int sellyear() - returns the year in which the car is to
+		    be sold.
+		void sellyear(int year) - changes the year in which  the
+		    car is to be sold to the value passed in "year".
+		double price() - returns the asking price for the car in
+		    the year in which it is sold. The scheme to be  used
+		    to calculate the asking price for the car is:
+		      - if the model year for the car is the same as the
+			selling year, then the asking price is 10%  less
+			than the original purchase price of the car when
+			new.
+		      - if the model year for the car is the year before
+			the selling year, then the asking price  is  20%
+			less than the original purchase price of the car
+			when new.
+		      - if the model year for the car is more  than  one
+			year before the selling year,  then  the  asking
+			price is 20% plus  an  additional  5%  per  year
+			(after the first year) less  than  the  original
+			purchase price. For example, a 4  year  old  car
+			would sell for 20 + 3x5  =  35%  less  than  the
+			original price. If this calculation results in a
+			number less than 500, however, then  the  asking
+			price is 500. If the model year for the  car  is
+			later  than  the  selling  year  (an  impossible
+			situation), then the asking price returned is 0.
+
+	    The << operator can be used to display, on an  ostream,  all
+	    the stored values of the used car  as  well  as  the  asking
+	    price for the car, attractively laid out.
+
+	    Finally, there is  a  +  operator  that  takes  two  usedcar
+	    arguments, and returns a double, where the value returned is
+	    the sum of the two cars' asking prices.
+
+	    The following code shows  how  *some*  of  the  parts  of  a
+	    usedcar should work:
+
+	      usedcar x(1997, "Mazda", "Protege", 19500.00,
+	       "Nice car",2000);
+	      // Display details of x
+	      cout << "Car number 1:\n" << x << '\n';
+
+	      // increase selling year to 2001
+	      x.sellyear(x.sellyear() + 1);
+
+	      // then show what it will sell for in 2001
+	      cout << "Next year this car will sell for " << x.price();

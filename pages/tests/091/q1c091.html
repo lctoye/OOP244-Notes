@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Seneca | Computer Studies | The Object-Oriented Paradigm Using C++</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski 2007" />
+    <meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../../styleScreen.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../styleSPrint.043.css" media="print">
+    <link rel="stylesheet" type="text/css" href="../../styleNav.043.css">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign="top">
+
+                    <span class=texthead>
+                    <center>Quiz 1 - Feb 13 2009</center>
+                    </span>
+                    <br />
+                    <br />
+
+                    <p>
+                    What is the exact output of the following program?
+                    <pre>
+ #include &lt;iostream&gt;
+ #include &lt;iomanip&gt;
+ using namespace std;
+ const int MAX_CHAR   = 6;
+ const int MAX_PHRASE = 3;
+
+ struct Phrase {
+   private:
+     int k;
+     char text[MAX_CHAR + 1];
+   public:
+     void set(int kk, const char* str) {
+         int i;
+         for (i = 0; str[i] != '\0' && i &lt; MAX_CHAR; i++)
+             text[i] = str[i];
+         text[i] = '\0';
+         k = (kk &lt; strlen(text) ? kk : 0);
+     }
+     void display() const { cout &lt;&lt; left &lt;&lt; text &lt;&lt; endl; }
+     void crypt() {
+         if (k &lt; 0)
+             *(text-k) = text[-k] - 1;
+         else if (k &gt; 0)
+             *(text+k) = text[k] + 1;
+         k = -k;
+     }
+ };
+
+ struct Set {
+   private:
+     int n;
+     Phrase phrase[MAX_PHRASE];
+   public:
+     void ctor() { n = 0; }
+     void add(const char* str) { if (n &lt; MAX_PHRASE) phrase[n++].set(strlen(str)%3, str); }
+     void display() const {
+         cout &lt;&lt; "-----" &lt;&lt; endl;
+         for (int i = 0; i &lt; n; i++)
+             (phrase+i)-&gt;display();
+     }
+     void crypt() {
+         for (int i = 0; i &lt; n; i++)
+             phrase[i].crypt();
+     }
+ };
+
+ int main() {
+     Set s;
+     s.ctor();
+     s.display();
+     s.add("901");
+     s.add("2345");
+     s.add("67890");
+     s.display();
+     s.crypt();
+     s.display();
+     s.crypt();
+     s.display();
+
+     return 0;
+ }</pre>
+                        Show your output here:
+                        <br />
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        Show your rough work below.
+                        </p>
+                        </br>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        <script language="javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        <script language="javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

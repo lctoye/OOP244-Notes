@@ -1,0 +1,31 @@
+	2.  Develop and code  a  class,  named  employee,  as  described
+	    below.
+
+	    When an employee is created, an employee name of  up  to  30
+	    characters (stored as  a  null-terminated  string)  must  be
+	    supplied. An annual salary  may  also  be  supplied.  If  no
+	    salary is supplied, a salary of $20,000.00 is to be used.
+
+	    An employee has the following (publicly accessible) members:
+
+		int raise(double increase)
+
+	    which increases the employee's annual salary by  the  amount
+	    passed as a parameter.  This  function  normally  returns  a
+	    "true" value. However, if the new salary would be less  than
+	    zero (because a large negative  "increase"  was  specified),
+	    the salary is instead set to $0.00 and a  "false"  value  is
+	    returned.
+
+		void job()
+
+	    which displays the employee's name and job  title.  The  job
+	    title is  determined  by  salary:  Worker  for  salaries  of
+	    $30,000 or less, Clerk for  salaries  above  $30,000  up  to
+	    $45,000, and Executive for salaries over $45,000.
+
+		void cheque()
+
+	    which displays the employee's name, job title, and  net  pay
+	    for a two-week period (1/26th of the annual salary, less 40%
+	    for fringe benefits and tax withholding).

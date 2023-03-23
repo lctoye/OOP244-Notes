@@ -1,0 +1,51 @@
+/* Problem 21 */
+	    #include <iostream>
+	    using namespace std;
+	    #include <string.h>
+	    class what {
+		char s[81];
+	      public:
+		what() { strcpy(s, "nothing"); cout << "what\n"; }
+		virtual void set(char str[]) {
+		    int i;
+		    for (i = 0; str[i] && str[i] != ' '; i++)
+			s[i] = str[i];
+		    s[i] = '\0';
+		}
+		friend ostream &operator<<(ostream &, what);
+	    };
+	    ostream &operator<<(ostream &os, what x) { return os << x.s; }
+	    // note: this operator has nothing to do with 
+	    // iostreams, and it calls a virtual function
+	    void operator<<(what &x, char s[]) { x.set(s); }
+
+	    class hey: public what {
+	      public:
+		hey() { cout << "hey\n"; }
+		void set(char str[]) {
+		    int i = 0;
+		    while (str[i] && str[i] != ' ')
+			i++;
+		    while (str[i] == ' ')
+			i++;
+		    char temp[81];
+		    int j = 0;
+		    while (str[i]) {
+			temp[j] = str[i];
+			i++;
+			j++;
+		    }
+		    temp[j] = '\0';
+		    what::set(temp);
+		}
+	    };
+	    int main()
+	    {   what is, that;
+		hey really, confusing;
+		confusing << 
+		  "Everything gained from hard work is good except";
+		that << "ventured but not completed is valueless";
+		cout << is << ' ' << that << ' ' << really << ' ' 
+		     << confusing << '\n';
+		return 0;
+	    }

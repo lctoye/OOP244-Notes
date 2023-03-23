@@ -1,0 +1,43 @@
+/* Problem 11 */
+	    #include <stdio.h>
+	    #include <string.h>
+
+	    class skipper {
+		char s[41];
+		int sk;
+		int ln;
+		void set(char str[], int n) { 
+		    strcpy(s, str); ln = strlen(s); sk = n; }
+	      public:
+		skipper(char str[]) { set(str, 2); }
+		skipper(char str[], int n) { set(str, n); }
+		void show() { for (int i = 0; i < ln; i += sk)
+				    printf("%c", s[i]);
+			      printf("\n"); }
+		void operator+=(skipper x) {
+		    int i;
+		    for (i = 0; i < x.ln; i++)
+			s[i + ln] = x.s[i];
+		    ln += x.ln;
+		    if (sk < x.sk)
+			sk = x.sk;
+		}
+	    };
+
+	    int main()
+	    {
+		skipper one("ASCYEB");
+		one.show();
+		skipper two("OI F21 DPB4 A5", 3);
+		two.show();
+		printf("ahem...");
+		two += one;
+		two.show();
+		one += skipper("CLOWBY", 5);
+		printf("is like ");
+		one.show();
+		one += "UVLA";
+		printf("I mean ");
+		one.show();
+		return 0;
+	    }

@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Practice | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the Computer Programming and Analysis Diploma Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Practice</span>
+        <br />
+        <br />
+        <span class="texthead">RRSP</span>
+       <br />
+       <br />
+       </div>
+       <br />
+
+       <p>Design and code a class named <span class="code">RRSP</span>
+       that holds information for a Registered Retirement Savings Plan
+       account and tracks the current balance in the account.&#160;</p>
+
+       <p>Upon instantiation, an <span class="code">RRSP</span> object
+       may receive a null-terminated C-style string holding a
+       description of the plan, a floating-point value holding the
+       amount of the initial deposit and a floating-point value holding
+       the annual interest rate.&#160; If no information is provided,
+       the object assumes a safe empty state.&#160; Do not assume that
+       the description is limited to any number of
+       characters.&#160;</p>
+
+       <p>Your design includes the following member functions:</p>
+
+       <ul>
+        <li><span class="code">const char* description() const</span> -
+        a query that returns the description of the plan;</li>
+
+        <li><span class="code">double balance() const</span> - a query
+        that returns the current balance in the account;</li>
+
+        <li><span class="code">double accrued() const</span> - a query
+        that returns the interest accrued to the account;</li>
+
+        <li><span class="code">void accrueInterest(int days)</span> - a
+        modifier that calculates the interest on the current principal
+        at the current annual rate and adds that interest to the
+        accrued amount for the account; and</li>
+
+        <li><span class="code">void compound()</span> - a modifier that
+        compounds the accrued interest with the current principal.</li>
+       </ul>Your design also includes an insertion operator that
+       inserts into an <span class="code">ostream</span> the following
+       information on a single line:
+
+       <ul>
+        <li>the current balance in a field of 10 with 2 decimal
+        points;</li>
+
+        <li>the current rate in a field of 5 with 2 decimal
+        points;</li>
+
+        <li>the accrued interest in a field of 8 with 2 decimal points;
+        and</li>
+
+        <li>the description of the plan preceded by a single blank
+        character.</li>
+       </ul>Design your operator so that it handles cascading.&#160;
+       See the example shown below.
+
+       <p>Include all of the functions necessary to ensure the proper
+       copying and assignment of the data from one object to another
+       and to avoid memory leaks.</p>
+
+       <p>For example, the following program uses your class and
+       produces the output shown on the right</p>
+
+       <table width="95%" summary="">
+        <tr>
+         <td class="half">
+          <br />
+          <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "RRSP.h"
+
+ int main ( ) {
+     RRSP a = b("3 Year Term", 1000.00, 0.03);
+
+     cout &lt;&lt; a.name(); &lt;&lt; a.balance(); &lt;&lt; a.accrued();
+     a.accrueInterest(365);
+     a.compound();
+     b = a;
+     a.accrueInterest(100);
+     cout &lt;&lt; a &lt;&lt; endl;
+     cout &lt;&lt; b &lt;&lt; endl;
+     return 0;
+ }
+</pre>
+          <br />
+         </td>
+
+         <td class="half">
+          <br />
+          <pre class="result">
+
+
+
+
+
+
+
+ 3 Year Term   1000.00    0.00
+
+
+
+
+    1030.00 0.03    8.47 3 Year Term
+    1030.00 0.03    0.00 3 Year Term
+
+
+</pre>
+          <br />
+         </td>
+        </tr>
+       </table>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

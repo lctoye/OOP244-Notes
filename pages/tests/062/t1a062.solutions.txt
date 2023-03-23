@@ -1,0 +1,169 @@
+Test 1 - BTP200 - Solutions
+===========================
+
+Word Problem
+------------
+// Flight - Header File
+// Flight.h
+// BTP200
+// June 21 2006
+
+#include<iostream>
+#include<iomanip>
+using namespace std;
+
+#define WIDTH_DEFAULT 10
+
+class Flight {
+    int no;
+    char* desc;
+    int w;
+  public:
+    Flight();
+    Flight(int, const char*);
+    Flight(const Flight&);
+    Flight& operator=(const Flight&);
+    ~Flight();
+    int number() const;
+    Flight& width(int);
+    const char* destination() const;
+    friend ostream& operator<<(ostream&, const Flight&);
+};
+
+// Flight - Implementation File
+// Flight.cpp
+// BTP200
+// June 21 2006
+
+#include<iostream>
+#include<iomanip>
+using namespace std;
+#include "Flight.h"
+
+Flight::Flight() {
+
+    no = 0;
+    desc = NULL;
+    w = WIDTH_DEFAULT;
+}
+
+Flight::Flight(int number, const char* destination) {
+
+    if (number > 0) {
+        no = number;
+        desc = new (nothrow) char[strlen(destination) + 1];
+        if (desc != NULL)
+            strcpy(desc, destination);
+        else
+            no = 0;
+    }
+    else {
+        no = 0;
+        desc = NULL;
+    }
+    w = WIDTH_DEFAULT;
+}
+
+Flight::Flight(const Flight& f) {
+
+    desc = NULL;
+    *this = f;
+}
+
+Flight::~Flight() {
+
+    if (desc != NULL)
+        delete [] desc;
+}
+
+Flight& Flight::operator=(const Flight& f) {
+
+    if (this != &f) {
+        if (desc != NULL)
+            delete [] desc;
+        desc = new (nothrow) char[strlen(f.desc) + 1];
+        if (desc != NULL) {
+            no = f.no;
+            w  = f.w;
+            strcpy(desc, f.desc);
+        }
+        else {
+            no = 0;
+            w  = WIDTH_DEFAULT;
+        }
+    }
+    return *this;
+}
+
+int Flight::number() const {
+    return no;
+}
+
+const char* Flight::destination() const {
+    int i = 0;
+
+    while(desc[i] != NULL && (desc[i] == ' ' || desc[i] == '\f' ||
+     desc[i] == '\n' || desc[i] == '\t' || desc[i] == '\v')) i++;
+    return &desc[i];
+}
+
+Flight& Flight::width(int newWidth) {
+    int digits = 0, number =no;
+
+    while (number > 0) {
+        digits++;
+        number /= 10;
+    }
+
+    if (newWidth >= digits)
+        w = newWidth;
+    else
+        w = WIDTH_DEFAULT;
+    return *this;
+}
+
+ostream& operator<<(ostream& os, const Flight& f) {
+    return os << setw(f.w) << left << f.no << ' ' << f.desc;
+}
+
+
+Walkthrough
+-----------
+~L: 3
+~L: 2
+~L: 1
+ S:
+ T:
+Sale Receipt
+SR: 3@1.5 = 4.5 -
+ T: 4.5
+CT: 4.5
+~T: 4.5
++T: 4.5
+~T: 4.5
+SR: 2@0.5 = 1 b
+ T: 1.15
+CT: 1.15
+~T: 1.15
++T: 5.65
+~T: 1.15
+SR: 1@2 = 2 g
+ T: 2.14
+CT: 2.14
+~T: 2.14
++T: 7.79
+~T: 2.14
+SR: 7.5
+SR: 0.21
+SR: 0.08
+SR: 7.79
+------------
+~T: 7.79
+~S: 3
+~L: 0
+~L: 1
+~L: 2
+~L: 3
+~L: 1
+~L: 3
+~L: 3

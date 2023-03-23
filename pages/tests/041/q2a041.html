@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>BTP200 - Programming Fundamentals using C - Quizzes</title>
+<link rel="stylesheet" href="https://ict.senecacollege.ca/~oop244/pages/tests/style.css" type="text/css">
+</head>
+<body>
+
+    <span class=heading0>
+    <center>Quiz 2 - Jan 30 2004</center>
+    </span>
+
+    <br />
+
+    <p>
+    What is the exact output of the following program?
+    <pre>
+/* 01234567890:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ */
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+struct R {
+   char n[6];
+   int a;
+};
+struct S {
+   double p;
+   struct R q;
+};
+struct S f(const struct R* x);
+char g(struct R* y);
+
+int main(void) {
+   char c;
+   struct R x = {"Hello", 159};
+   struct S u;
+
+   u = f(&amp;x);
+   printf("%s,%.2lf%d\n", u.q.n, u.p, u.q.a);
+   c = g(&amp;x);
+   printf("%s,%d.142,%cee\n", x.n, x.a, c);
+   x.n[0] -= 5;
+   x.n[1] = 'y';
+   printf("%seeeeeeeeee\n", x.n);
+   return 0;
+}
+struct S f(const struct R* x) {
+   struct S a;
+
+   a.q = *x;
+   a.p = 3.142;
+   return a;
+}
+char g(struct R* y) {
+   strcpy(y-&gt;n, "Gee");
+   y-&gt;a = 3;
+   return *y-&gt;n;
+}</pre>
+    Show your output here:
+    <pre>
+|__|__|__|__|__|__|__|__|__|__|__|__|__|
+
+|__|__|__|__|__|__|__|__|__|__|__|__|__|
+
+|__|__|__|__|__|__|__|__|__|__|__|__|__|
+    </pre></p>
+
+</body>
+</html>

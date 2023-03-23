@@ -1,0 +1,29 @@
+/* Problem 31 */
+	    #include <iostream>
+	    using namespace std;
+
+	    class q1 {
+		char ch;
+
+	      public:
+		q1() { cout << "Made one: a\n"; ch = 'a'; }
+		q1(const q1 &x) { ch = x.ch + 2;
+			    cout << "Made another: " << ch << '\n'; }
+		~q1() { cout << "Bye: " << ch << '\n'; }
+		void show() { cout << ch << '\n'; ch++; }
+	    };
+
+	    q1 foo(q1 a)
+	    {
+		q1 b;
+		b = a;
+		b.show();
+		return b;
+	    }
+
+	    int main()
+	    {
+		q1 n, m;
+		m = foo(n);
+		return 0;
+	    }

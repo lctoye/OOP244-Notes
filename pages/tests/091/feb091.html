@@ -1,0 +1,400 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<span lang="en-us" xmlns='http://www.w3.org/1999/xhtml'><p>
+<head>
+    <title>Seneca | Computer Studies | The OO Paradigm Using C++</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Seneca College 2009" />
+    <meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="https://cs.senecac.on.ca/~oop244/pages/style.043.css">
+    <link rel="stylesheet" type="text/css" href="https://cs.senecac.on.ca/~oop244/pages/styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://cs.senecac.on.ca/~oop244/pages/stylePPrint.043.css" media="print">
+</head>
+
+<span><p>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign=top>
+                    <!--<center><span class=texthead>
+                    Final Exam - April 21 2009</span><br />
+                    <br />
+                    </center>-->
+
+                    <p class="section">Question 1 - Word Problem - (10 marks):</p>
+                    <p>
+                    Design and code a class named <span class=code>Light</span>
+                    that holds the following information about a light: its brightness
+                    and the three components of its color (red, green and blue).&nbsp;
+                    Place your class declaration in a header file named
+                    <span class=code>Light.h</span> and your function definitions in
+                    an implementation file named <span class=code>Light.cpp</span>.&nbsp;
+                    Include in your design all statements necessary to compile
+                    and to run successfully under a standard C++ compiler.
+                    </p>
+                    <p>
+                    Upon instantiation, a <span class=code>Light</span>
+                    object may receive no information or may receive two values:
+                    <ol>
+                    <li>a non-negative integer describing the three color components</li>
+                    <li>a floating-point number between 0.0 and 1.0 inclusive describing
+                    the brightness</li>
+                    </ol>
+                    </p>
+                    <p>
+                    The color data is received in RRGGBB form
+                    where the rightmost 2 digits describe the amount of blue,
+                    the next rightmost 2 digits to the left describe the amount of green
+                    and the next rightmost 2 digits describe the amount of
+                    red.&nbsp; For example, 990000 identifies pure red,
+                    while 990099 identifies magenta (pure red and pure blue mixed
+                    together).&nbsp; 0 represents absence of the color component and 99
+                    represents saturation of the color component.&nbsp;
+                    </p>
+                    <p>
+                    If the object receives no information or an invalid value for the
+                    color or the brightness, the object adopts a safe empty state.&nbsp;
+                    </p>
+                    <p>
+                    Your design includes four member functions and a helper operator:
+                    <ul>
+                    <li><span class=code>int setColor(char, int)</span> - a modifier
+                    that changes one of the light's color components.&nbsp; Your function
+                    receives a character - 'r', 'g' or 'b' - identifying the component to
+                    be changed and an integer between 0 and 99 inclusive.&nbsp;
+                    If your function receives a valid identifier and a valid integer,
+                    your function changes the specified color component and returns true;
+                    otherwise, your function does nothing and returns false.</li>
+                    <li><span class=code>int empty() const</span> - a query
+                    that returns true if the object is in a safe empty state; false otherwise.</li>
+                    <li>a post-fix increment (<span class=code>++</span>) operator - a modifier that increases the brightness
+                    of the light by 0.10.&nbsp; Your operator does not return any value and
+                    does not let the brightness exceed 1.0.</li>
+                    <li>a post-fix decrement (<span class=code>--</span>) operator - a modifier that decreases the brightness
+                    of the light by 0.10.&nbsp; Your operator does not return any value and
+                    does not let the brightness drop below 0.0.</li>
+                    <li>an insertion (<span class=code>&lt;&lt;</span>) operator - a friend that inserts into the standard
+                    output stream the light's color in RRGGBB format in a field
+                    of ten (10) and its brightness to two (2) decimal places in a
+                    field of six (6).&nbsp; Code your operator to allow cascading as shown
+                    in the example below.&nbsp;
+                    </li>
+                    </ul>
+                    </p>
+                    <p>
+                    Consider the following program that uses your
+                    <span class=code>Light</span> class.&nbsp; The program produces
+                    the output shown on the right side
+                    <table width="95%">
+                    <tr>
+                    <td width="70%">
+                    <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Light.h"
+
+ int main ( ) {
+     Light light(990099, 0.8);
+
+     ++light;
+     cout &lt;&lt; light &lt;&lt; endl;
+     ++light;
+     ++light;
+     light.setColor('r', 66);
+     light.setColor('g', 30);
+     cout &lt;&lt; light &lt;&lt; endl;
+     --light;
+     cout &lt;&lt; light &lt;&lt; endl;
+     return 0;
+ }</pre><br /></td><td width="30%">
+                    <pre class=result>
+
+
+
+
+
+
+
+
+     990099  0.80
+
+
+
+
+     663099  1.00
+
+     663099  0.90&nbsp;
+
+ </pre><br /></td></tr></table>
+                    </p>
+
+                    <p class="section">Question 2 - Word Problem - (10 marks):</p>
+                    <p>
+                    You may answer this question even if you have not completely designed
+                    the <span class=code>Light</span> class in the previous question; that
+                    is, you may assume that you have access to a complete design for
+                    the <span class=code>Light</span> class and may base your answer
+                    to this question on that complete design.&nbsp;
+                    </p>
+                    <p>
+                    Derive from the <span class=code>Light</span> class a class named
+                    <span class=code>SLight</span> that holds information about
+                    a light that can be switched on and off.&nbsp; The information includes
+                    the light's color, its brightness and its current switch state.&nbsp;
+                    Place your class declaration in a header file named
+                    <span class=code>SLight.h</span> and your function definitions in an
+                    implementation file named <span class=code>SLight.cpp</span>.&nbsp;
+                    Include in your design all statements and keywords necessary to
+                    compile and to run successfully under a standard C++ compiler.
+                    </p>
+                    <p>
+                    Upon instantiation, an <span class=code>SLight</span>
+                    object may receive no information or may receive three values
+                    <ol>
+                    <li>a non-negative integer describing the three color components</li>
+                    <li>a floating-point number between 0.0 and 1.0 inclusive describing
+                    the brightness</li>
+                    <li>an integer value describing the switch state: true for on,
+                    false for off</li>
+                    </ol>
+                    </p>
+                    <p>
+                    The color data is in RRGGBB form as defined in the description of
+                    the <span class=code>Light</span> class.&nbsp; If the object receives no
+                    information or an invalid value for the color or the brightness
+                    parameter, the object adopts a safe empty state.&nbsp; The switch
+                    state of an object in a safe empty state is off.&nbsp;
+                    </p>
+                    <p>
+                    Your design includes three member functions and a helper function:
+                    <ul>
+                    <li><span class=code>void toggle()</span> - a modifier
+                    that resets the switch state of the light.&nbsp; If the light is on,
+                    your function turns it off; if the light is off, your function
+                    turns it on.</li>
+                    <li>a post-fix increment (<span class=code>++</span>) operator - a
+                    modifier that increases the brightness of the light by 0.10 if the
+                    light is on and does nothing if the light is off or the object is in
+                    a safe empty state.&nbsp;
+                    Your operator does not return any value.</li>
+                    <li>a post-fix decrement (<span class=code>--</span>) operator - a
+                    modifier that decreases the brightness of the light by 0.10 if the
+                    light is on and does nothing if the light is off or the object is in
+                    a safe empty state.&nbsp; Your operator does not return any value.</li>
+                    <li>an insertion (<span class=code>&lt;&lt;</span>) operator - a friend
+                    that inserts into the standard output
+                    stream the light's color in RRGGBB format in a field
+                    of ten (10), its brightness to two (2) decimal places in a
+                    field of six (6) and its switch state as shown below.&nbsp;
+                    Allow cascading.</li>
+                    </ul>
+                    </p>
+                    <p>
+                    Consider the following program that uses
+                    your derived class.&nbsp; The program produces the output on the right side
+                    <table width="95%">
+                    <tr>
+                    <td width="70%">
+                    <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "SLight.h"
+
+ int main ( ) {
+     SLight light(990099, 0.8, 1);
+
+     ++light;
+     cout &lt;&lt; light &lt;&lt; endl;
+     ++light;
+     ++light;
+     light.setColor('r', 66);
+     light.setColor('g', 30);
+     cout &lt;&lt; light &lt;&lt; endl;
+     light.toggle();
+     --light;
+     cout &lt;&lt; light &lt;&lt; endl;
+     return 0;
+ }</pre></td><td width="30%">
+                    <pre class=result>
+
+
+
+
+
+
+
+
+     990099  0.90 on
+
+
+
+
+     663099  1.00 on
+
+
+     663099  1.00 off&nbsp;
+
+ </pre></td></tr></table>
+                    </p>
+
+                    <p class="section">Question 3 - Walkthrough - (10 marks):</p>
+                    <p>
+                    What is the exact output of the following program?&nbsp; Show your
+                    rough work to avoid deductions.
+                    <table width="95%">
+                    <tr>
+                    <td>
+                    <pre>
+ #include &lt;iostream&gt;
+ #include &lt;cstring&gt;
+ using namespace std;
+ const int N = 5;
+
+ class A {
+     char str[N];
+   public:
+     A() {
+         strcpy(str, "good");
+         cout &lt;&lt; str &lt;&lt; '\n';
+     }
+     A(char s[]) {
+         strcpy(str, s);
+         cout &lt;&lt; str &lt;&lt; '\n';
+     }
+     void move(int i) {
+         char t = str[2];
+         str[2] = str[i];
+         str[i] = t;
+     }
+     virtual void trade() { move(0); }
+     virtual void out(ostream& os) const { os &lt;&lt; str; }
+ };
+
+ ostream& operator&lt;&lt;(ostream& os, const A& q) {
+     q.out(os);
+     return os;
+ }
+
+ class B: public A {
+   public:
+     B() {}
+     B(char s[]): A(s) { cout &lt;&lt; "SURPRISE!\n"; }
+     void trade() { move(1); A::trade(); }
+ };
+
+ void perform(A first, A& second) {
+     first.trade();
+     second.trade();
+     cout &lt;&lt; first &lt;&lt; ' ' &lt;&lt; second &lt;&lt; '\n';
+ }
+
+ int main() {
+     A x, y("rowk");
+     B r, s("ate");
+     perform(x, y);
+     perform(r, s);
+     cout &lt;&lt; x &lt;&lt; ' ' &lt;&lt; y &lt;&lt; " : " &lt;&lt; r &lt;&lt; ' ' &lt;&lt; s &lt;&lt; '\n';
+     return 0;
+ }</pre></td></tr></table>
+                    </p>
+
+                    <p class="section">Question 4 - Walkthrough - (10 marks):</p>
+                    <p>
+                    What is the exact output of the following program?&nbsp; Show your
+                    rough work to avoid deductions.
+                    <table width="95%">
+                    <tr>
+                    <td>
+                    <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ const int N = 2;
+ class IntArray {
+     int no;
+     int* a;
+   public:
+     IntArray() { no = 0; a = NULL; cout &lt;&lt; '!'; }
+     IntArray(int n) {
+         no = n;
+         a = new int[n];
+         for (int i = 0; i &lt; n; i++)
+             a[i] = 2;
+         cout &lt;&lt; '$';
+     }
+     IntArray(const IntArray& s) {
+         a = NULL;
+         *this = s;
+         cout &lt;&lt; '^';
+     }
+     void operator=(const IntArray& s) {
+         if (a != NULL)
+             delete [] a;
+         if (s.no != 0)
+         	a = new int[s.no];
+         else
+         	a = NULL;
+         no = s.no;
+         for (int i = 0; i &lt; no; i++)
+             a[i] = s.a[i];
+         cout &lt;&lt; '=';
+     }
+     void set(int i, int value) { if (a != NULL) a[i] = value; }
+     void display() const {
+         if (a != NULL)
+             for (int i = 0; i &lt; no; i++)
+                 cout &lt;&lt; a[i] &lt;&lt; ' ' &lt;&lt; endl;
+     }
+     ~IntArray() { cout &lt;&lt; '~'; display(); delete [] a; }
+ };
+ int main() {
+     IntArray x, y(N);
+     y.display();
+     x.set(0, 10);
+     IntArray z = x;
+     cout &lt;&lt; endl;
+     for (int i = 0; i &lt; N; i++) y.set(i, i + 4);
+     x = y;
+     x.set(0, 9);
+     x.display();
+     return 0; }</pre></td></tr></table>
+                    </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <!--tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        &nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr-->
+</table>
+
+</span>
+</span>

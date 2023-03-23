@@ -1,0 +1,40 @@
+	48. Write the code to implement an object called a  "SafeArray",
+	    which is used to  store  a  bunch  of  ints,  accessible  by
+	    position.
+
+	    When a SafeArray is created, the number of integers that can
+	    be stored in the SafeArray is passed, and all  the  elements
+	    of the Safearray are initialized to 0. (Note: you will  have
+	    to use dynamic memory allocation to grab enough  space;  for
+	    simplicity, you may assume that you will have enough  memory
+	    available).
+
+	    When a SafeArray is destroyed, any memory allocated to it is
+	    freed.
+
+	    There is a public member function,
+
+		  int& elem(int position)
+
+	    which returns the corresponding element of the SafeArray, if
+	    "position" is at least 0 and is less than the number of ints
+	    in the SafeArray. If "position"  is  out  of  range,  elem()
+	    returns a private "junk" int, so that invalid use of  elem()
+	    will not cause a mysterious crash.
+
+	    The following program uses a SafeArray,  as  an  example  to
+	    help you understand the specs:
+
+	      main()
+	      {
+		  SafeArray x(15);     // make array of 15 ints
+
+		  x.elem(6) = 77;           // puts 77 into position 6
+		  x.elem(-14) = 88;         // puts 88 somewhere harmless
+
+		  // this loop outputs 0 0 0 0 0 0 77 0 0 0 0 0 0 0 0
+		  for (int i = 0; i < 15; i++)
+		      cout << x.elem(i) << ' ';
+
+		  return 0;
+	      }

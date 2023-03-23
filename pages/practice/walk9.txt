@@ -1,0 +1,50 @@
+/* Problem 9 */
+	    #include <stdio.h>
+	    #include <string.h>
+
+	    class foo {
+		char str[30];
+		int last;
+	      public:
+		foo() { last = 0; }
+		foo(char s[]) {
+		    last = strlen(s) - 1;
+		    *this = s; // uses operator= shown below
+		}
+		foo(char s[], int end) {
+		    last = end;
+		    *this = s;
+		}
+		void operator=(char s[]) {
+		    for (int i = last; i >= 0; i--)
+			str[last - i] = s[i];
+		    show();
+		}
+		void show() {
+		    for (int i = 0; i <= last; i++)
+			printf("%c ", str[i]);
+		    printf("\n");
+		}
+		friend foo operator+(foo a, foo b);
+	    };
+
+	    foo operator+(foo a, foo b)
+	    {   foo c;
+		int i;
+		for (i = 0; i <= a.last; i++)
+		    c.str[i] = a.str[i];
+		for (i = 0; i <= b.last; i++)
+		    c.str[a.last + i + 1] = b.str[i];
+		c.last = a.last + b.last + 1;
+		c.show();
+		return c;
+	    }
+
+	    int main()
+	    {   foo alpha("alpha", 2), beta("ets");
+		foo gamma;
+		gamma = alpha + beta;
+		alpha = "derisive comments don't help";
+		gamma = gamma + alpha;
+		return 0;
+	    }

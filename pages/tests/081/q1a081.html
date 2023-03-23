@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Seneca | Computer Studies | The Object-Oriented Paradigm Using C++</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski 2007" />
+    <meta name="Description" content="Welcome to the Bachelors Degree of Software Development Program Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../../styleScreen.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../styleSPrint.043.css" media="print">
+    <link rel="stylesheet" type="text/css" href="../../styleNav.043.css">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0">
+
+    <!-- Body Cell -->
+    <tr height="600">
+        <!-- Content Area -->
+        <td class="tbody" bgcolor="ffffff">
+            <table cellpadding="10" width="100%">
+                <tr>
+                    <td bgcolor="ffffff" valign="top">
+
+                    <span class=texthead>
+                    <center>Quiz 1 - Feb 4 2008</center>
+                    </span>
+                    <br />
+                    <br />
+
+                    <p>
+                    What is the exact output of the following program?
+                    <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #define BUFFER_SIZE 3
+
+ struct Key {
+   private:
+     char letter;
+     int  sCode;
+   public:
+     void setup(int d, char c) {
+         letter = c;
+         sCode  = d;
+         cout &lt;&lt; sCode &lt;&lt; '=' &lt;&lt; letter &lt;&lt; ' ';
+     }
+     int  scanCode() const { return sCode; }
+     char symbol() const { return letter; }
+ };
+
+ struct Keypad {
+   private:
+     Key* key;
+     int  nKeys;
+     char buffer[BUFFER_SIZE];
+     int  iBuffer;
+     int  shift;
+   public:
+     void setup(const char* c, const int code[]) {
+         nKeys = strlen(c);
+         key = new Key[nKeys];
+         for (int i = 0; i &lt; nKeys; i++) {
+             if (c[i] &gt;= 'A' && c[i] &lt;= 'Z')
+                 key[i].setup(code[i], c[i] + ' ');
+             else
+                 key[i].setup(code[i], c[i]);
+             if (i % 3 == 2)
+                 cout &lt;&lt; endl;
+         }
+         cout &lt;&lt; endl;
+         iBuffer = 0;
+         shift   = 0;
+     }
+     void flush() {
+         for (int i = 0; i &lt; iBuffer; i++)
+             cout &lt;&lt; buffer[i];
+         cout &lt;&lt; endl;
+         iBuffer = 0;
+     }
+     void press(int code) {
+         int found = 0;
+         for (int i = 0; i &lt; nKeys && found == 0; i++) {
+             if (code == key[i].scanCode()) {
+                 found = 1;
+                 if (iBuffer == BUFFER_SIZE)
+                     flush();
+                 if (shift == 1)
+                     buffer[iBuffer++] = key[i].symbol() - ' ';
+                 else
+                     buffer[iBuffer++] = key[i].symbol();
+             }
+         }
+         if (found == 0)
+             cout &lt;&lt; "..." &lt;&lt; endl;
+     }
+     void shiftOn()  { shift = 1; }
+     void shiftOff() { shift = 0; }
+     void closeUp() {
+         flush();
+         delete [] key;
+         cout &lt;&lt; "All Done!" &lt;&lt; endl;
+     }
+ };
+
+ int main() {
+     Keypad keypad;
+     int code[] = {12, 32, 45, 31, 67, 22, 10, 93, 39, 48};
+     int sample_a[] = {31, 12, 93, 37, 22};
+     int sample_b[] = {10, 93, 39};
+
+     keypad.setup("AbcdEFghIJ", code);
+
+     keypad.shiftOn();
+     for (int i = 0; i &lt; 5; i++)
+         keypad.press(sample_a[i]);
+     keypad.flush();
+
+     keypad.shiftOff();
+     for (int i = 0; i &lt; 3; i++)
+         keypad.press(sample_b[i]);
+     keypad.closeUp();
+
+     return 0;
+ }</pre>
+                        Show your output here:
+                        <br />
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        <hr>
+                        <br />
+                        Show your rough work on a separate page.
+                        </p>
+                        </br>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td width="50%" class="text3">
+                        <script language="javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td width="50%" align="right" class="text3">
+                        <script language="javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

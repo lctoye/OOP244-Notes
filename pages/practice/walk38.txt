@@ -1,0 +1,51 @@
+/* Problem 38 */
+	    #include <iostream>
+	    using namespace std;
+	    class abc {
+		double n;
+	      public:
+		abc() { n = 67.5; cout << "1\n"; }
+		abc(double num) { set(num); cout << "2\n"; }
+		double get() const { cout<<"3\n"; return n; }
+		virtual void set(double num) {
+		    if (num < 10)
+			n = 10;
+		    else if (num > 100)
+			n = 100;
+		    else
+			n = num;
+		    cout << "4\n";
+		}
+	    };
+	    class def: public abc {
+		double m;
+	      public:
+		def() { m = 6.2; cout << "5\n"; }
+		def(double num1, double num2): abc(num1) { 
+		    set(num2 - abc::get()); cout << "6\n"; }
+		double get() const { 
+		    cout << "7\n"; return m + abc::get(); }
+		void set(double num) {
+		    if (num < 10 || 100 < num)
+			m = num;
+		    else
+			m = 55;
+		    cout << "8\n";
+		}
+	    };
+	    void do_it(abc &var, double num)
+	    {   cout << var.get() << '\n';
+		var.set(num);
+		cout << var.get() << '\n';
+	    }
+	    int main()
+	    {   abc x(45);
+		def y(2, 340);
+		cout.setf(ios::fixed);
+		cout.precision(3);
+		do_it(x, 200);
+		do_it(y, 253);
+		cout << x.get() << '\n';
+		cout << y.get() << '\n';
+		return 0;
+	    }

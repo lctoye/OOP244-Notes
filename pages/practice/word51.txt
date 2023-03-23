@@ -1,0 +1,59 @@
+	51. Write the code to implement a class, called a  distribution,
+	    which stores the distribution of a bunch  of  integers  that
+	    will be sent to it. When  a  distribution  is  created,  the
+	    lower and upper  limits  for  the  range  are  specified.  A
+	    program may use the << operator  to  send  integers  to  the
+	    distribution (the left argument of << is a distribution  and
+	    the right argument is an integer). A program may also send a
+	    distribution to an ostream (the left argument of  <<  is  an
+	    ostream and the right argument is a distribution), in  which
+	    case, for each number in the distribution's range a count of
+	    how many times that number has been sent to the distribution
+	    is shown on the ostream (unless the  value  shown  would  be
+	    zero, in which case nothing is shown on the ostream for this
+	    number). Also, a count of how many times any number  outside
+	    the distribution's range has been sent to it is shown on the
+	    ostream,  unless  that  count  is  zero.  For  example,  the
+	    following program shows a typical use of a distribution
+
+		int main()
+		{
+		    // create a distribution of numbers from 5 to 10
+		    distribution x(5, 10);
+
+		    // send a bunch of numbers to the distribution
+		    x << 6 << 9 << 2 << 7 << 9 << 15;
+		    x << 6 << 6 << 17 << -2 << 6;
+
+		    // display a distribution of those numbers
+		    cout << x;
+
+		    return 0;
+		}
+
+	    and would output
+
+		6: 4 times
+		7: 1 times
+		9: 2 times
+		error: 4 times
+
+	    Although it might be appropriate to do so, you do  not  need
+	    to worry about making a copy constructor or  the  assignment
+	    (=) operator.
+
+	    Hint: You'll need to write a constructor,  a  destructor,  a
+	    member << operator that is passed an int, and a <<  operator
+	    for an  ostream  that  is  passed  a  distribution.  In  the
+	    constructor, which is passed two ints, dynamically  allocate
+	    an array big enough to hold one counter for each  number  in
+	    the range. (In our example, this would  be  an  array  of  6
+	    counters, one for each of the numbers 5, 6,  7,  8,  9,  and
+	    10). Each counter  should  be  initialized  to  zero.  There
+	    should also be a  counter  for  the  errors  which  is  also
+	    initialized to zero. The destructor should  deallocate  this
+	    memory. In the member << operator, increment the appropriate
+	    counter, based on the integer value sent. In the ostream  <<
+	    operator, "display" a line for any counter that is non-zero.
+	    You'll  need  to  figure  out  for  yourself  what   private
+	    variables you'll need.

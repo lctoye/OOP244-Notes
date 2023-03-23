@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Exercises | Intro to C++  </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the ICT Programming Stream C++ Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecacollege.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">In-Class Exercise</span>
+        <br />
+        <br />
+        <span class="texthead">Ad-Hoc Polymorphism</span>
+       </div>
+       <br />
+       <br />
+
+       <p>This exercise identifies the admissible operations
+       on an instance of a class and the categories of ad-hoc
+       polymorphism invoked by a client program.
+       </p>
+       <br />
+
+       <p class="section">Given Information</p>
+
+       <p class="ssection">Client Module</p>
+
+       <p>Consider the following client program:</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Ad-Hoc Polymorphism
+ // h15.cpp
+
+ #include &lt;iostream&gt;
+ #include "String.h"
+
+ int main() {
+     String s("Hello Hello"), t;
+
+     std::cout &lt;&lt; s &lt;&lt; std::endl;
+     t = s;
+     std::cout &lt;&lt; t &lt;&lt; std::endl;
+     s /= 2;
+     std::cout &lt;&lt; s &lt;&lt; std::endl;
+     s /= 2.5;
+     std::cout &lt;&lt; s &lt;&lt; std::endl;
+     t = "Good Bye";
+     std::cout &lt;&lt; t &lt;&lt; std::endl;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="ssection">String Module</p>
+
+       <p class="sssection">String.h</p>
+
+       <p>The header file for the <span class="code">String</span> module
+       contains the class definition:</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Ad-Hoc Polymorphism
+ // String.h
+
+ #include &lt;iostream&gt;
+
+ class String {
+     char text[61];
+     int len;
+ public:
+     String();
+     String(const char*);
+     String&amp; operator/=(int);
+     void display(std::ostream&) const;
+ };
+
+ std::ostream&amp; operator&lt;&lt;(std::ostream&amp;, const String&amp;);&nbsp;</pre>
+         </td>
+        </tr>
+       </table>
+
+       <p class="sssection">String.cpp</p>
+
+       <p>The implementation file for the <span class="code">String</span> module
+       contains the function definitions:</p>
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <pre>
+ // Ad-Hoc Polymorphism
+ // String.cpp
+
+ #include &lt;iomanip&gt;
+ #include &lt;cstring&gt;
+ #include "String.h"
+
+ String::String() {
+     text[0] = '\0';
+     len = 0;
+ }
+ String::String(const char* c) {
+     std::strncpy(text, c, 60);
+     text[60] = '\0';
+     len = std::strlen(text);
+ }
+ String&amp; String::operator/=(int k) {
+     len = len / k;
+     text[len] = '\0';
+     return *this;
+ }
+ void String::display(std::ostream& os) const {
+     os &lt;&lt; text;
+ }
+
+ std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const String&amp; s) {&nbsp;
+     s.display(os);
+     return os;
+ }</pre>
+         </td>
+        </tr>
+       </table>
+       <br />
+
+       <p class="section">Your Task</p>
+
+       <p class="ssection">Instances of Ad-Hoc Polymorphism</p>
+
+       <p>Identify</p>
+
+       <ul>
+        <li>the admissible operations on a <span class="code">String</span>
+       type<br /><br /><br /><br /><br /><br /></li>
+
+        <li>the instances of coercion invoked by the client program<br /><br /><br /><br /><br /><br /></li>
+
+        <li>the instances of overloading invoked by the client program<br /><br /><br /><br /><br /><br /></li>
+       </ul>
+
+       <p class="ssection">Walkthrough Result</p>
+
+       <p>
+       What is the output generated by the client program?
+       </p>
+       <br />
+       <br />
+       <hr />
+       <br />
+       <hr />
+       <br />
+       <hr />
+       <br />
+       <hr />
+       <br />
+       <hr />
+       <br />
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>-->
+</table>
+
+</body>
+</html>

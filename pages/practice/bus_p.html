@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC
+    '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en-us" xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <title>Practice | Introduction to OO Programming</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+
+    <meta name="Copyright" content="(c) Copyright Chris Szalwinski and Seneca College 2015" />
+    <meta name="Description" content="Welcome to the Computer Programming and Analysis Diploma Web Site.  On this site you can find the introductory course to object-oriented programming.  Designed by Chris Szalwinski." />
+    <meta name="Abstract" content="This subject introduces the principles of object-oriented programming.  Students study the solution of problems using objects with the C++ programming language.  The emphasis throughout is on the solution of small problems."/>
+    <meta name="Author" content="chris.szalwinski@senecac.on.ca"/>
+    <meta name="Keywords" content="software development, object-oriented programming, lecture notes"/>
+
+    <link rel="stylesheet" type="text/css" href="../style.043.css">
+    <link rel="stylesheet" type="text/css" href="../styleSPrint.043.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylePPrint.043.css" media="print">
+</head>
+
+<body>
+
+<table cellspacing="0" cellpadding="0" summary="banner">
+
+    <!-- Body Cell -->
+    <tr class="content">
+        <!-- Content Area -->
+        <td class="tbody">
+    <table cellpadding="10" width="100%" summary="content">
+     <tr>
+      <td class="content" valign="top">
+       <br />
+
+       <div class="center">
+        <span class="texth">Practice</span>
+        <br />
+        <br />
+        <span class="texthead">Bus</span>
+       <br />
+       <br />
+       </div>
+       <br />
+
+       <p>Design and code a class named <span class="code">Bus</span>
+       that holds information about a TTC bus.&#160; Upon
+       instantiation, a <span class="code">Bus</span> object may
+       receive a null-terminated C-style string holding the route
+       number followed by the route name.&#160; If the object receives
+       a string, the object accepts the number and the name only if the
+       number is positive and less than 1000.&#160; If the object does
+       not receive a string or the number portion of the string is
+       outside the acceptable range, the object assumes a safe empty
+       state.&#160; Your class does not impose any limitation on the
+       number of characters in the name of a <span class=
+       "code">Bus</span> object.&#160; Your design includes all of the
+       member functions needed to accomodate this feature under a
+       variety of applications, including the one below.</p>
+
+       <p>Your class also includes the following functions:</p>
+
+       <ul>
+        <li><span class="code">int route() const</span> - a query that
+        returns the route number of the <span class="code">Bus</span>
+        object;</li>
+
+        <li><span class="code">const char* name() const</span> - a
+        query that returns the address of the first character of the
+        name of the <span class="code">Bus</span> object; and</li>
+
+        <li><span class="code">void change(const char*)</span> - a
+        modifier that receives a null-terminated C-style string and
+        changes the route number and route name of the <span class=
+        "code">Bus</span> object to the data received;</li>
+
+        <li>an insertion operator that inserts into an output stream
+        the route number as a three digit number enclosed within
+        parentheses and followed by the name of the bus as shown in the
+        example below.</li>
+       </ul>For example, consider the following program that uses your
+       class
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <br />
+          <pre>
+ #include &lt;iostream&gt;
+ using namespace std;
+ #include "Bus.h"
+
+ int main ( ) {
+     Bus bus1("196 Rocket"), bus2 = bus1;
+
+     cout &lt;&lt; bus1 &lt;&lt; endl &lt;&lt; bus2 &lt;&lt; endl;
+     bus2.change("000 Not in Service");
+     bus1 = bus2;
+     cout &lt;&lt; (bus1.route() != 0 ? bus.route() : '*') &lt;&lt; ' ' &lt;&lt; bus1.name() &lt;&lt; endl;
+
+     return 0;
+ }
+</pre>
+          <br />
+         </td>
+        </tr>
+       </table>This program produces the following output
+
+       <table width="45%" summary="">
+        <tr>
+         <td>
+          <br />
+          <pre class="result">
+ (196) Rocket
+ (196) Rocket
+ * Not In Service
+</pre>
+          <br />
+         </td>
+        </tr>
+       </table>
+       <br />
+       <br />
+       <br />
+      </td>
+     </tr>
+    </table>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td class="tbody">
+            <table cellpadding="1" width="90%" align="center">
+                <tr>
+                    <td class="half text3">
+                        <script type="text/javascript">
+                        var lh = document.location.href;
+                        document.write(lh)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                    <td class="half" align="left" class="text3">
+                        <script type="text/javascript">
+                        var lm = document.lastModified.slice(0,-3);
+                        document.write("Last Modified: " +lm)
+                        </script>&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
