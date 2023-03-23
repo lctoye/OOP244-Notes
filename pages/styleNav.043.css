@@ -29,24 +29,24 @@
 /* Panels */
 
 .panel1 {
-    background: #AEE7FC;
+    background: none;
 }
 
 .panel2 {
-    background: #EDEDFE;
+    background: none;
     padding-left: 5px;
     padding-right: 5px;
     display: none;
 }
 
 .panel3 {
-    background: #EDEDFE;
+    background: none;
     width: 700px;
     display: none;
 }
 
 .panel4 {
-    background: #08ffea;
+    background: none;
     display: none;
 }
 
